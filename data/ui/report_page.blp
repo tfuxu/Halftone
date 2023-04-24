@@ -1,0 +1,33 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PixelyReportPage: Gtk.Box {
+  orientation: vertical;
+  halign: center;
+  spacing: 10;
+  margin-top: 20;
+  margin-bottom: 20;
+
+  Adw.Bin result_image_bin {
+    height-request: 200;
+    width-request: 50;
+    //halign: center;
+    child: Gtk.Picture {};
+
+    styles [
+      "card"
+    ]
+  }
+
+  Gtk.Box report_box {
+    orientation: vertical;
+
+    Gtk.Label {
+      label: _("You managed to reduce this file's size by 80.78%");
+
+      styles [
+        "title-2"
+      ]
+    }
+  }
+}

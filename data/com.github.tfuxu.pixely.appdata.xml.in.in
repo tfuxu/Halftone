@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component type="desktop-application">
+  <id>@APP_ID@</id>
+  <name>Pixely</name>
+  <summary>Give your images that pixel-y look</summary>
+  <developer_name>tfuxu</developer_name>
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <update_contact>tfuxu@tutanota.com</update_contact>
+  <content_rating type="oars-1.1"/>
+
+  <description>
+    <p>
+      A simple Libadwaita app for lossy image compression using dithering technique.
+
+      Give your images a pixel art-like style and reduce the file size in the process with Pixely.
+    </p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default" width="633" height="922">
+      <caption>Pixely Main Window</caption>
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Pixely/main/data/screenshots/pixely-dark.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">@PROJECT_URL@</url>
+  <url type="bugtracker">@BUGTRACKER_URL@</url>
+  <url type="help">@HELP_URL@</url>
+  <!--<url type="translate">@TRANSLATE_URL@</url>-->
+
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+
+  <requires>
+    <internet>offline-only</internet>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
+
+  <custom>
+    <value key="Purism::form_factor">workstation</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
+
+  <categories>
+    <category>GTK</category>
+    <category>GNOME</category>
+    <category>Image</category>
+    <category>Graphics</category>
+    <category>ImageProcessing</category>
+  </categories>
+
+  <keywords>
+    <keyword>image</keyword>
+    <keyword>dither</keyword>
+    <keyword>compression</keyword>
+  </keywords>
+
+  <releases>
+    <release version="0.1.0" date="2023-05-16" type="development">
+      <description>
+        Initial release of Pixely.
+      </description>
+    </release>
+  </releases>
+</component>

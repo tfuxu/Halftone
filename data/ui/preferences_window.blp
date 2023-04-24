@@ -1,0 +1,34 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PixelyPreferencesWindow : Adw.PreferencesWindow {
+  title: _("Preferences");
+  default-height: 400;
+  default-width: 600;
+  modal: true;
+
+  Adw.PreferencesPage main_pref_page {
+    Adw.PreferencesGroup example_group {
+      title: _("Example Group");
+      description: _("This is an example preferences group.");
+
+      Adw.ActionRow {
+        title: _("Example Setting 1");
+        subtitle: _("This preference doesn't change absolutely nothing.");
+        activatable-widget: example_pref_1_switch;
+        Gtk.Switch example_pref_1_switch {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Example Setting 2");
+        subtitle: _("Like the above one, this preference also doesn't change absolutely nothing.");
+        activatable-widget: example_pref_2_switch;
+        Gtk.Switch example_pref_2_switch {
+          valign: center;
+        }
+      }
+    }
+  }
+}

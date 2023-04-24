@@ -1,0 +1,68 @@
+{
+  "app-id" : "com.github.tfuxu.pixely",
+  "runtime" : "org.gnome.Platform",
+  "runtime-version" : "master",
+  "sdk" : "org.gnome.Sdk",
+  "command" : "pixely",
+  "finish-args" : [
+      "--share=ipc",
+      "--device=dri",
+      "--socket=fallback-x11",
+      "--socket=wayland"
+  ],
+  "cleanup" : [
+      "/include",
+      "/lib/pkgconfig",
+      "/man",
+      "/share/doc",
+      "/share/gtk-doc",
+      "/share/man",
+      "/share/pkgconfig",
+      "*.la",
+      "*.a"
+  ],
+  "modules" : [
+      "pypi-dependencies.json",
+      {
+          "name" : "blueprint-compiler",
+          "buildsystem" : "meson",
+          "sources" : [
+              {
+                  "type" : "git",
+                  "url" : "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+                  "tag" : "v0.6.0"
+              }
+          ]
+      },
+      {
+        "name": "magick",
+        "buildsystem": "simple",
+        "build-commands": [
+          "./configure --prefix=/app --with-heic=yes --with-rsvg=yes",
+          "make",
+          "make install"
+        ],
+        "sources": [
+          {
+            "type": "git",
+            "url": "https://github.com/ImageMagick/ImageMagick.git",
+            "commit": "cbfe7265e210932a34d4949a90633a65c3f013b3"
+          }
+        ]
+      },
+      {
+          "name" : "pixely",
+          "builddir" : true,
+          "buildsystem" : "meson",
+          "config-opts": [
+              "-Dbuildtype=release"
+          ],
+          "sources" : [
+              {
+                  "type" : "dir",
+                  "path" : "../../."
+              }
+          ]
+      }
+  ]
+}

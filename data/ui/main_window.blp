@@ -1,0 +1,159 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PixelyMainWindow: Adw.ApplicationWindow {
+  title: "Pixely";
+  default-width: 500;
+  default-height: 800;
+  width-request: 300;
+  height-request: 700;
+
+  Adw.ToastOverlay toast_overlay {
+    Gtk.Box main_view {
+      orientation: vertical;
+
+      Adw.HeaderBar titlebar {
+        centering-policy: strict;
+
+        //styles [
+        //  "flat"
+        //]
+
+        [start]
+        Gtk.Button {
+          tooltip-text: _("Open Image (Ctrl+O)");
+          icon-name: "document-open-symbolic";
+          action-name: "app.open-image";
+        }
+
+        [end]
+        Gtk.MenuButton {
+          tooltip-text: _("Main Menu");
+          icon-name: "open-menu-symbolic";
+          menu-model: main_menu;
+        }
+      }
+
+      Gtk.Stack main_stack {
+        transition-type: crossfade;
+
+        Gtk.StackPage {
+          name: "stack_welcome_page";
+
+          child: Adw.StatusPage welcome_page {
+            icon-name: "com.github.tfuxu.pixely-symbolic";
+            title: "Pixely";
+            description: _("Give your images that pixel-y look");
+            hexpand: true;
+            vexpand: true;
+
+            child: Gtk.Box {
+              orientation: vertical;
+              spacing: 12;
+
+              Gtk.Button open_image_button {
+                valign: center;
+                halign: center;
+                clicked => on_open_image();
+
+                Adw.ButtonContent {
+                  icon-name: "arrow-into-box-symbolic";
+                  label: _("Open Image");
+                  use-underline: true;
+                }
+
+                styles [
+                  "suggested-action",
+                  "pill"
+                ]
+              }
+            };
+          };
+        }
+
+        Gtk.StackPage {
+          name: "stack_loading_page";
+
+          child: Gtk.Box {
+            hexpand: true;
+            vexpand: true;
+            valign: center;
+            halign: center;
+
+            Gtk.Spinner {
+              spinning: true;
+            }
+          };
+        }
+
+        Gtk.StackPage {
+          name: "stack_drop_page";
+          child: Adw.StatusPage drop_overlay {
+            icon-name: "insert-image-symbolic";
+            title: _("Drop Here to Load Image");
+
+            styles [
+              "dragndrop_overlay"
+            ]
+          };
+        }
+
+        Gtk.StackPage {
+          name: "stack_error_page";
+
+          child: Adw.StatusPage {
+            hexpand: true;
+
+            icon-name: "image-missing-symbolic";
+            title: _("Image Error Occurred");
+            description: _("An error occurred while loading an image. If this error persists, please copy logs and report issue to the bug tracker.");
+
+            Gtk.Box {
+              orientation: horizontal;
+              halign: center;
+              spacing: 6;
+
+              Gtk.Button view_logs_button {
+                label: _("View Logs");
+                //clicked => on_view_logs_clicked();
+
+                styles [
+                  "pill"
+                ]
+              }
+            }
+          };
+        }
+      }
+    }
+  }
+}
+
+menu main_menu {
+  section {
+    //item {
+    //  label: _("Preferences");
+    //  action: "app.preferences";
+    //}
+
+    item {
+      label: _("Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("About Pixely");
+      action: "app.about";
+    }
+  }
+}
+
+Gtk.FileChooserNative open_image_chooser {
+  title: _("Select an Image");
+  modal: true;
+}
+
+Gtk.FileFilter all_filter {
+  name: _("All files");
+  mime-types ["application/octet-stream"]
+}

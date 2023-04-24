@@ -1,0 +1,226 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PixelyDitherPage: Adw.PreferencesPage {
+  Adw.PreferencesGroup preview_group {
+    title: _("Preview");
+    height-request: 200;
+
+    Gtk.Stack preview_group_stack {
+      transition-type: crossfade;
+
+      Gtk.StackPage {
+        name: "preview_stack_main_page";
+
+        child: Adw.Bin {
+          child: Gtk.Picture image_dithered {
+            content-fit: contain;
+            can-shrink: true;
+            halign: center;
+            valign: center;
+
+            styles [
+              "card"
+            ]
+          };
+
+          styles [
+            "card"
+          ]
+        };
+      }
+
+      Gtk.StackPage {
+        name: "preview_stack_loading_page";
+
+        child: Gtk.Box {
+          valign: center;
+          halign: center;
+
+          Gtk.Spinner {
+            spinning: true;
+          }
+        };
+      }
+
+      Gtk.StackPage {
+        name: "preview_stack_error_page";
+
+        child: Adw.StatusPage {
+          hexpand: true;
+
+          icon-name: "image-missing-symbolic";
+          title: _("Image Error Occurred");
+          description: _("An error occurred while loading an image. If this error persists, please report it to bug tracker.");
+        };
+      }
+    }
+  }
+
+  //Adw.PreferencesGroup preview_before_group {
+  //  title: _("Before");
+
+  //  Gtk.Picture image_before {}
+  //  height-request: 192;
+  //}
+
+  //Adw.PreferencesGroup preview_after_group {
+  //  title: _("After");
+
+  //  Gtk.Picture image_after {}
+  //  height-request: 192;
+  //}
+
+  Adw.PreferencesGroup options_group {
+    title: _("Options");
+
+    [header-suffix]
+    Gtk.MenuButton options_information_button {
+      valign: center;
+      popover: options_information_popover;
+      icon-name: "help-about-symbolic";
+      tooltip-text: _("Explanation");
+
+      styles [
+        "flat"
+      ]
+    }
+
+    Adw.ComboRow dither_algorithms_combo {
+      title: _("Dither Algorithm");
+      model: Gtk.StringList algorithms_stringlist {};
+    //  notify::selected => on_dither_algorithm_selected();
+    }
+
+    //Adw.ComboRow color_palette {
+    //  title: _("Color Palette");
+    //  model: Gtk.StringList color_palettes {};
+    //}
+
+    Adw.ActionRow color_amount {
+      title: _("Color Amount");
+      activatable-widget: color_amount_spinbutton;
+
+      Gtk.SpinButton color_amount_spinbutton {
+        valign: center;
+        climb-rate: 1;
+        adjustment: Gtk.Adjustment color_amount_adjustment {
+          lower: 1;
+          upper: 256;
+          step-increment: 1;
+          page-increment: 5;
+        };
+        value-changed => on_color_amount_changed();
+      }
+    }
+
+    Adw.ActionRow image_size {
+      title: _("Image Size");
+
+      Gtk.Box {
+        orientation: horizontal;
+        spacing: 4;
+        valign: center;
+
+        Gtk.SpinButton image_width_spinbutton {
+          tooltip-text: _("Image Width");
+          adjustment: Gtk.Adjustment image_width_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          value-changed => on_image_width_changed();
+        }
+
+        Gtk.ToggleButton aspect_ratio_toggle {
+          icon-name: "chain-link-symbolic";
+          tooltip-text: _("Keep aspect ratio");
+          active: true;
+
+          styles [
+            "flat"
+          ]
+        }
+
+        Gtk.SpinButton image_height_spinbutton {
+          tooltip-text: _("Image Height");
+          sensitive: false;
+          adjustment: Gtk.Adjustment image_height_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          value-changed => on_image_height_changed();
+        }
+      }
+    }
+
+    Adw.ComboRow save_format_combo {
+      title: _("Convert To");
+      model: Gtk.StringList image_formats_stringlist {};
+    }
+  }
+
+  Adw.PreferencesGroup {
+    Gtk.Box {
+      orientation: horizontal;
+      halign: center;
+      spacing: 6;
+
+      Gtk.Button more_options_button {
+        visible: false;
+        label: _("More Options");
+
+        styles [
+          "pill"
+        ]
+      }
+
+      Gtk.Button save_image_button {
+        label: _("Dither It!");
+        action-name: "app.save-image";
+
+        styles [
+          "pill",
+          "suggested-action"
+        ]
+      }
+    }
+  }
+}
+
+Gtk.Popover options_information_popover {
+  autohide: true;
+
+  Gtk.Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    Gtk.Label {
+      wrap: true;
+      justify: center;
+      max-width-chars: 40;
+      label: _("You can customize some of these parameters to make your image look different. To learn more about individual options, go to wiki page.");
+    }
+
+    Gtk.LinkButton {
+      label: _("Wiki Page");
+      uri: "https://github.com/tfuxu/Pixely/wiki";
+    }
+  }
+}
+
+Gtk.FileChooserNative save_image_chooser {
+  title: _("Save an Image in…");
+  modal: true;
+}
+
+Gtk.FileFilter all_filter {
+  name: _("All files");
+  mime-types ["application/octet-stream"]
+}
