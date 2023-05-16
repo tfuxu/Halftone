@@ -14,11 +14,11 @@ Give your images a pixel art-like style and reduce the file size in the process 
 Pixely is a simple Libadwaita app for lossy image compression using quantization and dithering techniques.
 
 ## Why would I use it?
-Because it's fun! And it also can significantly reduce image size.
+Because it's fun! And it can also significantly reduce image size.
 
 <details>
 <summary>What is that dithering?</summary>
-Dithering is a technique used on old systems with limited color range to more accurately display graphics containing higher amount of colors than what the device could handle. It was commonly used in early Macintosh computers, Nintendo Game Boy and many other systems from the 80s and 90s.
+Dithering is a technique used by old systems with a limited color range to more accurately display graphics containing higher amount of colors than what the device can handle. It was commonly used in early Macintosh computers, Nintendo Game Boy and many other systems from the 80s and 90s.
 
 ##### Wanna learn more about how dithering works? 
 Check out [this<sup>↗</sup>](https://surma.dev/things/ditherpunk/) article which nicely explains how dithering argorithms works (warning, math!) and shows most popular dithering algorithms in action.
@@ -26,13 +26,13 @@ Check out [this<sup>↗</sup>](https://surma.dev/things/ditherpunk/) article whi
 
 ## Features:
 - **Three different dither algorithms:**
-  You can choose between the classic Floyd-Steinberg algorithm, interesting Riemersma and Bayer (_a.k.a_ ordered) dither known from Game Boys.
+  You can choose between the classic Floyd-Steinberg algorithm, interesting Riemersma and Bayer (_a.k.a_ ordered) dither known from the Game Boys.
 - **Live preview:**
   Check out how your image will look like in real time with live preview feature.
 - **Convert to many formats:**
   In addition to dithering, you can convert your images to different formats to save up some space on disk.
 - **It's just that simple.**
-  Everything is as simple as possible, so that you could start dithering your images as soon as you install the app.
+  Everything is as simple as possible, so that you could start dithering your images as soon as you're done installing the app.
 
 ## How to install Pixely
 You can install Pixely in many ways, here are some listed:
@@ -56,13 +56,13 @@ You can install Pixely in many ways, here are some listed:
 If you don't find any other options appealing to you, then you can always compile code on your machine from source and install it that way. For more information, check out [How to build?](#how-to-build) section.
 
 ## How can I contribute?
-Thanks for asking! I always appriciate when someone wants to contribute to any project, and here you are who want to contribute to my project! Just for you, I've created this list of things that you need to do if you want to contribute to Pixely:
+Thanks for asking! Just for you, I've created this list of things you need to do if you want to contribute to Pixely:
 1. Read [Code of Conduct](CODE_OF_CONDUCT.md)
 2. Fork this repository: https://github.com/tfuxu/Pixely/fork
 3. Clone your fork: `git clone https://github.com/👁️you👁️/Pixely.git`
 4. Create a local branch with your changes: `git checkout -b new-thingies`
 5. When changing stuff in Python, try to follow [PEP8](https://pep8.org/)
-6. Commit your changes (please do the signed commits): `git commit -S`
+6. Commit your changes: `git commit`
 7. Push the changes to fork: `git push origin new-thingies`
 8. Create a new pull request
 
@@ -159,8 +159,8 @@ ninja -C builddir run
 This repository is licensed under the terms of the GNU GPLv3 license. You can find a copy of the license in the COPYING file.
 </p>
 
-## Inspirations
-This project was started after I discovered [Pixfect](https://github.com/daudix-UFO/Pixfect), a little Bash script that does exactly what Pixely does.
+## Inspirations:
+This project was started after I found out about [Pixfect](https://github.com/daudix-UFO/Pixfect), a little Bash script that does exactly what Pixely does.
 
 The user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.com/TheEvilSkeleton/Upscaler) design.
 
