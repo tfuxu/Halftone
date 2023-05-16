@@ -1,7 +1,7 @@
 {
   "app-id" : "com.github.tfuxu.pixely",
   "runtime" : "org.gnome.Platform",
-  "runtime-version" : "master",
+  "runtime-version" : "44",
   "sdk" : "org.gnome.Sdk",
   "command" : "pixely",
   "finish-args" : [
@@ -46,7 +46,7 @@
           {
             "type": "git",
             "url": "https://github.com/ImageMagick/ImageMagick.git",
-            "commit": "cbfe7265e210932a34d4949a90633a65c3f013b3"
+            "commit": "920f79206ff59f30a4cff22c9c9c393508b82663"
           }
         ]
       },
