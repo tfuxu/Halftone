@@ -6,7 +6,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name>Pixely</name>
-  <shortdesc xml:lang="en">Give your images that pixel-y look</shortdesc>
+  <shortdesc xml:lang="en">Give your images that pixel art-like style</shortdesc>
   <description xml:lang="en">
     A simple app for lossy image compression using quantization and dithering techniques.
 

@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>@APP_ID@</id>
   <name>Pixely</name>
-  <summary>Give your images that pixel-y look</summary>
+  <summary>Give your images that pixel art-like style</summary>
   <developer_name>tfuxu</developer_name>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <metadata_license>CC-BY-SA-4.0</metadata_license>

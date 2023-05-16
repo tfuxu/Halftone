@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pixely\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 00:28+0200\n"
+"POT-Creation-Date: 2023-05-16 22:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/com.github.tfuxu.pixely.appdata.xml.in.in:5
 #: data/com.github.tfuxu.pixely.desktop.in.in:9 data/ui/main_window.blp:46
-msgid "Give your images that pixel-y look"
+msgid "Give your images that pixel art-like style"
 msgstr ""
 
 #: data/com.github.tfuxu.pixely.appdata.xml.in.in:6
