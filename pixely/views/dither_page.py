@@ -95,8 +95,6 @@ class PixelyDitherPage(Adw.PreferencesPage):
         self.save_image_chooser.set_transient_for(self.win)
         self.save_image_chooser.set_action(Gtk.FileChooserAction.SAVE)
 
-        #self.save_image_chooser.add_filter(self.all_filter)
-
     def setup_dither_algorithms(self):
         algorithms_list = [
             "Floyd-Steinberg",
@@ -154,20 +152,23 @@ class PixelyDitherPage(Adw.PreferencesPage):
             self.set_size_spins(self.original_paintable.get_width(), self.original_paintable.get_height())
             self.start_task(self.update_preview_image, self.original_paintable, OutputOptions(), self.on_successful_image_load)
 
-    def save_image(self, paintable: Gdk.Paintable, output_filename: str,
+    def save_image(self, paintable: Gdk.Paintable, output_path: str,
                         output_options: OutputOptions, callback: callable):
         self.win.show_loading_page()
 
         image_bytes = paintable.save_to_tiff_bytes()
 
-        PixelyImageMagick().save_image(image_bytes.get_data(), output_filename, output_options)
+        PixelyImageMagick().save_image(image_bytes.get_data(), output_path, output_options)
 
         if callback:
             callback()
 
         logging.debug("Saving done!")
         self.toast_overlay.add_toast(
-            Adw.Toast(title=_("Image saved successfully"))
+            Adw.Toast(title=_("Image dithered successfully!"),
+                        button_label=_("Open Image"),
+                        action_name="app.show-saved-image",
+                        action_target=GLib.Variant("s", output_path))
         )
 
     """ Signal callbacks """

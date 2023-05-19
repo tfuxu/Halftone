@@ -1,6 +1,7 @@
 # Copyright 2023, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
 import sys
 import logging
 
@@ -52,9 +53,14 @@ class PixelyApplication(Adw.Application):
     def setup_actions(self):
         """ Setup menu actions and accelerators. """
 
-        '''show_save_dir_action = Gio.SimpleAction.new('show-save-directory', None)
-        show_save_dir_action.connect('activate', self.open_save_directory)
-        self.add_action(show_save_dir_action)'''
+        user_home_dir = os.environ.get("XDG_CONFIG_HOME", os.environ["HOME"])
+
+        show_saved_image_action = Gio.SimpleAction.new_stateful(
+                'show-saved-image',
+                GLib.VariantType.new("s"),
+                GLib.Variant("s", user_home_dir))
+        show_saved_image_action.connect('activate', self.open_saved_image)
+        self.add_action(show_saved_image_action)
 
         '''preferences_action = Gio.SimpleAction.new('preferences', None)
         preferences_action.connect('activate', self.on_preferences)
@@ -75,12 +81,12 @@ class PixelyApplication(Adw.Application):
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
-    def open_save_directory(self, *args):
+    def open_saved_image(self, action, output_path: GLib.Variant, *args):
         """ Show directory of saved image. """
 
         Gtk.show_uri(
-            self.win,
-            f"file://{presets_dir}",
+            self.window,
+            f"file://{output_path.get_string()}",
             Gdk.CURRENT_TIME
         )
 
