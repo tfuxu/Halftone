@@ -8,7 +8,7 @@ from pixely.backend.utils.image import calculate_height
 from pixely.backend.model.output_options import OutputOptions
 
 
-class PixelyImageMagick:
+class HalftoneImageMagick:
     """
     Class for performing color quantization and dithering operations on images
     based on Wand Python library (bindings for ImageMagick API).

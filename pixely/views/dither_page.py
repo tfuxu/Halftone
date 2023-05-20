@@ -9,15 +9,15 @@ from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 
 from pixely.backend.utils.image import calculate_height
 from pixely.backend.model.output_options import OutputOptions
-from pixely.backend.magick import PixelyImageMagick
+from pixely.backend.magick import HalftoneImageMagick
 
 from pixely.utils.killable_thread import KillableThread
 from pixely.utils.filters import get_file_filter, popular_supported_output_formats, supported_output_formats
 from pixely.constants import rootdir
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
-class PixelyDitherPage(Adw.PreferencesPage):
-    __gtype_name__ = "PixelyDitherPage"
+class HalftoneDitherPage(Adw.PreferencesPage):
+    __gtype_name__ = "HalftoneDitherPage"
 
     image_dithered = Gtk.Template.Child()
 
@@ -123,7 +123,7 @@ class PixelyDitherPage(Adw.PreferencesPage):
             self.output_options.width = paintable.get_width()
 
         image_bytes = paintable.save_to_tiff_bytes()
-        image_blob = PixelyImageMagick().dither_image(image_bytes.get_data(), self.output_options)
+        image_blob = HalftoneImageMagick().dither_image(image_bytes.get_data(), self.output_options)
 
         try:
             self.updated_paintable = Gdk.Texture.new_from_bytes(GLib.Bytes(image_blob))
@@ -158,7 +158,7 @@ class PixelyDitherPage(Adw.PreferencesPage):
 
         image_bytes = paintable.save_to_tiff_bytes()
 
-        PixelyImageMagick().save_image(image_bytes.get_data(), output_path, output_options)
+        HalftoneImageMagick().save_image(image_bytes.get_data(), output_path, output_options)
 
         if callback:
             callback()
@@ -213,7 +213,7 @@ class PixelyDitherPage(Adw.PreferencesPage):
         file_extension = self.get_output_format_suffix()
         file_display_name = self.input_file.get_basename().split('.')[0]
 
-        output_filename = f"pixely-{file_display_name}.{file_extension}"
+        output_filename = f"halftone-{file_display_name}.{file_extension}"
         logging.debug(f"Output filename: {output_filename}")
 
         self.save_image_chooser.set_current_name(output_filename)

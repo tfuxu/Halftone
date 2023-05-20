@@ -7,8 +7,8 @@ from pixely.constants import rootdir
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/report_page.ui")
-class PixelyReportPage(Gtk.Box):
-    __gtype_name__ = "PixelyReportPage"
+class HalftoneReportPage(Gtk.Box):
+    __gtype_name__ = "HalftoneReportPage"
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)

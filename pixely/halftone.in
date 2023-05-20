@@ -24,10 +24,10 @@ localedir = '@LOCALE_DIR@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-gettext.install('pixely', localedir)
+gettext.install('halftone', localedir)
 
-locale.bindtextdomain('pixely', localedir)
-locale.textdomain('pixely')
+locale.bindtextdomain('halftone', localedir)
+locale.textdomain('halftone')
 
 if __name__ == '__main__':
     import gi
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     from gi.repository import Gio
 
     resource = Gio.Resource.load(
-        os.path.join(pkgdatadir, 'pixely.gresource'))
+        os.path.join(pkgdatadir, 'halftone.gresource'))
     Gio.Resource._register(resource)
 
     from pixely import main
