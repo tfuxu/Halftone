@@ -2,8 +2,8 @@ python = import('python')
 
 # Generate Python executable
 configure_file(
-  input: 'pixely.in',
-  output: 'pixely',
+  input: 'halftone.in',
+  output: 'halftone',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir')
@@ -32,7 +32,7 @@ configure_file(
 )
 
 # Local build launcher
-launcher = join_paths(meson.project_build_root(), 'pixely', meson.project_name())
+launcher = join_paths(meson.project_build_root(), 'halftone', meson.project_name())
 run_target('run',
   command: [launcher]
 )

@@ -1,4 +1,4 @@
-project('pixely',
+project('halftone',
           version: '0.1.0',
     meson_version: '>= 0.59.0',
   default_options: [ 'warning_level=2',
@@ -12,16 +12,16 @@ i18n = import('i18n')
 python = import('python')
 
 # Project information
-PROJECT_URL = 'https://github.com/tfuxu/pixely'
-BUGTRACKER_URL = 'https://github.com/tfuxu/pixely/issues'
-HELP_URL = 'https://github.com/tfuxu/pixely/discussions'
-#TRANSLATE_URL = 'https://hosted.weblate.org/projects/tfuxu/pixely'
+PROJECT_URL = 'https://github.com/tfuxu/halftone'
+BUGTRACKER_URL = 'https://github.com/tfuxu/halftone/issues'
+HELP_URL = 'https://github.com/tfuxu/halftone/discussions'
+#TRANSLATE_URL = 'https://hosted.weblate.org/projects/tfuxu/halftone'
 
 # Constants
-PROJECT_RDNN_NAME = 'com.github.tfuxu.pixely'
-ROOT_PATH = '/com/github/tfuxu/pixely'
+PROJECT_RDNN_NAME = 'com.github.tfuxu.halftone'
+ROOT_PATH = '/com/github/tfuxu/halftone'
 PKGDATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-MODULE_DIR = join_paths(PKGDATA_DIR, 'pixely')
+MODULE_DIR = join_paths(PKGDATA_DIR, 'halftone')
 
 git_bin = find_program('git', required: false)
 
@@ -72,7 +72,7 @@ conf.set('SOURCE_DIR', meson.current_source_dir())
 conf.set('BUILD_DIR', meson.current_build_dir())
 
 # Subdirs
-subdir('pixely')
+subdir('halftone')
 subdir('data')
 subdir('po')
 
