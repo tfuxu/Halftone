@@ -3,7 +3,7 @@
 
 from gi.repository import Gtk, Adw
 
-from pixely import constants
+from halftone import constants
 
 
 class HalftoneAboutWindow:

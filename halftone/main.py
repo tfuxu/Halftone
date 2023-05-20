@@ -7,10 +7,10 @@ import logging
 
 from gi.repository import GObject, Gtk, Gdk, Gio, Adw, GLib
 
-from pixely.constants import rootdir, app_id, build_type
-from pixely.views.main_window import HalftoneMainWindow
-from pixely.views.preferences_window import HalftonePreferencesWindow
-from pixely.views.about_window import HalftoneAboutWindow
+from halftone.constants import rootdir, app_id, build_type
+from halftone.views.main_window import HalftoneMainWindow
+from halftone.views.preferences_window import HalftonePreferencesWindow
+from halftone.views.about_window import HalftoneAboutWindow
 
 if build_type == "debug":
     logging_level = logging.DEBUG

@@ -3,7 +3,7 @@
 
 from gi.repository import Gtk, Adw
 
-from pixely.constants import rootdir
+from halftone.constants import rootdir
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/report_page.ui")

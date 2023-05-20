@@ -41,5 +41,5 @@ if __name__ == '__main__':
         os.path.join(pkgdatadir, 'halftone.gresource'))
     Gio.Resource._register(resource)
 
-    from pixely import main
+    from halftone import main
     sys.exit(main.main())

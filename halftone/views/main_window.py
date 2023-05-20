@@ -3,11 +3,11 @@
 
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
-from pixely.views.dither_page import HalftoneDitherPage
-from pixely.views.report_page import HalftoneReportPage
+from halftone.views.dither_page import HalftoneDitherPage
+from halftone.views.report_page import HalftoneReportPage
 
-from pixely.utils.filters import get_file_filter, supported_input_formats
-from pixely.constants import rootdir, app_id, build_type
+from halftone.utils.filters import get_file_filter, supported_input_formats
+from halftone.constants import rootdir, app_id, build_type
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/main_window.ui")

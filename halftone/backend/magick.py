@@ -4,8 +4,8 @@
 from wand.image import Image
 #from wand.display import display
 
-from pixely.backend.utils.image import calculate_height
-from pixely.backend.model.output_options import OutputOptions
+from halftone.backend.utils.image import calculate_height
+from halftone.backend.model.output_options import OutputOptions
 
 
 class HalftoneImageMagick:

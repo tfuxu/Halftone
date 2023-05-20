@@ -7,13 +7,13 @@ from enum import Enum
 
 from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 
-from pixely.backend.utils.image import calculate_height
-from pixely.backend.model.output_options import OutputOptions
-from pixely.backend.magick import HalftoneImageMagick
+from halftone.backend.utils.image import calculate_height
+from halftone.backend.model.output_options import OutputOptions
+from halftone.backend.magick import HalftoneImageMagick
 
-from pixely.utils.killable_thread import KillableThread
-from pixely.utils.filters import get_file_filter, popular_supported_output_formats, supported_output_formats
-from pixely.constants import rootdir
+from halftone.utils.killable_thread import KillableThread
+from halftone.utils.filters import get_file_filter, popular_supported_output_formats, supported_output_formats
+from halftone.constants import rootdir
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
 class HalftoneDitherPage(Adw.PreferencesPage):
