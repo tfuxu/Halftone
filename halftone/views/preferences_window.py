@@ -3,12 +3,12 @@
 
 from gi.repository import Gtk, Adw
 
-from pixely.constants import rootdir
+from halftone.constants import rootdir
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/preferences_window.ui")
-class PixelyPreferencesWindow(Adw.PreferencesWindow):
-    __gtype_name__ = "PixelyPreferencesWindow"
+class HalftonePreferencesWindow(Adw.PreferencesWindow):
+    __gtype_name__ = "HalftonePreferencesWindow"
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)

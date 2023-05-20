@@ -3,10 +3,10 @@
 
 from gi.repository import Gtk, Adw
 
-from pixely import constants
+from halftone import constants
 
 
-class PixelyAboutWindow:
+class HalftoneAboutWindow:
     def __init__(self, parent):
         self.parent = parent
         self.app = self.parent.get_application()
@@ -15,7 +15,7 @@ class PixelyAboutWindow:
 
     def setup(self):
         self.about_window = Adw.AboutWindow(
-            application_name="Pixely",
+            application_name="Halftone",
             transient_for=self.app.get_active_window(),
             application_icon=constants.app_id,
             developer_name="tfuxu",

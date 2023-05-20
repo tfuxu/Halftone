@@ -7,10 +7,10 @@ import logging
 
 from gi.repository import GObject, Gtk, Gdk, Gio, Adw, GLib
 
-from pixely.constants import rootdir, app_id, build_type
-from pixely.views.main_window import PixelyMainWindow
-from pixely.views.preferences_window import PixelyPreferencesWindow
-from pixely.views.about_window import PixelyAboutWindow
+from halftone.constants import rootdir, app_id, build_type
+from halftone.views.main_window import HalftoneMainWindow
+from halftone.views.preferences_window import HalftonePreferencesWindow
+from halftone.views.about_window import HalftoneAboutWindow
 
 if build_type == "debug":
     logging_level = logging.DEBUG
@@ -20,8 +20,8 @@ else:
 logging.basicConfig(format="[%(levelname)s] %(message)s", level=logging_level)
 
 
-class PixelyApplication(Adw.Application):
-    __gtype_name__ = "PixelyApplication"
+class HalftoneApplication(Adw.Application):
+    __gtype_name__ = "HalftoneApplication"
 
     def __init__(self):
         super().__init__(
@@ -41,7 +41,7 @@ class PixelyApplication(Adw.Application):
         self.window = self.props.active_window
 
         if not self.window:
-            self.window = PixelyMainWindow(
+            self.window = HalftoneMainWindow(
                 application=self,
                 default_height=self.settings.get_int("window-height"),
                 default_width=self.settings.get_int("window-width"),
@@ -93,13 +93,13 @@ class PixelyApplication(Adw.Application):
     '''def on_preferences(self, *args):
         """ Show preferences window. """
 
-        pref_window = PixelyPreferencesWindow(self.window)
+        pref_window = HalftonePreferencesWindow(self.window)
         pref_window.present()'''
 
     def on_about(self, *args):
         """ Show about dialog. """
 
-        about_window = PixelyAboutWindow(self.window)
+        about_window = HalftoneAboutWindow(self.window)
         about_window.show_about()
 
     def on_quit(self, *args):
@@ -111,5 +111,5 @@ class PixelyApplication(Adw.Application):
 def main():
     """ The application's entry point. """
 
-    app = PixelyApplication()
+    app = HalftoneApplication()
     return app.run(sys.argv)

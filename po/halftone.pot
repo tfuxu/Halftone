@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the pixely package.
+# This file is distributed under the same license as the halftone package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pixely\n"
+"Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 22:40+0200\n"
+"POT-Creation-Date: 2023-05-20 17:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:4
-#: data/com.github.tfuxu.pixely.desktop.in.in:8
-msgid "Pixely"
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:4
+#: data/com.github.tfuxu.halftone.desktop.in.in:8
+msgid "Halftone"
 msgstr ""
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:5
-#: data/com.github.tfuxu.pixely.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:5
+#: data/com.github.tfuxu.halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr ""
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:6
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:6
 msgid "tfuxu"
 msgstr ""
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:14
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:14
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
-"in the process with Pixely."
+"in the process with Halftone."
 msgstr ""
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:23
-msgid "Pixely Main Window"
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:23
+msgid "Halftone Main Window"
 msgstr ""
 
-#: data/com.github.tfuxu.pixely.appdata.xml.in.in:70
-msgid "Initial release of Pixely."
+#: data/com.github.tfuxu.halftone.appdata.xml.in.in:70
+msgid "Initial release of Halftone."
 msgstr ""
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/com.github.tfuxu.pixely.desktop.in.in:13
+#: data/com.github.tfuxu.halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr ""
 
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Image Width"
 msgstr ""
 
-#: data/ui/dither_page.blp:138 pixely/views/dither_page.py:225
+#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:226
 msgid "Keep aspect ratio"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 #: data/ui/dither_page.blp:208
 msgid ""
 "You can customize some of these parameters to make your image look "
-"different. To learn more about individual options, go to wiki page."
+"different. To learn more about individual options, go to the wiki page."
 msgstr ""
 
 #: data/ui/dither_page.blp:212
@@ -165,7 +165,7 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: data/ui/main_window.blp:61
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:169
 msgid "Open Image"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 #: data/ui/main_window.blp:145
-msgid "About Pixely"
+msgid "About Halftone"
 msgstr ""
 
 #: data/ui/main_window.blp:152
@@ -196,30 +196,30 @@ msgid "Select an Image"
 msgstr ""
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: pixely/views/about_window.py:33
+#: halftone/views/about_window.py:33
 msgid "translator-credits"
 msgstr ""
 
-#: pixely/views/about_window.py:34
+#: halftone/views/about_window.py:34
 msgid "Copyright © 2023 tfuxu"
 msgstr ""
 
-#: pixely/views/main_window.py:88
+#: halftone/views/main_window.py:88
 msgid "Supported image formats"
 msgstr ""
 
-#: pixely/views/main_window.py:106
+#: halftone/views/main_window.py:106
 msgid "Failed to load an image"
 msgstr ""
 
-#: pixely/views/dither_page.py:170
-msgid "Image saved successfully"
+#: halftone/views/dither_page.py:168
+msgid "Image dithered successfully!"
 msgstr ""
 
-#: pixely/views/dither_page.py:231
+#: halftone/views/dither_page.py:232
 msgid "Don't keep aspect ratio"
 msgstr ""
 
-#: pixely/views/dither_page.py:329
+#: halftone/views/dither_page.py:330
 msgid "Failed to load preview image"
 msgstr ""

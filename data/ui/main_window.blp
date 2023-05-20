@@ -1,8 +1,8 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PixelyMainWindow: Adw.ApplicationWindow {
-  title: "Pixely";
+template HalftoneMainWindow: Adw.ApplicationWindow {
+  title: "Halftone";
   default-width: 500;
   default-height: 800;
   width-request: 300;
@@ -41,8 +41,8 @@ template PixelyMainWindow: Adw.ApplicationWindow {
           name: "stack_welcome_page";
 
           child: Adw.StatusPage welcome_page {
-            icon-name: "com.github.tfuxu.pixely-symbolic";
-            title: "Pixely";
+            icon-name: "com.github.tfuxu.halftone-symbolic";
+            title: "Halftone";
             description: _("Give your images that pixel art-like style");
             hexpand: true;
             vexpand: true;
@@ -142,7 +142,7 @@ menu main_menu {
     }
 
     item {
-      label: _("About Pixely");
+      label: _("About Halftone");
       action: "app.about";
     }
   }

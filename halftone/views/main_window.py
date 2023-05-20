@@ -3,16 +3,16 @@
 
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
-from pixely.views.dither_page import PixelyDitherPage
-from pixely.views.report_page import PixelyReportPage
+from halftone.views.dither_page import HalftoneDitherPage
+from halftone.views.report_page import HalftoneReportPage
 
-from pixely.utils.filters import get_file_filter, supported_input_formats
-from pixely.constants import rootdir, app_id, build_type
+from halftone.utils.filters import get_file_filter, supported_input_formats
+from halftone.constants import rootdir, app_id, build_type
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/main_window.ui")
-class PixelyMainWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'PixelyMainWindow'
+class HalftoneMainWindow(Adw.ApplicationWindow):
+    __gtype_name__ = 'HalftoneMainWindow'
 
     toast_overlay = Gtk.Template.Child()
 
@@ -34,8 +34,8 @@ class PixelyMainWindow(Adw.ApplicationWindow):
 
         self.add_controller(self.drop_target)
 
-        self.dither_page = PixelyDitherPage(self)
-        self.report_page = PixelyReportPage(self)
+        self.dither_page = HalftoneDitherPage(self)
+        self.report_page = HalftoneReportPage(self)
 
         self.setup_actions()
         self.setup_signals()
