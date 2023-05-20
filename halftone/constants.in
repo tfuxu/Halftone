@@ -1,0 +1,17 @@
+# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+rootdir          = '@ROOT_PATH@'
+datadir          = '@DATA_DIR@'
+pkgdatadir       = '@PKGDATA_DIR@'
+localedir        = '@LOCALE_DIR@'
+
+app_id           = '@APP_ID@'
+rel_ver          = '@RELEASE_VER@'
+version          = '@VERSION@'
+build_type       = '@BUILD_TYPE@'
+
+project_url      = '@PROJECT_URL@'
+bugtracker_url   = '@BUGTRACKER_URL@'
+help_url         = '@HELP_URL@'
+#translate_url    = '@TRANSLATE_URL@'
