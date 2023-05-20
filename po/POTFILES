@@ -1,9 +1,9 @@
-data/com.github.tfuxu.pixely.appdata.xml.in.in
-data/com.github.tfuxu.pixely.desktop.in.in
-data/com.github.tfuxu.pixely.gschema.xml.in
+data/com.github.tfuxu.halftone.appdata.xml.in.in
+data/com.github.tfuxu.halftone.desktop.in.in
+data/com.github.tfuxu.halftone.gschema.xml.in
 data/ui/dither_page.blp
 data/ui/help_overlay.blp
 data/ui/main_window.blp
-pixely/views/about_window.py
-pixely/views/main_window.py
-pixely/views/dither_page.py
+halftone/views/about_window.py
+halftone/views/main_window.py
+halftone/views/dither_page.py

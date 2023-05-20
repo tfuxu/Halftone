@@ -1,1 +1,1 @@
-i18n.gettext('pixely', preset: 'glib')
+i18n.gettext('halftone', preset: 'glib')
