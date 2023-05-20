@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
   <id>@APP_ID@</id>
-  <name>Pixely</name>
+  <name>Halftone</name>
   <summary>Give your images that pixel art-like style</summary>
   <developer_name>tfuxu</developer_name>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
@@ -14,14 +14,14 @@
     <p>
       A simple Libadwaita app for lossy image compression using dithering technique.
 
-      Give your images a pixel art-like style and reduce the file size in the process with Pixely.
+      Give your images a pixel art-like style and reduce the file size in the process with Halftone.
     </p>
   </description>
 
   <screenshots>
     <screenshot type="default" width="633" height="922">
-      <caption>Pixely Main Window</caption>
-      <image type="source">https://raw.githubusercontent.com/tfuxu/Pixely/main/data/screenshots/pixely-dark.png</image>
+      <caption>Halftone Main Window</caption>
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-dark.png</image>
     </screenshot>
   </screenshots>
 
@@ -68,7 +68,7 @@
   <releases>
     <release version="0.1.0" date="2023-05-16" type="development">
       <description>
-        Initial release of Pixely.
+        Initial release of Halftone.
       </description>
     </release>
   </releases>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <gresources>
-  <gresource prefix="/com/github/tfuxu/pixely">
+  <gresource prefix="/com/github/tfuxu/halftone">
     <file preprocess="xml-stripblanks">ui/dither_page.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help_overlay.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
@@ -8,7 +8,7 @@
     <file preprocess="xml-stripblanks">ui/report_page.ui</file>
     <file>style.css</file>
   </gresource>
-  <gresource prefix="/com/github/tfuxu/pixely/icons/scalable/actions/">
+  <gresource prefix="/com/github/tfuxu/halftone/icons/scalable/actions/">
     <file preprocess="xml-stripblanks" alias="arrow-into-box-symbolic.svg">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-symbolic.svg">icons/scalable/actions/chain-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-loose-symbolic.svg">icons/scalable/actions/chain-link-loose-symbolic.svg</file>
