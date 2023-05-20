@@ -1,9 +1,9 @@
 {
-  "app-id" : "com.github.tfuxu.pixely",
+  "app-id" : "com.github.tfuxu.halftone",
   "runtime" : "org.gnome.Platform",
   "runtime-version" : "44",
   "sdk" : "org.gnome.Sdk",
-  "command" : "pixely",
+  "command" : "halftone",
   "finish-args" : [
       "--share=ipc",
       "--device=dri",
@@ -51,7 +51,7 @@
         ]
       },
       {
-          "name" : "pixely",
+          "name" : "halftone",
           "builddir" : true,
           "buildsystem" : "meson",
           "config-opts": [

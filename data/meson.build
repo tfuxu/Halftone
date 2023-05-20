@@ -25,8 +25,8 @@ if desktop_utils.found()
 endif
 
 # Compile resources
-gnome.compile_resources('pixely',
-  'pixely.gresource.xml',
+gnome.compile_resources('halftone',
+  'halftone.gresource.xml',
   gresource_bundle: true,
   source_dir: meson.current_build_dir(),
   install: true,
