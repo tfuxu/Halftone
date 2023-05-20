@@ -66,9 +66,14 @@
   </keywords>
 
   <releases>
+    <release version="0.2.0" date="2023-05-20" type="development">
+      <description>
+        Renamed Pixely to Halftone.
+      </description>
+    </release>
     <release version="0.1.0" date="2023-05-16" type="development">
       <description>
-        Initial release of Halftone.
+        Initial release of Pixely.
       </description>
     </release>
   </releases>
