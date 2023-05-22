@@ -1,4 +1,4 @@
-<img src="data/icons/hicolor/scalable/apps/com.github.tfuxu.halftone.svg" align="left" height="150px" vspace="10px">
+<img src="data/icons/hicolor/scalable/apps/io.github.tfuxu.Halftone.svg" align="left" height="150px" vspace="10px">
 
 Halftone
 ======
@@ -39,7 +39,7 @@ You can install Halftone in many ways, here are some listed:
 
 **1. Official Flatpak package:**
 
-<a href='https://flathub.org/apps/details/com.github.tfuxu.halftone'>
+<a href='https://flathub.org/apps/details/io.github.tfuxu.Halftone'>
   <img width='192' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/>
 </a><br>
 
@@ -95,14 +95,14 @@ flatpak install org.gnome.Sdk//44 org.gnome.Platform//44
 ```shell
 git clone https://github.com/tfuxu/Halftone.git
 cd Halftone
-flatpak-builder --install --user --force-clean repo/ build-aux/flatpak/com.github.tfuxu.halftone.json
+flatpak-builder --install --user --force-clean repo/ build-aux/flatpak/io.github.tfuxu.Halftone.json
 ```
 
 ##### System installation
 ```shell
 git clone https://github.com/tfuxu/Halftone.git
 cd Halftone
-flatpak-builder --install --system --force-clean repo/ build-aux/flatpak/com.github.tfuxu.halftone.json
+flatpak-builder --install --system --force-clean repo/ build-aux/flatpak/io.github.tfuxu.Halftone.json
 ```
 
 ### Meson Build System:

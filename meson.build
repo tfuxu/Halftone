@@ -18,8 +18,8 @@ HELP_URL = 'https://github.com/tfuxu/halftone/discussions'
 #TRANSLATE_URL = 'https://hosted.weblate.org/projects/tfuxu/halftone'
 
 # Constants
-PROJECT_RDNN_NAME = 'com.github.tfuxu.halftone'
-ROOT_PATH = '/com/github/tfuxu/halftone'
+PROJECT_RDNN_NAME = 'io.github.tfuxu.Halftone'
+ROOT_PATH = '/io/github/tfuxu/Halftone'
 PKGDATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 MODULE_DIR = join_paths(PKGDATA_DIR, 'halftone')
 
