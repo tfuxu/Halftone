@@ -1,0 +1,27 @@
+name: Build Flatpak
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  flatpak:
+    name: Build Flatpak Package
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:44
+      options: --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v5
+        with:
+          bundle: halftone.flatpak
+          manifest-path: build-aux/flatpak/io.github.tfuxu.Halftone.json
+          cache-key: flatpak-builder-${{ github.sha }}
