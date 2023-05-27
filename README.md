@@ -162,6 +162,6 @@ This repository is licensed under the terms of the GNU GPLv3 license. You can fi
 ## Inspirations:
 This project was started after I found out about [Pixfect](https://github.com/daudix-UFO/Pixfect), a little Bash script that does exactly what Halftone does.
 
-The user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.com/TheEvilSkeleton/Upscaler) design.
+The user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.gnome.org/World/Upscaler) design.
 
 This README (mostly [How to Build?](#how-to-build) section) is based on [Gradience](https://github.com/GradienceTeam/Gradience) README.
