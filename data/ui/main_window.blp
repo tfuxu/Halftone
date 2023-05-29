@@ -41,7 +41,7 @@ template HalftoneMainWindow: Adw.ApplicationWindow {
           name: "stack_welcome_page";
 
           child: Adw.StatusPage welcome_page {
-            icon-name: "io.github.tfuxu.Halftone-symbolic";
+            icon-name: "io.github.tfuxu.Halftone";
             title: "Halftone";
             description: _("Give your images that pixel art-like style");
             hexpand: true;
@@ -113,9 +113,9 @@ template HalftoneMainWindow: Adw.ApplicationWindow {
               halign: center;
               spacing: 6;
 
-              Gtk.Button view_logs_button {
-                label: _("View Logs");
-                //clicked => on_view_logs_clicked();
+              Gtk.Button {
+                label: _("Copy Traceback");
+                //clicked => on_copy_traceback_clicked();
 
                 styles [
                   "pill"
