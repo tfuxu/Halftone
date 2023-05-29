@@ -19,9 +19,17 @@
   </description>
 
   <screenshots>
-    <screenshot type="default" width="633" height="922">
-      <caption>Halftone Main Window</caption>
-      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-dark.png</image>
+    <screenshot type="default" width="615" height="911">
+      <caption>Halftone displaying image with Floyd-Steinberg dithering and 2-color quantization applied</caption>
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-2.png</image>
+    </screenshot>
+    <screenshot width="615" height="912">
+      <caption>Halftone displaying image with Bayer dithering and 2-color quantization applied</caption>
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-3.png</image>
+    </screenshot>
+    <screenshot width="615" height="907">
+      <caption>Halftone displaying image with Floyd-Steinberg dithering and 10-color quantization applied</caption>
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-4.png</image>
     </screenshot>
   </screenshots>
 
@@ -57,12 +65,14 @@
     <category>Image</category>
     <category>Graphics</category>
     <category>ImageProcessing</category>
+    <category>Utility</category>
   </categories>
 
   <keywords>
     <keyword>image</keyword>
     <keyword>dither</keyword>
     <keyword>compression</keyword>
+    <keyword>processing</keyword>
   </keywords>
 
   <releases>
