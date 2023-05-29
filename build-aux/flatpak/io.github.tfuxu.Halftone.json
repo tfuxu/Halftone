@@ -26,6 +26,9 @@
       {
           "name" : "blueprint-compiler",
           "buildsystem" : "meson",
+          "cleanup": [
+              "*"
+          ],
           "sources" : [
               {
                   "type" : "git",
@@ -36,11 +39,10 @@
       },
       {
         "name": "magick",
-        "buildsystem": "simple",
-        "build-commands": [
-          "./configure --prefix=/app --with-heic=yes --with-rsvg=yes",
-          "make",
-          "make install"
+        "buildsystem": "autotools",
+        "config-opts": [
+          "--with-heic=yes",
+          "--with-rsvg=yes"
         ],
         "sources": [
           {
