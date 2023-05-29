@@ -37,7 +37,7 @@ Check out [this<sup>↗</sup>](https://surma.dev/things/ditherpunk/) article whi
 ## How to install Halftone
 You can install Halftone in many ways, here are some listed:
 
-**1. Official Flatpak package (Not yet available):**
+**1. Official Flatpak package:**
 
 <a href='https://flathub.org/apps/details/io.github.tfuxu.Halftone'>
   <img width='192' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/>
