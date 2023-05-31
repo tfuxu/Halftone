@@ -20,7 +20,7 @@ msgstr ""
 #: data/com.github.tfuxu.halftone.appdata.xml.in.in:4
 #: data/com.github.tfuxu.halftone.desktop.in.in:8
 msgid "Halftone"
-msgstr "Halftoon"
+msgstr "Halftone"
 
 #: data/com.github.tfuxu.halftone.appdata.xml.in.in:5
 #: data/com.github.tfuxu.halftone.desktop.in.in:9 data/ui/main_window.blp:46
@@ -32,12 +32,10 @@ msgid "tfuxu"
 msgstr "tfuxu"
 
 #: data/com.github.tfuxu.halftone.appdata.xml.in.in:14
-msgid ""
-"A simple Libadwaita app for lossy image compression using dithering "
+msgid "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
 "in the process with Halftone."
-msgstr ""
-"Een eenvoudige Libadwaita-toepassing voor het toepassen van compressie met "
+msgstr "Een eenvoudige Libadwaita-toepassing voor het toepassen van compressie met "
 "behulp van spikkeltechniek. Maak pixelkunstwerken van je afbeeldingen en "
 "verklein tegelijkertijd de bestandsgrootte."
 
@@ -63,11 +61,9 @@ msgid "Image Error Occurred"
 msgstr "Afbeeldingsfout"
 
 #: data/ui/dither_page.blp:54
-msgid ""
-"An error occurred while loading an image. If this error persists, please "
+msgid "An error occurred while loading an image. If this error persists, please "
 "report it to bug tracker."
-msgstr ""
-"Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
+msgstr "Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
 "foutmelding blijft optreden, meld deze dan op de bugtracker."
 
 #: data/ui/dither_page.blp:75
@@ -115,11 +111,9 @@ msgid "Dither It!"
 msgstr "Spikkelen maar!"
 
 #: data/ui/dither_page.blp:208
-msgid ""
-"You can customize some of these parameters to make your image look "
+msgid "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
-msgstr ""
-"Sommige van deze opties kunnen naar eigen hand worden gezet. Meer "
+msgstr "Sommige van deze opties kunnen naar eigen hand worden gezet. Meer "
 "informatie over de opties is te vinden op de wikipagina."
 
 #: data/ui/dither_page.blp:212
@@ -181,11 +175,9 @@ msgid "Drop Here to Load Image"
 msgstr "Sleep een afbeelding hierheen"
 
 #: data/ui/main_window.blp:109
-msgid ""
-"An error occurred while loading an image. If this error persists, please "
+msgid "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
-msgstr ""
-"Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
+msgstr "Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
 "foutmelding blijft optreden, meld deze dan op de bugtracker."
 
 #: data/ui/main_window.blp:117
@@ -198,7 +190,7 @@ msgstr "Sneltoetsen"
 
 #: data/ui/main_window.blp:145
 msgid "About Halftone"
-msgstr "Over Halftoon"
+msgstr "Over Halftone"
 
 #: data/ui/main_window.blp:152
 msgid "Select an Image"
