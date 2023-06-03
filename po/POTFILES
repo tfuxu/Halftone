@@ -1,6 +1,6 @@
-data/com.github.tfuxu.halftone.appdata.xml.in.in
-data/com.github.tfuxu.halftone.desktop.in.in
-data/com.github.tfuxu.halftone.gschema.xml.in
+data/io.github.tfuxu.Halftone.appdata.xml.in.in
+data/io.github.tfuxu.Halftone.desktop.in.in
+data/io.github.tfuxu.Halftone.gschema.xml.in
 data/ui/dither_page.blp
 data/ui/help_overlay.blp
 data/ui/main_window.blp
