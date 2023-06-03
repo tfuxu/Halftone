@@ -1,7 +1,7 @@
 # Copyright 2023, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import GLib, Gdk, Gio, Gtk, Adw
+from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.report_page import HalftoneReportPage
@@ -113,6 +113,13 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     @Gtk.Template.Callback()
     def on_open_image(self, *args):
         self.open_image_chooser.show()
+
+    @Gtk.Template.Callback()
+    def on_copy_logs_clicked(self, *args):
+        logs_content = GObject.Value(str, self.latest_traceback)
+
+        clipboard = self.get_clipboard()
+        clipboard.set(logs_content)
 
     def on_image_chooser_response(self, widget, response):
         if response == Gtk.ResponseType.ACCEPT:
