@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-20 17:21+0200\n"
+"POT-Creation-Date: 2023-06-03 16:13+0200\n"
 "PO-Revision-Date: 2023-05-30 18:21+0300\n"
 "Last-Translator: David Lapshin <ddaudix@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -16,25 +16,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:4
-#: data/com.github.tfuxu.halftone.desktop.in.in:8
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:5
-#: data/com.github.tfuxu.halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Придайте своим изображениям тот самый пиксель-арт стиль"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:6
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:14
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -44,16 +44,36 @@ msgstr ""
 "технику дизеринга. Придайте своим изображениям стиль, напоминающий пиксель-"
 "арт, и уменьшите размер файла с помощью Halftone."
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:23
-msgid "Halftone Main Window"
-msgstr "Главное окно Halftone"
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+"quantization applied"
+msgstr ""
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:70
-msgid "Initial release of Halftone."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+msgid ""
+"Halftone displaying image with Bayer dithering and 2-color quantization "
+"applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+"quantization applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#, fuzzy
+msgid "Renamed Pixely to Halftone."
+msgstr "Первый выпуск Halftone."
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:85
+#, fuzzy
+msgid "Initial release of Pixely."
 msgstr "Первый выпуск Halftone."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/com.github.tfuxu.halftone.desktop.in.in:13
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "изображение;графика;сжатие;"
 
@@ -97,7 +117,7 @@ msgstr "Размер изображения"
 msgid "Image Width"
 msgstr "Ширина изображения"
 
-#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:226
+#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:235
 msgid "Keep aspect ratio"
 msgstr "Сохранять соотношение сторон"
 
@@ -123,8 +143,8 @@ msgid ""
 "different. To learn more about individual options, go to the wiki page."
 msgstr ""
 "Вы можете настроить некоторые из этих параметров, чтобы ваше изображение "
-"выглядело по-другому. Чтобы узнать больше об отдельных параметрах, "
-"перейдите на страницу вики."
+"выглядело по-другому. Чтобы узнать больше об отдельных параметрах, перейдите "
+"на страницу вики."
 
 #: data/ui/dither_page.blp:212
 msgid "Wiki Page"
@@ -176,7 +196,7 @@ msgstr "Открыть изображение (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:169
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:178
 msgid "Open Image"
 msgstr "Открыть изображение"
 
@@ -194,8 +214,8 @@ msgstr ""
 "ошибок."
 
 #: data/ui/main_window.blp:117
-msgid "View Logs"
-msgstr "Просмотреть журналы"
+msgid "Copy Logs"
+msgstr ""
 
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
@@ -218,22 +238,28 @@ msgstr "Давид Лапшин <ddaudix@gmail.com>"
 msgid "Copyright © 2023 tfuxu"
 msgstr "Авторское право © 2023 tfuxu"
 
-#: halftone/views/main_window.py:88
+#: halftone/views/main_window.py:90
 msgid "Supported image formats"
 msgstr "Поддерживаемые форматы изображений"
 
-#: halftone/views/main_window.py:106
+#: halftone/views/main_window.py:108
 msgid "Failed to load an image"
 msgstr "Не удалось загрузить изображение"
 
-#: halftone/views/dither_page.py:168
+#: halftone/views/dither_page.py:177
 msgid "Image dithered successfully!"
 msgstr "Изображение преобразовано успешно!"
 
-#: halftone/views/dither_page.py:232
+#: halftone/views/dither_page.py:241
 msgid "Don't keep aspect ratio"
 msgstr "Не сохранять соотношение сторон"
 
-#: halftone/views/dither_page.py:330
+#: halftone/views/dither_page.py:340
 msgid "Failed to load preview image"
 msgstr "Не удалось загрузить изображение предварительного просмотра"
+
+#~ msgid "Halftone Main Window"
+#~ msgstr "Главное окно Halftone"
+
+#~ msgid "View Logs"
+#~ msgstr "Просмотреть журналы"

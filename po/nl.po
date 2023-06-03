@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-20 17:21+0200\n"
+"POT-Creation-Date: 2023-06-03 16:13+0200\n"
 "PO-Revision-Date: 2023-05-30 15:17+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -17,38 +17,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:4
-#: data/com.github.tfuxu.halftone.desktop.in.in:8
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:5
-#: data/com.github.tfuxu.halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Maak pixelkunstwerken van je afbeeldingen"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:6
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:14
-msgid "A simple Libadwaita app for lossy image compression using dithering "
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
+msgid ""
+"A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
 "in the process with Halftone."
-msgstr "Een eenvoudige Libadwaita-toepassing voor het toepassen van compressie met "
+msgstr ""
+"Een eenvoudige Libadwaita-toepassing voor het toepassen van compressie met "
 "behulp van spikkeltechniek. Maak pixelkunstwerken van je afbeeldingen en "
 "verklein tegelijkertijd de bestandsgrootte."
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:23
-msgid "Halftone Main Window"
-msgstr "Hoofdvenster"
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+"quantization applied"
+msgstr ""
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:70
-msgid "Initial release of Halftone."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+msgid ""
+"Halftone displaying image with Bayer dithering and 2-color quantization "
+"applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+"quantization applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#, fuzzy
+msgid "Renamed Pixely to Halftone."
+msgstr "Eerste versie van Halftoon."
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:85
+#, fuzzy
+msgid "Initial release of Pixely."
 msgstr "Eerste versie van Halftoon."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/com.github.tfuxu.halftone.desktop.in.in:13
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "afbeelding;grafisch;compressie;"
 
@@ -61,9 +83,11 @@ msgid "Image Error Occurred"
 msgstr "Afbeeldingsfout"
 
 #: data/ui/dither_page.blp:54
-msgid "An error occurred while loading an image. If this error persists, please "
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
 "report it to bug tracker."
-msgstr "Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
+msgstr ""
+"Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
 "foutmelding blijft optreden, meld deze dan op de bugtracker."
 
 #: data/ui/dither_page.blp:75
@@ -90,7 +114,7 @@ msgstr "Afbeeldingsgrootte"
 msgid "Image Width"
 msgstr "Afbeeldingsbreedte"
 
-#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:226
+#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:235
 msgid "Keep aspect ratio"
 msgstr "Beeldverhouding behouden"
 
@@ -111,10 +135,12 @@ msgid "Dither It!"
 msgstr "Spikkelen maar!"
 
 #: data/ui/dither_page.blp:208
-msgid "You can customize some of these parameters to make your image look "
+msgid ""
+"You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
-msgstr "Sommige van deze opties kunnen naar eigen hand worden gezet. Meer "
-"informatie over de opties is te vinden op de wikipagina."
+msgstr ""
+"Sommige van deze opties kunnen naar eigen hand worden gezet. Meer informatie "
+"over de opties is te vinden op de wikipagina."
 
 #: data/ui/dither_page.blp:212
 msgid "Wiki Page"
@@ -166,7 +192,7 @@ msgstr "Afbeelding openen (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:169
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:178
 msgid "Open Image"
 msgstr "Afbeelding openen"
 
@@ -175,14 +201,16 @@ msgid "Drop Here to Load Image"
 msgstr "Sleep een afbeelding hierheen"
 
 #: data/ui/main_window.blp:109
-msgid "An error occurred while loading an image. If this error persists, please "
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
-msgstr "Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
+msgstr ""
+"Er is een fout opgetreden tijdens het laden van de afbeelding. Als de "
 "foutmelding blijft optreden, meld deze dan op de bugtracker."
 
 #: data/ui/main_window.blp:117
-msgid "View Logs"
-msgstr "Logboek bekijken"
+msgid "Copy Logs"
+msgstr ""
 
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
@@ -205,22 +233,28 @@ msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 msgid "Copyright © 2023 tfuxu"
 msgstr "Copyright © 2023 tfuxu"
 
-#: halftone/views/main_window.py:88
+#: halftone/views/main_window.py:90
 msgid "Supported image formats"
 msgstr "Ondersteunde afbeeldingsformaten"
 
-#: halftone/views/main_window.py:106
+#: halftone/views/main_window.py:108
 msgid "Failed to load an image"
 msgstr "De afbeelding kan niet worden geladen"
 
-#: halftone/views/dither_page.py:168
+#: halftone/views/dither_page.py:177
 msgid "Image dithered successfully!"
 msgstr "De afbeelding is gespikkeld!"
 
-#: halftone/views/dither_page.py:232
+#: halftone/views/dither_page.py:241
 msgid "Don't keep aspect ratio"
 msgstr "Beeldverhouding niet behouden"
 
-#: halftone/views/dither_page.py:330
+#: halftone/views/dither_page.py:340
 msgid "Failed to load preview image"
 msgstr "De voorvertoning kan niet worden geladen"
+
+#~ msgid "Halftone Main Window"
+#~ msgstr "Hoofdvenster"
+
+#~ msgid "View Logs"
+#~ msgstr "Logboek bekijken"

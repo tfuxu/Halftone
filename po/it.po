@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-20 17:21+0200\n"
+"POT-Creation-Date: 2023-06-03 16:13+0200\n"
 "PO-Revision-Date: 2023-06-03 10:06+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -16,40 +16,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:4
-#: data/com.github.tfuxu.halftone.desktop.in.in:8
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:5
-#: data/com.github.tfuxu.halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Dai alle tue immagini lo stile pixel art"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:6
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:14
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
 "in the process with Halftone."
 msgstr ""
-"Una semplice app Libadwaita per la compressione delle immagini con perdita utilizzando la tecnica della  "
-"retinatura. Dai alle tue immagini uno stile pixel art e riduci le dimensioni del file "
-"in lavorazione con Halftone."
+"Una semplice app Libadwaita per la compressione delle immagini con perdita "
+"utilizzando la tecnica della  retinatura. Dai alle tue immagini uno stile "
+"pixel art e riduci le dimensioni del file in lavorazione con Halftone."
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:23
-msgid "Halftone Main Window"
-msgstr "Finestra principale di Halftone"
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+"quantization applied"
+msgstr ""
 
-#: data/com.github.tfuxu.halftone.appdata.xml.in.in:70
-msgid "Initial release of Halftone."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+msgid ""
+"Halftone displaying image with Bayer dithering and 2-color quantization "
+"applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+"quantization applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#, fuzzy
+msgid "Renamed Pixely to Halftone."
+msgstr "Versione iniziale di Halftone."
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:85
+#, fuzzy
+msgid "Initial release of Pixely."
 msgstr "Versione iniziale di Halftone."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/com.github.tfuxu.halftone.desktop.in.in:13
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "immagine;grafica;compressione;"
 
@@ -66,8 +86,8 @@ msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "report it to bug tracker."
 msgstr ""
-"Si è verificato un errore durante il caricamento di un'immagine. Se l'errore persiste, per favore "
-"segnala al bug tracker."
+"Si è verificato un errore durante il caricamento di un'immagine. Se l'errore "
+"persiste, per favore segnala al bug tracker."
 
 #: data/ui/dither_page.blp:75
 msgid "Options"
@@ -93,7 +113,7 @@ msgstr "DImensione immagine"
 msgid "Image Width"
 msgstr "Larghezza immagine"
 
-#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:226
+#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:235
 msgid "Keep aspect ratio"
 msgstr "Mantenere proporzioni"
 
@@ -118,8 +138,9 @@ msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
 msgstr ""
-"Puoi personalizzare alcuni di questi parametri per far apparire la tua immagine "
-"differente. Per saperne di più sulle singole opzioni, vai alla pagina wiki."
+"Puoi personalizzare alcuni di questi parametri per far apparire la tua "
+"immagine differente. Per saperne di più sulle singole opzioni, vai alla "
+"pagina wiki."
 
 #: data/ui/dither_page.blp:212
 msgid "Wiki Page"
@@ -171,7 +192,7 @@ msgstr "Apri immagine (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Menu principale"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:169
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:178
 msgid "Open Image"
 msgstr "Apri immagine"
 
@@ -184,12 +205,12 @@ msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
 msgstr ""
-"Si è verificato un errore durante il caricamento di un'immagine. Se l'errore persiste, per favore "
-"copia i log e segnala il problema al bug tracker."
+"Si è verificato un errore durante il caricamento di un'immagine. Se l'errore "
+"persiste, per favore copia i log e segnala il problema al bug tracker."
 
 #: data/ui/main_window.blp:117
-msgid "View Logs"
-msgstr "Vedi log"
+msgid "Copy Logs"
+msgstr ""
 
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
@@ -212,22 +233,28 @@ msgstr "Albano Battistella"
 msgid "Copyright © 2023 tfuxu"
 msgstr "Copyright © 2023 tfuxu"
 
-#: halftone/views/main_window.py:88
+#: halftone/views/main_window.py:90
 msgid "Supported image formats"
 msgstr "Formati immagine supportati"
 
-#: halftone/views/main_window.py:106
+#: halftone/views/main_window.py:108
 msgid "Failed to load an image"
 msgstr "Impossibile caricare un'immagine"
 
-#: halftone/views/dither_page.py:168
+#: halftone/views/dither_page.py:177
 msgid "Image dithered successfully!"
 msgstr "Immagine retinata con successo!"
 
-#: halftone/views/dither_page.py:232
+#: halftone/views/dither_page.py:241
 msgid "Don't keep aspect ratio"
 msgstr "Non mantenere le proporzioni"
 
-#: halftone/views/dither_page.py:330
+#: halftone/views/dither_page.py:340
 msgid "Failed to load preview image"
 msgstr "Impossibile caricare l'immagine di anteprima"
+
+#~ msgid "Halftone Main Window"
+#~ msgstr "Finestra principale di Halftone"
+
+#~ msgid "View Logs"
+#~ msgstr "Vedi log"
