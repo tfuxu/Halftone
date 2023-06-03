@@ -1,8 +1,6 @@
 # Copyright 2023, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import logging
-
 from enum import Enum
 
 from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
@@ -10,10 +8,14 @@ from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
 from halftone.backend.magick import HalftoneImageMagick
+from halftone.backend.logger import Logger
 
 from halftone.utils.killable_thread import KillableThread
 from halftone.utils.filters import get_file_filter, popular_supported_output_formats, supported_output_formats
 from halftone.constants import rootdir
+
+logging = Logger()
+
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
 class HalftoneDitherPage(Adw.PreferencesPage):
@@ -129,7 +131,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.updated_paintable = Gdk.Texture.new_from_bytes(GLib.Bytes(image_blob))
         except GLib.GError as e:
             self.win.show_error_page()
-            logging.error(f"Failed to construct new Gdk.Texture from bytes. Exception: {e}")
+            logging.traceback_error(
+                f"Failed to construct new Gdk.Texture from bytes.",
+                exc=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
             self.image_dithered.set_paintable(self.updated_paintable)
@@ -146,7 +151,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.original_paintable = Gdk.Texture.new_from_file(self.input_file)
         except GLib.GError as e:
             self.win.show_error_page()
-            logging.error(f"Failed to construct new Gdk.Texture from filename. Exception: {e}")
+            logging.traceback_error(
+                f"Failed to construct new Gdk.Texture from filename.",
+                exc=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
             self.set_size_spins(self.original_paintable.get_width(), self.original_paintable.get_height())
@@ -164,11 +172,12 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             callback()
 
         logging.debug("Saving done!")
+
         self.toast_overlay.add_toast(
             Adw.Toast(title=_("Image dithered successfully!"),
-                        button_label=_("Open Image"),
-                        action_name="app.show-saved-image",
-                        action_target=GLib.Variant("s", output_path))
+                button_label=_("Open Image"),
+                action_name="app.show-saved-image",
+                action_target=GLib.Variant("s", output_path))
         )
 
     """ Signal callbacks """
@@ -308,6 +317,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
     def start_task(self, task: callable, *args): #callback: callable
         logging.debug("Starting new async task")
+
         for t in self.tasks:
             t.kill()
 

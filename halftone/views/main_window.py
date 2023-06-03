@@ -32,6 +32,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.app = kwargs['application']
         self.settings = Gio.Settings(app_id)
 
+        self.latest_traceback = ""
+
         self.add_controller(self.drop_target)
 
         self.dither_page = HalftoneDitherPage(self)
