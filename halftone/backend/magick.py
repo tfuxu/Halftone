@@ -27,6 +27,8 @@ class HalftoneImageMagick:
 
             width = output_options.width
             height = output_options.height
+            contrast = output_options.contrast
+            brightness = output_options.brightness
             color_amount = output_options.color_amount
             algorithm = output_options.algorithm
             output_format = output_options.output_format
@@ -39,6 +41,7 @@ class HalftoneImageMagick:
 
             with img.clone() as clone:
                 clone.resize(width=new_width, height=new_height)
+                clone.brightness_contrast(float(brightness), float(contrast))
                 # Available error correction dither algorithms: floyd_steinberg, riemersma (More info: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.DITHER_METHODS)
                 # Available ordered dithers: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.BaseImage.ordered_dither
                 if algorithm == "ordered":
