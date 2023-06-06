@@ -3,6 +3,7 @@
 
 from wand.image import Image
 
+from halftone.backend.utils.temp import HalftoneTempFile
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
 
@@ -16,8 +17,8 @@ class HalftoneImageMagick:
     def __init__(self):
         pass
 
-    def dither_image(self, blob: bytes, output_options: OutputOptions) -> bytes:
-        with Image(blob=blob) as img:
+    def dither_image(self, path: str, output_options: OutputOptions) -> str:
+        with Image(filename=path) as img:
             img_width = img.size[0]
             img_height = img.size[1]
 
@@ -46,9 +47,10 @@ class HalftoneImageMagick:
                 else:
                     clone.quantize(color_amount, dither=algorithm)
 
-                image_blob = clone.make_blob(format=output_format)
+                temp_path = HalftoneTempFile().create_temp_file()
+                clone.save(filename=temp_path)
 
-        return image_blob
+        return temp_path
 
     def save_image(self, blob: bytes, output_filename: str, output_options: OutputOptions) -> None:
         with Image(blob=blob) as img:

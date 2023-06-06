@@ -2,9 +2,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import Enum
+from pathlib import Path
 
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
+from halftone.backend.utils.temp import HalftoneTempFile
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
 from halftone.backend.magick import HalftoneImageMagick
@@ -55,7 +57,8 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.task_id = None
         self.tasks = []
 
-        self.input_file: Gio.File = None
+        self.input_image_path: str = None
+        self.preview_image_path: str = None
 
         self.original_paintable: Gdk.Paintable = None
         self.updated_paintable: Gdk.Paintable = None
@@ -115,26 +118,20 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
     """ Main functions """
 
-    def update_preview_image(self, paintable: Gdk.Paintable, output_options: OutputOptions,
+    def update_preview_image(self, path: str, output_options: OutputOptions,
                                 callback: callable = None):
-        self.output_options = output_options
-
         self.on_awaiting_image_load()
 
-        if not output_options.width:
-            self.output_options.width = paintable.get_width()
+        if self.preview_image_path:
+            self.clean_preview_paintable()
 
-        image_bytes = paintable.save_to_tiff_bytes()
-        image_blob = HalftoneImageMagick().dither_image(image_bytes.get_data(), self.output_options)
+        self.output_options = output_options
+        self.preview_image_path = HalftoneImageMagick().dither_image(path, self.output_options)
 
         try:
-            self.updated_paintable = Gdk.Texture.new_from_bytes(GLib.Bytes(image_blob))
+            self.set_updated_paintable(self.preview_image_path)
         except GLib.GError as e:
             self.win.show_error_page()
-            logging.traceback_error(
-                f"Failed to construct new Gdk.Texture from bytes.",
-                exc=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
             self.image_dithered.set_paintable(self.updated_paintable)
@@ -143,22 +140,21 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         if callback:
             callback()
 
-    # NOTE: If you want to manipulate image and load it to picture view, use `update_preview_image` function instead
     # NOTE: Use this only if you initially load the picture (eg. from file chooser)
     def load_preview_image(self, file: Gio.File):
-        self.input_file = file
+        self.input_image_path = file.get_path()
         try:
-            self.original_paintable = Gdk.Texture.new_from_file(self.input_file)
+            self.set_original_paintable(self.input_image_path)
         except GLib.GError as e:
             self.win.show_error_page()
-            logging.traceback_error(
-                f"Failed to construct new Gdk.Texture from filename.",
-                exc=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
-            self.set_size_spins(self.original_paintable.get_width(), self.original_paintable.get_height())
-            self.start_task(self.update_preview_image, self.original_paintable, OutputOptions(), self.on_successful_image_load)
+            self.set_size_spins(self.original_paintable.get_width(),
+                                self.original_paintable.get_height())
+            self.start_task(self.update_preview_image,
+                            self.input_image_path,
+                            OutputOptions(),
+                            self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
                         output_options: OutputOptions, callback: callable):
@@ -189,7 +185,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.output_options.color_amount = color_amount
 
         if self.original_paintable:
-            self.start_task(self.update_preview_image, self.original_paintable, self.output_options, self.on_successful_image_load)
+            self.start_task(self.update_preview_image,
+                            self.input_image_path,
+                            self.output_options,
+                            self.on_successful_image_load)
 
     @Gtk.Template.Callback()
     def on_image_width_changed(self, widget):
@@ -206,7 +205,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                 self.output_options.height = new_height
                 self.image_height_spinbutton.set_value(new_height)
 
-            self.start_task(self.update_preview_image, self.original_paintable, self.output_options, self.on_successful_image_load)
+            self.start_task(self.update_preview_image,
+                            self.input_image_path,
+                            self.output_options,
+                            self.on_successful_image_load)
 
     @Gtk.Template.Callback()
     def on_image_height_changed(self, widget):
@@ -216,11 +218,14 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         if self.original_paintable:
             if not self.keep_aspect_ratio:
-                self.start_task(self.update_preview_image, self.original_paintable, self.output_options, self.on_successful_image_load)
+                self.start_task(self.update_preview_image,
+                                self.input_image_path,
+                                self.output_options,
+                                self.on_successful_image_load)
 
     def on_save_image(self, *args):
         file_extension = self.get_output_format_suffix()
-        file_display_name = self.input_file.get_basename().split('.')[0]
+        file_display_name = Path(self.input_image_path).stem
 
         output_filename = f"halftone-{file_display_name}.{file_extension}"
         logging.debug(f"Output filename: {output_filename}")
@@ -247,7 +252,11 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         widget.hide()
 
         if response == Gtk.ResponseType.ACCEPT:
-            self.start_task(self.save_image, self.updated_paintable, output_file.get_path(), self.output_options, self.win.show_dither_page)
+            self.start_task(self.save_image,
+                            self.updated_paintable,
+                            output_file.get_path(),
+                            self.output_options,
+                            self.win.show_dither_page)
 
     def on_dither_algorithm_selected(self, widget, *args):
         algorithm_string = self.get_dither_algorithm_pref(widget)
@@ -255,7 +264,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.output_options.algorithm = algorithm_string
 
         if self.original_paintable:
-            self.start_task(self.update_preview_image, self.original_paintable, self.output_options, self.on_successful_image_load)
+            self.start_task(self.update_preview_image,
+                            self.input_image_path,
+                            self.output_options,
+                            self.on_successful_image_load)
 
     def on_save_format_selected(self, widget, *args):
         selected_format = widget.props.selected
@@ -272,6 +284,32 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.save_image_button.set_sensitive(False)
 
     """ Module-specific helpers """
+
+    def set_original_paintable(self, path: str):
+        try:
+            self.original_paintable = Gdk.Texture.new_from_filename(path)
+        except GLib.GError as e:
+            logging.traceback_error(
+                f"Failed to construct new Gdk.Texture from path.",
+                exc=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
+            raise
+
+    def set_updated_paintable(self, path: str):
+        try:
+            self.updated_paintable = Gdk.Texture.new_from_filename(path)
+        except GLib.GError as e:
+            logging.traceback_error(
+                f"Failed to construct new Gdk.Texture from path.",
+                exc=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
+            raise
+
+    def clean_preview_paintable(self):
+        try:
+            HalftoneTempFile().delete_temp_file(self.preview_image_path)
+        except FileNotFoundError:
+            pass
 
     def get_output_format_suffix(self) -> str:
         selected_format = self.save_format_combo.props.selected
