@@ -31,7 +31,7 @@ class HalftoneAboutWindow:
             ],
             # TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
             translator_credits=_("translator-credits"),
-            copyright=_("Copyright © 2023 tfuxu"),
+            copyright="Copyright © 2023 tfuxu",
             license_type=Gtk.License.GPL_3_0,
             version=constants.version,
             release_notes_version=constants.rel_ver,
