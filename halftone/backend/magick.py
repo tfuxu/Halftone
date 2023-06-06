@@ -22,6 +22,9 @@ class HalftoneImageMagick:
             img_width = img.size[0]
             img_height = img.size[1]
 
+            if not output_options.width:
+                output_options.width = img_width
+
             width = output_options.width
             height = output_options.height
             color_amount = output_options.color_amount
