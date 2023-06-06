@@ -3,7 +3,7 @@
 
 from enum import Enum
 
-from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
+from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
@@ -11,7 +11,7 @@ from halftone.backend.magick import HalftoneImageMagick
 from halftone.backend.logger import Logger
 
 from halftone.utils.killable_thread import KillableThread
-from halftone.utils.filters import get_file_filter, popular_supported_output_formats, supported_output_formats
+from halftone.utils.filters import supported_output_formats
 from halftone.constants import rootdir
 
 logging = Logger()

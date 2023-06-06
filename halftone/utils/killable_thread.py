@@ -7,7 +7,9 @@
 import sys
 import threading
 
-import logging
+from halftone.backend.logger import Logger
+
+logging = Logger()
 
 
 class KillableThread(threading.Thread):

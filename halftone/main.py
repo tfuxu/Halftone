@@ -4,12 +4,12 @@
 import os
 import sys
 
-from gi.repository import GObject, Gtk, Gdk, Gio, Adw, GLib
+from gi.repository import Gtk, Gdk, Gio, Adw, GLib
 
-from halftone.constants import rootdir, app_id, build_type
+from halftone.constants import rootdir, app_id
 from halftone.views.main_window import HalftoneMainWindow
-from halftone.views.preferences_window import HalftonePreferencesWindow
 from halftone.views.about_window import HalftoneAboutWindow
+#from halftone.views.preferences_window import HalftonePreferencesWindow
 
 
 class HalftoneApplication(Adw.Application):

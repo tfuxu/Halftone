@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from wand.image import Image
-#from wand.display import display
 
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
