@@ -39,7 +39,7 @@ class HalftoneImageMagick:
             else:
                 new_height = int(height)
 
-            with img.clone() as clone:
+            with img.convert("tiff").clone() as clone:
                 clone.resize(width=new_width, height=new_height)
                 clone.brightness_contrast(float(brightness), float(contrast))
                 # Available error correction dither algorithms: floyd_steinberg, riemersma (More info: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.DITHER_METHODS)
