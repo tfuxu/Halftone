@@ -48,8 +48,8 @@ You can install Halftone in many ways, here are some listed:
 > Although some of the methods listed here may be maintained by the Halftone maintainers, these methods **are not** officially supported and issues related to packaging in them should be reported outside this project's bug tracker.
 
 <a href="https://repology.org/project/halftone/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/halftone.svg" alt="Packaging status" align="left">
-</a><br><br>
+    <img src="https://repology.org/badge/vertical-allrepos/halftone.svg" alt="Packaging status">
+</a>
 
 **3. Install from source:**
 
