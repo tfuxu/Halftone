@@ -6,10 +6,14 @@ import sys
 
 from gi.repository import Gtk, Gdk, Gio, Adw, GLib
 
+from halftone.backend.logger import Logger
+
 from halftone.constants import rootdir, app_id
 from halftone.views.main_window import HalftoneMainWindow
 from halftone.views.about_window import HalftoneAboutWindow
 #from halftone.views.preferences_window import HalftonePreferencesWindow
+
+logging = Logger()
 
 
 class HalftoneApplication(Adw.Application):
@@ -54,6 +58,10 @@ class HalftoneApplication(Adw.Application):
         show_saved_image_action.connect('activate', self.open_saved_image)
         self.add_action(show_saved_image_action)
 
+        open_preview_image_action = Gio.SimpleAction.new('open-preview-image', None)
+        open_preview_image_action.connect('activate', self.open_preview_image)
+        self.add_action(open_preview_image_action)
+
         '''preferences_action = Gio.SimpleAction.new('preferences', None)
         preferences_action.connect('activate', self.on_preferences)
         self.add_action(preferences_action)'''
@@ -74,13 +82,26 @@ class HalftoneApplication(Adw.Application):
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
     def open_saved_image(self, action, output_path: GLib.Variant, *args):
-        """ Show directory of saved image. """
+        """ Show directory of the saved image. """
 
         Gtk.show_uri(
             self.window,
             f"file://{output_path.get_string()}",
             Gdk.CURRENT_TIME
         )
+
+    def open_preview_image(self, *args):
+        """ Display preview image in external app. """
+
+        preview_image_path = self.window.dither_page.preview_image_path
+        try:
+            preview_file = Gio.File.new_for_path(preview_image_path)
+        except GLib.GError as e:
+            logging.traceback_error("Failed to construct a new Gio.File object from path.",
+                                    exc=e, show_exception=True)
+        else:
+            launcher = Gtk.FileLauncher.new(preview_file)
+            launcher.launch(self.window, None)
 
     '''def on_preferences(self, *args):
         """ Show preferences window. """

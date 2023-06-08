@@ -12,21 +12,39 @@ template HalftoneDitherPage: Adw.PreferencesPage {
       Gtk.StackPage {
         name: "preview_stack_main_page";
 
-        child: Adw.Bin {
-          child: Gtk.Picture image_dithered {
-            content-fit: contain;
-            can-shrink: true;
-            halign: center;
-            valign: center;
+        child: Gtk.Overlay {
+          child: Adw.Bin {
+            child: Gtk.Picture image_dithered {
+              content-fit: contain;
+              can-shrink: true;
+              halign: center;
+              valign: center;
+
+              styles [
+                "card"
+              ]
+            };
 
             styles [
               "card"
             ]
           };
 
-          styles [
-            "card"
-          ]
+          [overlay]
+          Gtk.Button {
+            halign: end;
+            valign: end;
+            margin-bottom: 12;
+            margin-end: 12;
+            icon-name: "adw-external-link-symbolic";
+            tooltip-text: _("Open in External Image Viewer");
+            action-name: "app.open-preview-image";
+
+            styles [
+              "osd",
+              "circular"
+            ]
+          }
         };
       }
 
