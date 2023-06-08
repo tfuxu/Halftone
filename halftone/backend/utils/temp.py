@@ -28,5 +28,8 @@ class HalftoneTempFile:
         Delete temporary file located at given path.
         """
 
+        if not isinstance(path, (str, bytes)):
+            return
+
         temp_file = Path(path)
         temp_file.unlink()

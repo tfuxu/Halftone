@@ -70,6 +70,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_chooser.connect("response",
             self.on_image_chooser_response)
 
+        self.connect("close-request",
+            self.on_close_request)
+
         self.connect("unrealize",
             self.save_window_props)
 
@@ -154,6 +157,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(True)
         self.main_stack.set_visible_child_name("stack_dither_page")
+
+    def on_close_request(self, *args):
+        self.dither_page.clean_preview_paintable()
 
     def save_window_props(self, *args):
         window_size = self.get_default_size()
