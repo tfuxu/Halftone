@@ -174,11 +174,11 @@ if __name__ == "__main__":
     logging.debug("This is a debug message.")
 
     try:
-        raise ArithmeticError("Arithemtic Error")
+        raise ArithmeticError("Arithmetic Error")
     except Exception as e:
         try:
             raise Exception("General Exception")
         except Exception as e:
             logging.traceback_error("This is an test error.", exc=e, show_exception=True)
 
-            print(f"Retrived traceback: {logging.get_traceback(e)}")
+            print(f"Retrieved traceback: {logging.get_traceback(e)}")

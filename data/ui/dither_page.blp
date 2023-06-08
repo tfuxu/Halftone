@@ -60,18 +60,6 @@ template HalftoneDitherPage: Adw.PreferencesPage {
           }
         };
       }
-
-      Gtk.StackPage {
-        name: "preview_stack_error_page";
-
-        child: Adw.StatusPage {
-          hexpand: true;
-
-          icon-name: "image-missing-symbolic";
-          title: _("Image Error Occurred");
-          description: _("An error occurred while loading an image. If this error persists, please report it to bug tracker.");
-        };
-      }
     }
   }
 
