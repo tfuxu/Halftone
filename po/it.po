@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-03 16:13+0200\n"
-"PO-Revision-Date: 2023-06-03 10:06+0100\n"
+"PO-Revision-Date: 2023-06-08 08:06+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -45,28 +45,32 @@ msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
 "quantization applied"
 msgstr ""
+"Halftone visualizza immagini con dithering Floyd-Steinberg e quantizzazione applicata "
+"a 2 colori"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
 msgid ""
 "Halftone displaying image with Bayer dithering and 2-color quantization "
 "applied"
 msgstr ""
+"Halftone visualizza immagini con dithering Bayer e applicata la quantizzazione "
+"a 2 colori"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
 "quantization applied"
 msgstr ""
+"Halftone visualizza immagini con dithering Floyd-Steinberg e applicata la quantizzazione "
+"a 10 colori"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
-#, fuzzy
 msgid "Renamed Pixely to Halftone."
-msgstr "Versione iniziale di Halftone."
+msgstr "Rinominato Pixely in Halftone."
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:85
-#, fuzzy
 msgid "Initial release of Pixely."
-msgstr "Versione iniziale di Halftone."
+msgstr "Versione iniziale di Pixely."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
@@ -210,7 +214,7 @@ msgstr ""
 
 #: data/ui/main_window.blp:117
 msgid "Copy Logs"
-msgstr ""
+msgstr "Copia log"
 
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
