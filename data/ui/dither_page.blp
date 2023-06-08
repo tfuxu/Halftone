@@ -114,52 +114,53 @@ template HalftoneDitherPage: Adw.PreferencesPage {
       }
     }
 
-    Adw.ActionRow image_size {
-      title: _("Image Size");
-
-      Gtk.Box {
-        orientation: horizontal;
-        spacing: 4;
-        valign: center;
-
-        Gtk.SpinButton image_width_spinbutton {
-          tooltip-text: _("Image Width");
-          adjustment: Gtk.Adjustment image_width_adjustment {
-            lower: 1;
-            upper: 8192;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          value-changed => on_image_width_changed();
-        }
-
-        Gtk.ToggleButton aspect_ratio_toggle {
-          icon-name: "chain-link-symbolic";
-          tooltip-text: _("Keep aspect ratio");
-          active: true;
-
-          styles [
-            "flat"
-          ]
-        }
-
-        Gtk.SpinButton image_height_spinbutton {
-          tooltip-text: _("Image Height");
-          sensitive: false;
-          adjustment: Gtk.Adjustment image_height_adjustment {
-            lower: 1;
-            upper: 8192;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          value-changed => on_image_height_changed();
-        }
-      }
-    }
-
     Adw.ComboRow save_format_combo {
       title: _("Convert To");
       model: Gtk.StringList image_formats_stringlist {};
+    }
+  }
+
+  Adw.PreferencesGroup {
+    Adw.ExpanderRow image_properties_expander {
+      title: _("Image Properties");
+      enable-expansion: false;
+
+      [action]
+      Gtk.Box {
+        orientation: horizontal;
+        spacing: 10;
+        valign: center;
+
+        Gtk.ToggleButton brightness_toggle {
+          tooltip-text: _("Brightness");
+          icon-name: "image-adjust-brightness-symbolic";
+          clicked => on_brightness_toggled();
+        }
+
+        Gtk.ToggleButton contrast_toggle {
+          tooltip-text: _("Contrast");
+          icon-name: "image-adjust-contrast-symbolic";
+          clicked => on_contrast_toggled();
+        }
+
+        Gtk.ToggleButton image_size_toggle {
+          tooltip-text: _("Image Size");
+          icon-name: "image-adjust-size-symbolic";
+          clicked => on_resize_toggled();
+        }
+
+        //Gtk.Button {
+        //  tooltip-text: _("Image Width");
+        //  icon-name: "size-horizontally-symbolic";
+          //clicked => on_width_clicked();
+        //}
+
+        //Gtk.Button {
+        //  tooltip-text: _("Image Height");
+        //  icon-name: "size-vertically-symbolic";
+          //clicked => on_height_clicked();
+        //}
+      }
     }
   }
 
@@ -188,6 +189,83 @@ template HalftoneDitherPage: Adw.PreferencesPage {
         ]
       }
     }
+  }
+}
+
+Adw.ActionRow image_size_row {
+  title: _("Image Size");
+
+  Gtk.Box {
+    orientation: horizontal;
+    spacing: 4;
+    valign: center;
+
+    Gtk.SpinButton image_width_spinbutton {
+      tooltip-text: _("Image Width");
+      adjustment: Gtk.Adjustment image_width_adjustment {
+        lower: 1;
+        upper: 8192;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      value-changed => on_image_width_value_changed();
+    }
+
+    Gtk.ToggleButton aspect_ratio_toggle {
+      icon-name: "chain-link-symbolic";
+      tooltip-text: _("Keep aspect ratio");
+      active: true;
+
+      styles [
+        "flat"
+      ]
+    }
+
+    Gtk.SpinButton image_height_spinbutton {
+      tooltip-text: _("Image Height");
+      sensitive: false;
+      adjustment: Gtk.Adjustment image_height_adjustment {
+        lower: 1;
+        upper: 8192;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      value-changed => on_image_height_value_changed();
+    }
+  }
+}
+
+Adw.ActionRow brightness_row {
+  title: _("Brightness");
+  activatable-widget: brightness_spinbutton;
+
+  Gtk.SpinButton brightness_spinbutton {
+    valign: center;
+    tooltip-text: _("Brightness");
+    adjustment: Gtk.Adjustment brightness_adjustment {
+      lower: -100;
+      upper: 100;
+      step-increment: 1;
+      page-increment: 5;
+    };
+    value-changed => on_brightness_value_changed();
+  }
+}
+
+Adw.ActionRow contrast_row {
+  title: _("Contrast");
+  activatable-widget: contrast_spinbutton;
+
+  Gtk.SpinButton contrast_spinbutton {
+    valign: center;
+    tooltip-text: _("Contrast");
+    adjustment: Gtk.Adjustment contrast_adjustment {
+      lower: -100;
+      upper: 100;
+      step-increment: 1;
+      page-increment: 5;
+    };
+    value-changed => on_contrast_value_changed();
   }
 }
 
