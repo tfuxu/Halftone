@@ -31,6 +31,16 @@ class HalftoneDitherPage(Adw.PreferencesPage):
     save_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
 
+    image_properties_expander = Gtk.Template.Child()
+
+    brightness_toggle = Gtk.Template.Child()
+    contrast_toggle = Gtk.Template.Child()
+    image_size_toggle = Gtk.Template.Child()
+
+    image_size_row = Gtk.Template.Child()
+    brightness_row = Gtk.Template.Child()
+    contrast_row = Gtk.Template.Child()
+
     image_formats_stringlist = Gtk.Template.Child()
     algorithms_stringlist = Gtk.Template.Child()
 
@@ -191,7 +201,65 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_width_changed(self, widget):
+    def on_brightness_toggled(self, widget, *args):
+        if self.contrast_toggle.props.active == True:
+            self.contrast_toggle.set_active(False)
+            self.image_properties_expander.remove(self.contrast_row)
+
+        if self.image_size_toggle.props.active == True:
+            self.image_size_toggle.set_active(False)
+            self.image_properties_expander.remove(self.image_size_row)
+
+        self.on_image_prop_option_toggled(widget, self.brightness_row)
+
+    @Gtk.Template.Callback()
+    def on_contrast_toggled(self, widget, *args):
+        if self.brightness_toggle.props.active == True:
+            self.brightness_toggle.set_active(False)
+            self.image_properties_expander.remove(self.brightness_row)
+
+        if self.image_size_toggle.props.active == True:
+            self.image_size_toggle.set_active(False)
+            self.image_properties_expander.remove(self.image_size_row)
+
+        self.on_image_prop_option_toggled(widget, self.contrast_row)
+
+    @Gtk.Template.Callback()
+    def on_resize_toggled(self, widget, *args):
+        if self.brightness_toggle.props.active == True:
+            self.brightness_toggle.set_active(False)
+            self.image_properties_expander.remove(self.brightness_row)
+
+        if self.contrast_toggle.props.active == True:
+            self.contrast_toggle.set_active(False)
+            self.image_properties_expander.remove(self.contrast_row)
+
+        self.on_image_prop_option_toggled(widget, self.image_size_row)
+
+    @Gtk.Template.Callback()
+    def on_brightness_value_changed(self, widget):
+        new_brightness = int(widget.props.value)
+
+        self.output_options.brightness = new_brightness
+
+        self.start_task(self.update_preview_image,
+                        self.input_image_path,
+                        self.output_options,
+                        self.on_successful_image_load)
+
+    @Gtk.Template.Callback()
+    def on_contrast_value_changed(self, widget):
+        new_contrast = int(widget.props.value)
+
+        self.output_options.contrast = new_contrast
+
+        self.start_task(self.update_preview_image,
+                        self.input_image_path,
+                        self.output_options,
+                        self.on_successful_image_load)
+
+    @Gtk.Template.Callback()
+    def on_image_width_value_changed(self, widget):
         new_width = self.get_image_width_pref(widget)
 
         self.output_options.width = new_width
@@ -211,7 +279,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_height_changed(self, widget):
+    def on_image_height_value_changed(self, widget):
         new_height = self.get_image_height_pref(widget)
 
         self.output_options.height = new_height
@@ -310,6 +378,17 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             HalftoneTempFile().delete_temp_file(self.preview_image_path)
         except FileNotFoundError:
             pass
+
+    def on_image_prop_option_toggled(self, toggle, row_widget):
+        if toggle.props.active == True:
+            self.image_properties_expander.add_row(row_widget)
+            self.image_properties_expander.set_enable_expansion(True)
+            self.image_properties_expander.set_expanded(True)
+
+        if toggle.props.active == False:
+            self.image_properties_expander.remove(row_widget)
+            self.image_properties_expander.set_enable_expansion(False)
+            self.image_properties_expander.set_expanded(False)
 
     def get_output_format_suffix(self) -> str:
         selected_format = self.save_format_combo.props.selected

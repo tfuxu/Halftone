@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 16:13+0200\n"
+"POT-Creation-Date: 2023-06-08 18:44+0200\n"
 "PO-Revision-Date: 2023-05-27 07:07+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -25,7 +25,7 @@ msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:47
 msgid "Give your images that pixel art-like style"
 msgstr "Görüntülerinize piksel benzeri stil ekleyin"
 
@@ -80,7 +80,7 @@ msgstr "resim;grafik;sıkıştırma;"
 msgid "Preview"
 msgstr "Ön izleme"
 
-#: data/ui/dither_page.blp:53 data/ui/main_window.blp:108
+#: data/ui/dither_page.blp:53 data/ui/main_window.blp:109
 msgid "Image Error Occurred"
 msgstr "Görüntü Hatası Oluştu"
 
@@ -109,34 +109,49 @@ msgid "Color Amount"
 msgstr "Renk Miktarı"
 
 #: data/ui/dither_page.blp:118
-msgid "Image Size"
-msgstr "Görüntü Boyutu"
-
-#: data/ui/dither_page.blp:126
-msgid "Image Width"
-msgstr "Görüntü Genişliği"
-
-#: data/ui/dither_page.blp:138 halftone/views/dither_page.py:235
-msgid "Keep aspect ratio"
-msgstr "En-boy oranını koru"
-
-#: data/ui/dither_page.blp:147
-msgid "Image Height"
-msgstr "Görüntü Yüksekliği"
-
-#: data/ui/dither_page.blp:161
 msgid "Convert To"
 msgstr "Şuna Dönüştür"
 
-#: data/ui/dither_page.blp:174
+#: data/ui/dither_page.blp:125
+#, fuzzy
+msgid "Image Properties"
+msgstr "Görüntü Boyutu"
+
+#: data/ui/dither_page.blp:135 data/ui/dither_page.blp:239
+#: data/ui/dither_page.blp:244
+msgid "Brightness"
+msgstr ""
+
+#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:256
+#: data/ui/dither_page.blp:261
+msgid "Contrast"
+msgstr ""
+
+#: data/ui/dither_page.blp:147 data/ui/dither_page.blp:196
+msgid "Image Size"
+msgstr "Görüntü Boyutu"
+
+#: data/ui/dither_page.blp:175
 msgid "More Options"
 msgstr "Daha Çok Seçenek"
 
-#: data/ui/dither_page.blp:182
+#: data/ui/dither_page.blp:183
 msgid "Dither It!"
 msgstr "Titret!"
 
-#: data/ui/dither_page.blp:208
+#: data/ui/dither_page.blp:204
+msgid "Image Width"
+msgstr "Görüntü Genişliği"
+
+#: data/ui/dither_page.blp:216 halftone/views/dither_page.py:308
+msgid "Keep aspect ratio"
+msgstr "En-boy oranını koru"
+
+#: data/ui/dither_page.blp:225
+msgid "Image Height"
+msgstr "Görüntü Yüksekliği"
+
+#: data/ui/dither_page.blp:286
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -145,15 +160,15 @@ msgstr ""
 "özelleştirebilirsiniz. Bireysel seçenekler hakkında daha çok bilgi almak "
 "için wiki sayfasına bakınız."
 
-#: data/ui/dither_page.blp:212
+#: data/ui/dither_page.blp:290
 msgid "Wiki Page"
 msgstr "Wiki Sayfası"
 
-#: data/ui/dither_page.blp:219
+#: data/ui/dither_page.blp:297
 msgid "Save an Image in…"
 msgstr "Görüntüyü Farklı Kaydet…"
 
-#: data/ui/dither_page.blp:224 data/ui/main_window.blp:157
+#: data/ui/dither_page.blp:302 data/ui/main_window.blp:158
 msgid "All files"
 msgstr "Tüm dosyalar"
 
@@ -187,23 +202,24 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Çık"
 
-#: data/ui/main_window.blp:24
+#. visible: false;
+#: data/ui/main_window.blp:25
 msgid "Open Image (Ctrl+O)"
 msgstr "Görüntü Aç (Ctrl+O)"
 
-#: data/ui/main_window.blp:31
+#: data/ui/main_window.blp:32
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:178
+#: data/ui/main_window.blp:62 halftone/views/dither_page.py:184
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
-#: data/ui/main_window.blp:93
+#: data/ui/main_window.blp:94
 msgid "Drop Here to Load Image"
 msgstr "Görüntüyü Yüklemek İçin Buraya Bırakın"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:110
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -211,19 +227,19 @@ msgstr ""
 "Görüntü yüklenirken hata oluştu. Bu hata devam ederse, lütfen günlükleri "
 "kopyalayın ve sorunu raporlayın."
 
-#: data/ui/main_window.blp:117
+#: data/ui/main_window.blp:118
 msgid "Copy Logs"
 msgstr ""
 
-#: data/ui/main_window.blp:140
+#: data/ui/main_window.blp:141
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/ui/main_window.blp:145
+#: data/ui/main_window.blp:146
 msgid "About Halftone"
 msgstr "Halftone Hakkında"
 
-#: data/ui/main_window.blp:152
+#: data/ui/main_window.blp:153
 msgid "Select an Image"
 msgstr "Görüntü Seç"
 
@@ -231,10 +247,6 @@ msgstr "Görüntü Seç"
 #: halftone/views/about_window.py:33
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
-
-#: halftone/views/about_window.py:34
-msgid "Copyright © 2023 tfuxu"
-msgstr "Telif Hakkı © 2023 tfuxu"
 
 #: halftone/views/main_window.py:90
 msgid "Supported image formats"
@@ -244,17 +256,20 @@ msgstr "Desteklenen görüntü biçimleri"
 msgid "Failed to load an image"
 msgstr "Görüntü yüklenemedi"
 
-#: halftone/views/dither_page.py:177
+#: halftone/views/dither_page.py:183
 msgid "Image dithered successfully!"
 msgstr "Görüntü başarıyla titretildi!"
 
-#: halftone/views/dither_page.py:241
+#: halftone/views/dither_page.py:314
 msgid "Don't keep aspect ratio"
 msgstr "En-boy oranını koruma"
 
-#: halftone/views/dither_page.py:340
+#: halftone/views/dither_page.py:458
 msgid "Failed to load preview image"
 msgstr "Görüntü ön izlemesi yüklenemedi"
+
+#~ msgid "Copyright © 2023 tfuxu"
+#~ msgstr "Telif Hakkı © 2023 tfuxu"
 
 #~ msgid "Halftone Main Window"
 #~ msgstr "Halftone Ana Pencere"
