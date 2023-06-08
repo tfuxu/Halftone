@@ -135,21 +135,27 @@ template HalftoneDitherPage: Adw.PreferencesPage {
           tooltip-text: _("Brightness");
           icon-name: "image-adjust-brightness-symbolic";
           clicked => on_brightness_toggled();
-          styles ["flat"]
+          styles [
+            "flat"
+          ]
         }
 
         Gtk.ToggleButton contrast_toggle {
           tooltip-text: _("Contrast");
           icon-name: "image-adjust-contrast-symbolic";
           clicked => on_contrast_toggled();
-          styles ["flat"]
+          styles [
+            "flat"
+          ]
         }
 
         Gtk.ToggleButton image_size_toggle {
           tooltip-text: _("Image Size");
           icon-name: "image-adjust-size-symbolic";
           clicked => on_resize_toggled();
-          styles ["flat"]
+          styles [
+            "flat"
+          ]
         }
 
         //Gtk.Button {
