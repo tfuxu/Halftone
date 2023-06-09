@@ -76,6 +76,16 @@
   </keywords>
 
   <releases>
+    <release version="0.3.0" date="2023-06-09" type="development">
+      <description>
+        - Added brightness and contrast control
+        - Added button for opening preview image in external image viewers
+        - Added custom logging facility for easier issue reporting
+        - Added logic code to `Copy Logs` button
+        - Moved image size option to Image Properties
+        - New translations
+      </description>
+    </release>
     <release version="0.2.0" date="2023-05-20" type="development">
       <description>
         Renamed Pixely to Halftone.
