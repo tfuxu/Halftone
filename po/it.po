@@ -1,14 +1,14 @@
 # ITALIAN TRANSLATION.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
-# ALBANO <BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023.
+# ALBANO BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-09 15:55+0200\n"
-"PO-Revision-Date: 2023-06-08 08:06+0100\n"
+"PO-Revision-Date: 2023-06-09 20:26+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -71,6 +71,10 @@ msgid ""
 "issue reporting - Added logic code to `Copy Logs` button - Moved image size "
 "option to Image Properties - New translations"
 msgstr ""
+"- Aggiunto controllo luminosità e contrasto - Aggiunto pulsante per l'apertura dell'anteprima "
+"dell'immagine nei visualizzatori di immagini esterni - Aggiunta funzione di registrazione personalizzata per semplificare "
+"la segnalazione di un problema - Aggiunto codice logico al pulsante `Copia log` - Dimensione immagine spostata "
+"opzione Proprietà immagine - Nuove traduzioni"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:90
 msgid "Renamed Pixely to Halftone."
@@ -91,7 +95,7 @@ msgstr "Anteprima"
 
 #: data/ui/dither_page.blp:40
 msgid "Open in External Image Viewer"
-msgstr ""
+msgstr "Apri nel visualizzatore di immagini esterno"
 
 #: data/ui/dither_page.blp:81
 msgid "Options"
@@ -114,19 +118,18 @@ msgid "Convert To"
 msgstr "Convertire in"
 
 #: data/ui/dither_page.blp:131
-#, fuzzy
 msgid "Image Properties"
-msgstr "DImensione immagine"
+msgstr "Proprietà immagine"
 
 #: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
 #: data/ui/dither_page.blp:259
 msgid "Brightness"
-msgstr ""
+msgstr "Luminosità"
 
 #: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
 #: data/ui/dither_page.blp:276
 msgid "Contrast"
-msgstr ""
+msgstr "Contrasto"
 
 #: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
 msgid "Image Size"
