@@ -1,7 +1,7 @@
 # ITALIAN TRANSLATION.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
-# ALBANO <BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023.
+# ALBANO BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023.
 #
 msgid ""
 msgstr ""
@@ -73,7 +73,7 @@ msgid ""
 msgstr ""
 "- Aggiunto controllo luminosità e contrasto - Aggiunto pulsante per l'apertura dell'anteprima "
 "dell'immagine nei visualizzatori di immagini esterni - Aggiunta funzione di registrazione personalizzata per semplificare "
-"la segnalazione di un problema - Aggiunto codice logico al pulsante "Copia "log" - Dimensione immagine spostata "
+"la segnalazione di un problema - Aggiunto codice logico al pulsante "Copia log" - Dimensione immagine spostata "
 "opzione Proprietà immagine - Nuove traduzioni"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:90
