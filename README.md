@@ -124,7 +124,7 @@ The following packages are required to build Halftone:
 Required Python libraries:
 
 ```shell
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 #### Building Instructions:
