@@ -8,20 +8,20 @@ template HalftonePreferencesWindow : Adw.PreferencesWindow {
   modal: true;
 
   Adw.PreferencesPage main_pref_page {
-    Adw.PreferencesGroup example_group {
-      title: _("Example Group");
-      description: _("This is an example preferences group.");
+    Adw.PreferencesGroup preview_image_group {
+      title: _("Preview Box");
+      //description: _("This is an example preferences group.");
 
-      Adw.ActionRow {
-        title: _("Example Setting 1");
-        subtitle: _("This preference doesn't change absolutely nothing.");
-        activatable-widget: example_pref_1_switch;
-        Gtk.Switch example_pref_1_switch {
-          valign: center;
-        }
+      Adw.ComboRow content_fit_combo {
+        title: _("Content Fit");
+        subtitle: _("Select how the preview image should be resized to fit inside preview box.");
+        model: Gtk.StringList content_fit_stringlist {
+          strings [ _("Fill"), _("Contain"), _("Cover"), _("Scale Down")]
+        };
       }
 
       Adw.ActionRow {
+        visible: false;
         title: _("Example Setting 2");
         subtitle: _("Like the above one, this preference also doesn't change absolutely nothing.");
         activatable-widget: example_pref_2_switch;

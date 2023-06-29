@@ -11,7 +11,7 @@ from halftone.backend.logger import Logger
 from halftone.constants import rootdir, app_id
 from halftone.views.main_window import HalftoneMainWindow
 from halftone.views.about_window import HalftoneAboutWindow
-#from halftone.views.preferences_window import HalftonePreferencesWindow
+from halftone.views.preferences_window import HalftonePreferencesWindow
 
 logging = Logger()
 
@@ -62,9 +62,9 @@ class HalftoneApplication(Adw.Application):
         open_preview_image_action.connect('activate', self.open_preview_image)
         self.add_action(open_preview_image_action)
 
-        '''preferences_action = Gio.SimpleAction.new('preferences', None)
+        preferences_action = Gio.SimpleAction.new('preferences', None)
         preferences_action.connect('activate', self.on_preferences)
-        self.add_action(preferences_action)'''
+        self.add_action(preferences_action)
 
         about_action = Gio.SimpleAction.new('about', None)
         about_action.connect('activate', self.on_about)
@@ -78,7 +78,7 @@ class HalftoneApplication(Adw.Application):
 
         self.set_accels_for_action('app.open-image', ['<Primary>O'])
         self.set_accels_for_action('app.save-image', ['<Primary>S'])
-        #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
+        self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
     def open_saved_image(self, action, output_path: GLib.Variant, *args):
@@ -103,11 +103,11 @@ class HalftoneApplication(Adw.Application):
             launcher = Gtk.FileLauncher.new(preview_file)
             launcher.launch(self.window, None)
 
-    '''def on_preferences(self, *args):
+    def on_preferences(self, *args):
         """ Show preferences window. """
 
         pref_window = HalftonePreferencesWindow(self.window)
-        pref_window.present()'''
+        pref_window.present()
 
     def on_about(self, *args):
         """ Show about dialog. """
