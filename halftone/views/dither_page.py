@@ -93,6 +93,9 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.save_format_combo.connect("notify::selected",
             self.on_save_format_selected)
 
+        self.settings.connect("changed::preview-content-fit",
+            self.update_preview_content_fit)
+
     def setup(self):
         # Set default preview stack child
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
@@ -427,6 +430,20 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         algorithm_string = __get_algorithm_string()
 
         return algorithm_string
+
+    def update_preview_content_fit(self, *args):
+        selected_content_fit = self.settings.get_int("preview-content-fit")
+
+        if selected_content_fit == 0:
+            content_fit = Gtk.ContentFit.FILL
+        elif selected_content_fit == 1:
+            content_fit = Gtk.ContentFit.CONTAIN
+        elif selected_content_fit == 2:
+            content_fit = Gtk.ContentFit.COVER
+        elif selected_content_fit == 3:
+            content_fit = Gtk.ContentFit.SCALE_DOWN
+
+        self.image_dithered.set_content_fit(content_fit)
 
     def set_size_spins(self, width, height):
         self.image_width_spinbutton.set_value(width)
