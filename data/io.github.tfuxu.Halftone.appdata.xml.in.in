@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
   <id>@APP_ID@</id>
+  <!-- Translators: Do not translate name of the app. -->
   <name>Halftone</name>
   <summary>Give your images that pixel art-like style</summary>
+  <!-- Translators: Do not translate developer name. -->
   <developer_name>tfuxu</developer_name>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
@@ -76,7 +78,14 @@
   </keywords>
 
   <releases>
-    <release version="0.3.0" date="2023-06-09" type="development">
+    <release version="0.3.1" date="2023-06-30" type="stable">
+      <description>
+        - Added option to change how image should be resized to fit inside preview box
+        - Now Halftone uses flat headerbar style
+        - New translations
+      </description>
+    </release>
+    <release version="0.3.0" date="2023-06-09" type="stable">
       <description>
         - Added brightness and contrast control
         - Added button for opening preview image in external image viewers
@@ -86,12 +95,12 @@
         - New translations
       </description>
     </release>
-    <release version="0.2.0" date="2023-05-20" type="development">
+    <release version="0.2.0" date="2023-05-20" type="stable">
       <description>
         Renamed Pixely to Halftone.
       </description>
     </release>
-    <release version="0.1.0" date="2023-05-16" type="development">
+    <release version="0.1.0" date="2023-05-16" type="stable">
       <description>
         Initial release of Pixely.
       </description>
