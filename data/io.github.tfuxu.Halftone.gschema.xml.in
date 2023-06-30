@@ -15,6 +15,7 @@
     </key>
     <key name="preview-content-fit" type="i">
       <range min="0" max="3"/>
+      <!-- Translators: Do not translate this description. -->
       <description>
         0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN
       </description>

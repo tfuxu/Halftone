@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 15:55+0200\n"
+"POT-Creation-Date: 2023-06-30 19:54+0200\n"
 "PO-Revision-Date: 2023-06-11 11:04-0300\n"
 "Last-Translator: Fúlvio Leo <fulviokaldas@outlook.com>\n"
 "Language: pt_BR\n"
@@ -17,21 +17,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 42.0\n"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#. Translators: Do not translate name of the app.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Dê às suas imagens aquele estilo pixel art"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
+#. Translators: Do not translate developer name.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -41,7 +43,7 @@ msgstr ""
 "usando a técnica de pontilhamento (dithering). Dê às suas imagens um estilo "
 "de pixel art e reduza o tamanho do arquivo no processo com o Halftone."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
 "quantization applied"
@@ -49,7 +51,7 @@ msgstr ""
 "Haltone exibindo imagem com pontilhamento (dithering) Floyd-Steinberg e "
 "quantização de 2 cores aplicada"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
 msgid ""
 "Halftone displaying image with Bayer dithering and 2-color quantization "
 "applied"
@@ -57,7 +59,7 @@ msgstr ""
 "Halftone exibindo imagem com pontilhamento (dithering) Bayer e quantização "
 "de 2 cores aplicada"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
 "quantization applied"
@@ -65,7 +67,13 @@ msgstr ""
 "Haltone exibindo imagem com pontilhamento (dithering) Floyd-Steinberg e "
 "quantização de 10 cores aplicada"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
+msgid ""
+"- Added option to change how image should be resized to fit inside preview "
+"box - Now Halftone uses flat headerbar style - New translations"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
 msgid ""
 "- Added brightness and contrast control - Added button for opening preview "
 "image in external image viewers - Added custom logging facility for easier "
@@ -78,11 +86,11 @@ msgstr ""
 "problemas - Adicionado código lógico ao botão 'Copiar Registros' - Opção de "
 "tamanho da imagem movida para Propriedades da Imagem - Novas traduções"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:90
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
 msgid "Renamed Pixely to Halftone."
 msgstr "Renomeado Pixely para Halftone."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:95
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
 msgid "Initial release of Pixely."
 msgstr "Versão inicial do Pixely."
 
@@ -90,6 +98,11 @@ msgstr "Versão inicial do Pixely."
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "imagem;gráficos;compressão;"
+
+#. Translators: Do not translate this description.
+#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
+msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgstr ""
 
 #: data/ui/dither_page.blp:6
 msgid "Preview"
@@ -149,7 +162,7 @@ msgstr "Aplicar Dither!"
 msgid "Image Width"
 msgstr "Largura da Imagem"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:308
+#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
 msgid "Keep aspect ratio"
 msgstr "Manter a proporção"
 
@@ -216,7 +229,7 @@ msgstr "Abrir Imagem (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:184
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
 msgid "Open Image"
 msgstr "Abrir Imagem"
 
@@ -240,6 +253,10 @@ msgstr ""
 msgid "Copy Logs"
 msgstr "Copiar Registros"
 
+#: data/ui/main_window.blp:135
+msgid "Preferences"
+msgstr ""
+
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de Teclado"
@@ -257,22 +274,22 @@ msgstr "Selecione uma Imagem"
 msgid "translator-credits"
 msgstr "Fúlvio Leo <fulviokaldas@outlook.com>"
 
-#: halftone/views/main_window.py:94
+#: halftone/views/main_window.py:93
 msgid "Supported image formats"
 msgstr "Formatos de imagem suportados"
 
-#: halftone/views/main_window.py:112
+#: halftone/views/main_window.py:111
 msgid "Failed to load an image"
 msgstr "Falha ao carregar uma imagem"
 
-#: halftone/views/dither_page.py:183
+#: halftone/views/dither_page.py:186
 msgid "Image dithered successfully!"
 msgstr "Aplicado dither à imagem com sucesso"
 
-#: halftone/views/dither_page.py:314
+#: halftone/views/dither_page.py:317
 msgid "Don't keep aspect ratio"
 msgstr "Não manter a proporção"
 
-#: halftone/views/dither_page.py:457
+#: halftone/views/dither_page.py:474
 msgid "Failed to load preview image"
 msgstr "Falha ao carregar a imagem de pré-visualização"

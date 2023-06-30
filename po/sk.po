@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 15:55+0200\n"
+"POT-Creation-Date: 2023-06-30 19:54+0200\n"
 "PO-Revision-Date: 2023-06-12 22:47+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: \n"
@@ -17,21 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#. Translators: Do not translate name of the app.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Dajte vašim obrázkom nádych pixel-artu"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
+#. Translators: Do not translate developer name.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -41,7 +43,7 @@ msgstr ""
 "využíva dithering. Halftone dá vašim obrázkom nádych pixel artu a zároveň "
 "zmenší ich veľkosť."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
 "quantization applied"
@@ -49,7 +51,7 @@ msgstr ""
 "Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
 "dvojfarebnou kvantizáciou"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
 msgid ""
 "Halftone displaying image with Bayer dithering and 2-color quantization "
 "applied"
@@ -57,7 +59,7 @@ msgstr ""
 "Halftone zobrazujúci obrázok s Bayerovým ditheringom a dvojfarebnou "
 "kvantizáciou"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
 "quantization applied"
@@ -65,7 +67,13 @@ msgstr ""
 "Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
 "desaťfarebnou kvantizáciou"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
+msgid ""
+"- Added option to change how image should be resized to fit inside preview "
+"box - Now Halftone uses flat headerbar style - New translations"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
 msgid ""
 "- Added brightness and contrast control - Added button for opening preview "
 "image in external image viewers - Added custom logging facility for easier "
@@ -73,15 +81,16 @@ msgid ""
 "option to Image Properties - New translations"
 msgstr ""
 "- Pridané ovládacie prvky pre jas a kontrast - Pridané tlačidlo na otvorenie "
-"obrázka s náhľadom v externom prehliadači - Pridaný vlastný logovač pre jednoduchšie "
-"hlásenie chýb - Pridaný logický kód pre tlačidlo `Kopírovať logy` - Voľba veľkosti "
-"obrázka presunutá do vlastností obrázka - Nové preklady"
+"obrázka s náhľadom v externom prehliadači - Pridaný vlastný logovač pre "
+"jednoduchšie hlásenie chýb - Pridaný logický kód pre tlačidlo `Kopírovať "
+"logy` - Voľba veľkosti obrázka presunutá do vlastností obrázka - Nové "
+"preklady"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:90
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
 msgid "Renamed Pixely to Halftone."
 msgstr "Pixely premenované na Halftone."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:95
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
 msgid "Initial release of Pixely."
 msgstr "Prvá verzia Pixely."
 
@@ -89,6 +98,11 @@ msgstr "Prvá verzia Pixely."
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "obrázok;grafika;kompresia;"
+
+#. Translators: Do not translate this description.
+#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
+msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgstr ""
 
 #: data/ui/dither_page.blp:6
 msgid "Preview"
@@ -148,7 +162,7 @@ msgstr "Ditherovať!"
 msgid "Image Width"
 msgstr "Šírka obrázka"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:308
+#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
 msgid "Keep aspect ratio"
 msgstr "Zachovať pomer strán"
 
@@ -214,7 +228,7 @@ msgstr "Otvoriť obrázok (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Hlavná ponuka"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:184
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
 msgid "Open Image"
 msgstr "Otvoriť obrázok"
 
@@ -238,6 +252,10 @@ msgstr ""
 msgid "Copy Logs"
 msgstr "Kopírovať logy"
 
+#: data/ui/main_window.blp:135
+msgid "Preferences"
+msgstr ""
+
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové skratky"
@@ -255,23 +273,23 @@ msgstr "Vyberte obrázok"
 msgid "translator-credits"
 msgstr "Jose Riha <jose1711@gmail.com>"
 
-#: halftone/views/main_window.py:94
+#: halftone/views/main_window.py:93
 msgid "Supported image formats"
 msgstr "Podporované formáty obrázkov"
 
-#: halftone/views/main_window.py:112
+#: halftone/views/main_window.py:111
 msgid "Failed to load an image"
 msgstr "Nepodarilo sa načítať obrázok"
 
-#: halftone/views/dither_page.py:183
+#: halftone/views/dither_page.py:186
 msgid "Image dithered successfully!"
 msgstr "Dithering bol úspešne aplikovaný!"
 
-#: halftone/views/dither_page.py:314
+#: halftone/views/dither_page.py:317
 msgid "Don't keep aspect ratio"
 msgstr "Nezachovať pomer strán"
 
-#: halftone/views/dither_page.py:457
+#: halftone/views/dither_page.py:474
 msgid "Failed to load preview image"
 msgstr "Nepodarilo sa načítať obrázok s ukážkou"
 

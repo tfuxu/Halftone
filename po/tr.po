@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 15:55+0200\n"
+"POT-Creation-Date: 2023-06-30 19:54+0200\n"
 "PO-Revision-Date: 2023-05-27 07:07+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -19,21 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:4
+#. Translators: Do not translate name of the app.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:8
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
 msgid "Give your images that pixel art-like style"
 msgstr "Görüntülerinize piksel benzeri stil ekleyin"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
+#. Translators: Do not translate developer name.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
 msgid "tfuxu"
 msgstr "tfuxu"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:14
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -43,25 +45,31 @@ msgstr ""
 "Libadwaita uygulaması. Halftone ile görüntülerinize piksel sanatı benzeri "
 "stil verin ve bu süreçte dosya boyutunu azaltın."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:23
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
 "quantization applied"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:27
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
 msgid ""
 "Halftone displaying image with Bayer dithering and 2-color quantization "
 "applied"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:31
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
 "quantization applied"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:80
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
+msgid ""
+"- Added option to change how image should be resized to fit inside preview "
+"box - Now Halftone uses flat headerbar style - New translations"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
 msgid ""
 "- Added brightness and contrast control - Added button for opening preview "
 "image in external image viewers - Added custom logging facility for easier "
@@ -69,12 +77,12 @@ msgid ""
 "option to Image Properties - New translations"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:90
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
 #, fuzzy
 msgid "Renamed Pixely to Halftone."
 msgstr "Halftone ilk sürümü."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:95
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
 #, fuzzy
 msgid "Initial release of Pixely."
 msgstr "Halftone ilk sürümü."
@@ -83,6 +91,11 @@ msgstr "Halftone ilk sürümü."
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;graphics;compression;"
 msgstr "resim;grafik;sıkıştırma;"
+
+#. Translators: Do not translate this description.
+#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
+msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgstr ""
 
 #: data/ui/dither_page.blp:6
 msgid "Preview"
@@ -143,7 +156,7 @@ msgstr "Titret!"
 msgid "Image Width"
 msgstr "Görüntü Genişliği"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:308
+#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
 msgid "Keep aspect ratio"
 msgstr "En-boy oranını koru"
 
@@ -210,7 +223,7 @@ msgstr "Görüntü Aç (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:184
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
@@ -234,6 +247,10 @@ msgstr ""
 msgid "Copy Logs"
 msgstr ""
 
+#: data/ui/main_window.blp:135
+msgid "Preferences"
+msgstr ""
+
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
@@ -251,23 +268,23 @@ msgstr "Görüntü Seç"
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: halftone/views/main_window.py:94
+#: halftone/views/main_window.py:93
 msgid "Supported image formats"
 msgstr "Desteklenen görüntü biçimleri"
 
-#: halftone/views/main_window.py:112
+#: halftone/views/main_window.py:111
 msgid "Failed to load an image"
 msgstr "Görüntü yüklenemedi"
 
-#: halftone/views/dither_page.py:183
+#: halftone/views/dither_page.py:186
 msgid "Image dithered successfully!"
 msgstr "Görüntü başarıyla titretildi!"
 
-#: halftone/views/dither_page.py:314
+#: halftone/views/dither_page.py:317
 msgid "Don't keep aspect ratio"
 msgstr "En-boy oranını koruma"
 
-#: halftone/views/dither_page.py:457
+#: halftone/views/dither_page.py:474
 msgid "Failed to load preview image"
 msgstr "Görüntü ön izlemesi yüklenemedi"
 
