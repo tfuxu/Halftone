@@ -160,7 +160,7 @@ This repository is licensed under the terms of the GNU GPLv3 license. You can fi
 </p>
 
 ## Inspirations:
-This project was started after I found out about [Pixfect](https://github.com/daudix-UFO/Pixfect), a little Bash script that does exactly what Halftone does.
+This project was started after I found out about [Pixfect](https://codeberg.org/daudix-UFO/Pixfect), a little Bash script that does exactly what Halftone does.
 
 The user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.gnome.org/World/Upscaler) design.
 
