@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template HalftoneDitherPage: Adw.PreferencesPage {
+template $HalftoneDitherPage: Adw.PreferencesPage {
   Adw.PreferencesGroup preview_group {
     title: _("Preview");
     height-request: 200;
@@ -116,7 +116,7 @@ template HalftoneDitherPage: Adw.PreferencesPage {
           step-increment: 1;
           page-increment: 5;
         };
-        value-changed => on_color_amount_changed();
+        value-changed => $on_color_amount_changed();
       }
     }
 
@@ -140,7 +140,7 @@ template HalftoneDitherPage: Adw.PreferencesPage {
         Gtk.ToggleButton brightness_toggle {
           tooltip-text: _("Brightness");
           icon-name: "image-adjust-brightness-symbolic";
-          clicked => on_brightness_toggled();
+          clicked => $on_brightness_toggled();
           styles [
             "flat"
           ]
@@ -149,7 +149,7 @@ template HalftoneDitherPage: Adw.PreferencesPage {
         Gtk.ToggleButton contrast_toggle {
           tooltip-text: _("Contrast");
           icon-name: "image-adjust-contrast-symbolic";
-          clicked => on_contrast_toggled();
+          clicked => $on_contrast_toggled();
           styles [
             "flat"
           ]
@@ -158,7 +158,7 @@ template HalftoneDitherPage: Adw.PreferencesPage {
         Gtk.ToggleButton image_size_toggle {
           tooltip-text: _("Image Size");
           icon-name: "image-adjust-size-symbolic";
-          clicked => on_resize_toggled();
+          clicked => $on_resize_toggled();
           styles [
             "flat"
           ]
@@ -223,7 +223,7 @@ Adw.ActionRow image_size_row {
         step-increment: 1;
         page-increment: 5;
       };
-      value-changed => on_image_width_value_changed();
+      value-changed => $on_image_width_value_changed();
     }
 
     Gtk.ToggleButton aspect_ratio_toggle {
@@ -245,7 +245,7 @@ Adw.ActionRow image_size_row {
         step-increment: 1;
         page-increment: 5;
       };
-      value-changed => on_image_height_value_changed();
+      value-changed => $on_image_height_value_changed();
     }
   }
 }
@@ -263,7 +263,7 @@ Adw.ActionRow brightness_row {
       step-increment: 1;
       page-increment: 5;
     };
-    value-changed => on_brightness_value_changed();
+    value-changed => $on_brightness_value_changed();
   }
 }
 
@@ -280,7 +280,7 @@ Adw.ActionRow contrast_row {
       step-increment: 1;
       page-increment: 5;
     };
-    value-changed => on_contrast_value_changed();
+    value-changed => $on_contrast_value_changed();
   }
 }
 

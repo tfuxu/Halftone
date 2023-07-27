@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template HalftoneMainWindow: Adw.ApplicationWindow {
+template $HalftoneMainWindow: Adw.ApplicationWindow {
   title: "Halftone";
   default-width: 500;
   default-height: 800;
@@ -54,7 +54,7 @@ template HalftoneMainWindow: Adw.ApplicationWindow {
               Gtk.Button open_image_button {
                 valign: center;
                 halign: center;
-                clicked => on_open_image();
+                clicked => $on_open_image();
 
                 Adw.ButtonContent {
                   icon-name: "arrow-into-box-symbolic";
@@ -115,7 +115,7 @@ template HalftoneMainWindow: Adw.ApplicationWindow {
 
               Gtk.Button {
                 label: _("Copy Logs");
-                clicked => on_copy_logs_clicked();
+                clicked => $on_copy_logs_clicked();
 
                 styles [
                   "pill"
