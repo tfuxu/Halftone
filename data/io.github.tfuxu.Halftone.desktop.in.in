@@ -6,9 +6,9 @@ Terminal=false
 Exec=halftone
 Name=Halftone
 Comment=Give your images that pixel art-like style
-Categories=GNOME;GTK;Graphics;
+Categories=GNOME;GTK;Graphics;Picture;Image;Editor;
 Icon=@APP_ID@
 # Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-Keywords=image;graphics;compression;pixelart;picture;dither;
+Keywords=compression;pixelart;dither;edit;
 # Translators: Do NOT translate or transliterate this text (these are enum types)!
 X-Purism-FormFactor=Workstation;Mobile;
