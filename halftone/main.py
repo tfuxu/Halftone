@@ -51,16 +51,16 @@ class HalftoneApplication(Adw.Application):
 
         user_home_dir = os.environ.get("XDG_CONFIG_HOME", os.environ["HOME"])
 
-        show_saved_image_action = Gio.SimpleAction.new_stateful(
-                'show-saved-image',
+        show_image_external_action = Gio.SimpleAction.new_stateful(
+                'show-image-externally',
                 GLib.VariantType.new("s"),
                 GLib.Variant("s", user_home_dir))
-        show_saved_image_action.connect('activate', self.open_saved_image)
-        self.add_action(show_saved_image_action)
+        show_image_external_action.connect('activate', self.show_image_external)
+        self.add_action(show_image_external_action)
 
-        open_preview_image_action = Gio.SimpleAction.new('open-preview-image', None)
-        open_preview_image_action.connect('activate', self.open_preview_image)
-        self.add_action(open_preview_image_action)
+        show_preview_image_action = Gio.SimpleAction.new('show-preview-image', None)
+        show_preview_image_action.connect('activate', self.show_preview_image)
+        self.add_action(show_preview_image_action)
 
         preferences_action = Gio.SimpleAction.new('preferences', None)
         preferences_action.connect('activate', self.on_preferences)
@@ -81,27 +81,39 @@ class HalftoneApplication(Adw.Application):
         self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
-    def open_saved_image(self, action, output_path: GLib.Variant, *args):
-        """ Show directory of the saved image. """
-
-        Gtk.show_uri(
-            self.window,
-            f"file://{output_path.get_string()}",
-            Gdk.CURRENT_TIME
-        )
-
-    def open_preview_image(self, *args):
-        """ Display preview image in external app. """
+    def show_preview_image(self, _action, *args):
+        """ Helper for `show-preview-image` action. """
 
         preview_image_path = self.window.dither_page.preview_image_path
+        image_path_variant = GLib.Variant("s", preview_image_path)
+
+        self.show_image_external(None, image_path_variant)
+
+    def show_image_external(self, _action, image_path: GLib.Variant, *args):
+        """
+        Launch an external application to display provided image.
+
+        This may present an app chooser dialog to the user
+        depending on system and configuration.
+        """
+
         try:
-            preview_file = Gio.File.new_for_path(preview_image_path)
+            image_file = Gio.File.new_for_path(image_path.get_string())
         except GLib.GError as e:
             logging.traceback_error("Failed to construct a new Gio.File object from path.",
                                     exc=e, show_exception=True)
         else:
-            launcher = Gtk.FileLauncher.new(preview_file)
-            launcher.launch(self.window, None)
+            launcher = Gtk.FileLauncher.new(image_file)
+
+            def open_image_finish(_, result, *args):
+                try:
+                    launcher.launch_finish(result)
+                except GLib.GError as e:
+                    if e.code != 2: # 'The portal dialog was dismissed by the user' error
+                        logging.traceback_error("Failed to finish Gtk.FileLauncher procedure.",
+                                                exc=e, show_exception=True)
+
+            launcher.launch(self.window, None, open_image_finish)
 
     def on_preferences(self, *args):
         """ Show preferences window. """
