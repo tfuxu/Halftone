@@ -13,10 +13,14 @@ class HalftoneTempFile:
         """
         Safely create file for storing temporary data.
 
-        Returns
-        -------
-        :class:`str`:
-            An absolute path to the temp file.
+        :param text: Select if temporary file should be opened in text mode.
+        :type text: :class:`bool`
+
+        :param suffix: Use custom filename suffix (eg. file extension).
+        :type suffix: :class:`str`
+
+        :returns: An absolute path to the temp file.
+        :rtype: :class:`str`
         """
 
         temp_file = tempfile.mkstemp(prefix="halftone-", suffix=suffix, text=text)
@@ -26,6 +30,11 @@ class HalftoneTempFile:
     def delete_temp_file(self, path: str) -> None:
         """
         Delete temporary file located at given path.
+
+        :param path: Absolute path to the temporary file.
+        :type path: :class:`str`
+
+        :rtype: :class:`None`
         """
 
         if not isinstance(path, (str, bytes)):

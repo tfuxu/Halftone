@@ -14,7 +14,7 @@ from halftone.backend.logger import Logger
 
 from halftone.utils.killable_thread import KillableThread
 from halftone.utils.filters import supported_output_formats
-from halftone.constants import rootdir
+from halftone.constants import rootdir # pylint: disable=E0401,E0611
 
 logging = Logger()
 
@@ -143,7 +143,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         try:
             self.set_updated_paintable(self.preview_image_path)
-        except GLib.GError as e:
+        except GLib.GError:
             self.win.show_error_page()
             raise
         else:
@@ -158,7 +158,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.input_image_path = file.get_path()
         try:
             self.set_original_paintable(self.input_image_path)
-        except GLib.GError as e:
+        except GLib.GError:
             self.win.show_error_page()
             raise
         else:
@@ -361,7 +361,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.original_paintable = Gdk.Texture.new_from_filename(path)
         except GLib.GError as e:
             logging.traceback_error(
-                f"Failed to construct new Gdk.Texture from path.",
+                "Failed to construct new Gdk.Texture from path.",
                 exc=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
@@ -371,7 +371,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.updated_paintable = Gdk.Texture.new_from_filename(path)
         except GLib.GError as e:
             logging.traceback_error(
-                f"Failed to construct new Gdk.Texture from path.",
+                "Failed to construct new Gdk.Texture from path.",
                 exc=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise

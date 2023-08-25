@@ -1,9 +1,9 @@
 # Copyright 2023, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk
 
-from halftone.constants import rootdir
+from halftone.constants import rootdir # pylint: disable=E0401,E0611
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/report_page.ui")
