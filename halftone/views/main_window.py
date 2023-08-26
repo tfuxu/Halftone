@@ -7,7 +7,7 @@ from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.report_page import HalftoneReportPage
 
 from halftone.utils.filters import get_file_filter, supported_input_formats
-from halftone.constants import rootdir, app_id, build_type
+from halftone.constants import rootdir, app_id, build_type # pylint: disable=E0401,E0611
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/main_window.ui")
@@ -90,8 +90,11 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_chooser.set_transient_for(self)
         self.open_image_chooser.set_action(Gtk.FileChooserAction.OPEN)
 
-        self.open_image_chooser.add_filter(get_file_filter(_("Supported image formats"),
-                                                            supported_input_formats))
+        self.open_image_chooser.add_filter(
+            get_file_filter(
+                _("Supported image formats"), supported_input_formats
+            )
+        )
 
         self.open_image_chooser.add_filter(self.all_filter)
 

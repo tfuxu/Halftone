@@ -4,11 +4,11 @@
 import os
 import sys
 
-from gi.repository import Gtk, Gdk, Gio, Adw, GLib
+from gi.repository import Gtk, Gio, Adw, GLib
 
 from halftone.backend.logger import Logger
 
-from halftone.constants import rootdir, app_id
+from halftone.constants import rootdir, app_id # pylint: disable=E0401,E0611
 from halftone.views.main_window import HalftoneMainWindow
 from halftone.views.about_window import HalftoneAboutWindow
 from halftone.views.preferences_window import HalftonePreferencesWindow
@@ -31,7 +31,7 @@ class HalftoneApplication(Adw.Application):
 
         self.setup_actions()
 
-    def do_activate(self):
+    def do_activate(self, *args, **kwargs):
         """ Called when the application is activated. """
 
         self.window = self.props.active_window

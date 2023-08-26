@@ -7,7 +7,7 @@ import sys
 import logging
 import traceback
 
-from halftone.constants import build_type
+from halftone.constants import build_type # pylint: disable=E0401,E0611
 
 
 class Logger(logging.getLoggerClass()):
@@ -64,7 +64,7 @@ class Logger(logging.getLoggerClass()):
             exc = sys.exc_info()[1]
         exception_info = ""
 
-        message_head = f"\n\t\033[1mException:\033[0m"
+        message_head = "\n\t\033[1mException:\033[0m"
         message_body = f"\n{exc}"
         message_body = message_body.replace("\n", "\n\t\t")
 
@@ -167,6 +167,7 @@ class Logger(logging.getLoggerClass()):
 Use for testing only.
 How to execute: python -m halftone.backend.logger
 """
+# pylint: disable=W0719,W0718,W0707
 if __name__ == "__main__":
     logging = Logger()
 
@@ -175,7 +176,7 @@ if __name__ == "__main__":
 
     try:
         raise ArithmeticError("Arithmetic Error")
-    except Exception as e:
+    except Exception:
         try:
             raise Exception("General Exception")
         except Exception as e:
