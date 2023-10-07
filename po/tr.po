@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 19:54+0200\n"
-"PO-Revision-Date: 2023-05-27 07:07+0300\n"
+"POT-Creation-Date: 2023-10-06 05:23+0300\n"
+"PO-Revision-Date: 2023-10-06 05:28+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
@@ -50,52 +50,47 @@ msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
 "quantization applied"
 msgstr ""
+"Floyd-Steinberg titreme ve 2 renk niceleme uygulanmış yarı tonlu görüntü"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
 msgid ""
 "Halftone displaying image with Bayer dithering and 2-color quantization "
 "applied"
-msgstr ""
+msgstr "Bayer titreme ve 2 renk niceleme uygulanmış yarım tonlu görüntü"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
 msgid ""
 "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
 "quantization applied"
 msgstr ""
+"Floyd-Steinberg titreme ve 10 renk niceleme uygulanmış yarı tonlu görüntü"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
-msgid ""
-"- Added option to change how image should be resized to fit inside preview "
-"box - Now Halftone uses flat headerbar style - New translations"
-msgstr ""
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:74
+msgid "image"
+msgstr "görüntü"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
-msgid ""
-"- Added brightness and contrast control - Added button for opening preview "
-"image in external image viewers - Added custom logging facility for easier "
-"issue reporting - Added logic code to `Copy Logs` button - Moved image size "
-"option to Image Properties - New translations"
-msgstr ""
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:75
+msgid "dither"
+msgstr "titreme"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
-#, fuzzy
-msgid "Renamed Pixely to Halftone."
-msgstr "Halftone ilk sürümü."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:76
+msgid "compression"
+msgstr "sıkıştırma"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
-#, fuzzy
-msgid "Initial release of Pixely."
-msgstr "Halftone ilk sürümü."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:77
+msgid "processing"
+msgstr "işleme"
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "image;graphics;compression;"
-msgstr "resim;grafik;sıkıştırma;"
+msgid "compression;pixelart;dither;edit;"
+msgstr ""
+"compression;pixelart;dither;edit;sıkıştırma;piksel sanatı;titreme;düzenle;"
 
 #. Translators: Do not translate this description.
 #: data/io.github.tfuxu.Halftone.gschema.xml.in:19
 msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
-msgstr ""
+msgstr "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
 
 #: data/ui/dither_page.blp:6
 msgid "Preview"
@@ -103,7 +98,7 @@ msgstr "Ön izleme"
 
 #: data/ui/dither_page.blp:40
 msgid "Open in External Image Viewer"
-msgstr ""
+msgstr "Harici Görüntü Görüntüleyicide Aç"
 
 #: data/ui/dither_page.blp:81
 msgid "Options"
@@ -126,19 +121,18 @@ msgid "Convert To"
 msgstr "Şuna Dönüştür"
 
 #: data/ui/dither_page.blp:131
-#, fuzzy
 msgid "Image Properties"
-msgstr "Görüntü Boyutu"
+msgstr "Resim Özellikleri"
 
 #: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
 #: data/ui/dither_page.blp:259
 msgid "Brightness"
-msgstr ""
+msgstr "Parlaklık"
 
 #: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
 #: data/ui/dither_page.blp:276
 msgid "Contrast"
-msgstr ""
+msgstr "Karşıtlık"
 
 #: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
 msgid "Image Size"
@@ -245,11 +239,11 @@ msgstr ""
 
 #: data/ui/main_window.blp:117
 msgid "Copy Logs"
-msgstr ""
+msgstr "Günlükleri Kopyala"
 
 #: data/ui/main_window.blp:135
 msgid "Preferences"
-msgstr ""
+msgstr "Tercihler"
 
 #: data/ui/main_window.blp:140
 msgid "Keyboard Shortcuts"
@@ -268,11 +262,11 @@ msgstr "Görüntü Seç"
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: halftone/views/main_window.py:93
+#: halftone/views/main_window.py:95
 msgid "Supported image formats"
 msgstr "Desteklenen görüntü biçimleri"
 
-#: halftone/views/main_window.py:111
+#: halftone/views/main_window.py:114
 msgid "Failed to load an image"
 msgstr "Görüntü yüklenemedi"
 
@@ -287,6 +281,17 @@ msgstr "En-boy oranını koruma"
 #: halftone/views/dither_page.py:474
 msgid "Failed to load preview image"
 msgstr "Görüntü ön izlemesi yüklenemedi"
+
+#, fuzzy
+#~ msgid "Renamed Pixely to Halftone."
+#~ msgstr "Halftone ilk sürümü."
+
+#, fuzzy
+#~ msgid "Initial release of Pixely."
+#~ msgstr "Halftone ilk sürümü."
+
+#~ msgid "image;graphics;compression;"
+#~ msgstr "resim;grafik;sıkıştırma;"
 
 #~ msgid ""
 #~ "An error occurred while loading an image. If this error persists, please "

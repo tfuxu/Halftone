@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 19:54+0200\n"
+"POT-Creation-Date: 2023-10-06 05:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,31 +58,25 @@ msgid ""
 "quantization applied"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
-msgid ""
-"- Added option to change how image should be resized to fit inside preview "
-"box - Now Halftone uses flat headerbar style - New translations"
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:74
+msgid "image"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
-msgid ""
-"- Added brightness and contrast control - Added button for opening preview "
-"image in external image viewers - Added custom logging facility for easier "
-"issue reporting - Added logic code to `Copy Logs` button - Moved image size "
-"option to Image Properties - New translations"
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:75
+msgid "dither"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
-msgid "Renamed Pixely to Halftone."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:76
+msgid "compression"
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
-msgid "Initial release of Pixely."
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:77
+msgid "processing"
 msgstr ""
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "image;graphics;compression;"
+msgid "compression;pixelart;dither;edit;"
 msgstr ""
 
 #. Translators: Do not translate this description.
@@ -255,11 +249,11 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: halftone/views/main_window.py:93
+#: halftone/views/main_window.py:95
 msgid "Supported image formats"
 msgstr ""
 
-#: halftone/views/main_window.py:111
+#: halftone/views/main_window.py:114
 msgid "Failed to load an image"
 msgstr ""
 
