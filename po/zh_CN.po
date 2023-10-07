@@ -1,0 +1,271 @@
+# Simplified Chinese translation for halftone
+# Copyright (C) 2023
+# This file is distributed under the same license as the halftone package.
+# FredFucks <maryjaneinchain@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: halftone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-06 05:23+0300\n"
+"PO-Revision-Date: 2023-10-07 20:41+0800\n"
+"Last-Translator: FredFucks <maryjaneinchain@gmail.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#. Translators: Do not translate name of the app.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8
+msgid "Halftone"
+msgstr "Halftone"
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+msgid "Give your images that pixel art-like style"
+msgstr "给你的图片带来像素艺术化的风格"
+
+#. Translators: Do not translate developer name.
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
+msgid "tfuxu"
+msgstr "tfuxu"
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
+msgid ""
+"A simple Libadwaita app for lossy image compression using dithering "
+"technique. Give your images a pixel art-like style and reduce the file size "
+"in the process with Halftone."
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+"quantization applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
+msgid ""
+"Halftone displaying image with Bayer dithering and 2-color quantization "
+"applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
+msgid ""
+"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+"quantization applied"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:74
+msgid "image"
+msgstr "图片"
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:75
+msgid "dither"
+msgstr "抖动"
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:76
+msgid "compression"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:77
+msgid "processing"
+msgstr ""
+
+#. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
+msgid "compression;pixelart;dither;edit;"
+msgstr ""
+
+#. Translators: Do not translate this description.
+#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
+msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgstr ""
+
+#: data/ui/dither_page.blp:6
+msgid "Preview"
+msgstr "预览"
+
+#: data/ui/dither_page.blp:40
+msgid "Open in External Image Viewer"
+msgstr "用外部图片浏览器打开"
+
+#: data/ui/dither_page.blp:81
+msgid "Options"
+msgstr "选项"
+
+#: data/ui/dither_page.blp:88
+msgid "Explanation"
+msgstr "说明"
+
+#: data/ui/dither_page.blp:96
+msgid "Dither Algorithm"
+msgstr "抖动算法"
+
+#: data/ui/dither_page.blp:107
+msgid "Color Amount"
+msgstr "颜色数"
+
+#: data/ui/dither_page.blp:124
+msgid "Convert To"
+msgstr "保存为"
+
+#: data/ui/dither_page.blp:131
+msgid "Image Properties"
+msgstr "图片属性"
+
+#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
+#: data/ui/dither_page.blp:259
+msgid "Brightness"
+msgstr "亮度"
+
+#: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
+#: data/ui/dither_page.blp:276
+msgid "Contrast"
+msgstr "对比度"
+
+#: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
+msgid "Image Size"
+msgstr "图片大小"
+
+#: data/ui/dither_page.blp:190
+msgid "More Options"
+msgstr "其它"
+
+#: data/ui/dither_page.blp:198
+msgid "Dither It!"
+msgstr "抖起来！"
+
+#: data/ui/dither_page.blp:219
+msgid "Image Width"
+msgstr "图片宽度"
+
+#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
+msgid "Keep aspect ratio"
+msgstr "保持长宽比"
+
+#: data/ui/dither_page.blp:240
+msgid "Image Height"
+msgstr "图片高度"
+
+#: data/ui/dither_page.blp:301
+msgid ""
+"You can customize some of these parameters to make your image look "
+"different. To learn more about individual options, go to the wiki page."
+msgstr ""
+"你可以自定义其中一些参数来改变处理的结果。要了解关于各个选项的更多信息，请访"
+"问百科页面。"
+
+#: data/ui/dither_page.blp:305
+msgid "Wiki Page"
+msgstr "百科页面"
+
+#: data/ui/dither_page.blp:312
+msgid "Save an Image in…"
+msgstr ""
+
+#: data/ui/dither_page.blp:317 data/ui/main_window.blp:157
+msgid "All files"
+msgstr "所有文件"
+
+#: data/ui/help_overlay.blp:11
+msgctxt "shortcut window"
+msgid "Image"
+msgstr "图片"
+
+#: data/ui/help_overlay.blp:14
+msgctxt "shortcut window"
+msgid "Open Image"
+msgstr "打开图片"
+
+#: data/ui/help_overlay.blp:19
+msgctxt "shortcut window"
+msgid "Save Image"
+msgstr "保存图片"
+
+#: data/ui/help_overlay.blp:25
+msgctxt "shortcut window"
+msgid "General"
+msgstr "一般"
+
+#: data/ui/help_overlay.blp:28
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "显示快捷键"
+
+#: data/ui/help_overlay.blp:38
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "退出"
+
+#: data/ui/main_window.blp:24
+msgid "Open Image (Ctrl+O)"
+msgstr "打开图片 (Ctrl+O)"
+
+#: data/ui/main_window.blp:31
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
+msgid "Open Image"
+msgstr "打开图片"
+
+#: data/ui/main_window.blp:93
+msgid "Drop Here to Load Image"
+msgstr "拖动图片到此处"
+
+#: data/ui/main_window.blp:108
+msgid "Image Error Occurred"
+msgstr ""
+
+#: data/ui/main_window.blp:109
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
+"copy logs and report issue to the bug tracker."
+msgstr ""
+
+#: data/ui/main_window.blp:117
+msgid "Copy Logs"
+msgstr "复制日志"
+
+#: data/ui/main_window.blp:135
+msgid "Preferences"
+msgstr "首选项"
+
+#: data/ui/main_window.blp:140
+msgid "Keyboard Shortcuts"
+msgstr "快捷键"
+
+#: data/ui/main_window.blp:145
+msgid "About Halftone"
+msgstr "关于 Halftone"
+
+#: data/ui/main_window.blp:152
+msgid "Select an Image"
+msgstr ""
+
+#: halftone/views/about_window.py:33
+msgid "translator-credits"
+msgstr "FredFucks <maryjaneinchain@gmail.com>"
+
+#: halftone/views/main_window.py:95
+msgid "Supported image formats"
+msgstr "支持的图片格式"
+
+#: halftone/views/main_window.py:114
+msgid "Failed to load an image"
+msgstr "载入图片失败"
+
+#: halftone/views/dither_page.py:186
+msgid "Image dithered successfully!"
+msgstr "图片处理成功！"
+
+#: halftone/views/dither_page.py:317
+msgid "Don't keep aspect ratio"
+msgstr "不保持长宽比"
+
+#: halftone/views/dither_page.py:474
+msgid "Failed to load preview image"
+msgstr "载入预览失败"
