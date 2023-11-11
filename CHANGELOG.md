@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Success toast that shows after copying logs on error page
+- New translations
+
+### Changed
+
+- Updated UI to take advantage of the new widgets included with libadwaita 1.4
+
+### Removed
+
+- Preferences window
+
 ## [0.3.1] - 2023-06-30
 
 ### Added
