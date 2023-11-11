@@ -5,42 +5,38 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
   title: "Halftone";
   default-width: 500;
   default-height: 800;
-  width-request: 300;
-  height-request: 700;
+  width-request: 360;
+  height-request: 500;
 
   Adw.ToastOverlay toast_overlay {
-    Gtk.Box main_view {
-      orientation: vertical;
+    Gtk.Stack main_stack {
+      transition-type: crossfade;
 
-      Adw.HeaderBar titlebar {
-        centering-policy: strict;
+      Gtk.StackPage {
+        name: "stack_welcome_page";
 
-        styles [
-          "flat"
-        ]
+        child: Adw.ToolbarView welcome_page {
+          [top]
+          Adw.HeaderBar {
+            centering-policy: strict;
 
-        [start]
-        Gtk.Button {
-          tooltip-text: _("Open Image (Ctrl+O)");
-          icon-name: "document-open-symbolic";
-          action-name: "app.open-image";
-        }
+            styles [
+              "flat"
+            ]
 
-        [end]
-        Gtk.MenuButton {
-          tooltip-text: _("Main Menu");
-          icon-name: "open-menu-symbolic";
-          menu-model: main_menu;
-        }
-      }
+            [end]
+            Gtk.Button {
+              icon-name: "help-about-symbolic";
+              tooltip-text: _("About Halftone");
+              action-name: "app.about";
 
-      Gtk.Stack main_stack {
-        transition-type: crossfade;
+              styles [
+                "flat"
+              ]
+            }
+          }
 
-        Gtk.StackPage {
-          name: "stack_welcome_page";
-
-          child: Adw.StatusPage welcome_page {
+          content: Adw.StatusPage {
             icon-name: "io.github.tfuxu.Halftone";
             title: "Halftone";
             description: _("Give your images that pixel art-like style");
@@ -69,12 +65,34 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
               }
             };
           };
-        }
+        };
+      }
 
-        Gtk.StackPage {
-          name: "stack_loading_page";
+      Gtk.StackPage {
+        name: "stack_loading_page";
 
-          child: Gtk.Box {
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {
+            centering-policy: strict;
+
+            styles [
+              "flat"
+            ]
+
+            [end]
+            Gtk.Button {
+              icon-name: "help-about-symbolic";
+              tooltip-text: _("About Halftone");
+              action-name: "app.about";
+
+              styles [
+                "flat"
+              ]
+            }
+          }
+
+          content: Gtk.Box {
             hexpand: true;
             vexpand: true;
             valign: center;
@@ -84,24 +102,47 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
               spinning: true;
             }
           };
-        }
+        };
+      }
 
-        Gtk.StackPage {
-          name: "stack_drop_page";
-          child: Adw.StatusPage drop_overlay {
-            icon-name: "insert-image-symbolic";
-            title: _("Drop Here to Load Image");
+      Gtk.StackPage {
+        name: "stack_drop_page";
+
+        child: Adw.StatusPage drop_overlay {
+          icon-name: "insert-image-symbolic";
+          title: _("Drop Here to Load Image");
+
+          styles [
+            "dragndrop_overlay"
+          ]
+        };
+      }
+
+      Gtk.StackPage {
+        name: "stack_error_page";
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {
+            centering-policy: strict;
 
             styles [
-              "dragndrop_overlay"
+              "flat"
             ]
-          };
-        }
 
-        Gtk.StackPage {
-          name: "stack_error_page";
+            [end]
+            Gtk.Button {
+              icon-name: "help-about-symbolic";
+              tooltip-text: _("About Halftone");
+              action-name: "app.about";
 
-          child: Adw.StatusPage {
+              styles [
+                "flat"
+              ]
+            }
+          }
+
+          content: Adw.StatusPage {
             hexpand: true;
 
             icon-name: "image-missing-symbolic";
@@ -123,27 +164,8 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
               }
             }
           };
-        }
+        };
       }
-    }
-  }
-}
-
-menu main_menu {
-  section {
-    item {
-      label: _("Preferences");
-      action: "app.preferences";
-    }
-
-    item {
-      label: _("Keyboard Shortcuts");
-      action: "win.show-help-overlay";
-    }
-
-    item {
-      label: _("About Halftone");
-      action: "app.about";
     }
   }
 }

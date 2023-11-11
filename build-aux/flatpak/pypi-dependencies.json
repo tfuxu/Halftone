@@ -7,8 +7,8 @@
     "sources": [
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/fa/a8/f76bbafa1a42f1ed45ece3c2b2e4f70a5d6cdb5f38bb0780db8efcdc58ab/Wand-0.6.11-py2.py3-none-any.whl",
-            "sha256": "1b77e25439ace57f665d1ccc6cff2766fad0834005b89ae3e7aaf3ba12b124b0"
+            "url": "https://files.pythonhosted.org/packages/59/d5/1bdd7c9662d5e9078e25ba0eb69bdb122859295746d40ab8dfef3a7b4d42/Wand-0.6.13-py2.py3-none-any.whl",
+            "sha256": "e5dda0ac2204a40c29ef5c4cb310770c95d3d05c37b1379e69c94ea79d7d19c0"
         }
     ]
 }

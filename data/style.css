@@ -1,3 +1,8 @@
+button.osd.circular {
+  min-width: 42px;
+  min-height: 42px;
+}
+
 .dragndrop_overlay {
   background-color: alpha(@accent_bg_color, 0.5);
   color: @accent_fg_color;

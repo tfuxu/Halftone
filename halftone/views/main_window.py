@@ -83,6 +83,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         if build_type == "debug":
             self.add_css_class("devel")
 
+        # Force window to use dark scheme
+        Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+
         self.setup_image_chooser()
         self.setup_main_stack()
 
@@ -126,6 +129,10 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         clipboard = self.get_clipboard()
         clipboard.set(logs_content)
+
+        self.toast_overlay.add_toast(
+                Adw.Toast(title=_("Copied logs to clipboard"))
+            )
 
     def on_image_chooser_response(self, widget, response):
         if response == Gtk.ResponseType.ACCEPT:

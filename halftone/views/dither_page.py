@@ -20,13 +20,16 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
-class HalftoneDitherPage(Adw.PreferencesPage):
+class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
     image_dithered = Gtk.Template.Child()
 
+    split_view = Gtk.Template.Child()
+
+    preview_scroll_window = Gtk.Template.Child()
+
     save_image_button = Gtk.Template.Child()
-    aspect_ratio_toggle = Gtk.Template.Child()
 
     save_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
@@ -37,16 +40,17 @@ class HalftoneDitherPage(Adw.PreferencesPage):
     contrast_toggle = Gtk.Template.Child()
     image_size_toggle = Gtk.Template.Child()
 
-    image_size_row = Gtk.Template.Child()
+    image_width_row = Gtk.Template.Child()
+    aspect_ratio_toggle = Gtk.Template.Child()
+    image_height_row = Gtk.Template.Child()
+
     brightness_row = Gtk.Template.Child()
     contrast_row = Gtk.Template.Child()
 
     image_formats_stringlist = Gtk.Template.Child()
     algorithms_stringlist = Gtk.Template.Child()
 
-    color_amount_spinbutton = Gtk.Template.Child()
-    image_width_spinbutton = Gtk.Template.Child()
-    image_height_spinbutton = Gtk.Template.Child()
+    color_amount_row = Gtk.Template.Child()
 
     save_image_chooser = Gtk.Template.Child()
     all_filter = Gtk.Template.Child()
@@ -64,6 +68,9 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         self.toast_overlay = self.parent.toast_overlay
 
+        self.origin_x: float = None
+        self.origin_y: float = None
+
         self.task_id = None
         self.tasks = []
 
@@ -79,9 +86,10 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         self.setup_signals()
         self.setup()
+        self.setup_controllers()
 
     def setup_signals(self):
-        self.aspect_ratio_toggle.connect("toggled",
+        self.aspect_ratio_toggle.connect("notify::active",
             self.on_aspect_ratio_toggled)
 
         self.save_image_chooser.connect("response",
@@ -100,10 +108,13 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         # Set default preview stack child
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
 
-        # Workaround: Set default values for SpinButtons
-        self.color_amount_spinbutton.set_value(10)
-        self.image_width_spinbutton.set_value(1)
-        self.image_height_spinbutton.set_value(1)
+        # Workaround: Set default values for SpinRows
+        self.color_amount_row.set_value(10)
+        self.image_width_row.set_value(1)
+        self.image_height_row.set_value(1)
+
+        # By default keep image aspect ratio
+        self.aspect_ratio_toggle.set_active(True)
 
         self.setup_image_chooser()
         self.setup_dither_algorithms()
@@ -128,6 +139,24 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.image_formats_stringlist.append(image_format)
 
         self.save_format_combo.set_selected(supported_output_formats.index("png"))
+
+    def setup_controllers(self):
+        preview_drag_ctrl = Gtk.GestureDrag.new()
+        preview_drag_ctrl.connect("drag-begin", self.preview_drag_begin)
+        preview_drag_ctrl.connect("drag-update", self.preview_drag_update)
+
+        self.preview_scroll_window.add_controller(preview_drag_ctrl)
+
+    def preview_drag_begin(self, x: float, y: float, *args):
+        self.origin_x = self.preview_scroll_window.get_hadjustment().get_value()
+        self.origin_y = self.preview_scroll_window.get_vadjustment().get_value()
+
+    def preview_drag_update(self, widget, offset_x: float, offset_y: float, *args):
+        hadj = self.preview_scroll_window.get_hadjustment()
+        vadj = self.preview_scroll_window.get_vadjustment()
+
+        hadj.set_value(self.origin_x - offset_x)
+        vadj.set_value(self.origin_y - offset_y)
 
     """ Main functions """
 
@@ -193,9 +222,12 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
     @Gtk.Template.Callback()
     def on_color_amount_changed(self, widget):
-        color_amount = self.get_color_amount_pref(widget)
+        new_color_amount = self.get_color_amount_pref(widget)
 
-        self.output_options.color_amount = color_amount
+        if new_color_amount == self.output_options.color_amount:
+            return
+
+        self.output_options.color_amount = new_color_amount
 
         if self.original_paintable:
             self.start_task(self.update_preview_image,
@@ -211,7 +243,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         if self.image_size_toggle.props.active == True:
             self.image_size_toggle.set_active(False)
-            self.image_properties_expander.remove(self.image_size_row)
+            self.remove_image_size_rows()
 
         self.on_image_prop_option_toggled(widget, self.brightness_row)
 
@@ -223,7 +255,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
 
         if self.image_size_toggle.props.active == True:
             self.image_size_toggle.set_active(False)
-            self.image_properties_expander.remove(self.image_size_row)
+            self.remove_image_size_rows()
 
         self.on_image_prop_option_toggled(widget, self.contrast_row)
 
@@ -237,11 +269,25 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             self.contrast_toggle.set_active(False)
             self.image_properties_expander.remove(self.contrast_row)
 
-        self.on_image_prop_option_toggled(widget, self.image_size_row)
+        self.on_image_prop_option_toggled(widget,
+                                          self.image_width_row,
+                                          self.aspect_ratio_toggle,
+                                          self.image_height_row)
 
     @Gtk.Template.Callback()
-    def on_brightness_value_changed(self, widget):
+    def on_toggle_sidebar_clicked(self, widget, *args):
+        if self.split_view.props.show_sidebar == False:
+            self.split_view.set_show_sidebar(True)
+            return
+
+        self.split_view.set_show_sidebar(False)
+
+    @Gtk.Template.Callback()
+    def on_brightness_changed(self, widget):
         new_brightness = int(widget.props.value)
+
+        if new_brightness == self.output_options.brightness:
+            return
 
         self.output_options.brightness = new_brightness
 
@@ -251,8 +297,11 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_contrast_value_changed(self, widget):
+    def on_contrast_changed(self, widget):
         new_contrast = int(widget.props.value)
+
+        if new_contrast == self.output_options.contrast:
+            return
 
         self.output_options.contrast = new_contrast
 
@@ -262,8 +311,11 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_width_value_changed(self, widget):
+    def on_image_width_changed(self, widget):
         new_width = self.get_image_width_pref(widget)
+
+        if new_width == self.output_options.width:
+            return
 
         self.output_options.width = new_width
 
@@ -274,7 +326,7 @@ class HalftoneDitherPage(Adw.PreferencesPage):
             if self.aspect_ratio_toggle.get_active() == True:
                 new_height = calculate_height(img_width, img_height, new_width)
                 self.output_options.height = new_height
-                self.image_height_spinbutton.set_value(new_height)
+                self.image_height_row.set_value(new_height)
 
             self.start_task(self.update_preview_image,
                             self.input_image_path,
@@ -282,8 +334,11 @@ class HalftoneDitherPage(Adw.PreferencesPage):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_height_value_changed(self, widget):
+    def on_image_height_changed(self, widget):
         new_height = self.get_image_height_pref(widget)
+
+        if new_height == self.output_options.height:
+            return
 
         self.output_options.height = new_height
 
@@ -307,15 +362,15 @@ class HalftoneDitherPage(Adw.PreferencesPage):
     def on_aspect_ratio_toggled(self, widget, *args):
         if widget.props.active == True:
             self.keep_aspect_ratio = True
-            widget.props.icon_name = "chain-link-symbolic"
-            widget.props.tooltip_text = _("Keep aspect ratio")
-            self.image_height_spinbutton.set_sensitive(False)
+            #widget.props.icon_name = "chain-link-symbolic"
+            #widget.props.tooltip_text = _("Keep aspect ratio")
+            self.image_height_row.set_sensitive(False)
 
         if widget.props.active == False:
             self.keep_aspect_ratio = False
-            widget.props.icon_name = "chain-link-loose-symbolic"
-            widget.props.tooltip_text = _("Don't keep aspect ratio")
-            self.image_height_spinbutton.set_sensitive(True)
+            #widget.props.icon_name = "chain-link-loose-symbolic"
+            #widget.props.tooltip_text = _("Don't keep aspect ratio")
+            self.image_height_row.set_sensitive(True)
 
     def on_image_chooser_response(self, widget, response):
         if response == Gtk.ResponseType.ACCEPT:
@@ -382,16 +437,23 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         except FileNotFoundError:
             pass
 
-    def on_image_prop_option_toggled(self, toggle, row_widget):
+    def on_image_prop_option_toggled(self, toggle, *row_widgets):
         if toggle.props.active == True:
-            self.image_properties_expander.add_row(row_widget)
+            for row in row_widgets:
+                self.image_properties_expander.add_row(row)
             self.image_properties_expander.set_enable_expansion(True)
             self.image_properties_expander.set_expanded(True)
 
         if toggle.props.active == False:
-            self.image_properties_expander.remove(row_widget)
+            for row in row_widgets:
+                self.image_properties_expander.remove(row)
             self.image_properties_expander.set_enable_expansion(False)
             self.image_properties_expander.set_expanded(False)
+
+    def remove_image_size_rows(self):
+        self.image_properties_expander.remove(self.image_width_row)
+        self.image_properties_expander.remove(self.aspect_ratio_toggle)
+        self.image_properties_expander.remove(self.image_height_row)
 
     def get_output_format_suffix(self) -> str:
         selected_format = self.save_format_combo.props.selected
@@ -446,8 +508,8 @@ class HalftoneDitherPage(Adw.PreferencesPage):
         self.image_dithered.set_content_fit(content_fit)
 
     def set_size_spins(self, width, height):
-        self.image_width_spinbutton.set_value(width)
-        self.image_height_spinbutton.set_value(height)
+        self.image_width_row.set_value(width)
+        self.image_height_row.set_value(height)
 
     def start_task(self, task: callable, *args): #callback: callable
         logging.debug("Starting new async task")
