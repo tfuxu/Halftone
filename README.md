@@ -7,8 +7,7 @@ Give your images a pixel art-like style and reduce the file size in the process 
 
 <br>
 
-![halftone-light](data/screenshots/halftone-light.png#gh-light-mode-only)
-![halftone-dark](data/screenshots/halftone-dark.png#gh-dark-mode-only)
+![halftone-1](data/screenshots/halftone-1.png)
 
 ## What is Halftone?
 Halftone is a simple Libadwaita app for lossy image compression using quantization and dithering techniques.

@@ -21,16 +21,16 @@
   </description>
 
   <screenshots>
-    <screenshot type="default" width="615" height="911">
-      <caption>Halftone displaying image with Floyd-Steinberg dithering and 2-color quantization applied</caption>
+    <screenshot type="default" width="1091" height="834">
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-1.png</image>
+    </screenshot>
+    <screenshot width="1091" height="834">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-2.png</image>
     </screenshot>
-    <screenshot width="615" height="912">
-      <caption>Halftone displaying image with Bayer dithering and 2-color quantization applied</caption>
+    <screenshot width="1091" height="834">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-3.png</image>
     </screenshot>
-    <screenshot width="615" height="907">
-      <caption>Halftone displaying image with Floyd-Steinberg dithering and 10-color quantization applied</caption>
+    <screenshot width="1091" height="834">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-4.png</image>
     </screenshot>
   </screenshots>
@@ -78,6 +78,13 @@
   </keywords>
 
   <releases>
+    <release version="0.4.0" date="2023-11-11" type="stable">
+      <description translatable="no">
+        - New refreshed user interface
+        - Fix issue with "Open in External Image Viewer" button not working on Flatpak builds
+        - New translations
+      </description>
+    </release>
     <release version="0.3.1" date="2023-06-30" type="stable">
       <description translatable="no">
         - Added option to change how image should be resized to fit inside preview box
