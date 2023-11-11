@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 05:23+0300\n"
+"POT-Creation-Date: 2023-11-11 19:19+0100\n"
 "PO-Revision-Date: 2023-10-06 05:28+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -26,7 +26,7 @@ msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Görüntülerinize piksel benzeri stil ekleyin"
 
@@ -45,120 +45,95 @@ msgstr ""
 "Libadwaita uygulaması. Halftone ile görüntülerinize piksel sanatı benzeri "
 "stil verin ve bu süreçte dosya boyutunu azaltın."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
-"quantization applied"
-msgstr ""
-"Floyd-Steinberg titreme ve 2 renk niceleme uygulanmış yarı tonlu görüntü"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
-msgid ""
-"Halftone displaying image with Bayer dithering and 2-color quantization "
-"applied"
-msgstr "Bayer titreme ve 2 renk niceleme uygulanmış yarım tonlu görüntü"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
-"quantization applied"
-msgstr ""
-"Floyd-Steinberg titreme ve 10 renk niceleme uygulanmış yarı tonlu görüntü"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:74
-msgid "image"
-msgstr "görüntü"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:75
-msgid "dither"
-msgstr "titreme"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:76
-msgid "compression"
-msgstr "sıkıştırma"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:77
-msgid "processing"
-msgstr "işleme"
-
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "compression;pixelart;dither;edit;"
 msgstr ""
 "compression;pixelart;dither;edit;sıkıştırma;piksel sanatı;titreme;düzenle;"
 
-#. Translators: Do not translate this description.
-#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
-msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
-msgstr "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
+msgid "Main Menu"
+msgstr "Ana Menü"
 
-#: data/ui/dither_page.blp:6
-msgid "Preview"
-msgstr "Ön izleme"
-
-#: data/ui/dither_page.blp:40
-msgid "Open in External Image Viewer"
-msgstr "Harici Görüntü Görüntüleyicide Aç"
-
-#: data/ui/dither_page.blp:81
+#: data/ui/dither_page.blp:32
 msgid "Options"
 msgstr "Seçenekler"
 
-#: data/ui/dither_page.blp:88
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:282
 msgid "Explanation"
 msgstr "Açıklama"
 
-#: data/ui/dither_page.blp:96
+#: data/ui/dither_page.blp:47
 msgid "Dither Algorithm"
 msgstr "Titreme Algoritması"
 
-#: data/ui/dither_page.blp:107
+#: data/ui/dither_page.blp:57
 msgid "Color Amount"
 msgstr "Renk Miktarı"
 
-#: data/ui/dither_page.blp:124
+#: data/ui/dither_page.blp:68
 msgid "Convert To"
 msgstr "Şuna Dönüştür"
 
-#: data/ui/dither_page.blp:131
+#: data/ui/dither_page.blp:75
 msgid "Image Properties"
 msgstr "Resim Özellikleri"
 
-#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:85 data/ui/dither_page.blp:303
 msgid "Brightness"
 msgstr "Parlaklık"
 
-#: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
-#: data/ui/dither_page.blp:276
+#: data/ui/dither_page.blp:94 data/ui/dither_page.blp:315
 msgid "Contrast"
 msgstr "Karşıtlık"
 
-#: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
+#: data/ui/dither_page.blp:103
 msgid "Image Size"
 msgstr "Görüntü Boyutu"
 
-#: data/ui/dither_page.blp:190
+#: data/ui/dither_page.blp:124
 msgid "More Options"
 msgstr "Daha Çok Seçenek"
 
-#: data/ui/dither_page.blp:198
+#: data/ui/dither_page.blp:132
 msgid "Dither It!"
 msgstr "Titret!"
 
-#: data/ui/dither_page.blp:219
-msgid "Image Width"
+#: data/ui/dither_page.blp:157
+msgid "Open Image (Ctrl+O)"
+msgstr "Görüntü Aç (Ctrl+O)"
+
+#: data/ui/dither_page.blp:211
+msgid "Open in External Image Viewer"
+msgstr "Harici Görüntü Görüntüleyicide Aç"
+
+#: data/ui/dither_page.blp:222
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: data/ui/dither_page.blp:263
+#, fuzzy
+msgid "Width"
 msgstr "Görüntü Genişliği"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
+#: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
+msgid "In pixels"
+msgstr ""
+
+#: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "En-boy oranını koru"
 
-#: data/ui/dither_page.blp:240
-msgid "Image Height"
+#: data/ui/dither_page.blp:291
+#, fuzzy
+msgid "Height"
 msgstr "Görüntü Yüksekliği"
 
-#: data/ui/dither_page.blp:301
+#: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
+msgid "Range -100 to 100"
+msgstr ""
+
+#: data/ui/dither_page.blp:340
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -167,17 +142,32 @@ msgstr ""
 "özelleştirebilirsiniz. Bireysel seçenekler hakkında daha çok bilgi almak "
 "için wiki sayfasına bakınız."
 
-#: data/ui/dither_page.blp:305
+#: data/ui/dither_page.blp:344
 msgid "Wiki Page"
 msgstr "Wiki Sayfası"
 
-#: data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:364
+msgid ""
+"This option allowes you to preserve original aspect ratio when resizing an "
+"image."
+msgstr ""
+
+#: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
 msgstr "Görüntüyü Farklı Kaydet…"
 
-#: data/ui/dither_page.blp:317 data/ui/main_window.blp:157
+#: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
 msgid "All files"
 msgstr "Tüm dosyalar"
+
+#: data/ui/dither_page.blp:387
+msgid "Keyboard Shortcuts"
+msgstr "Klavye Kısayolları"
+
+#: data/ui/dither_page.blp:392 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+msgid "About Halftone"
+msgstr "Halftone Hakkında"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -209,27 +199,19 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Çık"
 
-#: data/ui/main_window.blp:24
-msgid "Open Image (Ctrl+O)"
-msgstr "Görüntü Aç (Ctrl+O)"
-
-#: data/ui/main_window.blp:31
-msgid "Main Menu"
-msgstr "Ana Menü"
-
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
+#: data/ui/main_window.blp:57 halftone/views/dither_page.py:216
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
-#: data/ui/main_window.blp:93
+#: data/ui/main_window.blp:113
 msgid "Drop Here to Load Image"
 msgstr "Görüntüyü Yüklemek İçin Buraya Bırakın"
 
-#: data/ui/main_window.blp:108
+#: data/ui/main_window.blp:149
 msgid "Image Error Occurred"
 msgstr "Görüntü Hatası Oluştu"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:150
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -237,23 +219,11 @@ msgstr ""
 "Görüntü yüklenirken hata oluştu. Bu hata devam ederse, lütfen günlükleri "
 "kopyalayın ve sorunu raporlayın."
 
-#: data/ui/main_window.blp:117
+#: data/ui/main_window.blp:158
 msgid "Copy Logs"
 msgstr "Günlükleri Kopyala"
 
-#: data/ui/main_window.blp:135
-msgid "Preferences"
-msgstr "Tercihler"
-
-#: data/ui/main_window.blp:140
-msgid "Keyboard Shortcuts"
-msgstr "Klavye Kısayolları"
-
-#: data/ui/main_window.blp:145
-msgid "About Halftone"
-msgstr "Halftone Hakkında"
-
-#: data/ui/main_window.blp:152
+#: data/ui/main_window.blp:174
 msgid "Select an Image"
 msgstr "Görüntü Seç"
 
@@ -262,25 +232,66 @@ msgstr "Görüntü Seç"
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: halftone/views/main_window.py:95
+#: halftone/views/main_window.py:98
 msgid "Supported image formats"
 msgstr "Desteklenen görüntü biçimleri"
 
-#: halftone/views/main_window.py:114
+#: halftone/views/main_window.py:117
 msgid "Failed to load an image"
 msgstr "Görüntü yüklenemedi"
 
-#: halftone/views/dither_page.py:186
+#: halftone/views/main_window.py:134
+msgid "Copied logs to clipboard"
+msgstr ""
+
+#: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
 msgstr "Görüntü başarıyla titretildi!"
 
-#: halftone/views/dither_page.py:317
-msgid "Don't keep aspect ratio"
-msgstr "En-boy oranını koruma"
-
-#: halftone/views/dither_page.py:474
+#: halftone/views/dither_page.py:536
 msgid "Failed to load preview image"
 msgstr "Görüntü ön izlemesi yüklenemedi"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Floyd-Steinberg titreme ve 2 renk niceleme uygulanmış yarı tonlu görüntü"
+
+#~ msgid ""
+#~ "Halftone displaying image with Bayer dithering and 2-color quantization "
+#~ "applied"
+#~ msgstr "Bayer titreme ve 2 renk niceleme uygulanmış yarım tonlu görüntü"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Floyd-Steinberg titreme ve 10 renk niceleme uygulanmış yarı tonlu görüntü"
+
+#~ msgid "image"
+#~ msgstr "görüntü"
+
+#~ msgid "dither"
+#~ msgstr "titreme"
+
+#~ msgid "compression"
+#~ msgstr "sıkıştırma"
+
+#~ msgid "processing"
+#~ msgstr "işleme"
+
+#~ msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+#~ msgstr "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+
+#~ msgid "Preview"
+#~ msgstr "Ön izleme"
+
+#~ msgid "Preferences"
+#~ msgstr "Tercihler"
+
+#~ msgid "Don't keep aspect ratio"
+#~ msgstr "En-boy oranını koruma"
 
 #, fuzzy
 #~ msgid "Renamed Pixely to Halftone."

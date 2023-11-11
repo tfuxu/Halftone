@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 19:54+0200\n"
+"POT-Creation-Date: 2023-11-11 19:19+0100\n"
 "PO-Revision-Date: 2023-06-10 19:49+0300\n"
 "Last-Translator: David Lapshin <ddaudix@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -27,7 +27,7 @@ msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Придайте своим изображениям тот самый пиксель-арт стиль"
 
@@ -46,135 +46,94 @@ msgstr ""
 "технику дизеринга. Придайте своим изображениям стиль, напоминающий пиксель-"
 "арт, и уменьшите размер файла с помощью Halftone."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
-"quantization applied"
-msgstr ""
-"Halftone отображающий изображение с применением дизеринга Флойда-Стейнберга "
-"и двухцветного квантования"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
-msgid ""
-"Halftone displaying image with Bayer dithering and 2-color quantization "
-"applied"
-msgstr ""
-"Halftone отображающий изображение с применением дизеринга Байера и "
-"двухцветного квантования"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
-"quantization applied"
-msgstr ""
-"Halftone отображающий изображение с применением дизеринга Флойда-Стейнберга "
-"и десяти-цветного квантования"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
-msgid ""
-"- Added option to change how image should be resized to fit inside preview "
-"box - Now Halftone uses flat headerbar style - New translations"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
-msgid ""
-"- Added brightness and contrast control - Added button for opening preview "
-"image in external image viewers - Added custom logging facility for easier "
-"issue reporting - Added logic code to `Copy Logs` button - Moved image size "
-"option to Image Properties - New translations"
-msgstr ""
-"- Добавлен контроль яркости и контрастности - Добавлена кнопка для открытия "
-"изображения предварительного просмотра во внешних программах просмотра "
-"изображений - Добавлена возможность ведения пользовательского журнала для "
-"более удобного создания отчетов о проблемах - Добавлен логический код для "
-"кнопки `Скопировать журналы` - Опция размера изображения перенесена в "
-"Свойства изображения - Новые переводы"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
-msgid "Renamed Pixely to Halftone."
-msgstr "Переименование Pixely в Halftone."
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
-msgid "Initial release of Pixely."
-msgstr "Первоначальный выпуск Pixely."
-
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "image;graphics;compression;"
-msgstr "изображение;графика;сжатие;"
-
-#. Translators: Do not translate this description.
-#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
-msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgid "compression;pixelart;dither;edit;"
 msgstr ""
 
-#: data/ui/dither_page.blp:6
-msgid "Preview"
-msgstr "Предпросмотр"
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
+msgid "Main Menu"
+msgstr "Главное меню"
 
-#: data/ui/dither_page.blp:40
-msgid "Open in External Image Viewer"
-msgstr "Открыть во внешней программе просмотра изображений"
-
-#: data/ui/dither_page.blp:81
+#: data/ui/dither_page.blp:32
 msgid "Options"
 msgstr "Опции"
 
-#: data/ui/dither_page.blp:88
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:282
 msgid "Explanation"
 msgstr "Объяснение"
 
-#: data/ui/dither_page.blp:96
+#: data/ui/dither_page.blp:47
 msgid "Dither Algorithm"
 msgstr "Алгоритм дизеринга"
 
-#: data/ui/dither_page.blp:107
+#: data/ui/dither_page.blp:57
 msgid "Color Amount"
 msgstr "Количество цветов"
 
-#: data/ui/dither_page.blp:124
+#: data/ui/dither_page.blp:68
 msgid "Convert To"
 msgstr "Конвертировать в"
 
-#: data/ui/dither_page.blp:131
+#: data/ui/dither_page.blp:75
 msgid "Image Properties"
 msgstr "Свойства изображения"
 
-#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:85 data/ui/dither_page.blp:303
 msgid "Brightness"
 msgstr "Яркость"
 
-#: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
-#: data/ui/dither_page.blp:276
+#: data/ui/dither_page.blp:94 data/ui/dither_page.blp:315
 msgid "Contrast"
 msgstr "Контраст"
 
-#: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
+#: data/ui/dither_page.blp:103
 msgid "Image Size"
 msgstr "Размер изображения"
 
-#: data/ui/dither_page.blp:190
+#: data/ui/dither_page.blp:124
 msgid "More Options"
 msgstr "Больше опций"
 
-#: data/ui/dither_page.blp:198
+#: data/ui/dither_page.blp:132
 msgid "Dither It!"
 msgstr "Преобразовать!"
 
-#: data/ui/dither_page.blp:219
-msgid "Image Width"
+#: data/ui/dither_page.blp:157
+msgid "Open Image (Ctrl+O)"
+msgstr "Открыть изображение (Ctrl+O)"
+
+#: data/ui/dither_page.blp:211
+msgid "Open in External Image Viewer"
+msgstr "Открыть во внешней программе просмотра изображений"
+
+#: data/ui/dither_page.blp:222
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: data/ui/dither_page.blp:263
+#, fuzzy
+msgid "Width"
 msgstr "Ширина изображения"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
+#: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
+msgid "In pixels"
+msgstr ""
+
+#: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "Сохранять соотношение сторон"
 
-#: data/ui/dither_page.blp:240
-msgid "Image Height"
+#: data/ui/dither_page.blp:291
+#, fuzzy
+msgid "Height"
 msgstr "Высота изображения"
 
-#: data/ui/dither_page.blp:301
+#: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
+msgid "Range -100 to 100"
+msgstr ""
+
+#: data/ui/dither_page.blp:340
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -183,17 +142,32 @@ msgstr ""
 "выглядело по-другому. Чтобы узнать больше об отдельных параметрах, перейдите "
 "на страницу вики."
 
-#: data/ui/dither_page.blp:305
+#: data/ui/dither_page.blp:344
 msgid "Wiki Page"
 msgstr "Вики-страница"
 
-#: data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:364
+msgid ""
+"This option allowes you to preserve original aspect ratio when resizing an "
+"image."
+msgstr ""
+
+#: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
 msgstr "Сохранить изображение в…"
 
-#: data/ui/dither_page.blp:317 data/ui/main_window.blp:157
+#: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
 msgid "All files"
 msgstr "Все файлы"
+
+#: data/ui/dither_page.blp:387
+msgid "Keyboard Shortcuts"
+msgstr "Комбинации клавиш"
+
+#: data/ui/dither_page.blp:392 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+msgid "About Halftone"
+msgstr "О Halftone"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -225,27 +199,19 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Выйти"
 
-#: data/ui/main_window.blp:24
-msgid "Open Image (Ctrl+O)"
-msgstr "Открыть изображение (Ctrl+O)"
-
-#: data/ui/main_window.blp:31
-msgid "Main Menu"
-msgstr "Главное меню"
-
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
+#: data/ui/main_window.blp:57 halftone/views/dither_page.py:216
 msgid "Open Image"
 msgstr "Открыть изображение"
 
-#: data/ui/main_window.blp:93
+#: data/ui/main_window.blp:113
 msgid "Drop Here to Load Image"
 msgstr "Перетащите сюда чтобы загрузить изображение"
 
-#: data/ui/main_window.blp:108
+#: data/ui/main_window.blp:149
 msgid "Image Error Occurred"
 msgstr "Произошла ошибка изображения"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:150
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -254,23 +220,11 @@ msgstr ""
 "пожалуйста, скопируйте журналы и сообщите о проблеме в систему отслеживания "
 "ошибок."
 
-#: data/ui/main_window.blp:117
+#: data/ui/main_window.blp:158
 msgid "Copy Logs"
 msgstr "Скопировать журналы"
 
-#: data/ui/main_window.blp:135
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/main_window.blp:140
-msgid "Keyboard Shortcuts"
-msgstr "Комбинации клавиш"
-
-#: data/ui/main_window.blp:145
-msgid "About Halftone"
-msgstr "О Halftone"
-
-#: data/ui/main_window.blp:152
+#: data/ui/main_window.blp:174
 msgid "Select an Image"
 msgstr "Выберите изображение"
 
@@ -279,25 +233,74 @@ msgstr "Выберите изображение"
 msgid "translator-credits"
 msgstr "Давид Лапшин <ddaudix@gmail.com>"
 
-#: halftone/views/main_window.py:93
+#: halftone/views/main_window.py:98
 msgid "Supported image formats"
 msgstr "Поддерживаемые форматы изображений"
 
-#: halftone/views/main_window.py:111
+#: halftone/views/main_window.py:117
 msgid "Failed to load an image"
 msgstr "Не удалось загрузить изображение"
 
-#: halftone/views/dither_page.py:186
+#: halftone/views/main_window.py:134
+msgid "Copied logs to clipboard"
+msgstr ""
+
+#: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
 msgstr "Изображение преобразовано успешно!"
 
-#: halftone/views/dither_page.py:317
-msgid "Don't keep aspect ratio"
-msgstr "Не сохранять соотношение сторон"
-
-#: halftone/views/dither_page.py:474
+#: halftone/views/dither_page.py:536
 msgid "Failed to load preview image"
 msgstr "Не удалось загрузить изображение предварительного просмотра"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Halftone отображающий изображение с применением дизеринга Флойда-"
+#~ "Стейнберга и двухцветного квантования"
+
+#~ msgid ""
+#~ "Halftone displaying image with Bayer dithering and 2-color quantization "
+#~ "applied"
+#~ msgstr ""
+#~ "Halftone отображающий изображение с применением дизеринга Байера и "
+#~ "двухцветного квантования"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Halftone отображающий изображение с применением дизеринга Флойда-"
+#~ "Стейнберга и десяти-цветного квантования"
+
+#~ msgid ""
+#~ "- Added brightness and contrast control - Added button for opening "
+#~ "preview image in external image viewers - Added custom logging facility "
+#~ "for easier issue reporting - Added logic code to `Copy Logs` button - "
+#~ "Moved image size option to Image Properties - New translations"
+#~ msgstr ""
+#~ "- Добавлен контроль яркости и контрастности - Добавлена кнопка для "
+#~ "открытия изображения предварительного просмотра во внешних программах "
+#~ "просмотра изображений - Добавлена возможность ведения пользовательского "
+#~ "журнала для более удобного создания отчетов о проблемах - Добавлен "
+#~ "логический код для кнопки `Скопировать журналы` - Опция размера "
+#~ "изображения перенесена в Свойства изображения - Новые переводы"
+
+#~ msgid "Renamed Pixely to Halftone."
+#~ msgstr "Переименование Pixely в Halftone."
+
+#~ msgid "Initial release of Pixely."
+#~ msgstr "Первоначальный выпуск Pixely."
+
+#~ msgid "image;graphics;compression;"
+#~ msgstr "изображение;графика;сжатие;"
+
+#~ msgid "Preview"
+#~ msgstr "Предпросмотр"
+
+#~ msgid "Don't keep aspect ratio"
+#~ msgstr "Не сохранять соотношение сторон"
 
 #~ msgid ""
 #~ "An error occurred while loading an image. If this error persists, please "

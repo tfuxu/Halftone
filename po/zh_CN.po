@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 05:23+0300\n"
+"POT-Creation-Date: 2023-11-11 19:19+0100\n"
 "PO-Revision-Date: 2023-10-07 20:41+0800\n"
 "Last-Translator: FredFucks <maryjaneinchain@gmail.com>\n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "给你的图片带来像素艺术化的风格"
 
@@ -40,117 +40,94 @@ msgid ""
 "in the process with Halftone."
 msgstr ""
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
-"quantization applied"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
-msgid ""
-"Halftone displaying image with Bayer dithering and 2-color quantization "
-"applied"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
-"quantization applied"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:74
-msgid "image"
-msgstr "图片"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:75
-msgid "dither"
-msgstr "抖动"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:76
-msgid "compression"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:77
-msgid "processing"
-msgstr ""
-
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "compression;pixelart;dither;edit;"
 msgstr ""
 
-#. Translators: Do not translate this description.
-#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
-msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
-msgstr ""
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
+msgid "Main Menu"
+msgstr "主菜单"
 
-#: data/ui/dither_page.blp:6
-msgid "Preview"
-msgstr "预览"
-
-#: data/ui/dither_page.blp:40
-msgid "Open in External Image Viewer"
-msgstr "用外部图片浏览器打开"
-
-#: data/ui/dither_page.blp:81
+#: data/ui/dither_page.blp:32
 msgid "Options"
 msgstr "选项"
 
-#: data/ui/dither_page.blp:88
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:282
 msgid "Explanation"
 msgstr "说明"
 
-#: data/ui/dither_page.blp:96
+#: data/ui/dither_page.blp:47
 msgid "Dither Algorithm"
 msgstr "抖动算法"
 
-#: data/ui/dither_page.blp:107
+#: data/ui/dither_page.blp:57
 msgid "Color Amount"
 msgstr "颜色数"
 
-#: data/ui/dither_page.blp:124
+#: data/ui/dither_page.blp:68
 msgid "Convert To"
 msgstr "保存为"
 
-#: data/ui/dither_page.blp:131
+#: data/ui/dither_page.blp:75
 msgid "Image Properties"
 msgstr "图片属性"
 
-#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:85 data/ui/dither_page.blp:303
 msgid "Brightness"
 msgstr "亮度"
 
-#: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
-#: data/ui/dither_page.blp:276
+#: data/ui/dither_page.blp:94 data/ui/dither_page.blp:315
 msgid "Contrast"
 msgstr "对比度"
 
-#: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
+#: data/ui/dither_page.blp:103
 msgid "Image Size"
 msgstr "图片大小"
 
-#: data/ui/dither_page.blp:190
+#: data/ui/dither_page.blp:124
 msgid "More Options"
 msgstr "其它"
 
-#: data/ui/dither_page.blp:198
+#: data/ui/dither_page.blp:132
 msgid "Dither It!"
 msgstr "抖起来！"
 
-#: data/ui/dither_page.blp:219
-msgid "Image Width"
+#: data/ui/dither_page.blp:157
+msgid "Open Image (Ctrl+O)"
+msgstr "打开图片 (Ctrl+O)"
+
+#: data/ui/dither_page.blp:211
+msgid "Open in External Image Viewer"
+msgstr "用外部图片浏览器打开"
+
+#: data/ui/dither_page.blp:222
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: data/ui/dither_page.blp:263
+#, fuzzy
+msgid "Width"
 msgstr "图片宽度"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
+#: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
+msgid "In pixels"
+msgstr ""
+
+#: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "保持长宽比"
 
-#: data/ui/dither_page.blp:240
-msgid "Image Height"
+#: data/ui/dither_page.blp:291
+#, fuzzy
+msgid "Height"
 msgstr "图片高度"
 
-#: data/ui/dither_page.blp:301
+#: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
+msgid "Range -100 to 100"
+msgstr ""
+
+#: data/ui/dither_page.blp:340
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -158,17 +135,32 @@ msgstr ""
 "你可以自定义其中一些参数来改变处理的结果。要了解关于各个选项的更多信息，请访"
 "问百科页面。"
 
-#: data/ui/dither_page.blp:305
+#: data/ui/dither_page.blp:344
 msgid "Wiki Page"
 msgstr "百科页面"
 
-#: data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:364
+msgid ""
+"This option allowes you to preserve original aspect ratio when resizing an "
+"image."
+msgstr ""
+
+#: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
 msgstr ""
 
-#: data/ui/dither_page.blp:317 data/ui/main_window.blp:157
+#: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
 msgid "All files"
 msgstr "所有文件"
+
+#: data/ui/dither_page.blp:387
+msgid "Keyboard Shortcuts"
+msgstr "快捷键"
+
+#: data/ui/dither_page.blp:392 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+msgid "About Halftone"
+msgstr "关于 Halftone"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -200,72 +192,68 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "退出"
 
-#: data/ui/main_window.blp:24
-msgid "Open Image (Ctrl+O)"
-msgstr "打开图片 (Ctrl+O)"
-
-#: data/ui/main_window.blp:31
-msgid "Main Menu"
-msgstr "主菜单"
-
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
+#: data/ui/main_window.blp:57 halftone/views/dither_page.py:216
 msgid "Open Image"
 msgstr "打开图片"
 
-#: data/ui/main_window.blp:93
+#: data/ui/main_window.blp:113
 msgid "Drop Here to Load Image"
 msgstr "拖动图片到此处"
 
-#: data/ui/main_window.blp:108
+#: data/ui/main_window.blp:149
 msgid "Image Error Occurred"
 msgstr ""
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:150
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
 msgstr ""
 
-#: data/ui/main_window.blp:117
+#: data/ui/main_window.blp:158
 msgid "Copy Logs"
 msgstr "复制日志"
 
-#: data/ui/main_window.blp:135
-msgid "Preferences"
-msgstr "首选项"
-
-#: data/ui/main_window.blp:140
-msgid "Keyboard Shortcuts"
-msgstr "快捷键"
-
-#: data/ui/main_window.blp:145
-msgid "About Halftone"
-msgstr "关于 Halftone"
-
-#: data/ui/main_window.blp:152
+#: data/ui/main_window.blp:174
 msgid "Select an Image"
 msgstr ""
 
+#. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
 #: halftone/views/about_window.py:33
 msgid "translator-credits"
 msgstr "FredFucks <maryjaneinchain@gmail.com>"
 
-#: halftone/views/main_window.py:95
+#: halftone/views/main_window.py:98
 msgid "Supported image formats"
 msgstr "支持的图片格式"
 
-#: halftone/views/main_window.py:114
+#: halftone/views/main_window.py:117
 msgid "Failed to load an image"
 msgstr "载入图片失败"
 
-#: halftone/views/dither_page.py:186
+#: halftone/views/main_window.py:134
+msgid "Copied logs to clipboard"
+msgstr ""
+
+#: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
 msgstr "图片处理成功！"
 
-#: halftone/views/dither_page.py:317
-msgid "Don't keep aspect ratio"
-msgstr "不保持长宽比"
-
-#: halftone/views/dither_page.py:474
+#: halftone/views/dither_page.py:536
 msgid "Failed to load preview image"
 msgstr "载入预览失败"
+
+#~ msgid "image"
+#~ msgstr "图片"
+
+#~ msgid "dither"
+#~ msgstr "抖动"
+
+#~ msgid "Preview"
+#~ msgstr "预览"
+
+#~ msgid "Preferences"
+#~ msgstr "首选项"
+
+#~ msgid "Don't keep aspect ratio"
+#~ msgstr "不保持长宽比"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 19:54+0200\n"
+"POT-Creation-Date: 2023-11-11 19:19+0100\n"
 "PO-Revision-Date: 2023-06-12 22:47+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:46
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Dajte vašim obrázkom nádych pixel-artu"
 
@@ -43,134 +43,94 @@ msgstr ""
 "využíva dithering. Halftone dá vašim obrázkom nádych pixel artu a zároveň "
 "zmenší ich veľkosť."
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:25
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 2-color "
-"quantization applied"
-msgstr ""
-"Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
-"dvojfarebnou kvantizáciou"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:29
-msgid ""
-"Halftone displaying image with Bayer dithering and 2-color quantization "
-"applied"
-msgstr ""
-"Halftone zobrazujúci obrázok s Bayerovým ditheringom a dvojfarebnou "
-"kvantizáciou"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:33
-msgid ""
-"Halftone displaying image with Floyd-Steinberg dithering and 10-color "
-"quantization applied"
-msgstr ""
-"Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
-"desaťfarebnou kvantizáciou"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:82
-msgid ""
-"- Added option to change how image should be resized to fit inside preview "
-"box - Now Halftone uses flat headerbar style - New translations"
-msgstr ""
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:89
-msgid ""
-"- Added brightness and contrast control - Added button for opening preview "
-"image in external image viewers - Added custom logging facility for easier "
-"issue reporting - Added logic code to `Copy Logs` button - Moved image size "
-"option to Image Properties - New translations"
-msgstr ""
-"- Pridané ovládacie prvky pre jas a kontrast - Pridané tlačidlo na otvorenie "
-"obrázka s náhľadom v externom prehliadači - Pridaný vlastný logovač pre "
-"jednoduchšie hlásenie chýb - Pridaný logický kód pre tlačidlo `Kopírovať "
-"logy` - Voľba veľkosti obrázka presunutá do vlastností obrázka - Nové "
-"preklady"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:99
-msgid "Renamed Pixely to Halftone."
-msgstr "Pixely premenované na Halftone."
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:104
-msgid "Initial release of Pixely."
-msgstr "Prvá verzia Pixely."
-
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "image;graphics;compression;"
-msgstr "obrázok;grafika;kompresia;"
-
-#. Translators: Do not translate this description.
-#: data/io.github.tfuxu.Halftone.gschema.xml.in:19
-msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
+msgid "compression;pixelart;dither;edit;"
 msgstr ""
 
-#: data/ui/dither_page.blp:6
-msgid "Preview"
-msgstr "Ukážka"
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
+msgid "Main Menu"
+msgstr "Hlavná ponuka"
 
-#: data/ui/dither_page.blp:40
-msgid "Open in External Image Viewer"
-msgstr "Otvoriť v externom prehliadači obrázkov"
-
-#: data/ui/dither_page.blp:81
+#: data/ui/dither_page.blp:32
 msgid "Options"
 msgstr "Možnosti"
 
-#: data/ui/dither_page.blp:88
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:282
 msgid "Explanation"
 msgstr "Vysvetlenie"
 
-#: data/ui/dither_page.blp:96
+#: data/ui/dither_page.blp:47
 msgid "Dither Algorithm"
 msgstr "Algoritmus ditheringu"
 
-#: data/ui/dither_page.blp:107
+#: data/ui/dither_page.blp:57
 msgid "Color Amount"
 msgstr "Počet farieb"
 
-#: data/ui/dither_page.blp:124
+#: data/ui/dither_page.blp:68
 msgid "Convert To"
 msgstr "Previesť na"
 
-#: data/ui/dither_page.blp:131
+#: data/ui/dither_page.blp:75
 msgid "Image Properties"
 msgstr "Vlastnosti obrázka"
 
-#: data/ui/dither_page.blp:141 data/ui/dither_page.blp:254
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:85 data/ui/dither_page.blp:303
 msgid "Brightness"
 msgstr "Jas"
 
-#: data/ui/dither_page.blp:150 data/ui/dither_page.blp:271
-#: data/ui/dither_page.blp:276
+#: data/ui/dither_page.blp:94 data/ui/dither_page.blp:315
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: data/ui/dither_page.blp:159 data/ui/dither_page.blp:211
+#: data/ui/dither_page.blp:103
 msgid "Image Size"
 msgstr "Veľkosť obrázka"
 
-#: data/ui/dither_page.blp:190
+#: data/ui/dither_page.blp:124
 msgid "More Options"
 msgstr "Viac možností"
 
-#: data/ui/dither_page.blp:198
+#: data/ui/dither_page.blp:132
 msgid "Dither It!"
 msgstr "Ditherovať!"
 
-#: data/ui/dither_page.blp:219
-msgid "Image Width"
+#: data/ui/dither_page.blp:157
+msgid "Open Image (Ctrl+O)"
+msgstr "Otvoriť obrázok (Ctrl+O)"
+
+#: data/ui/dither_page.blp:211
+msgid "Open in External Image Viewer"
+msgstr "Otvoriť v externom prehliadači obrázkov"
+
+#: data/ui/dither_page.blp:222
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: data/ui/dither_page.blp:263
+#, fuzzy
+msgid "Width"
 msgstr "Šírka obrázka"
 
-#: data/ui/dither_page.blp:231 halftone/views/dither_page.py:311
+#: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
+msgid "In pixels"
+msgstr ""
+
+#: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "Zachovať pomer strán"
 
-#: data/ui/dither_page.blp:240
-msgid "Image Height"
+#: data/ui/dither_page.blp:291
+#, fuzzy
+msgid "Height"
 msgstr "Výška obrázka"
 
-#: data/ui/dither_page.blp:301
+#: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
+msgid "Range -100 to 100"
+msgstr ""
+
+#: data/ui/dither_page.blp:340
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -178,17 +138,32 @@ msgstr ""
 "Zmenou niekoľkých parametrov môžete docieliť iný vzhľad obrázka. Ak sa "
 "chcete dozvedieť viac o týchto možnostiach, navštívte stránku Wiki."
 
-#: data/ui/dither_page.blp:305
+#: data/ui/dither_page.blp:344
 msgid "Wiki Page"
 msgstr "Stránka Wiki"
 
-#: data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:364
+msgid ""
+"This option allowes you to preserve original aspect ratio when resizing an "
+"image."
+msgstr ""
+
+#: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
 msgstr "Uložiť obrázok do…"
 
-#: data/ui/dither_page.blp:317 data/ui/main_window.blp:157
+#: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
 msgid "All files"
 msgstr "Všetky súbory"
+
+#: data/ui/dither_page.blp:387
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové skratky"
+
+#: data/ui/dither_page.blp:392 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+msgid "About Halftone"
+msgstr "O Halftone"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -220,27 +195,19 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Ukončiť"
 
-#: data/ui/main_window.blp:24
-msgid "Open Image (Ctrl+O)"
-msgstr "Otvoriť obrázok (Ctrl+O)"
-
-#: data/ui/main_window.blp:31
-msgid "Main Menu"
-msgstr "Hlavná ponuka"
-
-#: data/ui/main_window.blp:61 halftone/views/dither_page.py:187
+#: data/ui/main_window.blp:57 halftone/views/dither_page.py:216
 msgid "Open Image"
 msgstr "Otvoriť obrázok"
 
-#: data/ui/main_window.blp:93
+#: data/ui/main_window.blp:113
 msgid "Drop Here to Load Image"
 msgstr "Načítajte obrázok jeho pretiahnutím sem"
 
-#: data/ui/main_window.blp:108
+#: data/ui/main_window.blp:149
 msgid "Image Error Occurred"
 msgstr "V obrázku došlo k chybe"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:150
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -248,23 +215,11 @@ msgstr ""
 "Počas načítavania obrázku došlo k chybe. Ak táto chyba pretrváva, skopírujte "
 "prosím logy a pomocou bug trackera tento problém nahláste."
 
-#: data/ui/main_window.blp:117
+#: data/ui/main_window.blp:158
 msgid "Copy Logs"
 msgstr "Kopírovať logy"
 
-#: data/ui/main_window.blp:135
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/main_window.blp:140
-msgid "Keyboard Shortcuts"
-msgstr "Klávesové skratky"
-
-#: data/ui/main_window.blp:145
-msgid "About Halftone"
-msgstr "O Halftone"
-
-#: data/ui/main_window.blp:152
+#: data/ui/main_window.blp:174
 msgid "Select an Image"
 msgstr "Vyberte obrázok"
 
@@ -273,25 +228,73 @@ msgstr "Vyberte obrázok"
 msgid "translator-credits"
 msgstr "Jose Riha <jose1711@gmail.com>"
 
-#: halftone/views/main_window.py:93
+#: halftone/views/main_window.py:98
 msgid "Supported image formats"
 msgstr "Podporované formáty obrázkov"
 
-#: halftone/views/main_window.py:111
+#: halftone/views/main_window.py:117
 msgid "Failed to load an image"
 msgstr "Nepodarilo sa načítať obrázok"
 
-#: halftone/views/dither_page.py:186
+#: halftone/views/main_window.py:134
+msgid "Copied logs to clipboard"
+msgstr ""
+
+#: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
 msgstr "Dithering bol úspešne aplikovaný!"
 
-#: halftone/views/dither_page.py:317
-msgid "Don't keep aspect ratio"
-msgstr "Nezachovať pomer strán"
-
-#: halftone/views/dither_page.py:474
+#: halftone/views/dither_page.py:536
 msgid "Failed to load preview image"
 msgstr "Nepodarilo sa načítať obrázok s ukážkou"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
+#~ "dvojfarebnou kvantizáciou"
+
+#~ msgid ""
+#~ "Halftone displaying image with Bayer dithering and 2-color quantization "
+#~ "applied"
+#~ msgstr ""
+#~ "Halftone zobrazujúci obrázok s Bayerovým ditheringom a dvojfarebnou "
+#~ "kvantizáciou"
+
+#~ msgid ""
+#~ "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
+#~ "quantization applied"
+#~ msgstr ""
+#~ "Halftone zobrazujúci obrázok s Floyd-Steinbergovým ditheringom a "
+#~ "desaťfarebnou kvantizáciou"
+
+#~ msgid ""
+#~ "- Added brightness and contrast control - Added button for opening "
+#~ "preview image in external image viewers - Added custom logging facility "
+#~ "for easier issue reporting - Added logic code to `Copy Logs` button - "
+#~ "Moved image size option to Image Properties - New translations"
+#~ msgstr ""
+#~ "- Pridané ovládacie prvky pre jas a kontrast - Pridané tlačidlo na "
+#~ "otvorenie obrázka s náhľadom v externom prehliadači - Pridaný vlastný "
+#~ "logovač pre jednoduchšie hlásenie chýb - Pridaný logický kód pre tlačidlo "
+#~ "`Kopírovať logy` - Voľba veľkosti obrázka presunutá do vlastností obrázka "
+#~ "- Nové preklady"
+
+#~ msgid "Renamed Pixely to Halftone."
+#~ msgstr "Pixely premenované na Halftone."
+
+#~ msgid "Initial release of Pixely."
+#~ msgstr "Prvá verzia Pixely."
+
+#~ msgid "image;graphics;compression;"
+#~ msgstr "obrázok;grafika;kompresia;"
+
+#~ msgid "Preview"
+#~ msgstr "Ukážka"
+
+#~ msgid "Don't keep aspect ratio"
+#~ msgstr "Nezachovať pomer strán"
 
 #~ msgid ""
 #~ "An error occurred while loading an image. If this error persists, please "
