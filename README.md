@@ -81,12 +81,12 @@ This is a little bit more advanced way of building Flatpak packages, but if you 
 #### Prerequisites:
 
 - Flatpak Builder `flatpak-builder`
-- GNOME SDK runtime `org.gnome.Sdk//44`
-- GNOME Platform runtime `org.gnome.Platform//44`
+- GNOME SDK runtime `org.gnome.Sdk//45`
+- GNOME Platform runtime `org.gnome.Platform//45`
 
 Install required runtimes:
 ```shell
-flatpak install org.gnome.Sdk//44 org.gnome.Platform//44
+flatpak install org.gnome.Sdk//45 org.gnome.Platform//45
 ```
 
 #### Building Instructions:
@@ -116,7 +116,7 @@ The following packages are required to build Halftone:
 - PyGObject `python-gobject`
 - Blueprint [`blueprint-compiler`](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/setup.html)
 - GTK 4 `gtk4`
-- Libadwaita (>= 1.2.0) `libadwaita`
+- Libadwaita (>= 1.4.0) `libadwaita`
 - Imagemagick `imagemagick`
 - Meson `meson`
 - Ninja `ninja-build`
@@ -162,6 +162,6 @@ This repository is licensed under the terms of the GNU GPLv3 license. You can fi
 ## Inspirations:
 This project was started after I found out about [Pixfect](https://codeberg.org/daudix-UFO/Pixfect), a little Bash script that does exactly what Halftone does.
 
-The user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.gnome.org/World/Upscaler) design.
+The original user interface design is based on [Converter](https://gitlab.com/adhami3310/Converter) style, with itself is based on [Upscaler](https://gitlab.gnome.org/World/Upscaler) design.
 
 This README (mostly [How to Build?](#how-to-build) section) is based on [Gradience](https://github.com/GradienceTeam/Gradience) README.
