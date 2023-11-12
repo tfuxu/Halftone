@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-11 19:19+0100\n"
-"PO-Revision-Date: 2023-06-09 20:26+0100\n"
-"Last-Translator: Albano Battistella <albanobattistella@hotmail.com>\n"
+"PO-Revision-Date: 2023-11-12 10:26+0100\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "compression;pixelart;dither;edit;"
-msgstr ""
+msgstr "compressione;pixelart;dithering;modifica;"
 
 #: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
 msgid "Main Menu"
@@ -105,29 +105,27 @@ msgstr "Apri nel visualizzatore di immagini esterno"
 
 #: data/ui/dither_page.blp:222
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Attiva/disattiva la barra laterale"
 
 #: data/ui/dither_page.blp:263
-#, fuzzy
 msgid "Width"
-msgstr "Larghezza immagine"
+msgstr "Larghezza"
 
 #: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
 msgid "In pixels"
-msgstr ""
+msgstr "In pixel"
 
 #: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "Mantenere proporzioni"
 
 #: data/ui/dither_page.blp:291
-#, fuzzy
 msgid "Height"
-msgstr "Altezza dell'immagine"
+msgstr "Altezza"
 
 #: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
 msgid "Range -100 to 100"
-msgstr ""
+msgstr "Intervallo da -100 a 100"
 
 #: data/ui/dither_page.blp:340
 msgid ""
@@ -147,6 +145,8 @@ msgid ""
 "This option allowes you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
+"Questa opzione ti consente di preservare le proporzioni originali quando ridimensioni un' "
+"Immagine."
 
 #: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
@@ -238,7 +238,7 @@ msgstr "Impossibile caricare un'immagine"
 
 #: halftone/views/main_window.py:134
 msgid "Copied logs to clipboard"
-msgstr ""
+msgstr "Log copiati negli appunti"
 
 #: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
