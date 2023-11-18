@@ -2,20 +2,22 @@
 # Copyright (C) 2023 io.github.tfuxu.Halftone.
 # This file is distributed under the same license as the halftone package.
 # Fúlvio Leo <fulviokaldas@outlook.com>, 2023.
+# Tiago Lucas Flach <tiagolucas9830@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-11 19:19+0100\n"
-"PO-Revision-Date: 2023-06-11 11:04-0300\n"
-"Last-Translator: Fúlvio Leo <fulviokaldas@outlook.com>\n"
+"PO-Revision-Date: 2023-11-17 18:29-0300\n"
+"Last-Translator: Tiago Lucas Flach <tiagolucas9830@gmail.com>\n"
+"Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4\n"
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
@@ -46,7 +48,7 @@ msgstr ""
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "compression;pixelart;dither;edit;"
-msgstr ""
+msgstr "compressão;pixelart;pontilhamento;editar;"
 
 #: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
 msgid "Main Menu"
@@ -106,29 +108,27 @@ msgstr "Abrir em Visualizador de Imagens Externo"
 
 #: data/ui/dither_page.blp:222
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Alternar Barra Lateral"
 
 #: data/ui/dither_page.blp:263
-#, fuzzy
 msgid "Width"
-msgstr "Largura da Imagem"
+msgstr "Largura"
 
 #: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
 msgid "In pixels"
-msgstr ""
+msgstr "Em pixels"
 
 #: data/ui/dither_page.blp:275
 msgid "Keep aspect ratio"
 msgstr "Manter a proporção"
 
 #: data/ui/dither_page.blp:291
-#, fuzzy
 msgid "Height"
-msgstr "Altura da Imagem"
+msgstr "Altura"
 
 #: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
 msgid "Range -100 to 100"
-msgstr ""
+msgstr "Intervalo -100 a 100"
 
 #: data/ui/dither_page.blp:340
 msgid ""
@@ -148,10 +148,12 @@ msgid ""
 "This option allowes you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
+"Esta opção permite preservar a proporção original ao redimensionar uma "
+"imagem."
 
 #: data/ui/dither_page.blp:370
 msgid "Save an Image in…"
-msgstr "Salvar uma Imagem em..."
+msgstr "Salvar uma Imagem em…"
 
 #: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
 msgid "All files"
@@ -227,7 +229,9 @@ msgstr "Selecione uma Imagem"
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
 #: halftone/views/about_window.py:33
 msgid "translator-credits"
-msgstr "Fúlvio Leo <fulviokaldas@outlook.com>"
+msgstr ""
+"Fúlvio Leo <fulviokaldas@outlook.com>\n"
+"Tiago Lucas Flach <tiagolucas9830@gmail.com>"
 
 #: halftone/views/main_window.py:98
 msgid "Supported image formats"
@@ -239,11 +243,11 @@ msgstr "Falha ao carregar uma imagem"
 
 #: halftone/views/main_window.py:134
 msgid "Copied logs to clipboard"
-msgstr ""
+msgstr "Logs copiados para a área de transferência"
 
 #: halftone/views/dither_page.py:215
 msgid "Image dithered successfully!"
-msgstr "Aplicado dither à imagem com sucesso"
+msgstr "Imagem pontilhada com sucesso!"
 
 #: halftone/views/dither_page.py:536
 msgid "Failed to load preview image"
