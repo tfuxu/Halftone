@@ -23,9 +23,13 @@ logging = Logger()
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
+    image_box = Gtk.Template.Child()
     image_dithered = Gtk.Template.Child()
 
+    image_prefs_page = Gtk.Template.Child()
+
     split_view = Gtk.Template.Child()
+    sidebar_view = Gtk.Template.Child()
 
     preview_scroll_window = Gtk.Template.Child()
 
@@ -56,6 +60,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     all_filter = Gtk.Template.Child()
 
     preview_group_stack = Gtk.Template.Child()
+
+    mobile_breakpoint = Gtk.Template.Child()
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
@@ -101,12 +107,21 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_format_combo.connect("notify::selected",
             self.on_save_format_selected)
 
+        self.mobile_breakpoint.connect("apply",
+            self.on_breakpoint_apply)
+
+        self.mobile_breakpoint.connect("unapply",
+            self.on_breakpoint_unapply)
+
         self.settings.connect("changed::preview-content-fit",
             self.update_preview_content_fit)
 
     def setup(self):
         # Set default preview stack child
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
+
+        # Set utility page in sidebar by default
+        self.sidebar_view.set_content(self.image_prefs_page)
 
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
@@ -408,6 +423,14 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def on_awaiting_image_load(self, *args):
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
         self.save_image_button.set_sensitive(False)
+
+    def on_breakpoint_apply(self, *args):
+        self.sidebar_view.set_content(None)
+        self.image_box.append(self.image_prefs_page)
+
+    def on_breakpoint_unapply(self, *args):
+        self.image_box.remove(self.image_prefs_page)
+        self.sidebar_view.set_content(self.image_prefs_page)
 
     """ Module-specific helpers """
 
