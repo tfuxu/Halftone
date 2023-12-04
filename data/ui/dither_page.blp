@@ -107,10 +107,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                   ]
                 }
 
-                Gtk.Button {
+                Gtk.Button toggle_sheet_button {
                   icon-name: "sidebar-show-right-symbolic";
                   tooltip-text: _("Toggle Sidebar");
-                  clicked => $on_toggle_sidebar_clicked();
+                  clicked => $on_toggle_sheet_clicked();
 
                   styles [
                     "osd",
@@ -134,6 +134,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
             };
           }
         }
+
+        Adw.Bin bottom_sheet {
+          visible: false;
+        }
       };
     };
   };
@@ -142,6 +146,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
     condition ("max-width: 640px")
     setters {
       split_view.collapsed: true;
+      bottom_sheet.visible: true;
       content_main_menu.visible: true;
     }
   }
