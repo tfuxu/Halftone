@@ -23,13 +23,20 @@ logging = Logger()
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
+    image_box = Gtk.Template.Child()
     image_dithered = Gtk.Template.Child()
 
+    image_prefs_page = Gtk.Template.Child()
+
     split_view = Gtk.Template.Child()
+    sidebar_view = Gtk.Template.Child()
+
+    bottom_sheet = Gtk.Template.Child()
 
     preview_scroll_window = Gtk.Template.Child()
 
     save_image_button = Gtk.Template.Child()
+    toggle_sheet_button = Gtk.Template.Child()
 
     save_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
@@ -57,6 +64,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     preview_group_stack = Gtk.Template.Child()
 
+    mobile_breakpoint = Gtk.Template.Child()
+
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
 
@@ -67,6 +76,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.win = self.app.get_active_window()
 
         self.toast_overlay = self.parent.toast_overlay
+
+        self.is_mobile: bool = False
 
         self.origin_x: float = None
         self.origin_y: float = None
@@ -101,12 +112,21 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_format_combo.connect("notify::selected",
             self.on_save_format_selected)
 
+        self.mobile_breakpoint.connect("apply",
+            self.on_breakpoint_apply)
+
+        self.mobile_breakpoint.connect("unapply",
+            self.on_breakpoint_unapply)
+
         self.settings.connect("changed::preview-content-fit",
             self.update_preview_content_fit)
 
     def setup(self):
         # Set default preview stack child
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
+
+        # Set utility page in sidebar by default
+        self.sidebar_view.set_content(self.image_prefs_page)
 
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
@@ -275,12 +295,19 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                           self.image_height_row)
 
     @Gtk.Template.Callback()
-    def on_toggle_sidebar_clicked(self, widget, *args):
-        if self.split_view.props.show_sidebar == False:
-            self.split_view.set_show_sidebar(True)
-            return
+    def on_toggle_sheet_clicked(self, widget, *args):
+        if self.is_mobile:
+            if self.bottom_sheet.props.visible:
+                self.bottom_sheet.set_visible(False)
+                return
 
-        self.split_view.set_show_sidebar(False)
+            self.bottom_sheet.set_visible(True)
+        else:
+            if self.split_view.props.show_sidebar:
+                self.split_view.set_show_sidebar(False)
+                return
+
+            self.split_view.set_show_sidebar(True)
 
     @Gtk.Template.Callback()
     def on_brightness_changed(self, widget):
@@ -408,6 +435,24 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def on_awaiting_image_load(self, *args):
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
         self.save_image_button.set_sensitive(False)
+
+    def on_breakpoint_apply(self, *args):
+        self.sidebar_view.set_content(None)
+        self.bottom_sheet.set_child(self.image_prefs_page)
+
+        self.is_mobile = True
+
+        self.toggle_sheet_button.set_tooltip_text(_("Toggle Bottom Sheet"))
+        self.toggle_sheet_button.set_icon_name("sheet-show-bottom-symbolic")
+
+    def on_breakpoint_unapply(self, *args):
+        self.bottom_sheet.set_child(None)
+        self.sidebar_view.set_content(self.image_prefs_page)
+
+        self.is_mobile = False
+
+        self.toggle_sheet_button.set_tooltip_text(_("Toggle Sidebar"))
+        self.toggle_sheet_button.set_icon_name("sidebar-show-right-symbolic")
 
     """ Module-specific helpers """
 

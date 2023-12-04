@@ -102,7 +102,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_chooser.add_filter(self.all_filter)
 
     def setup_main_stack(self):
-        self.main_stack.add_named(self.report_page, "stack_report_page")
+        # TODO: Finish report page
+        #self.main_stack.add_named(self.report_page, "stack_report_page")
         self.main_stack.add_named(self.dither_page, "stack_dither_page")
 
     def load_image(self, file: Gio.File):

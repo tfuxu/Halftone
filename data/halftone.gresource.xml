@@ -17,6 +17,7 @@
     <file preprocess="xml-stripblanks" alias="image-adjust-brightness-symbolic.svg">icons/scalable/actions/image-adjust-brightness-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-contrast-symbolic.svg">icons/scalable/actions/image-adjust-contrast-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-size-symbolic.svg">icons/scalable/actions/image-adjust-size-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="sheet-show-bottom-symbolic.svg">icons/scalable/actions/sheet-show-bottom-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="sidebar-show-right-symbolic.svg">icons/scalable/actions/sidebar-show-right-symbolic.svg</file>
   </gresource>
 </gresources>
