@@ -215,7 +215,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                 self.original_paintable.get_height())
             self.start_task(self.update_preview_image,
                             self.input_image_path,
-                            OutputOptions(),
+                            self.output_options,
                             self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
