@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Bottom sheet, which shows at 640px threshold (mobile mode)
+- New translations
+
+### Fixed
+
+- Main window not being able to resize width down to 360px
+- Lack of image options retention
+
 ## [0.4.0] - 2023-11-11
 
 ### Added
