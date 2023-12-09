@@ -8,4 +8,4 @@
 - [ ] Add scroll and touch drag gestures for triggering bottom sheet hide animation
 
 ### Issues:
-- [ ] When opening image in dither page, the options used on previous image won't be applied on loaded image preview (lack of options retention mechanism)
+- [x] When opening image in dither page, the options used on previous image won't be applied on loaded image preview (lack of options retention mechanism)
