@@ -195,9 +195,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.GError:
             self.win.show_error_page()
             raise
-        else:
-            self.image_dithered.set_paintable(self.updated_paintable)
-            self.on_successful_image_load()
+
+        self.image_dithered.set_paintable(self.updated_paintable)
+        self.on_successful_image_load()
 
         if callback:
             callback()
@@ -210,13 +210,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.GError:
             self.win.show_error_page()
             raise
-        else:
-            self.set_size_spins(self.original_paintable.get_width(),
-                                self.original_paintable.get_height())
-            self.start_task(self.update_preview_image,
-                            self.input_image_path,
-                            self.output_options,
-                            self.on_successful_image_load)
+
+        self.set_size_spins(self.original_paintable.get_width(),
+                            self.original_paintable.get_height())
+        self.start_task(self.update_preview_image,
+                        self.input_image_path,
+                        self.output_options,
+                        self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
                         output_options: OutputOptions, callback: callable):
@@ -257,11 +257,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_brightness_toggled(self, widget, *args):
-        if self.contrast_toggle.props.active == True:
+        if self.contrast_toggle.props.active is True:
             self.contrast_toggle.set_active(False)
             self.image_properties_expander.remove(self.contrast_row)
 
-        if self.image_size_toggle.props.active == True:
+        if self.image_size_toggle.props.active is True:
             self.image_size_toggle.set_active(False)
             self.remove_image_size_rows()
 
@@ -269,11 +269,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_contrast_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active == True:
+        if self.brightness_toggle.props.active is True:
             self.brightness_toggle.set_active(False)
             self.image_properties_expander.remove(self.brightness_row)
 
-        if self.image_size_toggle.props.active == True:
+        if self.image_size_toggle.props.active is True:
             self.image_size_toggle.set_active(False)
             self.remove_image_size_rows()
 
@@ -281,11 +281,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_resize_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active == True:
+        if self.brightness_toggle.props.active is True:
             self.brightness_toggle.set_active(False)
             self.image_properties_expander.remove(self.brightness_row)
 
-        if self.contrast_toggle.props.active == True:
+        if self.contrast_toggle.props.active is True:
             self.contrast_toggle.set_active(False)
             self.image_properties_expander.remove(self.contrast_row)
 
@@ -350,7 +350,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             img_height = self.original_paintable.get_height()
             img_width = self.original_paintable.get_width()
 
-            if self.aspect_ratio_toggle.get_active() == True:
+            if self.aspect_ratio_toggle.get_active() is True:
                 new_height = calculate_height(img_width, img_height, new_width)
                 self.output_options.height = new_height
                 self.image_height_row.set_value(new_height)
@@ -387,13 +387,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_chooser.show()
 
     def on_aspect_ratio_toggled(self, widget, *args):
-        if widget.props.active == True:
+        if widget.props.active is True:
             self.keep_aspect_ratio = True
             #widget.props.icon_name = "chain-link-symbolic"
             #widget.props.tooltip_text = _("Keep aspect ratio")
             self.image_height_row.set_sensitive(False)
 
-        if widget.props.active == False:
+        if widget.props.active is False:
             self.keep_aspect_ratio = False
             #widget.props.icon_name = "chain-link-loose-symbolic"
             #widget.props.tooltip_text = _("Don't keep aspect ratio")
@@ -483,13 +483,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             pass
 
     def on_image_prop_option_toggled(self, toggle, *row_widgets):
-        if toggle.props.active == True:
+        if toggle.props.active is True:
             for row in row_widgets:
                 self.image_properties_expander.add_row(row)
             self.image_properties_expander.set_enable_expansion(True)
             self.image_properties_expander.set_expanded(True)
 
-        if toggle.props.active == False:
+        if toggle.props.active is False:
             for row in row_widgets:
                 self.image_properties_expander.remove(row)
             self.image_properties_expander.set_enable_expansion(False)
@@ -529,10 +529,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         def __get_algorithm_string():
             if selected_algorithm == selectedAlgo.FLOYD_STEINBERG.value:
                 return "floyd_steinberg"
-            elif selected_algorithm == selectedAlgo.RIEMERSMA.value:
+            if selected_algorithm == selectedAlgo.RIEMERSMA.value:
                 return "riemersma"
-            elif selected_algorithm == selectedAlgo.ORDERED.value:
+            if selected_algorithm == selectedAlgo.ORDERED.value:
                 return "ordered"
+
+            return None
 
         algorithm_string = __get_algorithm_string()
 

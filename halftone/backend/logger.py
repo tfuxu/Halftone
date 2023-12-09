@@ -82,14 +82,14 @@ class Logger(logging.getLoggerClass()):
         The constructor for Logger class.
         """
 
+        super().__init__(name="Halftone")
+
         if issue_footer_levels:
             self.issue_footer_levels = issue_footer_levels
 
         if formatter is None:
             formatter = self.log_format
         formatter = logging.Formatter(**formatter)
-
-        self.root.name = "Halftone"
 
         if build_type == "debug":
             self.root.setLevel(logging.DEBUG)

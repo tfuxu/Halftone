@@ -31,7 +31,6 @@ class HalftoneImageMagick:
             brightness = output_options.brightness
             color_amount = output_options.color_amount
             algorithm = output_options.algorithm
-            output_format = output_options.output_format
 
             new_width = int(width)
             if not height:
@@ -57,9 +56,5 @@ class HalftoneImageMagick:
 
     def save_image(self, blob: bytes, output_filename: str, output_options: OutputOptions) -> None:
         with Image(blob=blob) as img:
-            try:
-                output_image = img.convert(output_options.output_format)
-            except ValueError:
-                raise
-            else:
-                output_image.save(filename=output_filename)
+            output_image = img.convert(output_options.output_format)
+            output_image.save(filename=output_filename)

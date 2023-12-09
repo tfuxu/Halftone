@@ -45,22 +45,26 @@ extension_to_mime = {
     'gif': 'image/gif'
 }
 
-def get_format_filters(type):
+def get_format_filters(filetype):
     """ Formats getter function. """
 
-    if type == "input":
+    if filetype == "input":
         return [extension_to_mime[image] for image in supported_input_formats]
-    elif type == "popular_output":
+
+    if filetype == "popular_output":
         return [extension_to_mime[image] for image in popular_supported_output_formats]
-    elif type == "output":
+
+    if filetype == "output":
         return [extension_to_mime[image] for image in supported_output_formats]
+
+    return None
 
 def get_file_filter(name, formats):
     """ Formats setter function. """
 
-    filter = Gtk.FileFilter()
-    for format in formats:
-        filter.add_mime_type(extension_to_mime[format.lower()])
+    filefilter = Gtk.FileFilter()
+    for fmt in formats:
+        filefilter.add_mime_type(extension_to_mime[fmt.lower()])
 
-    filter.set_name(name)
-    return filter
+    filefilter.set_name(name)
+    return filefilter

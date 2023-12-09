@@ -25,6 +25,8 @@ disable=locally-disabled,
         missing-class-docstring,
         invalid-name,
         no-member,
+        too-many-instance-attributes,  # Mostly happens in Gtk apps
+        too-many-public-methods,  # Mostly happens in Gtk apps
         too-few-public-methods,
         attribute-defined-outside-init,
         logging-fstring-interpolation,
