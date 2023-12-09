@@ -33,6 +33,9 @@
     <screenshot width="1091" height="834">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-4.png</image>
     </screenshot>
+    <screenshot width="556" height="967">
+      <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-5.png</image>
+    </screenshot>
   </screenshots>
 
   <url type="homepage">@PROJECT_URL@</url>
