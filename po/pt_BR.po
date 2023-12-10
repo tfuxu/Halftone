@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 19:19+0100\n"
+"POT-Creation-Date: 2023-12-10 01:06+0100\n"
 "PO-Revision-Date: 2023-11-17 18:29-0300\n"
 "Last-Translator: Tiago Lucas Flach <tiagolucas9830@gmail.com>\n"
 "Language-Team: \n"
@@ -50,87 +50,87 @@ msgstr ""
 msgid "compression;pixelart;dither;edit;"
 msgstr "compressão;pixelart;pontilhamento;editar;"
 
-#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:164
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:50
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: data/ui/dither_page.blp:32
-msgid "Options"
-msgstr "Opções"
-
-#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:282
-msgid "Explanation"
-msgstr "Explicação"
-
-#: data/ui/dither_page.blp:47
-msgid "Dither Algorithm"
-msgstr "Algoritmo Dither"
-
-#: data/ui/dither_page.blp:57
-msgid "Color Amount"
-msgstr "Quantidade de Cores"
-
-#: data/ui/dither_page.blp:68
-msgid "Convert To"
-msgstr "Converter Para"
-
-#: data/ui/dither_page.blp:75
-msgid "Image Properties"
-msgstr "Propriedades da Imagem"
-
-#: data/ui/dither_page.blp:85 data/ui/dither_page.blp:303
-msgid "Brightness"
-msgstr "Brilho"
-
-#: data/ui/dither_page.blp:94 data/ui/dither_page.blp:315
-msgid "Contrast"
-msgstr "Contraste"
-
-#: data/ui/dither_page.blp:103
-msgid "Image Size"
-msgstr "Tamanho da Imagem"
-
-#: data/ui/dither_page.blp:124
-msgid "More Options"
-msgstr "Mais Opções"
-
-#: data/ui/dither_page.blp:132
-msgid "Dither It!"
-msgstr "Aplicar Dither!"
-
-#: data/ui/dither_page.blp:157
+#: data/ui/dither_page.blp:43
 msgid "Open Image (Ctrl+O)"
 msgstr "Abrir Imagem (Ctrl+O)"
 
-#: data/ui/dither_page.blp:211
+#: data/ui/dither_page.blp:101
 msgid "Open in External Image Viewer"
 msgstr "Abrir em Visualizador de Imagens Externo"
 
-#: data/ui/dither_page.blp:222
+#: data/ui/dither_page.blp:112 halftone/views/dither_page.py:454
 msgid "Toggle Sidebar"
 msgstr "Alternar Barra Lateral"
 
-#: data/ui/dither_page.blp:263
+#: data/ui/dither_page.blp:159
+msgid "Options"
+msgstr "Opções"
+
+#: data/ui/dither_page.blp:166 data/ui/dither_page.blp:291
+msgid "Explanation"
+msgstr "Explicação"
+
+#: data/ui/dither_page.blp:174
+msgid "Dither Algorithm"
+msgstr "Algoritmo Dither"
+
+#: data/ui/dither_page.blp:184
+msgid "Color Amount"
+msgstr "Quantidade de Cores"
+
+#: data/ui/dither_page.blp:195
+msgid "Convert To"
+msgstr "Converter Para"
+
+#: data/ui/dither_page.blp:202
+msgid "Image Properties"
+msgstr "Propriedades da Imagem"
+
+#: data/ui/dither_page.blp:212 data/ui/dither_page.blp:312
+msgid "Brightness"
+msgstr "Brilho"
+
+#: data/ui/dither_page.blp:221 data/ui/dither_page.blp:324
+msgid "Contrast"
+msgstr "Contraste"
+
+#: data/ui/dither_page.blp:230
+msgid "Image Size"
+msgstr "Tamanho da Imagem"
+
+#: data/ui/dither_page.blp:251
+msgid "More Options"
+msgstr "Mais Opções"
+
+#: data/ui/dither_page.blp:259
+msgid "Dither It!"
+msgstr "Aplicar Dither!"
+
+#: data/ui/dither_page.blp:272
 msgid "Width"
 msgstr "Largura"
 
-#: data/ui/dither_page.blp:264 data/ui/dither_page.blp:292
+#: data/ui/dither_page.blp:273 data/ui/dither_page.blp:301
 msgid "In pixels"
 msgstr "Em pixels"
 
-#: data/ui/dither_page.blp:275
+#: data/ui/dither_page.blp:284
 msgid "Keep aspect ratio"
 msgstr "Manter a proporção"
 
-#: data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:300
 msgid "Height"
 msgstr "Altura"
 
-#: data/ui/dither_page.blp:304 data/ui/dither_page.blp:316
+#: data/ui/dither_page.blp:313 data/ui/dither_page.blp:325
 msgid "Range -100 to 100"
 msgstr "Intervalo -100 a 100"
 
-#: data/ui/dither_page.blp:340
+#: data/ui/dither_page.blp:349
 msgid ""
 "You can customize some of these parameters to make your image look "
 "different. To learn more about individual options, go to the wiki page."
@@ -139,11 +139,11 @@ msgstr ""
 "diferente. Para saber mais sobre as opções individuais, acesse a página da "
 "wiki."
 
-#: data/ui/dither_page.blp:344
+#: data/ui/dither_page.blp:353
 msgid "Wiki Page"
 msgstr "Página da Wiki"
 
-#: data/ui/dither_page.blp:364
+#: data/ui/dither_page.blp:373
 msgid ""
 "This option allowes you to preserve original aspect ratio when resizing an "
 "image."
@@ -151,19 +151,19 @@ msgstr ""
 "Esta opção permite preservar a proporção original ao redimensionar uma "
 "imagem."
 
-#: data/ui/dither_page.blp:370
+#: data/ui/dither_page.blp:379
 msgid "Save an Image in…"
 msgstr "Salvar uma Imagem em…"
 
-#: data/ui/dither_page.blp:375 data/ui/main_window.blp:179
+#: data/ui/dither_page.blp:384 data/ui/main_window.blp:179
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: data/ui/dither_page.blp:387
+#: data/ui/dither_page.blp:396
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de Teclado"
 
-#: data/ui/dither_page.blp:392 data/ui/main_window.blp:30
+#: data/ui/dither_page.blp:401 data/ui/main_window.blp:30
 #: data/ui/main_window.blp:86 data/ui/main_window.blp:136
 msgid "About Halftone"
 msgstr "Sobre o Halftone"
@@ -198,7 +198,7 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Sair"
 
-#: data/ui/main_window.blp:57 halftone/views/dither_page.py:216
+#: data/ui/main_window.blp:57 halftone/views/dither_page.py:236
 msgid "Open Image"
 msgstr "Abrir Imagem"
 
@@ -237,19 +237,23 @@ msgstr ""
 msgid "Supported image formats"
 msgstr "Formatos de imagem suportados"
 
-#: halftone/views/main_window.py:117
+#: halftone/views/main_window.py:118
 msgid "Failed to load an image"
 msgstr "Falha ao carregar uma imagem"
 
-#: halftone/views/main_window.py:134
+#: halftone/views/main_window.py:135
 msgid "Copied logs to clipboard"
 msgstr "Logs copiados para a área de transferência"
 
-#: halftone/views/dither_page.py:215
+#: halftone/views/dither_page.py:235
 msgid "Image dithered successfully!"
 msgstr "Imagem pontilhada com sucesso!"
 
-#: halftone/views/dither_page.py:536
+#: halftone/views/dither_page.py:445
+msgid "Toggle Bottom Sheet"
+msgstr ""
+
+#: halftone/views/dither_page.py:583
 msgid "Failed to load preview image"
 msgstr "Falha ao carregar a imagem de pré-visualização"
 
