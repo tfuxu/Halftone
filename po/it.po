@@ -246,7 +246,7 @@ msgstr "Immagine retinata con successo!"
 
 #: halftone/views/dither_page.py:445
 msgid "Toggle Bottom Sheet"
-msgstr ""
+msgstr "Attiva/disattiva il foglio inferiore"
 
 #: halftone/views/dither_page.py:583
 msgid "Failed to load preview image"
