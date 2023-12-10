@@ -81,21 +81,29 @@
   </keywords>
 
   <releases>
-    <release version="0.4.0" date="2023-11-11" type="stable">
+    <release version="0.5.0" date="2023-12-10">
+      <description translatable="no">
+        - Bottom options sheet for mobile users
+        - Fix main window not being able to resize width down to 360px
+        - Load image options from previous image to next loaded image
+        - New translations
+      </description>
+    </release>
+    <release version="0.4.0" date="2023-11-11">
       <description translatable="no">
         - New refreshed user interface
         - Fix issue with "Open in External Image Viewer" button not working on Flatpak builds
         - New translations
       </description>
     </release>
-    <release version="0.3.1" date="2023-06-30" type="stable">
+    <release version="0.3.1" date="2023-06-30">
       <description translatable="no">
         - Added option to change how image should be resized to fit inside preview box
         - Now Halftone uses flat headerbar style
         - New translations
       </description>
     </release>
-    <release version="0.3.0" date="2023-06-09" type="stable">
+    <release version="0.3.0" date="2023-06-09">
       <description translatable="no">
         - Added brightness and contrast control
         - Added button for opening preview image in external image viewers
@@ -105,12 +113,12 @@
         - New translations
       </description>
     </release>
-    <release version="0.2.0" date="2023-05-20" type="stable">
+    <release version="0.2.0" date="2023-05-20">
       <description translatable="no">
         Renamed Pixely to Halftone.
       </description>
     </release>
-    <release version="0.1.0" date="2023-05-16" type="stable">
+    <release version="0.1.0" date="2023-05-16">
       <description translatable="no">
         Initial release of Pixely.
       </description>
