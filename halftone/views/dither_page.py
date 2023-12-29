@@ -31,6 +31,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     split_view = Gtk.Template.Child()
     sidebar_view = Gtk.Template.Child()
 
+    bottom_sheet_box = Gtk.Template.Child()
     bottom_sheet = Gtk.Template.Child()
 
     preview_scroll_window = Gtk.Template.Child()
@@ -297,11 +298,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     @Gtk.Template.Callback()
     def on_toggle_sheet_clicked(self, widget, *args):
         if self.is_mobile:
-            if self.bottom_sheet.props.visible:
-                self.bottom_sheet.set_visible(False)
+            if self.bottom_sheet_box.props.visible:
+                self.bottom_sheet_box.set_visible(False)
                 return
 
-            self.bottom_sheet.set_visible(True)
+            self.bottom_sheet_box.set_visible(True)
         else:
             if self.split_view.props.show_sidebar:
                 self.split_view.set_show_sidebar(False)
