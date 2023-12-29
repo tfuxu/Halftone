@@ -42,12 +42,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     save_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
 
-    image_properties_expander = Gtk.Template.Child()
-
-    brightness_toggle = Gtk.Template.Child()
-    contrast_toggle = Gtk.Template.Child()
-    image_size_toggle = Gtk.Template.Child()
-
     image_width_row = Gtk.Template.Child()
     aspect_ratio_toggle = Gtk.Template.Child()
     image_height_row = Gtk.Template.Child()
@@ -257,45 +251,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_brightness_toggled(self, widget, *args):
-        if self.contrast_toggle.props.active is True:
-            self.contrast_toggle.set_active(False)
-            self.image_properties_expander.remove(self.contrast_row)
-
-        if self.image_size_toggle.props.active is True:
-            self.image_size_toggle.set_active(False)
-            self.remove_image_size_rows()
-
-        self.on_image_prop_option_toggled(widget, self.brightness_row)
-
-    @Gtk.Template.Callback()
-    def on_contrast_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active is True:
-            self.brightness_toggle.set_active(False)
-            self.image_properties_expander.remove(self.brightness_row)
-
-        if self.image_size_toggle.props.active is True:
-            self.image_size_toggle.set_active(False)
-            self.remove_image_size_rows()
-
-        self.on_image_prop_option_toggled(widget, self.contrast_row)
-
-    @Gtk.Template.Callback()
-    def on_resize_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active is True:
-            self.brightness_toggle.set_active(False)
-            self.image_properties_expander.remove(self.brightness_row)
-
-        if self.contrast_toggle.props.active is True:
-            self.contrast_toggle.set_active(False)
-            self.image_properties_expander.remove(self.contrast_row)
-
-        self.on_image_prop_option_toggled(widget,
-                                          self.image_width_row,
-                                          self.aspect_ratio_toggle,
-                                          self.image_height_row)
-
-    @Gtk.Template.Callback()
     def on_brightness_changed(self, widget):
         new_brightness = int(widget.props.value)
 
@@ -481,24 +436,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             HalftoneTempFile().delete_temp_file(self.preview_image_path)
         except FileNotFoundError:
             pass
-
-    def on_image_prop_option_toggled(self, toggle, *row_widgets):
-        if toggle.props.active is True:
-            for row in row_widgets:
-                self.image_properties_expander.add_row(row)
-            self.image_properties_expander.set_enable_expansion(True)
-            self.image_properties_expander.set_expanded(True)
-
-        if toggle.props.active is False:
-            for row in row_widgets:
-                self.image_properties_expander.remove(row)
-            self.image_properties_expander.set_enable_expansion(False)
-            self.image_properties_expander.set_expanded(False)
-
-    def remove_image_size_rows(self):
-        self.image_properties_expander.remove(self.image_width_row)
-        self.image_properties_expander.remove(self.aspect_ratio_toggle)
-        self.image_properties_expander.remove(self.image_height_row)
 
     def get_output_format_suffix(self) -> str:
         selected_format = self.save_format_combo.props.selected

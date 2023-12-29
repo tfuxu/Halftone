@@ -206,6 +206,83 @@ Adw.PreferencesPage image_prefs_page {
       };
       output => $on_color_amount_changed();
     }
+  }
+
+  Adw.PreferencesGroup adjustments_group {
+    title: _("Adjustments");
+
+    Adw.SpinRow brightness_row {
+      title: _("Brightness");
+      subtitle: _("Range -100 to 100");
+      adjustment: Gtk.Adjustment brightness_adjustment {
+        lower: -100;
+        upper: 100;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      output => $on_brightness_changed();
+    }
+
+    Adw.SpinRow contrast_row {
+      title: _("Contrast");
+      subtitle: _("Range -100 to 100");
+      adjustment: Gtk.Adjustment contrast_adjustment {
+        lower: -100;
+        upper: 100;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      output => $on_contrast_changed();
+    }
+  }
+
+  Adw.PreferencesGroup image_size_group {
+    title: _("Image Size");
+
+    Adw.SpinRow image_width_row {
+      title: _("Width");
+      subtitle: _("In pixels");
+      adjustment: Gtk.Adjustment image_width_adjustment {
+        lower: 1;
+        upper: 8192;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      output => $on_image_width_changed();
+    }
+
+    Adw.SwitchRow aspect_ratio_toggle {
+      title: _("Keep aspect ratio");
+
+      [suffix]
+      Gtk.MenuButton aspect_ratio_button {
+        valign: center;
+        popover: aspect_ratio_popover;
+        icon-name: "help-about-symbolic";
+        tooltip-text: _("Explanation");
+
+        styles [
+          "flat"
+        ]
+      }
+    }
+
+    Adw.SpinRow image_height_row {
+      title: _("Height");
+      subtitle: _("In pixels");
+      adjustment: Gtk.Adjustment image_height_adjustment {
+        lower: 1;
+        upper: 8192;
+        step-increment: 1;
+        page-increment: 5;
+      };
+      output => $on_image_height_changed();
+    }
+  }
+
+  Adw.PreferencesGroup {
+    visible: false;
+    title: _("Saving");
 
     Adw.ComboRow save_format_combo {
       title: _("Convert To");
@@ -213,48 +290,7 @@ Adw.PreferencesPage image_prefs_page {
     }
   }
 
-  Adw.PreferencesGroup {
-    Adw.ExpanderRow image_properties_expander {
-      title: _("Image Properties");
-      enable-expansion: false;
-
-      [action]
-      Gtk.Box {
-        orientation: horizontal;
-        spacing: 10;
-        valign: center;
-
-        Gtk.ToggleButton brightness_toggle {
-          tooltip-text: _("Brightness");
-          icon-name: "image-adjust-brightness-symbolic";
-          clicked => $on_brightness_toggled();
-          styles [
-            "flat"
-          ]
-        }
-
-        Gtk.ToggleButton contrast_toggle {
-          tooltip-text: _("Contrast");
-          icon-name: "image-adjust-contrast-symbolic";
-          clicked => $on_contrast_toggled();
-          styles [
-            "flat"
-          ]
-        }
-
-        Gtk.ToggleButton image_size_toggle {
-          tooltip-text: _("Image Size");
-          icon-name: "image-adjust-size-symbolic";
-          clicked => $on_resize_toggled();
-          styles [
-            "flat"
-          ]
-        }
-      }
-    }
-  }
-
-  Adw.PreferencesGroup {
+  Adw.PreferencesGroup result_group {
     Gtk.Box {
       orientation: horizontal;
       halign: center;
@@ -282,70 +318,6 @@ Adw.PreferencesPage image_prefs_page {
       }
     }
   }
-}
-
-Adw.SpinRow image_width_row {
-  title: _("Width");
-  subtitle: _("In pixels");
-  adjustment: Gtk.Adjustment image_width_adjustment {
-    lower: 1;
-    upper: 8192;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_image_width_changed();
-}
-
-Adw.SwitchRow aspect_ratio_toggle {
-  title: _("Keep aspect ratio");
-
-  [suffix]
-  Gtk.MenuButton aspect_ratio_button {
-    valign: center;
-    popover: aspect_ratio_popover;
-    icon-name: "help-about-symbolic";
-    tooltip-text: _("Explanation");
-
-    styles [
-      "flat"
-    ]
-  }
-}
-
-Adw.SpinRow image_height_row {
-  title: _("Height");
-  subtitle: _("In pixels");
-  adjustment: Gtk.Adjustment image_height_adjustment {
-    lower: 1;
-    upper: 8192;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_image_height_changed();
-}
-
-Adw.SpinRow brightness_row {
-  title: _("Brightness");
-  subtitle: _("Range -100 to 100");
-  adjustment: Gtk.Adjustment brightness_adjustment {
-    lower: -100;
-    upper: 100;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_brightness_changed();
-}
-
-Adw.SpinRow contrast_row {
-  title: _("Contrast");
-  subtitle: _("Range -100 to 100");
-  adjustment: Gtk.Adjustment contrast_adjustment {
-    lower: -100;
-    upper: 100;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_contrast_changed();
 }
 
 Gtk.Popover options_information_popover {
