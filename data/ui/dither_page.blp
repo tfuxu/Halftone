@@ -6,9 +6,9 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   height-request: 360;
 
   child: Adw.OverlaySplitView split_view {
-    sidebar-position: end;
+    sidebar-position: start;
     show-sidebar: true;
-    min-sidebar-width: 360;
+    min-sidebar-width: 340;
 
     sidebar: Adw.ToolbarView sidebar_view {
       [top]
@@ -18,6 +18,13 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         styles [
           "flat"
         ]
+
+        [start]
+        Gtk.Button {
+          tooltip-text: _("Open Image (Ctrl+O)");
+          icon-name: "document-open-symbolic";
+          action-name: "app.open-image";
+        }
 
         [end]
         Gtk.MenuButton {
@@ -39,10 +46,11 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         ]
 
         [start]
-        Gtk.Button {
+        Gtk.Button content_open_button {
           tooltip-text: _("Open Image (Ctrl+O)");
           icon-name: "document-open-symbolic";
           action-name: "app.open-image";
+          visible: false;
         }
 
         [end]
@@ -149,6 +157,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
     setters {
       split_view.collapsed: true;
       bottom_sheet.visible: true;
+      content_open_button.visible: true;
       content_main_menu.visible: true;
     }
   }
