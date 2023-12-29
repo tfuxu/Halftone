@@ -89,10 +89,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                     "card"
                   ]
                 }
-
-                styles [
-                  "undershoot-bottom"
-                ]
               };
 
               [overlay]
@@ -145,8 +141,15 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
         // TODO: Add SpringAnimation to animate sheet hiding
         // TODO: Add scroll and touch drag gestures for triggering bottom sheet hide animation
-        Adw.Bin bottom_sheet {
+        Gtk.Box bottom_sheet_box {
+          orientation: vertical;
           visible: false;
+
+          Gtk.Separator {
+            orientation: horizontal;
+          }
+
+          Adw.Bin bottom_sheet {}
         }
       };
     };
@@ -156,7 +159,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
     condition ("max-width: 640px")
     setters {
       split_view.collapsed: true;
-      bottom_sheet.visible: true;
+      bottom_sheet_box.visible: true;
       content_open_button.visible: true;
       content_main_menu.visible: true;
     }
