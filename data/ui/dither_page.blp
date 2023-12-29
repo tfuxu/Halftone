@@ -31,6 +31,8 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
+
+          primary: bind split_view.show-sidebar;
         }
       }
     };
@@ -59,6 +61,8 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
           visible: false;
+
+          primary: bind split_view.show-sidebar inverted;
         }
       }
 
