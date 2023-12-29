@@ -296,21 +296,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                           self.image_height_row)
 
     @Gtk.Template.Callback()
-    def on_toggle_sheet_clicked(self, widget, *args):
-        if self.is_mobile:
-            if self.bottom_sheet_box.props.visible:
-                self.bottom_sheet_box.set_visible(False)
-                return
-
-            self.bottom_sheet_box.set_visible(True)
-        else:
-            if self.split_view.props.show_sidebar:
-                self.split_view.set_show_sidebar(False)
-                return
-
-            self.split_view.set_show_sidebar(True)
-
-    @Gtk.Template.Callback()
     def on_brightness_changed(self, widget):
         new_brightness = int(widget.props.value)
 
@@ -386,6 +371,20 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.save_image_chooser.set_current_name(output_filename)
         self.save_image_chooser.show()
+
+    def on_toggle_sheet(self, widget, *args):
+        if self.is_mobile:
+            if self.bottom_sheet_box.props.visible:
+                self.bottom_sheet_box.set_visible(False)
+                return
+
+            self.bottom_sheet_box.set_visible(True)
+        else:
+            if self.split_view.props.show_sidebar:
+                self.split_view.set_show_sidebar(False)
+                return
+
+            self.split_view.set_show_sidebar(True)
 
     def on_aspect_ratio_toggled(self, widget, *args):
         if widget.props.active is True:

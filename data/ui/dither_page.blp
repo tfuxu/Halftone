@@ -103,7 +103,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                 Gtk.Button toggle_sheet_button {
                   icon-name: "sidebar-show-left-symbolic";
                   tooltip-text: _("Toggle Sidebar");
-                  clicked => $on_toggle_sheet_clicked();
+                  action-name: "app.toggle-sheet";
 
                   styles [
                     "osd",
