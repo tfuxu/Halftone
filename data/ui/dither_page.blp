@@ -100,10 +100,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                 orientation: horizontal;
                 spacing: 10;
 
-                Gtk.Button {
-                  icon-name: "adw-external-link-symbolic";
-                  tooltip-text: _("Open in External Image Viewer");
-                  action-name: "app.show-preview-image";
+                Gtk.Button toggle_sheet_button {
+                  icon-name: "sidebar-show-left-symbolic";
+                  tooltip-text: _("Toggle Sidebar");
+                  clicked => $on_toggle_sheet_clicked();
 
                   styles [
                     "osd",
@@ -111,10 +111,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                   ]
                 }
 
-                Gtk.Button toggle_sheet_button {
-                  icon-name: "sidebar-show-right-symbolic";
-                  tooltip-text: _("Toggle Sidebar");
-                  clicked => $on_toggle_sheet_clicked();
+                Gtk.Button {
+                  icon-name: "adw-external-link-symbolic";
+                  tooltip-text: _("Open in External Image Viewer");
+                  action-name: "app.show-preview-image";
 
                   styles [
                     "osd",
