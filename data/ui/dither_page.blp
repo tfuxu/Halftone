@@ -170,129 +170,137 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   }
 }
 
-Adw.PreferencesPage image_prefs_page {
-  Adw.PreferencesGroup options_group {
-    title: _("Options");
+Adw.Bin image_prefs_bin {
+  child: Gtk.Overlay {
+    child: Adw.PreferencesPage {
+      Adw.PreferencesGroup options_group {
+        title: _("Options");
 
-    [header-suffix]
-    Gtk.MenuButton options_information_button {
-      valign: center;
-      popover: options_information_popover;
-      icon-name: "help-about-symbolic";
-      tooltip-text: _("Explanation");
+        [header-suffix]
+        Gtk.MenuButton options_information_button {
+          valign: center;
+          popover: options_information_popover;
+          icon-name: "help-about-symbolic";
+          tooltip-text: _("Explanation");
 
-      styles [
-        "flat"
-      ]
-    }
+          styles [
+            "flat"
+          ]
+        }
 
-    Adw.ComboRow dither_algorithms_combo {
-      title: _("Dither Algorithm");
-      model: Gtk.StringList algorithms_stringlist {};
-    }
+        Adw.ComboRow dither_algorithms_combo {
+          title: _("Dither Algorithm");
+          model: Gtk.StringList algorithms_stringlist {};
+        }
 
-    //Adw.ComboRow color_palette {
-    //  title: _("Color Palette");
-    //  model: Gtk.StringList color_palettes {};
-    //}
+        //Adw.ComboRow color_palette {
+        //  title: _("Color Palette");
+        //  model: Gtk.StringList color_palettes {};
+        //}
 
-    Adw.SpinRow color_amount_row {
-      title: _("Color Amount");
-      adjustment: Gtk.Adjustment color_amount_adjustment {
-        lower: 1;
-        upper: 256;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_color_amount_changed();
-    }
-  }
-
-  Adw.PreferencesGroup adjustments_group {
-    title: _("Adjustments");
-
-    Adw.SpinRow brightness_row {
-      title: _("Brightness");
-      subtitle: _("Range -100 to 100");
-      adjustment: Gtk.Adjustment brightness_adjustment {
-        lower: -100;
-        upper: 100;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_brightness_changed();
-    }
-
-    Adw.SpinRow contrast_row {
-      title: _("Contrast");
-      subtitle: _("Range -100 to 100");
-      adjustment: Gtk.Adjustment contrast_adjustment {
-        lower: -100;
-        upper: 100;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_contrast_changed();
-    }
-  }
-
-  Adw.PreferencesGroup image_size_group {
-    title: _("Image Size");
-
-    Adw.SpinRow image_width_row {
-      title: _("Width");
-      subtitle: _("In pixels");
-      adjustment: Gtk.Adjustment image_width_adjustment {
-        lower: 1;
-        upper: 8192;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_image_width_changed();
-    }
-
-    Adw.SwitchRow aspect_ratio_toggle {
-      title: _("Keep aspect ratio");
-
-      [suffix]
-      Gtk.MenuButton aspect_ratio_button {
-        valign: center;
-        popover: aspect_ratio_popover;
-        icon-name: "help-about-symbolic";
-        tooltip-text: _("Explanation");
-
-        styles [
-          "flat"
-        ]
+        Adw.SpinRow color_amount_row {
+          title: _("Color Amount");
+          adjustment: Gtk.Adjustment color_amount_adjustment {
+            lower: 1;
+            upper: 256;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_color_amount_changed();
+        }
       }
-    }
 
-    Adw.SpinRow image_height_row {
-      title: _("Height");
-      subtitle: _("In pixels");
-      adjustment: Gtk.Adjustment image_height_adjustment {
-        lower: 1;
-        upper: 8192;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_image_height_changed();
-    }
-  }
+      Adw.PreferencesGroup adjustments_group {
+        title: _("Adjustments");
 
-  Adw.PreferencesGroup {
-    visible: false;
-    title: _("Saving");
+        Adw.SpinRow brightness_row {
+          title: _("Brightness");
+          subtitle: _("Range -100 to 100");
+          adjustment: Gtk.Adjustment brightness_adjustment {
+            lower: -100;
+            upper: 100;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_brightness_changed();
+        }
 
-    Adw.ComboRow save_format_combo {
-      title: _("Convert To");
-      model: Gtk.StringList image_formats_stringlist {};
-    }
-  }
+        Adw.SpinRow contrast_row {
+          title: _("Contrast");
+          subtitle: _("Range -100 to 100");
+          adjustment: Gtk.Adjustment contrast_adjustment {
+            lower: -100;
+            upper: 100;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_contrast_changed();
+        }
+      }
 
-  Adw.PreferencesGroup result_group {
-    Gtk.Box {
+      Adw.PreferencesGroup image_size_group {
+        title: _("Image Size");
+
+        Adw.SpinRow image_width_row {
+          title: _("Width");
+          subtitle: _("In pixels");
+          adjustment: Gtk.Adjustment image_width_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_image_width_changed();
+        }
+
+        Adw.SwitchRow aspect_ratio_toggle {
+          title: _("Keep aspect ratio");
+
+          [suffix]
+          Gtk.MenuButton aspect_ratio_button {
+            valign: center;
+            popover: aspect_ratio_popover;
+            icon-name: "help-about-symbolic";
+            tooltip-text: _("Explanation");
+
+            styles [
+              "flat"
+            ]
+          }
+        }
+
+        Adw.SpinRow image_height_row {
+          title: _("Height");
+          subtitle: _("In pixels");
+          adjustment: Gtk.Adjustment image_height_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_image_height_changed();
+        }
+      }
+
+      Adw.PreferencesGroup {
+        visible: false;
+        title: _("Saving");
+
+        Adw.ComboRow save_format_combo {
+          title: _("Convert To");
+          model: Gtk.StringList image_formats_stringlist {};
+        }
+      }
+
+      Adw.PreferencesGroup bottom_margin_group {
+        margin-bottom: 46;
+      }
+    };
+
+    [overlay]
+    Gtk.Box result_overlay {
       orientation: horizontal;
+      margin-bottom: 24;
       halign: center;
       vexpand: true;
       valign: end;
@@ -317,7 +325,7 @@ Adw.PreferencesPage image_prefs_page {
         ]
       }
     }
-  }
+  };
 }
 
 Gtk.Popover options_information_popover {

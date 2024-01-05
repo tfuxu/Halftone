@@ -26,7 +26,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     image_box = Gtk.Template.Child()
     image_dithered = Gtk.Template.Child()
 
-    image_prefs_page = Gtk.Template.Child()
+    image_prefs_bin = Gtk.Template.Child()
 
     split_view = Gtk.Template.Child()
     sidebar_view = Gtk.Template.Child()
@@ -121,7 +121,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
 
         # Set utility page in sidebar by default
-        self.sidebar_view.set_content(self.image_prefs_page)
+        self.sidebar_view.set_content(self.image_prefs_bin)
 
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
@@ -393,7 +393,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_breakpoint_apply(self, *args):
         self.sidebar_view.set_content(None)
-        self.bottom_sheet.set_child(self.image_prefs_page)
+        self.bottom_sheet.set_child(self.image_prefs_bin)
 
         self.is_mobile = True
 
@@ -402,7 +402,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_breakpoint_unapply(self, *args):
         self.bottom_sheet.set_child(None)
-        self.sidebar_view.set_content(self.image_prefs_page)
+        self.sidebar_view.set_content(self.image_prefs_bin)
 
         self.is_mobile = False
 
