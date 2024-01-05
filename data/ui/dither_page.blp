@@ -52,7 +52,8 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           tooltip-text: _("Open Image (Ctrl+O)");
           icon-name: "arrow-into-box-symbolic";
           action-name: "app.open-image";
-          visible: false;
+
+          visible: bind split_view.show-sidebar inverted;
         }
 
         [end]
@@ -60,9 +61,9 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
-          visible: false;
 
           primary: bind split_view.show-sidebar inverted;
+          visible: bind split_view.show-sidebar inverted;
         }
       }
 
@@ -164,8 +165,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
     setters {
       split_view.collapsed: true;
       bottom_sheet_box.visible: true;
-      content_open_button.visible: true;
-      content_main_menu.visible: true;
     }
   }
 }
