@@ -1,9 +1,31 @@
-button.osd.circular {
+button.custom-on-image {
   min-width: 42px;
   min-height: 42px;
+  margin: 12px;
 }
 
 .dragndrop_overlay {
   background-color: alpha(@accent_bg_color, 0.5);
   color: @accent_fg_color;
+}
+
+headerbar.desktop button.close image {
+    color: alpha(white, 0.9);
+    background: alpha(black, 0.6);
+}
+
+headerbar.desktop button.close:hover image {
+    background: alpha(mix(black, white, 0.1), 0.5);
+}
+
+headerbar.desktop button.close:active image {
+    background: alpha(mix(black, white, 0.2), 0.5);
+}
+
+.sheet-toolbar {
+    padding: 12px;
+}
+
+.red {
+    color: red;
 }

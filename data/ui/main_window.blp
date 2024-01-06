@@ -52,11 +52,7 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
                 halign: center;
                 clicked => $on_open_image();
 
-                Adw.ButtonContent {
-                  icon-name: "arrow-into-box-symbolic";
-                  label: _("Open Image");
-                  use-underline: true;
-                }
+                label: _("Open Image");
 
                 styles [
                   "suggested-action",
