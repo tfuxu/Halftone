@@ -31,7 +31,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
-
           primary: true;
         }
       }
@@ -58,24 +57,24 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           name: "mobile";
 
           child: Adw.HeaderBar {
-              [start]
-              Gtk.Button content_open_button {
-                tooltip-text: _("Open Image (Ctrl+O)");
-                icon-name: "arrow-into-box-symbolic";
-                action-name: "app.open-image";
-              }
+            [start]
+            Gtk.Button content_open_button {
+              tooltip-text: _("Open Image (Ctrl+O)");
+              icon-name: "arrow-into-box-symbolic";
+              action-name: "app.open-image";
+            }
 
-              [end]
-              Gtk.MenuButton content_main_menu {
-                tooltip-text: _("Main Menu");
-                icon-name: "open-menu-symbolic";
-                menu-model: main_menu;
-              }
-            };
-          }
-
-          visible-child-name: "desktop";
+            [end]
+            Gtk.MenuButton content_main_menu {
+              tooltip-text: _("Main Menu");
+              icon-name: "open-menu-symbolic";
+              menu-model: main_menu;
+            }
+          };
         }
+
+        visible-child-name: "desktop";
+      }
 
       content: Gtk.Box image_box {
         orientation: vertical;
@@ -185,7 +184,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
 Adw.Bin image_prefs_bin {
   child: Adw.ToolbarView {
-    Adw.PreferencesPage {
+    content: Adw.PreferencesPage {
       Adw.PreferencesGroup options_group {
         title: _("Options");
 
@@ -304,7 +303,7 @@ Adw.Bin image_prefs_bin {
           model: Gtk.StringList image_formats_stringlist {};
         }
       }
-    }
+    };
 
     [bottom]
     Gtk.Box {
@@ -336,7 +335,7 @@ Gtk.Popover options_information_popover {
     justify: center;
     max-width-chars: 30;
     use-markup: true;
-    label:  _("To learn more about individual options, go to the <a href=\"https://github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>.");
+    label: _("To learn more about individual options, go to the <a href=\"https://github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>.");
   }
 }
 
