@@ -83,44 +83,52 @@
   <releases>
     <release version="0.5.0" date="2023-12-10">
       <description translatable="no">
-        - Bottom options sheet for mobile users
-        - Fix main window not being able to resize width down to 360px
-        - Load image options from previous image to next loaded image
-        - New translations
+        <ul>
+          <li>Bottom options sheet for mobile users</li>
+          <li>Fix main window not being able to resize width down to 360px</li>
+          <li>Load image options from previous image to next loaded image</li>
+          <li>New translations</li>
+        </ul>
       </description>
     </release>
     <release version="0.4.0" date="2023-11-11">
       <description translatable="no">
-        - New refreshed user interface
-        - Fix issue with "Open in External Image Viewer" button not working on Flatpak builds
-        - New translations
+        <ul>
+          <li>New refreshed user interface</li>
+          <li>Fix issue with "Open in External Image Viewer" button not working on Flatpak builds</li>
+          <li>New translations</li>
+        </ul>
       </description>
     </release>
     <release version="0.3.1" date="2023-06-30">
       <description translatable="no">
-        - Added option to change how image should be resized to fit inside preview box
-        - Now Halftone uses flat headerbar style
-        - New translations
+        <ul>
+          <li>Added option to change how image should be resized to fit inside preview box</li>
+          <li>Now Halftone uses flat headerbar style</li>
+          <li>New translations</li>
+        </ul>
       </description>
     </release>
     <release version="0.3.0" date="2023-06-09">
       <description translatable="no">
-        - Added brightness and contrast control
-        - Added button for opening preview image in external image viewers
-        - Added custom logging facility for easier issue reporting
-        - Added logic code to `Copy Logs` button
-        - Moved image size option to Image Properties
-        - New translations
+        <ul>
+          <li>Added brightness and contrast control</li>
+          <li>Added button for opening preview image in external image viewers</li>
+          <li>Added custom logging facility for easier issue reporting</li>
+          <li>Added logic code to "Copy Logs" button</li>
+          <li>Moved image size option to Image Properties</li>
+          <li>New translations</li>
+        </ul>
       </description>
     </release>
     <release version="0.2.0" date="2023-05-20">
       <description translatable="no">
-        Renamed Pixely to Halftone.
+        <p>Renamed Pixely to Halftone.</p>
       </description>
     </release>
     <release version="0.1.0" date="2023-05-16">
       <description translatable="no">
-        Initial release of Pixely.
+        <p>Initial release of Pixely.</p>
       </description>
     </release>
   </releases>
