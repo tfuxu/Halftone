@@ -220,6 +220,11 @@ Adw.Bin image_prefs_bin {
           };
           output => $on_color_amount_changed();
         }
+
+        Adw.ComboRow export_format_combo {
+          title: _("Convert To");
+          model: Gtk.StringList image_formats_stringlist {};
+        }
       }
 
       Adw.PreferencesGroup adjustments_group {
@@ -291,16 +296,6 @@ Adw.Bin image_prefs_bin {
             page-increment: 5;
           };
           output => $on_image_height_changed();
-        }
-      }
-
-      Adw.PreferencesGroup {
-        visible: false;
-        title: _("Saving");
-
-        Adw.ComboRow save_format_combo {
-          title: _("Convert To");
-          model: Gtk.StringList image_formats_stringlist {};
         }
       }
     };
