@@ -76,6 +76,7 @@ class HalftoneApplication(Adw.Application):
 
         self.set_accels_for_action('win.show-help-overlay', ['<Primary>question'])
 
+        self.set_accels_for_action('app.toggle-sheet', ['F9'])
         self.set_accels_for_action('app.open-image', ['<Primary>O'])
         self.set_accels_for_action('app.save-image', ['<Primary>S'])
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])

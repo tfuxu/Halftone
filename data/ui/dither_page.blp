@@ -6,9 +6,9 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   height-request: 360;
 
   child: Adw.OverlaySplitView split_view {
-    sidebar-position: end;
+    sidebar-position: start;
     show-sidebar: true;
-    min-sidebar-width: 360;
+    min-sidebar-width: 340;
 
     sidebar: Adw.ToolbarView sidebar_view {
       [top]
@@ -19,11 +19,20 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           "flat"
         ]
 
+        [start]
+        Gtk.Button {
+          tooltip-text: _("Open Image (Ctrl+O)");
+          icon-name: "arrow-into-box-symbolic";
+          action-name: "app.open-image";
+        }
+
         [end]
         Gtk.MenuButton {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
+
+          primary: bind split_view.show-sidebar;
         }
       }
     };
@@ -39,10 +48,12 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         ]
 
         [start]
-        Gtk.Button {
+        Gtk.Button content_open_button {
           tooltip-text: _("Open Image (Ctrl+O)");
-          icon-name: "document-open-symbolic";
+          icon-name: "arrow-into-box-symbolic";
           action-name: "app.open-image";
+
+          visible: bind split_view.show-sidebar inverted;
         }
 
         [end]
@@ -50,7 +61,9 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
-          visible: false;
+
+          primary: bind split_view.show-sidebar inverted;
+          visible: bind split_view.show-sidebar inverted;
         }
       }
 
@@ -81,10 +94,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                     "card"
                   ]
                 }
-
-                styles [
-                  "undershoot-bottom"
-                ]
               };
 
               [overlay]
@@ -96,10 +105,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                 orientation: horizontal;
                 spacing: 10;
 
-                Gtk.Button {
-                  icon-name: "adw-external-link-symbolic";
-                  tooltip-text: _("Open in External Image Viewer");
-                  action-name: "app.show-preview-image";
+                Gtk.Button toggle_sheet_button {
+                  icon-name: "sidebar-show-left-symbolic";
+                  tooltip-text: _("Toggle Sidebar");
+                  action-name: "app.toggle-sheet";
 
                   styles [
                     "osd",
@@ -107,10 +116,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                   ]
                 }
 
-                Gtk.Button toggle_sheet_button {
-                  icon-name: "sidebar-show-right-symbolic";
-                  tooltip-text: _("Toggle Sidebar");
-                  clicked => $on_toggle_sheet_clicked();
+                Gtk.Button {
+                  icon-name: "adw-external-link-symbolic";
+                  tooltip-text: _("Open in External Image Viewer");
+                  action-name: "app.show-preview-image";
 
                   styles [
                     "osd",
@@ -137,8 +146,15 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
         // TODO: Add SpringAnimation to animate sheet hiding
         // TODO: Add scroll and touch drag gestures for triggering bottom sheet hide animation
-        Adw.Bin bottom_sheet {
+        Gtk.Box bottom_sheet_box {
+          orientation: vertical;
           visible: false;
+
+          Gtk.Separator {
+            orientation: horizontal;
+          }
+
+          Adw.Bin bottom_sheet {}
         }
       };
     };
@@ -148,99 +164,137 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
     condition ("max-width: 640px")
     setters {
       split_view.collapsed: true;
-      bottom_sheet.visible: true;
-      content_main_menu.visible: true;
+      bottom_sheet_box.visible: true;
     }
   }
 }
 
-Adw.PreferencesPage image_prefs_page {
-  Adw.PreferencesGroup options_group {
-    title: _("Options");
+Adw.Bin image_prefs_bin {
+  child: Gtk.Overlay {
+    child: Adw.PreferencesPage {
+      Adw.PreferencesGroup options_group {
+        title: _("Options");
 
-    [header-suffix]
-    Gtk.MenuButton options_information_button {
-      valign: center;
-      popover: options_information_popover;
-      icon-name: "help-about-symbolic";
-      tooltip-text: _("Explanation");
+        [header-suffix]
+        Gtk.MenuButton options_information_button {
+          valign: center;
+          popover: options_information_popover;
+          icon-name: "help-about-symbolic";
+          tooltip-text: _("Explanation");
 
-      styles [
-        "flat"
-      ]
-    }
-
-    Adw.ComboRow dither_algorithms_combo {
-      title: _("Dither Algorithm");
-      model: Gtk.StringList algorithms_stringlist {};
-    }
-
-    //Adw.ComboRow color_palette {
-    //  title: _("Color Palette");
-    //  model: Gtk.StringList color_palettes {};
-    //}
-
-    Adw.SpinRow color_amount_row {
-      title: _("Color Amount");
-      adjustment: Gtk.Adjustment color_amount_adjustment {
-        lower: 1;
-        upper: 256;
-        step-increment: 1;
-        page-increment: 5;
-      };
-      output => $on_color_amount_changed();
-    }
-
-    Adw.ComboRow save_format_combo {
-      title: _("Convert To");
-      model: Gtk.StringList image_formats_stringlist {};
-    }
-  }
-
-  Adw.PreferencesGroup {
-    Adw.ExpanderRow image_properties_expander {
-      title: _("Image Properties");
-      enable-expansion: false;
-
-      [action]
-      Gtk.Box {
-        orientation: horizontal;
-        spacing: 10;
-        valign: center;
-
-        Gtk.ToggleButton brightness_toggle {
-          tooltip-text: _("Brightness");
-          icon-name: "image-adjust-brightness-symbolic";
-          clicked => $on_brightness_toggled();
           styles [
             "flat"
           ]
         }
 
-        Gtk.ToggleButton contrast_toggle {
-          tooltip-text: _("Contrast");
-          icon-name: "image-adjust-contrast-symbolic";
-          clicked => $on_contrast_toggled();
-          styles [
-            "flat"
-          ]
+        Adw.ComboRow dither_algorithms_combo {
+          title: _("Dither Algorithm");
+          model: Gtk.StringList algorithms_stringlist {};
         }
 
-        Gtk.ToggleButton image_size_toggle {
-          tooltip-text: _("Image Size");
-          icon-name: "image-adjust-size-symbolic";
-          clicked => $on_resize_toggled();
-          styles [
-            "flat"
-          ]
+        //Adw.ComboRow color_palette {
+        //  title: _("Color Palette");
+        //  model: Gtk.StringList color_palettes {};
+        //}
+
+        Adw.SpinRow color_amount_row {
+          title: _("Color Amount");
+          adjustment: Gtk.Adjustment color_amount_adjustment {
+            lower: 1;
+            upper: 256;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_color_amount_changed();
+        }
+
+        Adw.ComboRow export_format_combo {
+          title: _("Convert To");
+          model: Gtk.StringList image_formats_stringlist {};
         }
       }
-    }
-  }
 
-  Adw.PreferencesGroup {
-    Gtk.Box {
+      Adw.PreferencesGroup adjustments_group {
+        title: _("Adjustments");
+
+        Adw.SpinRow brightness_row {
+          title: _("Brightness");
+          subtitle: _("Range -100 to 100");
+          adjustment: Gtk.Adjustment brightness_adjustment {
+            lower: -100;
+            upper: 100;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_brightness_changed();
+        }
+
+        Adw.SpinRow contrast_row {
+          title: _("Contrast");
+          subtitle: _("Range -100 to 100");
+          adjustment: Gtk.Adjustment contrast_adjustment {
+            lower: -100;
+            upper: 100;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_contrast_changed();
+        }
+      }
+
+      Adw.PreferencesGroup image_size_group {
+        title: _("Image Size");
+
+        Adw.SpinRow image_width_row {
+          title: _("Width");
+          subtitle: _("In pixels");
+          adjustment: Gtk.Adjustment image_width_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_image_width_changed();
+        }
+
+        Adw.SwitchRow aspect_ratio_toggle {
+          title: _("Keep aspect ratio");
+
+          [suffix]
+          Gtk.MenuButton aspect_ratio_button {
+            valign: center;
+            popover: aspect_ratio_popover;
+            icon-name: "help-about-symbolic";
+            tooltip-text: _("Explanation");
+
+            styles [
+              "flat"
+            ]
+          }
+        }
+
+        Adw.SpinRow image_height_row {
+          title: _("Height");
+          subtitle: _("In pixels");
+          adjustment: Gtk.Adjustment image_height_adjustment {
+            lower: 1;
+            upper: 8192;
+            step-increment: 1;
+            page-increment: 5;
+          };
+          output => $on_image_height_changed();
+        }
+      }
+
+      Adw.PreferencesGroup bottom_margin_group {
+        margin-bottom: 46;
+      }
+    };
+
+    [overlay]
+    Gtk.Box result_overlay {
       orientation: horizontal;
+      margin-bottom: 24;
       halign: center;
       vexpand: true;
       valign: end;
@@ -265,71 +319,7 @@ Adw.PreferencesPage image_prefs_page {
         ]
       }
     }
-  }
-}
-
-Adw.SpinRow image_width_row {
-  title: _("Width");
-  subtitle: _("In pixels");
-  adjustment: Gtk.Adjustment image_width_adjustment {
-    lower: 1;
-    upper: 8192;
-    step-increment: 1;
-    page-increment: 5;
   };
-  output => $on_image_width_changed();
-}
-
-Adw.SwitchRow aspect_ratio_toggle {
-  title: _("Keep aspect ratio");
-
-  [suffix]
-  Gtk.MenuButton aspect_ratio_button {
-    valign: center;
-    popover: aspect_ratio_popover;
-    icon-name: "help-about-symbolic";
-    tooltip-text: _("Explanation");
-
-    styles [
-      "flat"
-    ]
-  }
-}
-
-Adw.SpinRow image_height_row {
-  title: _("Height");
-  subtitle: _("In pixels");
-  adjustment: Gtk.Adjustment image_height_adjustment {
-    lower: 1;
-    upper: 8192;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_image_height_changed();
-}
-
-Adw.SpinRow brightness_row {
-  title: _("Brightness");
-  subtitle: _("Range -100 to 100");
-  adjustment: Gtk.Adjustment brightness_adjustment {
-    lower: -100;
-    upper: 100;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_brightness_changed();
-}
-
-Adw.SpinRow contrast_row {
-  title: _("Contrast");
-  subtitle: _("Range -100 to 100");
-  adjustment: Gtk.Adjustment contrast_adjustment {
-    lower: -100;
-    upper: 100;
-    step-increment: 1;
-    page-increment: 5;
-  };
-  output => $on_contrast_changed();
 }
 
 Gtk.Popover options_information_popover {

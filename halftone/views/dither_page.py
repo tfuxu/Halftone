@@ -26,11 +26,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     image_box = Gtk.Template.Child()
     image_dithered = Gtk.Template.Child()
 
-    image_prefs_page = Gtk.Template.Child()
+    image_prefs_bin = Gtk.Template.Child()
 
     split_view = Gtk.Template.Child()
     sidebar_view = Gtk.Template.Child()
 
+    bottom_sheet_box = Gtk.Template.Child()
     bottom_sheet = Gtk.Template.Child()
 
     preview_scroll_window = Gtk.Template.Child()
@@ -38,14 +39,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     save_image_button = Gtk.Template.Child()
     toggle_sheet_button = Gtk.Template.Child()
 
-    save_format_combo = Gtk.Template.Child()
+    export_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
-
-    image_properties_expander = Gtk.Template.Child()
-
-    brightness_toggle = Gtk.Template.Child()
-    contrast_toggle = Gtk.Template.Child()
-    image_size_toggle = Gtk.Template.Child()
 
     image_width_row = Gtk.Template.Child()
     aspect_ratio_toggle = Gtk.Template.Child()
@@ -109,7 +104,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.dither_algorithms_combo.connect("notify::selected",
             self.on_dither_algorithm_selected)
 
-        self.save_format_combo.connect("notify::selected",
+        self.export_format_combo.connect("notify::selected",
             self.on_save_format_selected)
 
         self.mobile_breakpoint.connect("apply",
@@ -126,7 +121,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
 
         # Set utility page in sidebar by default
-        self.sidebar_view.set_content(self.image_prefs_page)
+        self.sidebar_view.set_content(self.image_prefs_bin)
 
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
@@ -158,7 +153,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         for image_format in supported_output_formats:
             self.image_formats_stringlist.append(image_format)
 
-        self.save_format_combo.set_selected(supported_output_formats.index("png"))
+        self.export_format_combo.set_selected(supported_output_formats.index("png"))
 
     def setup_controllers(self):
         preview_drag_ctrl = Gtk.GestureDrag.new()
@@ -256,60 +251,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_brightness_toggled(self, widget, *args):
-        if self.contrast_toggle.props.active is True:
-            self.contrast_toggle.set_active(False)
-            self.image_properties_expander.remove(self.contrast_row)
-
-        if self.image_size_toggle.props.active is True:
-            self.image_size_toggle.set_active(False)
-            self.remove_image_size_rows()
-
-        self.on_image_prop_option_toggled(widget, self.brightness_row)
-
-    @Gtk.Template.Callback()
-    def on_contrast_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active is True:
-            self.brightness_toggle.set_active(False)
-            self.image_properties_expander.remove(self.brightness_row)
-
-        if self.image_size_toggle.props.active is True:
-            self.image_size_toggle.set_active(False)
-            self.remove_image_size_rows()
-
-        self.on_image_prop_option_toggled(widget, self.contrast_row)
-
-    @Gtk.Template.Callback()
-    def on_resize_toggled(self, widget, *args):
-        if self.brightness_toggle.props.active is True:
-            self.brightness_toggle.set_active(False)
-            self.image_properties_expander.remove(self.brightness_row)
-
-        if self.contrast_toggle.props.active is True:
-            self.contrast_toggle.set_active(False)
-            self.image_properties_expander.remove(self.contrast_row)
-
-        self.on_image_prop_option_toggled(widget,
-                                          self.image_width_row,
-                                          self.aspect_ratio_toggle,
-                                          self.image_height_row)
-
-    @Gtk.Template.Callback()
-    def on_toggle_sheet_clicked(self, widget, *args):
-        if self.is_mobile:
-            if self.bottom_sheet.props.visible:
-                self.bottom_sheet.set_visible(False)
-                return
-
-            self.bottom_sheet.set_visible(True)
-        else:
-            if self.split_view.props.show_sidebar:
-                self.split_view.set_show_sidebar(False)
-                return
-
-            self.split_view.set_show_sidebar(True)
-
-    @Gtk.Template.Callback()
     def on_brightness_changed(self, widget):
         new_brightness = int(widget.props.value)
 
@@ -386,6 +327,20 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_chooser.set_current_name(output_filename)
         self.save_image_chooser.show()
 
+    def on_toggle_sheet(self, widget, *args):
+        if self.is_mobile:
+            if self.bottom_sheet_box.props.visible:
+                self.bottom_sheet_box.set_visible(False)
+                return
+
+            self.bottom_sheet_box.set_visible(True)
+        else:
+            if self.split_view.props.show_sidebar:
+                self.split_view.set_show_sidebar(False)
+                return
+
+            self.split_view.set_show_sidebar(True)
+
     def on_aspect_ratio_toggled(self, widget, *args):
         if widget.props.active is True:
             self.keep_aspect_ratio = True
@@ -438,7 +393,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_breakpoint_apply(self, *args):
         self.sidebar_view.set_content(None)
-        self.bottom_sheet.set_child(self.image_prefs_page)
+        self.bottom_sheet.set_child(self.image_prefs_bin)
 
         self.is_mobile = True
 
@@ -447,7 +402,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_breakpoint_unapply(self, *args):
         self.bottom_sheet.set_child(None)
-        self.sidebar_view.set_content(self.image_prefs_page)
+        self.sidebar_view.set_content(self.image_prefs_bin)
 
         self.is_mobile = False
 
@@ -482,26 +437,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except FileNotFoundError:
             pass
 
-    def on_image_prop_option_toggled(self, toggle, *row_widgets):
-        if toggle.props.active is True:
-            for row in row_widgets:
-                self.image_properties_expander.add_row(row)
-            self.image_properties_expander.set_enable_expansion(True)
-            self.image_properties_expander.set_expanded(True)
-
-        if toggle.props.active is False:
-            for row in row_widgets:
-                self.image_properties_expander.remove(row)
-            self.image_properties_expander.set_enable_expansion(False)
-            self.image_properties_expander.set_expanded(False)
-
-    def remove_image_size_rows(self):
-        self.image_properties_expander.remove(self.image_width_row)
-        self.image_properties_expander.remove(self.aspect_ratio_toggle)
-        self.image_properties_expander.remove(self.image_height_row)
-
     def get_output_format_suffix(self) -> str:
-        selected_format = self.save_format_combo.props.selected
+        selected_format = self.export_format_combo.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
         return format_string

@@ -46,6 +46,10 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     def setup_actions(self):
         """ Setup menu actions and accelerators. """
 
+        self.toggle_sheet_action = Gio.SimpleAction.new('toggle-sheet', None)
+        self.toggle_sheet_action.connect('activate', self.dither_page.on_toggle_sheet)
+        self.app.add_action(self.toggle_sheet_action)
+
         self.open_image_action = Gio.SimpleAction.new('open-image', None)
         self.open_image_action.connect('activate', self.on_open_image)
         self.app.add_action(self.open_image_action)
@@ -54,7 +58,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.save_image_action.connect('activate', self.dither_page.on_save_image)
         self.app.add_action(self.save_image_action)
 
-        # By default disable save image action
+        # By default disable dither page specific actions
+        self.toggle_sheet_action.set_enabled(False)
         self.save_image_action.set_enabled(False)
 
     def setup_signals(self):
@@ -155,16 +160,19 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.main_stack.set_visible_child_name(self.previous_stack)
 
     def show_loading_page(self, *args):
+        self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(False)
         self.save_image_action.set_enabled(False)
         self.main_stack.set_visible_child_name("stack_loading_page")
 
     def show_error_page(self, *args):
+        self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(False)
         self.main_stack.set_visible_child_name("stack_error_page")
 
     def show_dither_page(self, *args):
+        self.toggle_sheet_action.set_enabled(True)
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(True)
         self.main_stack.set_visible_child_name("stack_dither_page")
