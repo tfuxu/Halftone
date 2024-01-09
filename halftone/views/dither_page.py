@@ -39,7 +39,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     save_image_button = Gtk.Template.Child()
     toggle_sheet_button = Gtk.Template.Child()
 
-    save_format_combo = Gtk.Template.Child()
+    export_format_combo = Gtk.Template.Child()
     dither_algorithms_combo = Gtk.Template.Child()
 
     image_width_row = Gtk.Template.Child()
@@ -104,7 +104,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.dither_algorithms_combo.connect("notify::selected",
             self.on_dither_algorithm_selected)
 
-        self.save_format_combo.connect("notify::selected",
+        self.export_format_combo.connect("notify::selected",
             self.on_save_format_selected)
 
         self.mobile_breakpoint.connect("apply",
@@ -153,7 +153,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         for image_format in supported_output_formats:
             self.image_formats_stringlist.append(image_format)
 
-        self.save_format_combo.set_selected(supported_output_formats.index("png"))
+        self.export_format_combo.set_selected(supported_output_formats.index("png"))
 
     def setup_controllers(self):
         preview_drag_ctrl = Gtk.GestureDrag.new()
@@ -438,7 +438,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             pass
 
     def get_output_format_suffix(self) -> str:
-        selected_format = self.save_format_combo.props.selected
+        selected_format = self.export_format_combo.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
         return format_string
