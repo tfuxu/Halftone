@@ -21,19 +21,19 @@
   </description>
 
   <screenshots>
-    <screenshot type="default" width="1091" height="834">
+    <screenshot type="default" width="1395" height="994">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-1.png</image>
     </screenshot>
-    <screenshot width="1091" height="834">
+    <screenshot width="1395" height="994">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-2.png</image>
     </screenshot>
-    <screenshot width="1091" height="834">
+    <screenshot width="1395" height="994">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-3.png</image>
     </screenshot>
-    <screenshot width="1091" height="834">
+    <screenshot width="1395" height="994">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-4.png</image>
     </screenshot>
-    <screenshot width="556" height="967">
+    <screenshot width="1395" height="994">
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-5.png</image>
     </screenshot>
   </screenshots>
