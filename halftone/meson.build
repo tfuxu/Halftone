@@ -1,5 +1,3 @@
-python = import('python')
-
 # Generate Python executable
 configure_file(
   input: 'halftone.in',
