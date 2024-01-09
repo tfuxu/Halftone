@@ -3,7 +3,7 @@ using Adw 1;
 
 template $HalftoneDitherPage: Adw.BreakpointBin {
   width-request: 360;
-  height-request: 360;
+  height-request: 296;
 
   child: Adw.OverlaySplitView split_view {
     sidebar-position: start;
@@ -27,44 +27,53 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         }
 
         [end]
-        Gtk.MenuButton {
+        Gtk.MenuButton sidebar_main_menu {
           tooltip-text: _("Main Menu");
           icon-name: "open-menu-symbolic";
           menu-model: main_menu;
-
           primary: bind split_view.show-sidebar;
         }
       }
     };
 
     content: Adw.ToolbarView dither_view {
+      extend-content-to-top-edge: true;
+
       [top]
-      Adw.HeaderBar {
-        centering-policy: strict;
-        show-title: false;
+      Gtk.Stack dither_header_stack {
+        Gtk.StackPage {
+          name: "desktop";
 
-        styles [
-          "flat"
-        ]
+          child: Adw.HeaderBar {
+            show-title: false;
 
-        [start]
-        Gtk.Button content_open_button {
-          tooltip-text: _("Open Image (Ctrl+O)");
-          icon-name: "arrow-into-box-symbolic";
-          action-name: "app.open-image";
-
-          visible: bind split_view.show-sidebar inverted;
+            styles [
+              "desktop"
+            ]
+          };
         }
 
-        [end]
-        Gtk.MenuButton content_main_menu {
-          tooltip-text: _("Main Menu");
-          icon-name: "open-menu-symbolic";
-          menu-model: main_menu;
+        Gtk.StackPage {
+          name: "mobile";
 
-          primary: bind split_view.show-sidebar inverted;
-          visible: bind split_view.show-sidebar inverted;
+          child: Adw.HeaderBar {
+            [start]
+            Gtk.Button content_open_button {
+              tooltip-text: _("Open Image (Ctrl+O)");
+              icon-name: "arrow-into-box-symbolic";
+              action-name: "app.open-image";
+            }
+
+            [end]
+            Gtk.MenuButton content_main_menu {
+              tooltip-text: _("Main Menu");
+              icon-name: "open-menu-symbolic";
+              menu-model: main_menu;
+            }
+          };
         }
+
+        visible-child-name: "desktop";
       }
 
       content: Gtk.Box image_box {
@@ -74,6 +83,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         hexpand: true;
 
         Gtk.Stack preview_group_stack {
+          height-request: 150;
           transition-type: crossfade;
 
           Gtk.StackPage {
@@ -89,43 +99,37 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                   can-shrink: false;
                   halign: center;
                   valign: center;
-
-                  styles [
-                    "card"
-                  ]
                 }
               };
 
               [overlay]
-              Gtk.Box {
+              Gtk.Button toggle_sheet_button {
+                halign: start;
+                valign: end;
+                icon-name: "sidebar-show-left-symbolic";
+                action-name: "app.toggle-sheet";
+                tooltip-text: _("Toggle Sidebar");
+
+                styles [
+                  "osd",
+                  "circular",
+                  "custom-on-image"
+                ]
+              }
+
+              [overlay]
+              Gtk.Button {
                 halign: end;
                 valign: end;
-                margin-end: 12;
-                margin-bottom: 12;
-                orientation: horizontal;
-                spacing: 10;
+                icon-name: "adw-external-link-symbolic";
+                tooltip-text: _("Open in External Image Viewer");
+                action-name: "app.show-preview-image";
 
-                Gtk.Button toggle_sheet_button {
-                  icon-name: "sidebar-show-left-symbolic";
-                  tooltip-text: _("Toggle Sidebar");
-                  action-name: "app.toggle-sheet";
-
-                  styles [
-                    "osd",
-                    "circular"
-                  ]
-                }
-
-                Gtk.Button {
-                  icon-name: "adw-external-link-symbolic";
-                  tooltip-text: _("Open in External Image Viewer");
-                  action-name: "app.show-preview-image";
-
-                  styles [
-                    "osd",
-                    "circular"
-                  ]
-                }
+                styles [
+                  "osd",
+                  "circular",
+                  "custom-on-image"
+                ]
               }
             };
           }
@@ -146,8 +150,10 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
         // TODO: Add SpringAnimation to animate sheet hiding
         // TODO: Add scroll and touch drag gestures for triggering bottom sheet hide animation
+
         Gtk.Box bottom_sheet_box {
           orientation: vertical;
+          valign: end;
           visible: false;
 
           Gtk.Separator {
@@ -163,15 +169,22 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   Adw.Breakpoint mobile_breakpoint {
     condition ("max-width: 640px")
     setters {
+      sidebar_main_menu.primary: false;
+      content_main_menu.primary: true;
       split_view.collapsed: true;
+      dither_view.extend-content-to-top-edge: false;
+      dither_view.top-bar-style: raised_border;
+      dither_header_stack.visible-child-name: "mobile";
+      toggle_sheet_button.icon-name: "sheet-show-bottom-symbolic";
+      toggle_sheet_button.tooltip-text: _("Toggle Bottom Sheet");
       bottom_sheet_box.visible: true;
     }
   }
 }
 
 Adw.Bin image_prefs_bin {
-  child: Gtk.Overlay {
-    child: Adw.PreferencesPage {
+  child: Adw.ToolbarView {
+    content: Adw.PreferencesPage {
       Adw.PreferencesGroup options_group {
         title: _("Options");
 
@@ -285,32 +298,13 @@ Adw.Bin image_prefs_bin {
           output => $on_image_height_changed();
         }
       }
-
-      Adw.PreferencesGroup bottom_margin_group {
-        margin-bottom: 46;
-      }
     };
 
-    [overlay]
-    Gtk.Box result_overlay {
-      orientation: horizontal;
-      margin-bottom: 24;
+    [bottom]
+    Gtk.Box {
       halign: center;
-      vexpand: true;
-      valign: end;
-      spacing: 6;
-
-      Gtk.Button more_options_button {
-        visible: false;
-        label: _("More Options");
-
-        styles [
-          "pill"
-        ]
-      }
-
       Gtk.Button save_image_button {
-        label: _("Dither It!");
+        label: _("Save Image");
         action-name: "app.save-image";
 
         styles [
@@ -318,50 +312,38 @@ Adw.Bin image_prefs_bin {
           "suggested-action"
         ]
       }
+
+      styles [
+        "sheet-toolbar"
+      ]
     }
   };
 }
 
 Gtk.Popover options_information_popover {
-  autohide: true;
-
-  Gtk.Box {
-    orientation: vertical;
+  Gtk.Label {
     margin-top: 6;
     margin-bottom: 6;
     margin-start: 6;
     margin-end: 6;
-
-    Gtk.Label {
-      wrap: true;
-      justify: center;
-      max-width-chars: 40;
-      label: _("You can customize some of these parameters to make your image look different. To learn more about individual options, go to the wiki page.");
-    }
-
-    Gtk.LinkButton {
-      label: _("Wiki Page");
-      uri: "https://github.com/tfuxu/Halftone/wiki/Options";
-    }
+    wrap: true;
+    justify: center;
+    max-width-chars: 30;
+    use-markup: true;
+    label: _("To learn more about individual options, go to the <a href=\"https://github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>.");
   }
 }
 
 Gtk.Popover aspect_ratio_popover {
-  autohide: true;
-
-  Gtk.Box {
-    orientation: vertical;
+  Gtk.Label {
     margin-top: 6;
     margin-bottom: 6;
     margin-start: 6;
     margin-end: 6;
-
-    Gtk.Label {
-      wrap: true;
-      justify: center;
-      max-width-chars: 40;
-      label: _("This option allowes you to preserve original aspect ratio when resizing an image.");
-    }
+    wrap: true;
+    justify: center;
+    max-width-chars: 30;
+    label: _("This option allows you to preserve original aspect ratio when resizing an image.");
   }
 }
 

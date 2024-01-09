@@ -24,6 +24,7 @@ class HalftoneAboutWindow:
             issue_url=constants.bugtracker_url,
             developers=[
                 "tfuxu https://github.com/tfuxu",
+                "Brage Fuglseth https://bragefuglseth.dev",
             ],
             designers=[
                 "tfuxu https://github.com/tfuxu",
