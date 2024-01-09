@@ -397,17 +397,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.is_mobile = True
 
-        self.toggle_sheet_button.set_tooltip_text(_("Toggle Bottom Sheet"))
-        self.toggle_sheet_button.set_icon_name("sheet-show-bottom-symbolic")
-
     def on_breakpoint_unapply(self, *args):
         self.bottom_sheet.set_child(None)
         self.sidebar_view.set_content(self.image_prefs_bin)
 
         self.is_mobile = False
-
-        self.toggle_sheet_button.set_tooltip_text(_("Toggle Sidebar"))
-        self.toggle_sheet_button.set_icon_name("sidebar-show-right-symbolic")
 
     """ Module-specific helpers """
 
