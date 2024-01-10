@@ -81,6 +81,22 @@
   </keywords>
 
   <releases>
+    <release version="0.6.0" date="2024-01-10">
+      <description translatable="no">
+        <p>
+          Another major UI design update!
+          This update notably moves sidebar to the left and makes image preview area extra large, by making headerbar transparent.
+        </p>
+
+        <p>Changes:</p>
+        <ul>
+          <li>Implement UI suggestions from GNOME Circle application</li>
+          <li>Add keyboard shortcuts for toggling sidebar and main menu</li>
+          <li>Fixed formatting in appdata, now release info should finally show up in Flathub!</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.5.0" date="2023-12-10">
       <description translatable="no">
         <ul>
