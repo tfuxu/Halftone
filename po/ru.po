@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 01:06+0100\n"
+"POT-Creation-Date: 2024-01-10 21:14+0100\n"
 "PO-Revision-Date: 2023-06-10 19:49+0300\n"
 "Last-Translator: David Lapshin <ddaudix@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -22,12 +22,12 @@ msgstr ""
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:8
+#: data/io.github.tfuxu.Halftone.desktop.in.in:7
 msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Придайте своим изображениям тот самый пиксель-арт стиль"
 
@@ -47,125 +47,119 @@ msgstr ""
 "арт, и уменьшите размер файла с помощью Halftone."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "compression;pixelart;dither;edit;"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:12
+msgid "image;compression;pixelart;dither;processing;"
 msgstr ""
 
-#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:50
-msgid "Main Menu"
-msgstr "Главное меню"
-
-#: data/ui/dither_page.blp:43
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
 msgid "Open Image (Ctrl+O)"
 msgstr "Открыть изображение (Ctrl+O)"
 
-#: data/ui/dither_page.blp:101
-msgid "Open in External Image Viewer"
-msgstr "Открыть во внешней программе просмотра изображений"
+#: data/ui/dither_page.blp:31 data/ui/dither_page.blp:69
+msgid "Main Menu"
+msgstr "Главное меню"
 
-#: data/ui/dither_page.blp:112 halftone/views/dither_page.py:454
+#: data/ui/dither_page.blp:111
 msgid "Toggle Sidebar"
 msgstr ""
 
-#: data/ui/dither_page.blp:159
+#: data/ui/dither_page.blp:125
+msgid "Open in External Image Viewer"
+msgstr "Открыть во внешней программе просмотра изображений"
+
+#: data/ui/dither_page.blp:179
+msgid "Toggle Bottom Sheet"
+msgstr ""
+
+#: data/ui/dither_page.blp:189
 msgid "Options"
 msgstr "Опции"
 
-#: data/ui/dither_page.blp:166 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:196 data/ui/dither_page.blp:281
 msgid "Explanation"
 msgstr "Объяснение"
 
-#: data/ui/dither_page.blp:174
+#: data/ui/dither_page.blp:204
 msgid "Dither Algorithm"
 msgstr "Алгоритм дизеринга"
 
-#: data/ui/dither_page.blp:184
+#: data/ui/dither_page.blp:214
 msgid "Color Amount"
 msgstr "Количество цветов"
 
-#: data/ui/dither_page.blp:195
+#: data/ui/dither_page.blp:225
 msgid "Convert To"
 msgstr "Конвертировать в"
 
-#: data/ui/dither_page.blp:202
-msgid "Image Properties"
-msgstr "Свойства изображения"
+#: data/ui/dither_page.blp:231
+msgid "Adjustments"
+msgstr ""
 
-#: data/ui/dither_page.blp:212 data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:234
 msgid "Brightness"
 msgstr "Яркость"
 
-#: data/ui/dither_page.blp:221 data/ui/dither_page.blp:324
+#: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
+msgid "Range -100 to 100"
+msgstr ""
+
+#: data/ui/dither_page.blp:246
 msgid "Contrast"
 msgstr "Контраст"
 
-#: data/ui/dither_page.blp:230
+#: data/ui/dither_page.blp:259
 msgid "Image Size"
 msgstr "Размер изображения"
 
-#: data/ui/dither_page.blp:251
-msgid "More Options"
-msgstr "Больше опций"
-
-#: data/ui/dither_page.blp:259
-msgid "Dither It!"
-msgstr "Преобразовать!"
-
-#: data/ui/dither_page.blp:272
+#: data/ui/dither_page.blp:262
 #, fuzzy
 msgid "Width"
 msgstr "Ширина изображения"
 
-#: data/ui/dither_page.blp:273 data/ui/dither_page.blp:301
+#: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
 msgid "In pixels"
 msgstr ""
 
-#: data/ui/dither_page.blp:284
+#: data/ui/dither_page.blp:274
 msgid "Keep aspect ratio"
 msgstr "Сохранять соотношение сторон"
 
-#: data/ui/dither_page.blp:300
+#: data/ui/dither_page.blp:290
 #, fuzzy
 msgid "Height"
 msgstr "Высота изображения"
 
-#: data/ui/dither_page.blp:313 data/ui/dither_page.blp:325
-msgid "Range -100 to 100"
+#: data/ui/dither_page.blp:307
+#, fuzzy
+msgid "Save Image"
+msgstr "Сохранить изображение"
+
+#: data/ui/dither_page.blp:333
+msgid ""
+"To learn more about individual options, go to the <a href=\"https://github."
+"com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
 
-#: data/ui/dither_page.blp:349
+#: data/ui/dither_page.blp:346
 msgid ""
-"You can customize some of these parameters to make your image look "
-"different. To learn more about individual options, go to the wiki page."
-msgstr ""
-"Вы можете настроить некоторые из этих параметров, чтобы ваше изображение "
-"выглядело по-другому. Чтобы узнать больше об отдельных параметрах, перейдите "
-"на страницу вики."
-
-#: data/ui/dither_page.blp:353
-msgid "Wiki Page"
-msgstr "Вики-страница"
-
-#: data/ui/dither_page.blp:373
-msgid ""
-"This option allowes you to preserve original aspect ratio when resizing an "
+"This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
 
-#: data/ui/dither_page.blp:379
+#: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
 msgstr "Сохранить изображение в…"
 
-#: data/ui/dither_page.blp:384 data/ui/main_window.blp:179
+#: data/ui/dither_page.blp:356 data/ui/main_window.blp:175
 msgid "All files"
 msgstr "Все файлы"
 
-#: data/ui/dither_page.blp:396
+#: data/ui/dither_page.blp:368
 msgid "Keyboard Shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/ui/dither_page.blp:401 data/ui/main_window.blp:30
-#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+#: data/ui/dither_page.blp:373 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:82 data/ui/main_window.blp:132
 msgid "About Halftone"
 msgstr "О Halftone"
 
@@ -191,27 +185,32 @@ msgstr "Общие"
 
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
+msgid "Toggle Utility Pane"
+msgstr ""
+
+#: data/ui/help_overlay.blp:33
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Показать комбинации клавиш"
 
-#: data/ui/help_overlay.blp:38
+#: data/ui/help_overlay.blp:43
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Выйти"
 
-#: data/ui/main_window.blp:57 halftone/views/dither_page.py:236
+#: data/ui/main_window.blp:55 halftone/views/dither_page.py:231
 msgid "Open Image"
 msgstr "Открыть изображение"
 
-#: data/ui/main_window.blp:113
+#: data/ui/main_window.blp:109
 msgid "Drop Here to Load Image"
 msgstr "Перетащите сюда чтобы загрузить изображение"
 
-#: data/ui/main_window.blp:149
+#: data/ui/main_window.blp:145
 msgid "Image Error Occurred"
 msgstr "Произошла ошибка изображения"
 
-#: data/ui/main_window.blp:150
+#: data/ui/main_window.blp:146
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -220,42 +219,58 @@ msgstr ""
 "пожалуйста, скопируйте журналы и сообщите о проблеме в систему отслеживания "
 "ошибок."
 
-#: data/ui/main_window.blp:158
+#: data/ui/main_window.blp:154
 msgid "Copy Logs"
 msgstr "Скопировать журналы"
 
-#: data/ui/main_window.blp:174
+#: data/ui/main_window.blp:170
 msgid "Select an Image"
 msgstr "Выберите изображение"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:33
+#: halftone/views/about_window.py:36
 msgid "translator-credits"
 msgstr "Давид Лапшин <ddaudix@gmail.com>"
 
-#: halftone/views/main_window.py:98
+#: halftone/views/main_window.py:103
 msgid "Supported image formats"
 msgstr "Поддерживаемые форматы изображений"
 
-#: halftone/views/main_window.py:118
+#: halftone/views/main_window.py:123
 msgid "Failed to load an image"
 msgstr "Не удалось загрузить изображение"
 
-#: halftone/views/main_window.py:135
+#: halftone/views/main_window.py:140
 msgid "Copied logs to clipboard"
 msgstr ""
 
-#: halftone/views/dither_page.py:235
+#: halftone/views/dither_page.py:230
 msgid "Image dithered successfully!"
 msgstr "Изображение преобразовано успешно!"
 
-#: halftone/views/dither_page.py:445
-msgid "Toggle Bottom Sheet"
-msgstr ""
-
-#: halftone/views/dither_page.py:583
+#: halftone/views/dither_page.py:514
 msgid "Failed to load preview image"
 msgstr "Не удалось загрузить изображение предварительного просмотра"
+
+#~ msgid "Image Properties"
+#~ msgstr "Свойства изображения"
+
+#~ msgid "More Options"
+#~ msgstr "Больше опций"
+
+#~ msgid "Dither It!"
+#~ msgstr "Преобразовать!"
+
+#~ msgid ""
+#~ "You can customize some of these parameters to make your image look "
+#~ "different. To learn more about individual options, go to the wiki page."
+#~ msgstr ""
+#~ "Вы можете настроить некоторые из этих параметров, чтобы ваше изображение "
+#~ "выглядело по-другому. Чтобы узнать больше об отдельных параметрах, "
+#~ "перейдите на страницу вики."
+
+#~ msgid "Wiki Page"
+#~ msgstr "Вики-страница"
 
 #~ msgid ""
 #~ "Halftone displaying image with Floyd-Steinberg dithering and 2-color "

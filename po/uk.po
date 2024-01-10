@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 01:06+0100\n"
+"POT-Creation-Date: 2024-01-10 21:14+0100\n"
 "PO-Revision-Date: 2023-12-30 18:58+0200\n"
 "Last-Translator: volkov <volkovissocool@gmail.com>\n"
 "Language-Team: \n"
@@ -19,12 +19,12 @@ msgstr ""
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:8
+#: data/io.github.tfuxu.Halftone.desktop.in.in:7
 msgid "Halftone"
 msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
+#: data/io.github.tfuxu.Halftone.desktop.in.in:8 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Надайте вашим зображенням тієї самої піксельної естетики"
 
@@ -44,127 +44,123 @@ msgstr ""
 "естетики і зменшіть розмір файлу у процесі завдяки Halftone."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/io.github.tfuxu.Halftone.desktop.in.in:13
-msgid "compression;pixelart;dither;edit;"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:12
+#, fuzzy
+msgid "image;compression;pixelart;dither;processing;"
 msgstr ""
 "compression;pixelart;dither;edit;стискання;пікселі;арт;редагування;"
 "зображення;перфект;"
 
-#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:50
-msgid "Main Menu"
-msgstr "Головне меню"
-
-#: data/ui/dither_page.blp:43
+#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
 msgid "Open Image (Ctrl+O)"
 msgstr "Відкрити зображення (Ctrl+O)"
 
-#: data/ui/dither_page.blp:101
-msgid "Open in External Image Viewer"
-msgstr "Відкрити у зовнішній програмі перегляду зображень"
+#: data/ui/dither_page.blp:31 data/ui/dither_page.blp:69
+msgid "Main Menu"
+msgstr "Головне меню"
 
-#: data/ui/dither_page.blp:112 halftone/views/dither_page.py:454
+#: data/ui/dither_page.blp:111
 msgid "Toggle Sidebar"
 msgstr "Показати / приховати бокову панель"
 
-#: data/ui/dither_page.blp:159
+#: data/ui/dither_page.blp:125
+msgid "Open in External Image Viewer"
+msgstr "Відкрити у зовнішній програмі перегляду зображень"
+
+#: data/ui/dither_page.blp:179
+msgid "Toggle Bottom Sheet"
+msgstr "Показати / приховати нижню панель"
+
+#: data/ui/dither_page.blp:189
 msgid "Options"
 msgstr "Опції"
 
-#: data/ui/dither_page.blp:166 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:196 data/ui/dither_page.blp:281
 msgid "Explanation"
 msgstr "Пояснення"
 
-#: data/ui/dither_page.blp:174
+#: data/ui/dither_page.blp:204
 msgid "Dither Algorithm"
 msgstr "Алгоритм розмивання"
 
-#: data/ui/dither_page.blp:184
+#: data/ui/dither_page.blp:214
 msgid "Color Amount"
 msgstr "Кількість кольорів"
 
-#: data/ui/dither_page.blp:195
+#: data/ui/dither_page.blp:225
 msgid "Convert To"
 msgstr "Конвертувати у"
 
-#: data/ui/dither_page.blp:202
-msgid "Image Properties"
-msgstr "Властивості зображення"
+#: data/ui/dither_page.blp:231
+msgid "Adjustments"
+msgstr ""
 
-#: data/ui/dither_page.blp:212 data/ui/dither_page.blp:312
+#: data/ui/dither_page.blp:234
 msgid "Brightness"
 msgstr "Яскравість"
 
-#: data/ui/dither_page.blp:221 data/ui/dither_page.blp:324
-msgid "Contrast"
-msgstr "Контраст"
-
-#: data/ui/dither_page.blp:230
-msgid "Image Size"
-msgstr "Розмір зображення"
-
-#: data/ui/dither_page.blp:251
-msgid "More Options"
-msgstr "Більше опцій"
-
-#: data/ui/dither_page.blp:259
-msgid "Dither It!"
-msgstr "Розмити!"
-
-#: data/ui/dither_page.blp:272
-msgid "Width"
-msgstr "Ширина"
-
-#: data/ui/dither_page.blp:273 data/ui/dither_page.blp:301
-msgid "In pixels"
-msgstr "У пікселях"
-
-#: data/ui/dither_page.blp:284
-msgid "Keep aspect ratio"
-msgstr "Зберігати пропорції"
-
-#: data/ui/dither_page.blp:300
-msgid "Height"
-msgstr "Висота"
-
-#: data/ui/dither_page.blp:313 data/ui/dither_page.blp:325
+#: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
 msgid "Range -100 to 100"
 msgstr "Діапазон: від -100 до 100"
 
-#: data/ui/dither_page.blp:349
+#: data/ui/dither_page.blp:246
+msgid "Contrast"
+msgstr "Контраст"
+
+#: data/ui/dither_page.blp:259
+msgid "Image Size"
+msgstr "Розмір зображення"
+
+#: data/ui/dither_page.blp:262
+msgid "Width"
+msgstr "Ширина"
+
+#: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
+msgid "In pixels"
+msgstr "У пікселях"
+
+#: data/ui/dither_page.blp:274
+msgid "Keep aspect ratio"
+msgstr "Зберігати пропорції"
+
+#: data/ui/dither_page.blp:290
+msgid "Height"
+msgstr "Висота"
+
+#: data/ui/dither_page.blp:307
+#, fuzzy
+msgid "Save Image"
+msgstr "Зберегти зображення"
+
+#: data/ui/dither_page.blp:333
 msgid ""
-"You can customize some of these parameters to make your image look "
-"different. To learn more about individual options, go to the wiki page."
+"To learn more about individual options, go to the <a href=\"https://github."
+"com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
-"Ви можете налаштувати деякі з цих опцій, щоб змінити вигляд вашого "
-"зображення. Щоб дізнатися більше про кожну з окремих опцій - завітайте на "
-"вікі-сторінку."
 
-#: data/ui/dither_page.blp:353
-msgid "Wiki Page"
-msgstr "Вікі-сторінка з поясненнями"
-
-#: data/ui/dither_page.blp:373
+#: data/ui/dither_page.blp:346
+#, fuzzy
 msgid ""
-"This option allowes you to preserve original aspect ratio when resizing an "
+"This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
 "Ця опція дозволяє вам зберегти оригінальні пропорції при зміні розмірів "
 "зображення."
 
-#: data/ui/dither_page.blp:379
+#: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
 msgstr "Зберегти зображення в…"
 
-#: data/ui/dither_page.blp:384 data/ui/main_window.blp:179
+#: data/ui/dither_page.blp:356 data/ui/main_window.blp:175
 msgid "All files"
 msgstr "Всі файли"
 
-#: data/ui/dither_page.blp:396
+#: data/ui/dither_page.blp:368
 msgid "Keyboard Shortcuts"
 msgstr "Клавіатурні скорочення"
 
-#: data/ui/dither_page.blp:401 data/ui/main_window.blp:30
-#: data/ui/main_window.blp:86 data/ui/main_window.blp:136
+#: data/ui/dither_page.blp:373 data/ui/main_window.blp:30
+#: data/ui/main_window.blp:82 data/ui/main_window.blp:132
 msgid "About Halftone"
 msgstr "Про Halftone"
 
@@ -190,27 +186,32 @@ msgstr "Загальні"
 
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
+msgid "Toggle Utility Pane"
+msgstr ""
+
+#: data/ui/help_overlay.blp:33
+msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Показати клавіатурні скорочення"
 
-#: data/ui/help_overlay.blp:38
+#: data/ui/help_overlay.blp:43
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти"
 
-#: data/ui/main_window.blp:57 halftone/views/dither_page.py:236
+#: data/ui/main_window.blp:55 halftone/views/dither_page.py:231
 msgid "Open Image"
 msgstr "Відкрити зображення"
 
-#: data/ui/main_window.blp:113
+#: data/ui/main_window.blp:109
 msgid "Drop Here to Load Image"
 msgstr "Перетягніть сюди, щоб завантажити зображення"
 
-#: data/ui/main_window.blp:149
+#: data/ui/main_window.blp:145
 msgid "Image Error Occurred"
 msgstr "Сталася помилка з зображенням"
 
-#: data/ui/main_window.blp:150
+#: data/ui/main_window.blp:146
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
@@ -218,39 +219,55 @@ msgstr ""
 "Сталася помилка при завантаженні зображення. Якщо ця помилка не зникне, будь-"
 "ласка, повідомте про ваду до трекеру вад."
 
-#: data/ui/main_window.blp:158
+#: data/ui/main_window.blp:154
 msgid "Copy Logs"
 msgstr "Скопіювати журнал"
 
-#: data/ui/main_window.blp:174
+#: data/ui/main_window.blp:170
 msgid "Select an Image"
 msgstr "Обрати зображення"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:33
+#: halftone/views/about_window.py:36
 msgid "translator-credits"
 msgstr "volkov <volkovissocool@gmail.com>"
 
-#: halftone/views/main_window.py:98
+#: halftone/views/main_window.py:103
 msgid "Supported image formats"
 msgstr "Підтримувані формати зображень"
 
-#: halftone/views/main_window.py:118
+#: halftone/views/main_window.py:123
 msgid "Failed to load an image"
 msgstr "Не вдалося завантажити зображення"
 
-#: halftone/views/main_window.py:135
+#: halftone/views/main_window.py:140
 msgid "Copied logs to clipboard"
 msgstr "Журнал скопійовано до буферу обміну"
 
-#: halftone/views/dither_page.py:235
+#: halftone/views/dither_page.py:230
 msgid "Image dithered successfully!"
 msgstr "Зображення було успішно розмите!"
 
-#: halftone/views/dither_page.py:445
-msgid "Toggle Bottom Sheet"
-msgstr "Показати / приховати нижню панель"
-
-#: halftone/views/dither_page.py:583
+#: halftone/views/dither_page.py:514
 msgid "Failed to load preview image"
 msgstr "Не вдалося завантажити зображення для попереднього перегляду"
+
+#~ msgid "Image Properties"
+#~ msgstr "Властивості зображення"
+
+#~ msgid "More Options"
+#~ msgstr "Більше опцій"
+
+#~ msgid "Dither It!"
+#~ msgstr "Розмити!"
+
+#~ msgid ""
+#~ "You can customize some of these parameters to make your image look "
+#~ "different. To learn more about individual options, go to the wiki page."
+#~ msgstr ""
+#~ "Ви можете налаштувати деякі з цих опцій, щоб змінити вигляд вашого "
+#~ "зображення. Щоб дізнатися більше про кожну з окремих опцій - завітайте на "
+#~ "вікі-сторінку."
+
+#~ msgid "Wiki Page"
+#~ msgstr "Вікі-сторінка з поясненнями"
