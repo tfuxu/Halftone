@@ -38,6 +38,8 @@ class HalftoneImageMagick:
             else:
                 new_height = int(height)
 
+            # TODO: Remove `colorspace_type` parameter on Wand 0.7.0 release.
+            # See: https://github.com/emcconville/wand/issues/644
             with img.convert("tiff").clone() as clone:
                 clone.resize(width=new_width, height=new_height)
                 clone.brightness_contrast(float(brightness), float(contrast))
@@ -45,9 +47,9 @@ class HalftoneImageMagick:
                 # Available ordered dithers: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.BaseImage.ordered_dither
                 if algorithm == "ordered":
                     clone.ordered_dither("o4x4")
-                    clone.quantize(color_amount)
+                    clone.quantize(color_amount, colorspace_type="undefined")
                 else:
-                    clone.quantize(color_amount, dither=algorithm)
+                    clone.quantize(color_amount, colorspace_type="undefined", dither=algorithm)
 
                 temp_path = HalftoneTempFile().create_temp_file()
                 clone.save(filename=temp_path)
