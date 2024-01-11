@@ -1,24 +1,23 @@
 # Russian translation for halftone
 # Copyright (C) 2023 halftone's COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
-#
-# David Lapshin <ddaudix@gmail.com>, 2023.
+# David Lapshin <ddaudix@gmail.com>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 21:14+0100\n"
-"PO-Revision-Date: 2023-06-10 19:49+0300\n"
+"PO-Revision-Date: 2024-01-11 03:17+0300\n"
 "Last-Translator: David Lapshin <ddaudix@gmail.com>\n"
-"Language-Team: Russian\n"
+"Language-Team: Russian <>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.1\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
@@ -49,7 +48,7 @@ msgstr ""
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:12
 msgid "image;compression;pixelart;dither;processing;"
-msgstr ""
+msgstr "изображение;сжатие;пиксельарт;квантование;обработка;"
 
 #: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
 msgid "Open Image (Ctrl+O)"
@@ -61,7 +60,7 @@ msgstr "Главное меню"
 
 #: data/ui/dither_page.blp:111
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Переключить боковую панель"
 
 #: data/ui/dither_page.blp:125
 msgid "Open in External Image Viewer"
@@ -69,7 +68,7 @@ msgstr "Открыть во внешней программе просмотра
 
 #: data/ui/dither_page.blp:179
 msgid "Toggle Bottom Sheet"
-msgstr ""
+msgstr "Переключить нижнею панель"
 
 #: data/ui/dither_page.blp:189
 msgid "Options"
@@ -81,7 +80,7 @@ msgstr "Объяснение"
 
 #: data/ui/dither_page.blp:204
 msgid "Dither Algorithm"
-msgstr "Алгоритм дизеринга"
+msgstr "Алгоритм квантования"
 
 #: data/ui/dither_page.blp:214
 msgid "Color Amount"
@@ -93,7 +92,7 @@ msgstr "Конвертировать в"
 
 #: data/ui/dither_page.blp:231
 msgid "Adjustments"
-msgstr ""
+msgstr "Регулировки"
 
 #: data/ui/dither_page.blp:234
 msgid "Brightness"
@@ -101,7 +100,7 @@ msgstr "Яркость"
 
 #: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
 msgid "Range -100 to 100"
-msgstr ""
+msgstr "Диапазон от -100 до 100"
 
 #: data/ui/dither_page.blp:246
 msgid "Contrast"
@@ -112,25 +111,22 @@ msgid "Image Size"
 msgstr "Размер изображения"
 
 #: data/ui/dither_page.blp:262
-#, fuzzy
 msgid "Width"
-msgstr "Ширина изображения"
+msgstr "Ширина"
 
 #: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
 msgid "In pixels"
-msgstr ""
+msgstr "В пикселях"
 
 #: data/ui/dither_page.blp:274
 msgid "Keep aspect ratio"
 msgstr "Сохранять соотношение сторон"
 
 #: data/ui/dither_page.blp:290
-#, fuzzy
 msgid "Height"
-msgstr "Высота изображения"
+msgstr "Высота"
 
 #: data/ui/dither_page.blp:307
-#, fuzzy
 msgid "Save Image"
 msgstr "Сохранить изображение"
 
@@ -139,12 +135,16 @@ msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
+"Чтобы узнать больше об отдельных опциях, перейдите на <a href=\"https://"
+"github.com/tfuxu/Halftone/wiki/Options\">вики-страницу</a>."
 
 #: data/ui/dither_page.blp:346
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
+"Эта опция позволяет сохранить исходное соотношение сторон при изменении "
+"размера изображения."
 
 #: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
@@ -186,7 +186,7 @@ msgstr "Общие"
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
-msgstr ""
+msgstr "Переключить панель утилит"
 
 #: data/ui/help_overlay.blp:33
 msgctxt "shortcut window"
@@ -242,11 +242,11 @@ msgstr "Не удалось загрузить изображение"
 
 #: halftone/views/main_window.py:140
 msgid "Copied logs to clipboard"
-msgstr ""
+msgstr "Журналы скопированы в буфер обмена"
 
 #: halftone/views/dither_page.py:230
 msgid "Image dithered successfully!"
-msgstr "Изображение преобразовано успешно!"
+msgstr "Изображение успешно квантовано!"
 
 #: halftone/views/dither_page.py:514
 msgid "Failed to load preview image"
