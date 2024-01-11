@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
   <id>@APP_ID@</id>
-  <!-- Translators: Do not translate name of the app. -->
-  <name>Halftone</name>
+  <name translatable="no">Halftone</name>
   <summary>Give your images that pixel art-like style</summary>
-  <!-- Translators: Do not translate developer name. -->
-  <developer_name>tfuxu</developer_name>
+  <developer_name translatable="no">tfuxu</developer_name>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <translation type="gettext">halftone</translation>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <update_contact>tfuxu@tutanota.com</update_contact>
@@ -60,25 +59,8 @@
   </recommends>
 
   <custom>
-    <value key="Purism::form_factor">workstation</value>
     <value key="Purism::form_factor">mobile</value>
   </custom>
-
-  <categories>
-    <category>GTK</category>
-    <category>GNOME</category>
-    <category>Image</category>
-    <category>Graphics</category>
-    <category>ImageProcessing</category>
-    <category>Utility</category>
-  </categories>
-
-  <keywords>
-    <keyword>image</keyword>
-    <keyword>dither</keyword>
-    <keyword>compression</keyword>
-    <keyword>processing</keyword>
-  </keywords>
 
   <releases>
     <release version="0.6.0" date="2024-01-10">

@@ -1,9 +1,10 @@
 [Desktop Entry]
+# Translators: Application name. Keep this string as "Halftone"
+Name=Halftone
 Version=1.0
 Type=Application
 Terminal=false
 Exec=halftone
-Name=Halftone
 Comment=Give your images that pixel art-like style
 Categories=GNOME;GTK;Graphics;ImageProcessing;Utility;
 Icon=@APP_ID@
