@@ -1,15 +1,15 @@
 # Turkish translation for halftone
-# Copyright (C) 2023 halftone's COPYRIGHT HOLDER
+# Copyright (C) 2023-2024 halftone's COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
 #
-# Sabri Ünal <libreajans@gmail.com>, 2023.
+# Sabri Ünal <libreajans@gmail.com>, 2023-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 21:14+0100\n"
-"PO-Revision-Date: 2023-10-06 05:28+0300\n"
+"POT-Creation-Date: 2024-01-12 01:54+0300\n"
+"PO-Revision-Date: 2024-01-12 01:58+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -17,25 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:7
-msgid "Halftone"
-msgstr "Halftone"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:8 data/ui/main_window.blp:42
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
 msgid "Give your images that pixel art-like style"
 msgstr "Görüntülerinize piksel benzeri stil ekleyin"
 
-#. Translators: Do not translate developer name.
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
-msgid "tfuxu"
-msgstr "tfuxu"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
+#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:15
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -45,12 +34,15 @@ msgstr ""
 "Libadwaita uygulaması. Halftone ile görüntülerinize piksel sanatı benzeri "
 "stil verin ve bu süreçte dosya boyutunu azaltın."
 
+#. Translators: Application name. Keep this string as "Halftone"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:4
+msgid "Halftone"
+msgstr "Halftone"
+
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/io.github.tfuxu.Halftone.desktop.in.in:12
-#, fuzzy
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;compression;pixelart;dither;processing;"
-msgstr ""
-"compression;pixelart;dither;edit;sıkıştırma;piksel sanatı;titreme;düzenle;"
+msgstr "resim;görüntü;sıkıştırma;piksel sanatı;titreme;işleme;"
 
 #: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
 msgid "Open Image (Ctrl+O)"
@@ -62,7 +54,7 @@ msgstr "Ana Menü"
 
 #: data/ui/dither_page.blp:111
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "Kenar Çubuğunu Aç/Kapat"
 
 #: data/ui/dither_page.blp:125
 msgid "Open in External Image Viewer"
@@ -70,7 +62,7 @@ msgstr "Harici Görüntü Görüntüleyicide Aç"
 
 #: data/ui/dither_page.blp:179
 msgid "Toggle Bottom Sheet"
-msgstr ""
+msgstr "Alt Sayfayı Aç/Kapat"
 
 #: data/ui/dither_page.blp:189
 msgid "Options"
@@ -94,7 +86,7 @@ msgstr "Şuna Dönüştür"
 
 #: data/ui/dither_page.blp:231
 msgid "Adjustments"
-msgstr ""
+msgstr "Ayarlar"
 
 #: data/ui/dither_page.blp:234
 msgid "Brightness"
@@ -102,7 +94,7 @@ msgstr "Parlaklık"
 
 #: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
 msgid "Range -100 to 100"
-msgstr ""
+msgstr "Aralık -100 ila 100"
 
 #: data/ui/dither_page.blp:246
 msgid "Contrast"
@@ -113,25 +105,22 @@ msgid "Image Size"
 msgstr "Görüntü Boyutu"
 
 #: data/ui/dither_page.blp:262
-#, fuzzy
 msgid "Width"
-msgstr "Görüntü Genişliği"
+msgstr "Genişlik"
 
 #: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
 msgid "In pixels"
-msgstr ""
+msgstr "Piksel olarak"
 
 #: data/ui/dither_page.blp:274
 msgid "Keep aspect ratio"
 msgstr "En-boy oranını koru"
 
 #: data/ui/dither_page.blp:290
-#, fuzzy
 msgid "Height"
-msgstr "Görüntü Yüksekliği"
+msgstr "Yükseklik"
 
 #: data/ui/dither_page.blp:307
-#, fuzzy
 msgid "Save Image"
 msgstr "Görüntüyü Kaydet"
 
@@ -140,12 +129,16 @@ msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
+"Ayrıntılı seçenekler hakkında bilgi almak için <a href=\"https://github.com/"
+"tfuxu/Halftone/wiki/Options\">Wiki sayfasına</a> bakınız."
 
 #: data/ui/dither_page.blp:346
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
+"Bu seçenek, görüntüyü yeniden boyutlandırırken özgün en boy oranını "
+"korumanızı sağlar."
 
 #: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
@@ -187,7 +180,7 @@ msgstr "Genel"
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
-msgstr ""
+msgstr "Araç Bölmesini Aç/Kapat"
 
 #: data/ui/help_overlay.blp:33
 msgctxt "shortcut window"
@@ -228,7 +221,7 @@ msgid "Select an Image"
 msgstr "Görüntü Seç"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:36
+#: halftone/views/about_window.py:34
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
@@ -242,7 +235,7 @@ msgstr "Görüntü yüklenemedi"
 
 #: halftone/views/main_window.py:140
 msgid "Copied logs to clipboard"
-msgstr ""
+msgstr "Günlükler panoya kopyalandı"
 
 #: halftone/views/dither_page.py:230
 msgid "Image dithered successfully!"
@@ -251,91 +244,3 @@ msgstr "Görüntü başarıyla titretildi!"
 #: halftone/views/dither_page.py:514
 msgid "Failed to load preview image"
 msgstr "Görüntü ön izlemesi yüklenemedi"
-
-#~ msgid "Image Properties"
-#~ msgstr "Resim Özellikleri"
-
-#~ msgid "More Options"
-#~ msgstr "Daha Çok Seçenek"
-
-#~ msgid "Dither It!"
-#~ msgstr "Titret!"
-
-#~ msgid ""
-#~ "You can customize some of these parameters to make your image look "
-#~ "different. To learn more about individual options, go to the wiki page."
-#~ msgstr ""
-#~ "Görüntünüzün farklı görünmesini sağlamak için bu parametrelerden "
-#~ "bazılarını özelleştirebilirsiniz. Bireysel seçenekler hakkında daha çok "
-#~ "bilgi almak için wiki sayfasına bakınız."
-
-#~ msgid "Wiki Page"
-#~ msgstr "Wiki Sayfası"
-
-#~ msgid ""
-#~ "Halftone displaying image with Floyd-Steinberg dithering and 2-color "
-#~ "quantization applied"
-#~ msgstr ""
-#~ "Floyd-Steinberg titreme ve 2 renk niceleme uygulanmış yarı tonlu görüntü"
-
-#~ msgid ""
-#~ "Halftone displaying image with Bayer dithering and 2-color quantization "
-#~ "applied"
-#~ msgstr "Bayer titreme ve 2 renk niceleme uygulanmış yarım tonlu görüntü"
-
-#~ msgid ""
-#~ "Halftone displaying image with Floyd-Steinberg dithering and 10-color "
-#~ "quantization applied"
-#~ msgstr ""
-#~ "Floyd-Steinberg titreme ve 10 renk niceleme uygulanmış yarı tonlu görüntü"
-
-#~ msgid "image"
-#~ msgstr "görüntü"
-
-#~ msgid "dither"
-#~ msgstr "titreme"
-
-#~ msgid "compression"
-#~ msgstr "sıkıştırma"
-
-#~ msgid "processing"
-#~ msgstr "işleme"
-
-#~ msgid "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
-#~ msgstr "0 - FILL, 1 - CONTAIN, 2 - COVER, 3 - SCALE_DOWN"
-
-#~ msgid "Preview"
-#~ msgstr "Ön izleme"
-
-#~ msgid "Preferences"
-#~ msgstr "Tercihler"
-
-#~ msgid "Don't keep aspect ratio"
-#~ msgstr "En-boy oranını koruma"
-
-#, fuzzy
-#~ msgid "Renamed Pixely to Halftone."
-#~ msgstr "Halftone ilk sürümü."
-
-#, fuzzy
-#~ msgid "Initial release of Pixely."
-#~ msgstr "Halftone ilk sürümü."
-
-#~ msgid "image;graphics;compression;"
-#~ msgstr "resim;grafik;sıkıştırma;"
-
-#~ msgid ""
-#~ "An error occurred while loading an image. If this error persists, please "
-#~ "report it to bug tracker."
-#~ msgstr ""
-#~ "Görüntü yüklenirken hata oluştu. Bu hata devam ederse, lütfen hata "
-#~ "raporlayın."
-
-#~ msgid "Copyright © 2023 tfuxu"
-#~ msgstr "Telif Hakkı © 2023 tfuxu"
-
-#~ msgid "Halftone Main Window"
-#~ msgstr "Halftone Ana Pencere"
-
-#~ msgid "View Logs"
-#~ msgstr "Günlükleri Görüntüle"
