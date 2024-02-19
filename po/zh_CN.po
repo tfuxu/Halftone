@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 21:14+0100\n"
-"PO-Revision-Date: 2023-10-07 20:41+0800\n"
+"PO-Revision-Date: 2024-02-19 18:43+0800\n"
 "Last-Translator: FredFucks <maryjaneinchain@gmail.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. Translators: Do not translate name of the app.
 #: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
@@ -55,7 +55,7 @@ msgstr "主菜单"
 
 #: data/ui/dither_page.blp:111
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "侧边栏"
 
 #: data/ui/dither_page.blp:125
 msgid "Open in External Image Viewer"
@@ -95,7 +95,7 @@ msgstr "亮度"
 
 #: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
 msgid "Range -100 to 100"
-msgstr ""
+msgstr "-100 到 100 之间"
 
 #: data/ui/dither_page.blp:246
 msgid "Contrast"
@@ -112,7 +112,7 @@ msgstr "图片宽度"
 
 #: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
 msgid "In pixels"
-msgstr ""
+msgstr "像素"
 
 #: data/ui/dither_page.blp:274
 msgid "Keep aspect ratio"
@@ -133,12 +133,14 @@ msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
+"要了解有关各个选项的更多信息，请访问 <a href=\"https://github.com/tfuxu/"
+"Halftone/wiki/Options\">wiki 页面</a> 。"
 
 #: data/ui/dither_page.blp:346
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
-msgstr ""
+msgstr "该选项允许您在调整图像大小时保留原始宽高比。"
 
 #: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
@@ -180,7 +182,7 @@ msgstr "一般"
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
-msgstr ""
+msgstr "显示/隐藏工具窗格"
 
 #: data/ui/help_overlay.blp:33
 msgctxt "shortcut window"
@@ -256,8 +258,8 @@ msgstr "载入预览失败"
 #~ "You can customize some of these parameters to make your image look "
 #~ "different. To learn more about individual options, go to the wiki page."
 #~ msgstr ""
-#~ "你可以自定义其中一些参数来改变处理的结果。要了解关于各个选项的更多信息，请"
-#~ "访问百科页面。"
+#~ "你可以自定义其中一些参数来改变处理的结果。要了解关于各个选项的更多信息，"
+#~ "请访问百科页面。"
 
 #~ msgid "Wiki Page"
 #~ msgstr "百科页面"
