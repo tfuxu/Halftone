@@ -3,7 +3,9 @@
   <id>@APP_ID@</id>
   <name translatable="no">Halftone</name>
   <summary>Give your images that pixel art-like style</summary>
-  <developer_name translatable="no">tfuxu</developer_name>
+  <developer id="io.github.tfuxu">
+    <name translatable="no">tfuxu</name>
+  </developer>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <translation type="gettext">halftone</translation>
   <metadata_license>CC-BY-SA-4.0</metadata_license>
@@ -36,6 +38,11 @@
       <image type="source">https://raw.githubusercontent.com/tfuxu/Halftone/main/data/screenshots/halftone-5.png</image>
     </screenshot>
   </screenshots>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#F6D32D</color>
+    <color type="primary" scheme_preference="dark">#E66100</color>
+  </branding>
 
   <url type="homepage">@PROJECT_URL@</url>
   <url type="bugtracker">@BUGTRACKER_URL@</url>
