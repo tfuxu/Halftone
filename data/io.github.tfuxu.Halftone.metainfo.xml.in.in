@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>@APP_ID@</id>
   <name translatable="no">Halftone</name>
-  <summary>Give your images that pixel art-like style</summary>
+  <summary>Dither your images</summary>
   <developer id="io.github.tfuxu">
     <name translatable="no">tfuxu</name>
   </developer>
@@ -40,8 +40,8 @@
   </screenshots>
 
   <branding>
-    <color type="primary" scheme_preference="light">#F6D32D</color>
-    <color type="primary" scheme_preference="dark">#E66100</color>
+    <color type="primary" scheme_preference="light">#f5c211</color>
+    <color type="primary" scheme_preference="dark">#c64600</color>
   </branding>
 
   <url type="homepage">@PROJECT_URL@</url>

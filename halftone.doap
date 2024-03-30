@@ -6,7 +6,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name>Halftone</name>
-  <shortdesc xml:lang="en">Give your images that pixel art-like style</shortdesc>
+  <shortdesc xml:lang="en">Dither your images</shortdesc>
   <description xml:lang="en">
     A simple app for lossy image compression using quantization and dithering techniques.
 
