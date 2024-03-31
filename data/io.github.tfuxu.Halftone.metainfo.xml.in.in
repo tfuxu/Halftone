@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
   <id>@APP_ID@</id>
-  <name translatable="no">Halftone</name>
+  <name translate="no">Halftone</name>
   <summary>Dither your images</summary>
   <developer id="io.github.tfuxu">
-    <name translatable="no">tfuxu</name>
+    <name translate="no">tfuxu</name>
   </developer>
   <launchable type="desktop-id">@APP_ID@.desktop</launchable>
   <translation type="gettext">halftone</translation>
@@ -71,7 +71,7 @@
 
   <releases>
     <release version="0.6.0" date="2024-01-10">
-      <description translatable="no">
+      <description translate="no">
         <p>
           Another major UI design update!
           This update notably moves sidebar to the left and makes image preview area extra large, by making headerbar transparent.
@@ -87,7 +87,7 @@
       </description>
     </release>
     <release version="0.5.0" date="2023-12-10">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Bottom options sheet for mobile users</li>
           <li>Fix main window not being able to resize width down to 360px</li>
@@ -97,7 +97,7 @@
       </description>
     </release>
     <release version="0.4.0" date="2023-11-11">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>New refreshed user interface</li>
           <li>Fix issue with "Open in External Image Viewer" button not working on Flatpak builds</li>
@@ -106,7 +106,7 @@
       </description>
     </release>
     <release version="0.3.1" date="2023-06-30">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Added option to change how image should be resized to fit inside preview box</li>
           <li>Now Halftone uses flat headerbar style</li>
@@ -115,7 +115,7 @@
       </description>
     </release>
     <release version="0.3.0" date="2023-06-09">
-      <description translatable="no">
+      <description translate="no">
         <ul>
           <li>Added brightness and contrast control</li>
           <li>Added button for opening preview image in external image viewers</li>
@@ -127,12 +127,12 @@
       </description>
     </release>
     <release version="0.2.0" date="2023-05-20">
-      <description translatable="no">
+      <description translate="no">
         <p>Renamed Pixely to Halftone.</p>
       </description>
     </release>
     <release version="0.1.0" date="2023-05-16">
-      <description translatable="no">
+      <description translate="no">
         <p>Initial release of Pixely.</p>
       </description>
     </release>
