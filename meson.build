@@ -1,8 +1,8 @@
 project('halftone',
           version: '0.6.0',
     meson_version: '>= 0.59.0',
-  default_options: [ 'warning_level=2',
-                     'werror=false',
+  default_options: ['warning_level=2',
+                    'werror=false',
                    ],
 )
 
@@ -45,9 +45,9 @@ endif
 
 # Required dependencies
 dependency('glib-2.0')
-dependency('gtk4', version: '>= 4.5.0')
-dependency('libadwaita-1', version: '>= 1.2.0')
-dependency('pygobject-3.0', version: '>= 3.42.0')
+dependency('gtk4', version: '>= 4.12.0')
+dependency('libadwaita-1', version: '>= 1.5.0')
+dependency('pygobject-3.0', version: '>= 3.48.0')
 
 # Python installation directory
 PY_INSTALLDIR = python.find_installation('python3')

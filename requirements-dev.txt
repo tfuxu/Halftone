@@ -2,3 +2,4 @@
 
 pycairo
 pygobject
+pygobject-stubs

@@ -1,4 +1,4 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2024, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from gi.repository import Gtk, Adw
@@ -14,9 +14,8 @@ class HalftoneAboutWindow:
         self.setup()
 
     def setup(self):
-        self.about_window = Adw.AboutWindow(
+        self.about_window = Adw.AboutDialog(
             application_name="Halftone",
-            transient_for=self.app.get_active_window(),
             application_icon=constants.app_id,
             developer_name="tfuxu",
             website=constants.project_url,
@@ -39,4 +38,4 @@ class HalftoneAboutWindow:
         )
 
     def show_about(self):
-        self.about_window.present()
+        self.about_window.present(self.parent)
