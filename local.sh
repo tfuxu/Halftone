@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 # Copyright (C) 2022-2023, Gradience Team
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2024, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 read -p "Do you want to install Python requirements? [N/y] " answer
 
 if [[ "$answer" == "y" ]]; then
-    pip3 install -r requirements.txt
+    pip3 install -r requirements-dev.txt
 elif [[ "$answer" == "n" || "$answer" == "" ]]; then
     echo "Skipping requirements installation"
 fi
