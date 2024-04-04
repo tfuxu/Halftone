@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2024-04-04
+
+### Added
+
+- Primary brand colors information
+
+### Changed
+
+- Updated about window to use new `Adw.AboutDialog` view
+- Switch to `appsteamcli` validation
+- Updated metainfo in order to conform with AppStream 1.0 specification
+- Changed project's summary to fit in 35 character requirement
+- Prefer dark color scheme
+- Updated translations (ru, tr, zh_CN)
+
 ## [0.6.0] - 2024-01-10
 
 ### Changed

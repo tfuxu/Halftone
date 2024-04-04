@@ -70,6 +70,14 @@
   </custom>
 
   <releases>
+    <release version="0.6.1" date="2024-04-04">
+      <description translate="no">
+        <ul>
+          <li>Updated widgets to make use of new Libadwaita 1.5 widgets</li>
+          <li>Updated translations for Russian, Turkish and Simplified Chinese</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6.0" date="2024-01-10">
       <description translate="no">
         <p>
