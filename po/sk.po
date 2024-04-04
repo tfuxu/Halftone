@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 21:14+0100\n"
+"POT-Creation-Date: 2024-04-04 19:03+0200\n"
 "PO-Revision-Date: 2023-06-12 22:47+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: \n"
@@ -17,23 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#. Translators: Do not translate name of the app.
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:7
+#. Translators: Application name. Keep this string as "Halftone"
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:4
+#: data/io.github.tfuxu.Halftone.desktop.in.in:4
 msgid "Halftone"
 msgstr "Halftone"
 
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:6
-#: data/io.github.tfuxu.Halftone.desktop.in.in:8 data/ui/main_window.blp:42
-msgid "Give your images that pixel art-like style"
-msgstr "Dajte vašim obrázkom nádych pixel-artu"
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
+#, fuzzy
+msgid "Dither your images"
+msgstr "Algoritmus ditheringu"
 
-#. Translators: Do not translate developer name.
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:8
-msgid "tfuxu"
-msgstr "tfuxu"
-
-#: data/io.github.tfuxu.Halftone.appdata.xml.in.in:16
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:17
 msgid ""
 "A simple Libadwaita app for lossy image compression using dithering "
 "technique. Give your images a pixel art-like style and reduce the file size "
@@ -43,8 +39,111 @@ msgstr ""
 "využíva dithering. Halftone dá vašim obrázkom nádych pixel artu a zároveň "
 "zmenší ich veľkosť."
 
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:76
+msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:77
+msgid "Updated translations for Russian, Turkish and Simplified Chinese"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:83
+msgid ""
+"Another major UI design update! This update notably moves sidebar to the "
+"left and makes image preview area extra large, by making headerbar "
+"transparent."
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:88
+msgid "Changes:"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:90
+msgid "Implement UI suggestions from GNOME Circle application"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:91
+msgid "Add keyboard shortcuts for toggling sidebar and main menu"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:92
+msgid ""
+"Fixed formatting in appdata, now release info should finally show up in "
+"Flathub!"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:93
+msgid "Updated translations"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:100
+msgid "Bottom options sheet for mobile users"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:101
+msgid "Fix main window not being able to resize width down to 360px"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:102
+msgid "Load image options from previous image to next loaded image"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:103
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:112
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:121
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:133
+msgid "New translations"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:110
+msgid "New refreshed user interface"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:111
+msgid ""
+"Fix issue with \"Open in External Image Viewer\" button not working on "
+"Flatpak builds"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:119
+msgid ""
+"Added option to change how image should be resized to fit inside preview box"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:120
+msgid "Now Halftone uses flat headerbar style"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:128
+msgid "Added brightness and contrast control"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:129
+msgid "Added button for opening preview image in external image viewers"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:130
+msgid "Added custom logging facility for easier issue reporting"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:131
+msgid "Added logic code to \"Copy Logs\" button"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:132
+msgid "Moved image size option to Image Properties"
+msgstr ""
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:139
+msgid "Renamed Pixely to Halftone."
+msgstr "Pixely premenované na Halftone."
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:144
+msgid "Initial release of Pixely."
+msgstr "Prvá verzia Pixely."
+
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
-#: data/io.github.tfuxu.Halftone.desktop.in.in:12
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;compression;pixelart;dither;processing;"
 msgstr ""
 
@@ -224,7 +323,7 @@ msgid "Select an Image"
 msgstr "Vyberte obrázok"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:36
+#: halftone/views/about_window.py:33
 msgid "translator-credits"
 msgstr "Jose Riha <jose1711@gmail.com>"
 
@@ -247,6 +346,12 @@ msgstr "Dithering bol úspešne aplikovaný!"
 #: halftone/views/dither_page.py:514
 msgid "Failed to load preview image"
 msgstr "Nepodarilo sa načítať obrázok s ukážkou"
+
+#~ msgid "Give your images that pixel art-like style"
+#~ msgstr "Dajte vašim obrázkom nádych pixel-artu"
+
+#~ msgid "tfuxu"
+#~ msgstr "tfuxu"
 
 #~ msgid "Image Properties"
 #~ msgstr "Vlastnosti obrázka"
@@ -299,12 +404,6 @@ msgstr "Nepodarilo sa načítať obrázok s ukážkou"
 #~ "logovač pre jednoduchšie hlásenie chýb - Pridaný logický kód pre tlačidlo "
 #~ "`Kopírovať logy` - Voľba veľkosti obrázka presunutá do vlastností obrázka "
 #~ "- Nové preklady"
-
-#~ msgid "Renamed Pixely to Halftone."
-#~ msgstr "Pixely premenované na Halftone."
-
-#~ msgid "Initial release of Pixely."
-#~ msgstr "Prvá verzia Pixely."
 
 #~ msgid "image;graphics;compression;"
 #~ msgstr "obrázok;grafika;kompresia;"
