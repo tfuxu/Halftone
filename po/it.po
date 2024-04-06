@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-04 19:03+0200\n"
-"PO-Revision-Date: 2023-11-12 10:26+0100\n"
+"PO-Revision-Date: 2024-04-06 11:26+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -24,9 +24,8 @@ msgstr "Halftone"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
-#, fuzzy
 msgid "Dither your images"
-msgstr "Algoritmo di retinatura"
+msgstr "Retinatura delle tue immagini"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:17
 msgid ""
@@ -40,11 +39,11 @@ msgstr ""
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:76
 msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
-msgstr ""
+msgstr "Widget aggiornati per utilizzare i nuovi di Libadwaita 1.5"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:77
 msgid "Updated translations for Russian, Turkish and Simplified Chinese"
-msgstr ""
+msgstr "Traduzioni aggiornate per russo, turco e cinese semplificato"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:83
 msgid ""
@@ -52,86 +51,94 @@ msgid ""
 "left and makes image preview area extra large, by making headerbar "
 "transparent."
 msgstr ""
+"Un altro importante aggiornamento del design dell'interfaccia utente! Questo aggiornamento sposta in particolare la barra laterale nella "
+"a sinistra e rende l'area di anteprima dell'immagine molto grande, creando la barra di intestazione "
+"trasparente."
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:88
 msgid "Changes:"
-msgstr ""
+msgstr "Modifiche:"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:90
 msgid "Implement UI suggestions from GNOME Circle application"
-msgstr ""
+msgstr "Implementa i suggerimenti dell'interfaccia utente dall'applicazione GNOME Circle"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:91
 msgid "Add keyboard shortcuts for toggling sidebar and main menu"
-msgstr ""
+msgstr "Aggiungi scorciatoie da tastiera per alternare la barra laterale e il menu principale"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:92
 msgid ""
 "Fixed formatting in appdata, now release info should finally show up in "
 "Flathub!"
 msgstr ""
+"Risolto il problema con la formattazione in appdata, ora le informazioni sulla versione dovrebbero finalmente essere visualizzate in "
+"Flathub!"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:93
 msgid "Updated translations"
-msgstr ""
+msgstr "Traduzioni aggiornate"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:100
 msgid "Bottom options sheet for mobile users"
-msgstr ""
+msgstr "Foglio delle opzioni in basso per gli utenti mobili"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:101
 msgid "Fix main window not being able to resize width down to 360px"
-msgstr ""
+msgstr "Risolto il problema con la finestra principale che non era in grado di ridimensionare la larghezza fino a 360 px"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:102
 msgid "Load image options from previous image to next loaded image"
-msgstr ""
+msgstr "Carica le opzioni dell'immagine dall'immagine precedente all'immagine successiva caricata"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:103
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:112
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:121
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:133
 msgid "New translations"
-msgstr ""
+msgstr "Nuove traduzioni"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:110
 msgid "New refreshed user interface"
-msgstr ""
+msgstr "Nuova interfaccia utente aggiornata"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:111
 msgid ""
 "Fix issue with \"Open in External Image Viewer\" button not working on "
 "Flatpak builds"
 msgstr ""
+"Risolto il problema relativo al mancato funzionamento del pulsante \"Apri in Visualizzatore immagini esterne\" "
+"Flatpak builds"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:119
 msgid ""
 "Added option to change how image should be resized to fit inside preview box"
 msgstr ""
+"Aggiunta opzione per modificare il modo in cui l'immagine deve essere ridimensionata per adattarsi alla casella di anteprima"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:120
 msgid "Now Halftone uses flat headerbar style"
-msgstr ""
+msgstr "Ora i mezzitoni utilizzano lo stile della barra di intestazione piatta"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:128
 msgid "Added brightness and contrast control"
-msgstr ""
+msgstr "Aggiunto controllo della luminosità e del contrasto"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:129
 msgid "Added button for opening preview image in external image viewers"
-msgstr ""
+msgstr "Aggiunto pulsante per aprire l'immagine di anteprima nei visualizzatori di immagini esterni"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:130
 msgid "Added custom logging facility for easier issue reporting"
-msgstr ""
+msgstr "Aggiunta funzionalità di registrazione personalizzata per una segnalazione più semplice dei problemi"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:131
 msgid "Added logic code to \"Copy Logs\" button"
-msgstr ""
+msgstr "Aggiunto il codice logico al pulsante \"Copia log\"."
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:132
 msgid "Moved image size option to Image Properties"
-msgstr ""
+msgstr "Opzione dimensione immagine spostata in Proprietà immagine"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:139
 msgid "Renamed Pixely to Halftone."
@@ -143,9 +150,8 @@ msgstr "Versione iniziale di Pixely."
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-#, fuzzy
 msgid "image;compression;pixelart;dither;processing;"
-msgstr "compressione;pixelart;dithering;modifica;"
+msgstr "immagine;compressione;pixelart;retinatura;elaborazione"
 
 #: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
 msgid "Open Image (Ctrl+O)"
@@ -189,7 +195,7 @@ msgstr "Convertire in"
 
 #: data/ui/dither_page.blp:231
 msgid "Adjustments"
-msgstr ""
+msgstr "Regolazioni"
 
 #: data/ui/dither_page.blp:234
 msgid "Brightness"
@@ -224,7 +230,6 @@ msgid "Height"
 msgstr "Altezza"
 
 #: data/ui/dither_page.blp:307
-#, fuzzy
 msgid "Save Image"
 msgstr "Salva immagine"
 
@@ -233,15 +238,16 @@ msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
+"Per saperne di più sulle singole opzioni, vai su <a href=\"https://github."
+"com/tfuxu/Halftone/wiki/Options\">pagina wiki</a>."
 
 #: data/ui/dither_page.blp:346
-#, fuzzy
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
-"Questa opzione ti consente di preservare le proporzioni originali quando "
-"ridimensioni un' Immagine."
+"Questa opzione ti consente di preservare le proporzioni originali quando ridimensioni un "
+"immagine."
 
 #: data/ui/dither_page.blp:351
 msgid "Save an Image in…"
@@ -283,7 +289,7 @@ msgstr "Generale"
 #: data/ui/help_overlay.blp:28
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
-msgstr ""
+msgstr "Attiva/disattiva il riquadro Utilità"
 
 #: data/ui/help_overlay.blp:33
 msgctxt "shortcut window"
