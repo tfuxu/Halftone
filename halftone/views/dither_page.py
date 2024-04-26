@@ -57,7 +57,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     save_image_chooser = Gtk.Template.Child()
     all_filter = Gtk.Template.Child()
 
-    preview_group_stack = Gtk.Template.Child()
+    preview_loading_overlay = Gtk.Template.Child()
 
     mobile_breakpoint = Gtk.Template.Child()
 
@@ -117,9 +117,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.update_preview_content_fit)
 
     def setup(self):
-        # Set default preview stack child
-        self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
-
         # Set utility page in sidebar by default
         self.sidebar_view.set_content(self.image_prefs_bin)
 
@@ -192,7 +189,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             raise
 
         self.image_dithered.set_paintable(self.updated_paintable)
-        self.on_successful_image_load()
 
         if callback:
             callback()
@@ -384,11 +380,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.output_options.output_format = format_string
 
     def on_successful_image_load(self, *args):
-        self.preview_group_stack.set_visible_child_name("preview_stack_main_page")
+        self.preview_loading_overlay.set_visible(False)
+        self.image_dithered.remove_css_class("preview-loading-blur")
         self.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args):
-        self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
+        self.preview_loading_overlay.set_visible(True)
+        self.image_dithered.add_css_class("preview-loading-blur")
         self.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args):
