@@ -38,16 +38,23 @@ You can install Halftone in many ways, here are some listed:
 
 **1. Official Flatpak package:**
 
-<a href='https://flathub.org/apps/details/io.github.tfuxu.Halftone'>
-  <img width='192' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/>
-</a><br>
+<a href='https://flathub.org/apps/io.github.tfuxu.Halftone'>
+  <img width='192' alt='Download on Flathub' src='https://flathub.org/api/badge?svg&locale=en'/>
+</a><br><br>
 
-**2. Alternative package distributions:**
-> **Warning**
+**2. Snap package / Alternative package distributions:**
+
+> [!WARNING]
 > Although some of the methods listed here may be maintained by the Halftone maintainers, these methods **are not** officially supported and issues related to packaging in them should be reported outside this project's bug tracker.
 
-<a href="https://repology.org/project/halftone/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/halftone.svg" alt="Packaging status">
+Download from Snapcraft:
+<br><br><a href='https://snapcraft.io/halftone'>
+  <img width='192' alt='Get it from the Snap Store' src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
+</a><br>
+
+Or get in from your distribution's package manager:
+<br><br><a href="https://repology.org/project/halftone/versions">
+  <img src="https://repology.org/badge/vertical-allrepos/halftone.svg" alt="Packaging status">
 </a>
 
 **3. Install from source:**
@@ -149,7 +156,7 @@ ninja -C builddir install
 ninja -C builddir run
 ```
 
-> **Note** 
+> [!NOTE] 
 > During testing and development, as a convenience, you can use the `local.sh` script to quickly rebuild local builds.
 
 ## License
