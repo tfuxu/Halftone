@@ -72,6 +72,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.toast_overlay = self.parent.toast_overlay
 
+        self.is_image_ready: bool = False
         self.is_mobile: bool = False
 
         self.origin_x: float = None
@@ -89,6 +90,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.output_options: OutputOptions = OutputOptions()
 
         self.keep_aspect_ratio = True
+        self.loading_overlay_delay = 2000  # In miliseconds
 
         self.setup_signals()
         self.setup()
@@ -174,7 +176,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def update_preview_image(self, path: str, output_options: OutputOptions,
                                 callback: callable = None):
-        self.on_awaiting_image_load()
+        self.is_image_ready = False
+        GLib.timeout_add(self.loading_overlay_delay, self.on_awaiting_image_load)
 
         if self.preview_image_path:
             self.clean_preview_paintable()
@@ -187,6 +190,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.GError:
             self.win.show_error_page()
             raise
+
+        self.on_successful_image_load()
+        self.is_image_ready = True
 
         if callback:
             callback()
@@ -383,9 +389,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args):
-        self.preview_loading_overlay.set_visible(True)
-        self.image_dithered.add_css_class("preview-loading-blur")
-        self.save_image_button.set_sensitive(False)
+        if not self.is_image_ready:
+            self.preview_loading_overlay.set_visible(True)
+            self.image_dithered.add_css_class("preview-loading-blur")
+            self.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args):
         self.sidebar_view.set_content(None)
