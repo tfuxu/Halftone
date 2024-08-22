@@ -25,3 +25,7 @@ headerbar.desktop windowcontrols button:active image {
 .sheet-toolbar {
     padding: 12px;
 }
+
+.preview-loading-blur {
+    filter: blur(6px);
+}
