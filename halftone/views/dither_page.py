@@ -188,8 +188,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.show_error_page()
             raise
 
-        self.image_dithered.set_paintable(self.updated_paintable)
-
         if callback:
             callback()
 
@@ -413,6 +411,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
+        self.image_dithered.set_paintable(self.original_paintable)
+
     def set_updated_paintable(self, path: str):
         try:
             self.updated_paintable = Gdk.Texture.new_from_filename(path)
@@ -422,6 +422,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 exc=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
+
+        self.image_dithered.set_paintable(self.updated_paintable)
 
     def clean_preview_paintable(self):
         try:
