@@ -175,9 +175,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     """ Main functions """
 
     def update_preview_image(self, path: str, output_options: OutputOptions,
-                                callback: callable = None):
+                                   run_delay: bool = True, callback: callable = None):
         self.is_image_ready = False
-        GLib.timeout_add(self.loading_overlay_delay, self.on_awaiting_image_load)
+
+        if run_delay:
+            GLib.timeout_add(self.loading_overlay_delay, self.on_awaiting_image_load)
+        else:
+            self.on_awaiting_image_load()
 
         if self.preview_image_path:
             self.clean_preview_paintable()
@@ -200,6 +204,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     # NOTE: Use this only if you initially load the picture (eg. from file chooser)
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
+
         try:
             self.set_original_paintable(self.input_image_path)
         except GLib.GError:
@@ -208,13 +213,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.set_size_spins(self.original_paintable.get_width(),
                             self.original_paintable.get_height())
+
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        False,
                         self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
-                        output_options: OutputOptions, callback: callable):
+                         output_options: OutputOptions, callback: callable):
         self.win.show_loading_page()
 
         image_bytes = paintable.save_to_tiff_bytes()
@@ -248,6 +255,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -262,6 +270,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        True,
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -276,6 +285,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        True,
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -299,6 +309,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -315,6 +326,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 self.start_task(self.update_preview_image,
                                 self.input_image_path,
                                 self.output_options,
+                                True,
                                 self.on_successful_image_load)
 
     def on_save_image(self, *args):
@@ -375,6 +387,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     def on_save_format_selected(self, widget, *args):
