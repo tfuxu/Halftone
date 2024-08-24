@@ -57,7 +57,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     save_image_chooser = Gtk.Template.Child()
     all_filter = Gtk.Template.Child()
 
-    preview_group_stack = Gtk.Template.Child()
+    preview_loading_overlay = Gtk.Template.Child()
 
     mobile_breakpoint = Gtk.Template.Child()
 
@@ -72,6 +72,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.toast_overlay = self.parent.toast_overlay
 
+        self.is_image_ready: bool = False
         self.is_mobile: bool = False
 
         self.origin_x: float = None
@@ -89,6 +90,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.output_options: OutputOptions = OutputOptions()
 
         self.keep_aspect_ratio = True
+        self.loading_overlay_delay = 2000  # In miliseconds
 
         self.setup_signals()
         self.setup()
@@ -117,9 +119,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.update_preview_content_fit)
 
     def setup(self):
-        # Set default preview stack child
-        self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
-
         # Set utility page in sidebar by default
         self.sidebar_view.set_content(self.image_prefs_bin)
 
@@ -176,8 +175,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     """ Main functions """
 
     def update_preview_image(self, path: str, output_options: OutputOptions,
-                                callback: callable = None):
-        self.on_awaiting_image_load()
+                                   run_delay: bool = True, callback: callable = None):
+        self.is_image_ready = False
+
+        if run_delay:
+            GLib.timeout_add(self.loading_overlay_delay, self.on_awaiting_image_load)
+        else:
+            self.on_awaiting_image_load()
 
         if self.preview_image_path:
             self.clean_preview_paintable()
@@ -191,8 +195,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.show_error_page()
             raise
 
-        self.image_dithered.set_paintable(self.updated_paintable)
         self.on_successful_image_load()
+        self.is_image_ready = True
 
         if callback:
             callback()
@@ -200,6 +204,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     # NOTE: Use this only if you initially load the picture (eg. from file chooser)
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
+
         try:
             self.set_original_paintable(self.input_image_path)
         except GLib.GError:
@@ -208,13 +213,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.set_size_spins(self.original_paintable.get_width(),
                             self.original_paintable.get_height())
+
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        False,
                         self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
-                        output_options: OutputOptions, callback: callable):
+                         output_options: OutputOptions, callback: callable):
         self.win.show_loading_page()
 
         image_bytes = paintable.save_to_tiff_bytes()
@@ -248,6 +255,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -262,6 +270,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        True,
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -276,6 +285,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.start_task(self.update_preview_image,
                         self.input_image_path,
                         self.output_options,
+                        True,
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -299,6 +309,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
@@ -315,6 +326,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 self.start_task(self.update_preview_image,
                                 self.input_image_path,
                                 self.output_options,
+                                True,
                                 self.on_successful_image_load)
 
     def on_save_image(self, *args):
@@ -375,6 +387,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
+                            True,
                             self.on_successful_image_load)
 
     def on_save_format_selected(self, widget, *args):
@@ -384,12 +397,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.output_options.output_format = format_string
 
     def on_successful_image_load(self, *args):
-        self.preview_group_stack.set_visible_child_name("preview_stack_main_page")
+        self.preview_loading_overlay.set_visible(False)
+        self.image_dithered.remove_css_class("preview-loading-blur")
         self.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args):
-        self.preview_group_stack.set_visible_child_name("preview_stack_loading_page")
-        self.save_image_button.set_sensitive(False)
+        if not self.is_image_ready:
+            self.preview_loading_overlay.set_visible(True)
+            self.image_dithered.add_css_class("preview-loading-blur")
+            self.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args):
         self.sidebar_view.set_content(None)
@@ -415,6 +431,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
+        self.image_dithered.set_paintable(self.original_paintable)
+
     def set_updated_paintable(self, path: str):
         try:
             self.updated_paintable = Gdk.Texture.new_from_filename(path)
@@ -424,6 +442,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 exc=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
+
+        self.image_dithered.set_paintable(self.updated_paintable)
 
     def clean_preview_paintable(self):
         try:

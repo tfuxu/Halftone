@@ -82,69 +82,81 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         vexpand: true;
         hexpand: true;
 
-        Gtk.Stack preview_group_stack {
-          height-request: 150;
-          transition-type: crossfade;
+        Gtk.Overlay {
+          child: Gtk.Overlay {
+            child: Gtk.ScrolledWindow preview_scroll_window {
+              vexpand: true;
+              hexpand: true;
 
-          Gtk.StackPage {
-            name: "preview_stack_main_page";
-
-            child: Gtk.Overlay {
-              child: Gtk.ScrolledWindow preview_scroll_window {
-                vexpand: true;
-                hexpand: true;
-
-                Gtk.Picture image_dithered {
-                  content-fit: cover;
-                  can-shrink: false;
-                  halign: center;
-                  valign: center;
-                }
-              };
-
-              [overlay]
-              Gtk.Button toggle_sheet_button {
-                halign: start;
-                valign: end;
-                icon-name: "sidebar-show-left-symbolic";
-                action-name: "app.toggle-sheet";
-                tooltip-text: _("Toggle Sidebar");
-
-                styles [
-                  "osd",
-                  "circular",
-                  "custom-on-image"
-                ]
-              }
-
-              [overlay]
-              Gtk.Button {
-                halign: end;
-                valign: end;
-                icon-name: "adw-external-link-symbolic";
-                tooltip-text: _("Open in External Image Viewer");
-                action-name: "app.show-preview-image";
-
-                styles [
-                  "osd",
-                  "circular",
-                  "custom-on-image"
-                ]
+              Gtk.Picture image_dithered {
+                content-fit: cover;
+                can-shrink: false;
+                halign: center;
+                valign: center;
               }
             };
-          }
 
-          Gtk.StackPage {
-            name: "preview_stack_loading_page";
+            [overlay]
+            Gtk.Button toggle_sheet_button {
+              halign: start;
+              valign: end;
+              icon-name: "sidebar-show-left-symbolic";
+              action-name: "app.toggle-sheet";
+              tooltip-text: _("Toggle Sidebar");
 
-            child: Gtk.Box {
+              styles [
+                "osd",
+                "circular",
+                "custom-on-image"
+              ]
+            }
+
+            [overlay]
+            Gtk.Button {
+              halign: end;
+              valign: end;
+              icon-name: "adw-external-link-symbolic";
+              tooltip-text: _("Open in External Image Viewer");
+              action-name: "app.show-preview-image";
+
+              styles [
+                "osd",
+                "circular",
+                "custom-on-image"
+              ]
+            }
+          };
+
+          [overlay]
+          Gtk.Box preview_loading_overlay {
+            vexpand: true;
+            hexpand: true;
+            orientation: vertical;
+            visible: false;
+
+            Gtk.Box {
+              vexpand: true;
+              hexpand: true;
               valign: center;
               halign: center;
+              spacing: 10;
+              orientation: vertical;
 
               Gtk.Spinner {
+                height-request: 64;
+                width-request: 64;
+
                 spinning: true;
               }
-            };
+
+              Gtk.Label {
+                label: _("Dithering your image…");
+              }
+            }
+
+            styles [
+              "osd"
+            ]
           }
         }
 
