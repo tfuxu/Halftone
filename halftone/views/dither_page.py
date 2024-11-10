@@ -54,7 +54,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     color_amount_row = Gtk.Template.Child()
 
-    save_image_chooser = Gtk.Template.Child()
+    save_image_dialog = Gtk.Template.Child()
     all_filter = Gtk.Template.Child()
 
     preview_loading_overlay = Gtk.Template.Child()
@@ -100,9 +100,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.aspect_ratio_toggle.connect("notify::active",
             self.on_aspect_ratio_toggled)
 
-        self.save_image_chooser.connect("response",
-            self.on_image_chooser_response)
-
         self.dither_algorithms_combo.connect("notify::selected",
             self.on_dither_algorithm_selected)
 
@@ -130,13 +127,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         # By default keep image aspect ratio
         self.aspect_ratio_toggle.set_active(True)
 
-        self.setup_image_chooser()
         self.setup_dither_algorithms()
         self.setup_save_formats()
-
-    def setup_image_chooser(self):
-        self.save_image_chooser.set_transient_for(self.win)
-        self.save_image_chooser.set_action(Gtk.FileChooserAction.SAVE)
 
     def setup_dither_algorithms(self):
         algorithms_list = [
@@ -201,7 +193,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         if callback:
             callback()
 
-    # NOTE: Use this only if you initially load the picture (eg. from file chooser)
+    # NOTE: Use this only if you initially load the picture (eg. from file dialog)
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
 
@@ -336,8 +328,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         output_filename = f"halftone-{file_display_name}.{file_extension}"
         logging.debug(f"Output filename: {output_filename}")
 
-        self.save_image_chooser.set_current_name(output_filename)
-        self.save_image_chooser.show()
+        self.save_image_dialog.set_initial_name(output_filename)
+        self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
 
     def on_toggle_sheet(self, widget, *args):
         if self.is_mobile:
@@ -366,15 +358,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             #widget.props.tooltip_text = _("Don't keep aspect ratio")
             self.image_height_row.set_sensitive(True)
 
-    def on_image_chooser_response(self, widget, response):
-        if response == Gtk.ResponseType.ACCEPT:
-            output_file = widget.get_file()
-        widget.hide()
+    def on_image_dialog_result(self, dialog, result):
+        file = dialog.save_finish(result)
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if file is not None:
             self.start_task(self.save_image,
                             self.updated_paintable,
-                            output_file.get_path(),
+                            file.get_path(),
                             self.output_options,
                             self.win.show_dither_page)
 

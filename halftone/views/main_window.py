@@ -19,7 +19,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     main_stack = Gtk.Template.Child()
     open_image_button = Gtk.Template.Child()
 
-    open_image_chooser = Gtk.Template.Child()
+    open_image_dialog = Gtk.Template.Child()
     all_filter = Gtk.Template.Child()
 
     content = Gdk.ContentFormats.new_for_gtype(Gio.File)
@@ -72,9 +72,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.drop_target.connect("leave",
             self.on_target_leave)
 
-        self.open_image_chooser.connect("response",
-            self.on_image_chooser_response)
-
         self.connect("close-request",
             self.on_close_request)
 
@@ -91,20 +88,19 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         # Prefer to use dark scheme
         Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.PREFER_DARK)
 
-        self.setup_image_chooser()
+        self.setup_image_dialog()
         self.setup_main_stack()
 
-    def setup_image_chooser(self):
-        self.open_image_chooser.set_transient_for(self)
-        self.open_image_chooser.set_action(Gtk.FileChooserAction.OPEN)
-
-        self.open_image_chooser.add_filter(
-            get_file_filter(
-                _("Supported image formats"), supported_input_formats
-            )
+    def setup_image_dialog(self):
+        supported_filter = get_file_filter(
+            _("Supported image formats"), supported_formats
         )
 
-        self.open_image_chooser.add_filter(self.all_filter)
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(supported_filter)
+        filters.append(self.all_filter) # pyright: ignore
+
+        self.open_image_dialog.set_filters(filters)
 
     def setup_main_stack(self):
         # TODO: Finish report page
@@ -127,7 +123,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on_open_image(self, *args):
-        self.open_image_chooser.show()
+        self.open_image_dialog.open(self, None, self.on_image_dialog_result)
 
     @Gtk.Template.Callback()
     def on_copy_logs_clicked(self, *args):
@@ -140,13 +136,11 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
                 Adw.Toast(title=_("Copied logs to clipboard"))
             )
 
-    def on_image_chooser_response(self, widget, response):
-        if response == Gtk.ResponseType.ACCEPT:
-            input_file = widget.get_file()
-        widget.hide()
+    def on_image_dialog_result(self, dialog, result):
+        file = dialog.open_finish(result)
 
-        if response == Gtk.ResponseType.ACCEPT:
-            self.load_image(input_file)
+        if file is not None:
+            self.load_image(file)
 
     def on_target_drop(self, widget, file: Gio.File, *args):
         self.load_image(file)
