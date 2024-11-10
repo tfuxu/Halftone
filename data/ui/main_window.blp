@@ -6,7 +6,7 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
   default-width: 500;
   default-height: 800;
   width-request: 360;
-  height-request: 360;
+  height-request: 294;
 
   Adw.ToastOverlay toast_overlay {
     Gtk.Stack main_stack {
@@ -16,13 +16,11 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
         name: "stack_welcome_page";
 
         child: Adw.ToolbarView welcome_page {
+          top-bar-style: flat;
+
           [top]
           Adw.HeaderBar {
             centering-policy: strict;
-
-            styles [
-              "flat"
-            ]
 
             [end]
             Gtk.Button {
@@ -68,13 +66,11 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
         name: "stack_loading_page";
 
         child: Adw.ToolbarView {
+          top-bar-style: flat;
+
           [top]
           Adw.HeaderBar {
             centering-policy: strict;
-
-            styles [
-              "flat"
-            ]
 
             [end]
             Gtk.Button {
@@ -118,13 +114,11 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
         name: "stack_error_page";
 
         child: Adw.ToolbarView {
+          top-bar-style: flat;
+
           [top]
           Adw.HeaderBar {
             centering-policy: strict;
-
-            styles [
-              "flat"
-            ]
 
             [end]
             Gtk.Button {

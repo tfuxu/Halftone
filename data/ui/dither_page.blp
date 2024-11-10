@@ -3,21 +3,19 @@ using Adw 1;
 
 template $HalftoneDitherPage: Adw.BreakpointBin {
   width-request: 360;
-  height-request: 296;
+  height-request: 294;
 
   child: Adw.OverlaySplitView split_view {
     sidebar-position: start;
     show-sidebar: true;
-    min-sidebar-width: 340;
+    min-sidebar-width: 360;
 
     sidebar: Adw.ToolbarView sidebar_view {
+      top-bar-style: flat;
+
       [top]
       Adw.HeaderBar {
         centering-policy: strict;
-
-        styles [
-          "flat"
-        ]
 
         [start]
         Gtk.Button {
