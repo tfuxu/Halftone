@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New loading overlay used in image preview
+- Initial Bulgarian (bg) translation
+- Initial Norwegian Bokmål (nb) translation
+- Initial Hindi (hi) translation
+- Added `pyproject.toml` to hold project's metadata and pyright configuration
+- Added `__builtins__.pyi` to define gettext's `_` function to pyright
+
+### Changed
+
+- Updated Brazilian Portuguese (pt_BR) translation
+- Updated Italian (it) translation
+
 ## [0.6.1] - 2024-04-04
 
 ### Added

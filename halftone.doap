@@ -25,6 +25,18 @@
   <maintainer>
     <foaf:Person>
       <foaf:name>tfuxu</foaf:name>
+      <foaf:account>
+        <foaf:OnlineAccount>
+          <foaf:accountServiceHomepage rdf:resource="https://github.com" />
+          <foaf:accountName>tfuxu</foaf:accountName>
+        </foaf:OnlineAccount>
+      </foaf:account>
+      <foaf:account>
+        <foaf:OnlineAccount>
+          <foaf:accountServiceHomepage rdf:resource="https://gitlab.gnome.org" />
+          <foaf:accountName>tfuxu</foaf:accountName>
+        </foaf:OnlineAccount>
+      </foaf:account>
     </foaf:Person>
   </maintainer>
 </Project>

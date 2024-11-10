@@ -1,7 +1,7 @@
 <img src="data/icons/hicolor/scalable/apps/io.github.tfuxu.Halftone.svg" align="left" height="150px" vspace="10px">
 
 Halftone
-======
+========
 
 Give your images a pixel art-like style and reduce the file size in the process with Halftone.
 
@@ -87,12 +87,12 @@ This is a little bit more advanced way of building Flatpak packages, but if you 
 #### Prerequisites:
 
 - Flatpak Builder `flatpak-builder`
-- GNOME SDK runtime `org.gnome.Sdk//45`
-- GNOME Platform runtime `org.gnome.Platform//45`
+- GNOME SDK runtime `org.gnome.Sdk//47`
+- GNOME Platform runtime `org.gnome.Platform//47`
 
 Install required runtimes:
 ```shell
-flatpak install org.gnome.Sdk//45 org.gnome.Platform//45
+flatpak install org.gnome.Sdk//47 org.gnome.Platform//47
 ```
 
 #### Building Instructions:
@@ -122,7 +122,7 @@ The following packages are required to build Halftone:
 - PyGObject `python-gobject`
 - Blueprint [`blueprint-compiler`](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/setup.html)
 - GTK 4 `gtk4`
-- Libadwaita (>= 1.4.0) `libadwaita`
+- Libadwaita (>= 1.5.0) `libadwaita`
 - Imagemagick `imagemagick`
 - Meson `meson`
 - Ninja `ninja-build`
@@ -156,7 +156,7 @@ ninja -C builddir install
 ninja -C builddir run
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > During testing and development, as a convenience, you can use the `local.sh` script to quickly rebuild local builds.
 
 ## License
