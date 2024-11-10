@@ -13,13 +13,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial Bulgarian (bg) translation
 - Initial Norwegian Bokmål (nb) translation
 - Initial Hindi (hi) translation
-- Added `pyproject.toml` to hold project's metadata and pyright configuration
-- Added `__builtins__.pyi` to define gettext's `_` function to pyright
+- `pyproject.toml` file to hold project's metadata and pyright configuration
+- `__builtins__.pyi` type stubs file to define gettext's `_` function to pyright
+- Spell checking using `codespell` in CI
 
 ### Changed
 
+- Replaced deprecated `Gtk.FileChooser` with `Gtk.FileDialog`
+- Started using `top-bar-style` setting instead of deprecated `.flat` headerbar style class
 - Updated Brazilian Portuguese (pt_BR) translation
 - Updated Italian (it) translation
+
+### Fixed
+
+- Use `GLib.Error` instead of `GLib.GError`
+- Globally set 294 as a height request for window (to be in par with GNOME HIG recommendations)
+- Added German translation to `LINGUAS`
 
 ## [0.6.1] - 2024-04-04
 
