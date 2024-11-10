@@ -100,7 +100,7 @@ class HalftoneApplication(Adw.Application):
 
         try:
             image_file = Gio.File.new_for_path(image_path.get_string())
-        except GLib.GError as e:
+        except GLib.Error as e:
             logging.traceback_error("Failed to construct a new Gio.File object from path.",
                                     exc=e, show_exception=True)
         else:
@@ -109,7 +109,7 @@ class HalftoneApplication(Adw.Application):
             def open_image_finish(_, result, *args):
                 try:
                     launcher.launch_finish(result)
-                except GLib.GError as e:
+                except GLib.Error as e:
                     if e.code != 2: # 'The portal dialog was dismissed by the user' error
                         logging.traceback_error("Failed to finish Gtk.FileLauncher procedure.",
                                                 exc=e, show_exception=True)

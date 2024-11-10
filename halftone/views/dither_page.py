@@ -183,7 +183,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         try:
             self.set_updated_paintable(self.preview_image_path)
-        except GLib.GError:
+        except GLib.Error:
             self.win.show_error_page()
             raise
 
@@ -199,7 +199,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         try:
             self.set_original_paintable(self.input_image_path)
-        except GLib.GError:
+        except GLib.Error:
             self.win.show_error_page()
             raise
 
@@ -414,7 +414,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def set_original_paintable(self, path: str):
         try:
             self.original_paintable = Gdk.Texture.new_from_filename(path)
-        except GLib.GError as e:
+        except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
                 exc=e, show_exception=True)
@@ -426,7 +426,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def set_updated_paintable(self, path: str):
         try:
             self.updated_paintable = Gdk.Texture.new_from_filename(path)
-        except GLib.GError as e:
+        except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
                 exc=e, show_exception=True)
@@ -519,7 +519,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             thread.start()
             self.task_id = thread.ident
             self.tasks.append(thread)
-        except GLib.GError:
+        except GLib.Error:
             self.toast_overlay.add_toast(
                 Adw.Toast(title=_("Failed to load preview image"))
             )

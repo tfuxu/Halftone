@@ -93,7 +93,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     def setup_image_dialog(self):
         supported_filter = get_file_filter(
-            _("Supported image formats"), supported_formats
+            _("Supported image formats"), supported_input_formats
         )
 
         filters = Gio.ListStore.new(Gtk.FileFilter)
@@ -111,7 +111,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.show_loading_page()
         try:
             self.dither_page.load_preview_image(file)
-        except GLib.GError as e:
+        except GLib.Error as e:
             # TODO: Modify error page for different error codes
             if e.code == 3:  # Unrecognized image file format
                 pass
