@@ -10,15 +10,20 @@ on:
       - '**/*.md'
 
 jobs:
+  codespell:
+    name: Check for spelling errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: codespell-project/actions-codespell@v2
   flatpak:
     name: Build Flatpak Package
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-45
+      image: bilelmoussaoui/flatpak-github-actions:gnome-nightly
       options: --privileged
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:

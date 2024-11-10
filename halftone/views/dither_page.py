@@ -90,7 +90,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.output_options: OutputOptions = OutputOptions()
 
         self.keep_aspect_ratio = True
-        self.loading_overlay_delay = 2000  # In miliseconds
+        self.loading_overlay_delay = 2000  # In milliseconds
 
         self.setup_signals()
         self.setup()
