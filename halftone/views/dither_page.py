@@ -14,7 +14,7 @@ from halftone.backend.logger import Logger
 
 from halftone.utils.killable_thread import KillableThread
 from halftone.utils.filters import supported_output_formats
-from halftone.constants import rootdir # pylint: disable=E0401,E0611
+from halftone.constants import rootdir # pyright: ignore
 
 logging = Logger()
 

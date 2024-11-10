@@ -3,7 +3,7 @@
 
 from gi.repository import Gtk, Adw
 
-from halftone import constants # pylint: disable=E0611
+from halftone import constants # pyright: ignore
 
 
 class HalftoneAboutWindow:

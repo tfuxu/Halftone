@@ -8,7 +8,7 @@ from gi.repository import Gtk, Gio, Adw, GLib
 
 from halftone.backend.logger import Logger
 
-from halftone.constants import rootdir, app_id # pylint: disable=E0401,E0611
+from halftone.constants import rootdir, app_id # pyright: ignore
 from halftone.views.main_window import HalftoneMainWindow
 from halftone.views.about_window import HalftoneAboutWindow
 #from halftone.views.preferences_window import HalftonePreferencesWindow

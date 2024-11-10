@@ -3,7 +3,7 @@
 
 from gi.repository import Adw, Gtk
 
-from halftone.constants import rootdir # pylint: disable=E0401,E0611
+from halftone.constants import rootdir # pyright: ignore
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/preferences_window.ui")

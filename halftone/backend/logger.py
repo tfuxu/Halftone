@@ -7,7 +7,7 @@ import sys
 import logging
 import traceback
 
-from halftone.constants import build_type # pylint: disable=E0401,E0611
+from halftone.constants import build_type # pyright: ignore
 
 
 class Logger(logging.getLoggerClass()):
