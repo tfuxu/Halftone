@@ -1,4 +1,4 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import tempfile
@@ -9,7 +9,7 @@ class HalftoneTempFile:
     def __init__(self):
         pass
 
-    def create_temp_file(self, text: bool = False, suffix: str = None) -> str:
+    def create_temp_file(self, text: bool = False, suffix: str | None = None) -> str:
         """
         Safely create file for storing temporary data.
 

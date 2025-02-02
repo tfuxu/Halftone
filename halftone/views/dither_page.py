@@ -1,8 +1,9 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import Enum
 from pathlib import Path
+from typing import Callable, Literal
 
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
@@ -167,7 +168,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     """ Main functions """
 
     def update_preview_image(self, path: str, output_options: OutputOptions,
-                                   run_delay: bool = True, callback: callable = None):
+                                   run_delay: bool = True, callback: Callable | None = None):
         self.is_image_ready = False
 
         if run_delay:
@@ -213,7 +214,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                         self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
-                         output_options: OutputOptions, callback: callable):
+                         output_options: OutputOptions, callback: Callable):
         self.win.show_loading_page()
 
         image_bytes = paintable.save_to_tiff_bytes()
@@ -459,7 +460,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         new_height = int(widget.props.value)
         return new_height
 
-    def get_dither_algorithm_pref(self, widget) -> str:
+    def get_dither_algorithm_pref(self, widget) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
         selected_algorithm = widget.props.selected
 
         class selectedAlgo(Enum):
@@ -467,7 +468,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             RIEMERSMA = 1
             ORDERED = 2
 
-        def __get_algorithm_string():
+        def __get_algorithm_string() -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
             if selected_algorithm == selectedAlgo.FLOYD_STEINBERG.value:
                 return "floyd_steinberg"
             if selected_algorithm == selectedAlgo.RIEMERSMA.value:
@@ -484,6 +485,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def update_preview_content_fit(self, *args):
         selected_content_fit = self.settings.get_int("preview-content-fit")
 
+        content_fit = Gtk.ContentFit.FILL
+        
         if selected_content_fit == 0:
             content_fit = Gtk.ContentFit.FILL
         elif selected_content_fit == 1:
@@ -499,7 +502,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.image_width_row.set_value(width)
         self.image_height_row.set_value(height)
 
-    def start_task(self, task: callable, *args): #callback: callable
+    def start_task(self, task: Callable, *args): #callback: callable
         logging.debug("Starting new async task")
 
         for t in self.tasks:

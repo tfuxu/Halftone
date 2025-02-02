@@ -1,4 +1,4 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from wand.image import Image
@@ -49,7 +49,7 @@ class HalftoneImageMagick:
                     clone.ordered_dither("o4x4")
                     clone.quantize(color_amount, colorspace_type="undefined")
                 else:
-                    clone.quantize(color_amount, colorspace_type="undefined", dither=algorithm)
+                    clone.quantize(color_amount, colorspace_type="undefined", dither=algorithm) # pyright: ignore
 
                 temp_path = HalftoneTempFile().create_temp_file()
                 clone.save(filename=temp_path)

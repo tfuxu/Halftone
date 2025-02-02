@@ -1,5 +1,7 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
+
+from typing import Literal
 
 from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 
@@ -98,7 +100,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         filters = Gio.ListStore.new(Gtk.FileFilter)
         filters.append(supported_filter)
-        filters.append(self.all_filter) # pyright: ignore
+        filters.append(self.all_filter)
 
         self.open_image_dialog.set_filters(filters)
 
@@ -127,27 +129,26 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on_copy_logs_clicked(self, *args):
-        logs_content = GObject.Value(str, self.latest_traceback)
-
         clipboard = self.get_clipboard()
-        clipboard.set(logs_content)
+        clipboard.set(self.latest_traceback)
 
         self.toast_overlay.add_toast(
-                Adw.Toast(title=_("Copied logs to clipboard"))
-            )
+            Adw.Toast(title=_("Copied logs to clipboard"))
+        )
 
-    def on_image_dialog_result(self, dialog, result):
+    def on_image_dialog_result(self, dialog: Gtk.FileDialog, result: Gio.AsyncResult):
         file = dialog.open_finish(result)
 
         if file is not None:
             self.load_image(file)
 
-    def on_target_drop(self, widget, file: Gio.File, *args):
+    def on_target_drop(self, widget: Gtk.DropTarget, file: Gio.File, *args):
         self.load_image(file)
 
-    def on_target_enter(self, *args):
+    def on_target_enter(self, *args) -> Literal[Gdk.DragAction.COPY]:
         self.previous_stack = self.main_stack.get_visible_child_name()
         self.main_stack.set_visible_child_name('stack_drop_page')
+
         return Gdk.DragAction.COPY
 
     def on_target_leave(self, *args):
