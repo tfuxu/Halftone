@@ -1,0 +1,54 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $HalftoneErrorPage : Adw.Bin {
+  child: Adw.ToolbarView {
+    top-bar-style: flat;
+
+    [top]
+    Adw.HeaderBar {
+      centering-policy: strict;
+
+      [start]
+      Gtk.Button {
+        tooltip-text: _("Open Image (Ctrl+O)");
+        icon-name: "arrow-into-box-symbolic";
+        action-name: "app.open-image";
+      }
+
+      [end]
+      Gtk.Button {
+        icon-name: "help-about-symbolic";
+        tooltip-text: _("About Halftone");
+        action-name: "app.about";
+
+        styles [
+          "flat"
+        ]
+      }
+    }
+
+    content: Adw.StatusPage {
+      hexpand: true;
+
+      icon-name: "image-missing-symbolic";
+      title: _("Image Error Occurred");
+      description: _("An error occurred while loading an image. If this error persists, please copy logs and report issue to the bug tracker.");
+
+      Gtk.Box {
+        orientation: horizontal;
+        halign: center;
+        spacing: 6;
+
+        Gtk.Button {
+          label: _("Copy Logs");
+          clicked => $on_copy_logs_clicked();
+
+          styles [
+            "pill"
+          ]
+        }
+      }
+    };
+  };
+}

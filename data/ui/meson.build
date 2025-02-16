@@ -1,6 +1,7 @@
 blueprints = custom_target('blueprints',
   input: files(
     'dither_page.blp',
+    'error_page.blp',
     'help_overlay.blp',
     'main_window.blp',
     'preferences_window.blp',

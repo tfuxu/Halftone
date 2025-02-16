@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/io/github/tfuxu/Halftone">
     <file preprocess="xml-stripblanks">ui/dither_page.ui</file>
+    <file preprocess="xml-stripblanks">ui/error_page.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help_overlay.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/preferences_window.ui</file>

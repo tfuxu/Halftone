@@ -5,6 +5,7 @@ from typing import Literal
 
 from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
 
+from halftone.views.error_page import HalftoneErrorPage
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.report_page import HalftoneReportPage
 
@@ -38,6 +39,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.add_controller(self.drop_target)
 
+        self.error_page = HalftoneErrorPage(self)
         self.dither_page = HalftoneDitherPage(self)
         self.report_page = HalftoneReportPage(self)
 
@@ -107,6 +109,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     def setup_main_stack(self):
         # TODO: Finish report page
         #self.main_stack.add_named(self.report_page, "stack_report_page")
+        self.main_stack.add_named(self.error_page, "stack_error_page")
         self.main_stack.add_named(self.dither_page, "stack_dither_page")
 
     def load_image(self, file: Gio.File):
@@ -120,21 +123,13 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             self.toast_overlay.add_toast(
                 Adw.Toast(title=_("Failed to load an image"))
             )
+            self.show_error_page()
         else:
             self.show_dither_page()
 
     @Gtk.Template.Callback()
     def on_open_image(self, *args):
         self.open_image_dialog.open(self, None, self.on_image_dialog_result)
-
-    @Gtk.Template.Callback()
-    def on_copy_logs_clicked(self, *args):
-        clipboard = self.get_clipboard()
-        clipboard.set(self.latest_traceback)
-
-        self.toast_overlay.add_toast(
-            Adw.Toast(title=_("Copied logs to clipboard"))
-        )
 
     def on_image_dialog_result(self, dialog: Gtk.FileDialog, result: Gio.AsyncResult):
         file = dialog.open_finish(result)
