@@ -1,11 +1,12 @@
 # Copyright (C) 2022 Gradience Team
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
 
 import logging
 import traceback
+from typing_extensions import Optional
 
 from halftone.constants import build_type # pyright: ignore
 
@@ -17,10 +18,10 @@ class Logger(logging.getLoggerClass()):
 
     Attributes
     ----------
-    issue_footer_levels : :class:`list`
+    issue_footer_levels : list, optional
         Custom list of levels on which to show issue footer.
         [Allowed values: warning, error, traceback_error, critical]
-    formatter : :class:`dict`
+    formatter : str, optional
         Custom formatter for the logger.
     """
 
@@ -44,40 +45,33 @@ class Logger(logging.getLoggerClass()):
         "critical"
     ]
 
-    def __set_traceback_info(self, exc: BaseException = None) -> str:
-        if not exc:
-            exc = sys.exc_info()[1]
-        exception_info = ""
-
-        exception_tb = self.get_traceback(exc)
+    def __set_traceback_info(self, exception: Optional[BaseException] = None) -> str:
+        if not exception:
+            exception = sys.exc_info()[1]
+        traceback = self.get_traceback(exception)
 
         message_head = "\n\t\033[1mTraceback:\033[0m"
-        message_body = f"\n\033[90m{exception_tb}\033[0m"
+        message_body = f"\n\033[90m{traceback}\033[0m"
         message_body = message_body.replace("\n", "\n\t\t")
 
-        exception_info = message_head + message_body
+        return message_head + message_body
 
-        return exception_info
-
-    def __set_exception_info(self, exc: BaseException = None) -> str:
-        if not exc:
-            exc = sys.exc_info()[1]
-        exception_info = ""
+    def __set_exception_info(self, exception: Optional[BaseException] = None) -> str:
+        if not exception:
+            exception = sys.exc_info()[1]
 
         message_head = "\n\t\033[1mException:\033[0m"
-        message_body = f"\n{exc}"
+        message_body = f"\n{exception}"
         message_body = message_body.replace("\n", "\n\t\t")
 
-        exception_info = message_head + message_body
+        return message_head + message_body
 
-        return exception_info
-
-    def __set_level_color(self, level: str, message: str) -> None:
+    def __set_level_color(self, level: str, message: str) -> str:
         color_id = self.log_colors[level]
 
         return f"[\033[1;{color_id}m{level.upper()}\033[0m] {message}"
 
-    def __init__(self, issue_footer_levels: list = None, formatter: dict = None):
+    def __init__(self, issue_footer_levels: Optional[list] = None, fmt: Optional[str] = None):
         """
         The constructor for Logger class.
         """
@@ -87,9 +81,9 @@ class Logger(logging.getLoggerClass()):
         if issue_footer_levels:
             self.issue_footer_levels = issue_footer_levels
 
-        if formatter is None:
-            formatter = self.log_format
-        formatter = logging.Formatter(**formatter)
+        formatter = logging.Formatter(self.log_format["fmt"])
+        if fmt:
+            formatter = logging.Formatter(fmt)
 
         if build_type == "debug":
             self.root.setLevel(logging.DEBUG)
@@ -101,50 +95,50 @@ class Logger(logging.getLoggerClass()):
         handler.setFormatter(formatter)
         self.root.addHandler(handler)
 
-    def debug(self, message: str) -> None:
+    def debug(self, message: str, *args, **kwargs) -> None:
         self.root.debug(self.__set_level_color("debug", str(message)))
 
-    def info(self, message: str) -> None:
+    def info(self, message: str, *args, **kwargs) -> None:
         self.root.info(self.__set_level_color("info", str(message)))
 
-    def warning(self, message: str, exc: BaseException = None,
-                    show_exception: bool = False, show_traceback: bool = False) -> None:
+    def warning(self, message: str, exception: Optional[BaseException] = None,
+                    show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
         if show_exception:
-            message += self.__set_exception_info(exc)
+            message += self.__set_exception_info(exception)
         if show_traceback:
-            message += self.__set_traceback_info(exc)
+            message += self.__set_traceback_info(exception)
 
         self.root.warning(self.__set_level_color("warning", str(message)))
         if "warning" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def error(self, message: str, exc: BaseException = None,
-                show_exception: bool = False, show_traceback: bool = False) -> None:
+    def error(self, message: str, exception: Optional[BaseException] = None,
+                show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
         if show_exception:
-            message += self.__set_exception_info(exc)
+            message += self.__set_exception_info(exception)
         if show_traceback:
-            message += self.__set_traceback_info(exc)
+            message += self.__set_traceback_info(exception)
 
         self.root.error(self.__set_level_color("error", str(message)))
         if "error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def traceback_error(self, message: str, exc: BaseException = None,
+    def traceback_error(self, message: str, exception: Optional[BaseException] = None,
                             show_exception: bool = False) -> None:
         if show_exception:
-            message += self.__set_exception_info(exc)
-        message += self.__set_traceback_info(exc)
+            message += self.__set_exception_info(exception)
+        message += self.__set_traceback_info(exception)
 
         self.root.error(self.__set_level_color("error", str(message)))
         if "traceback_error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def critical(self, message: str, exc: BaseException = None,
-                    show_exception: bool = False, show_traceback: bool = True) -> None:
+    def critical(self, message: str, exception: Optional[BaseException] = None,
+                    show_exception: bool = False, show_traceback: bool = True, *args, **kwargs) -> None:
         if show_exception:
-            message += self.__set_exception_info(exc)
+            message += self.__set_exception_info(exception)
         if show_traceback:
-            message += self.__set_traceback_info(exc)
+            message += self.__set_traceback_info(exception)
 
         self.root.critical(self.__set_level_color("critical", str(message)))
         if "critical" in self.issue_footer_levels:
@@ -156,8 +150,11 @@ class Logger(logging.getLoggerClass()):
     def print_issue_footer(self) -> None:
         self.root.info(self.__set_level_color("info", self.issue_footer))
 
-    def get_traceback(self, exc: BaseException) -> str:
-        traceback_list = traceback.format_exception(exc)
+    def get_traceback(self, exception: Optional[BaseException]) -> str | None:
+        if not exception:
+            return
+
+        traceback_list = traceback.format_exception(exception)
         exception_tb = "".join(traceback_list)
 
         return exception_tb
@@ -180,6 +177,6 @@ if __name__ == "__main__":
         try:
             raise Exception("General Exception")
         except Exception as e:
-            logging.traceback_error("This is an test error.", exc=e, show_exception=True)
+            logging.traceback_error("This is an test error.", exception=e, show_exception=True)
 
             print(f"Retrieved traceback: {logging.get_traceback(e)}")
