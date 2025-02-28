@@ -418,7 +418,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
-                exc=e, show_exception=True)
+                exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
@@ -430,7 +430,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
-                exc=e, show_exception=True)
+                exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
