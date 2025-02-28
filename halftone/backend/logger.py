@@ -18,10 +18,10 @@ class Logger(logging.getLoggerClass()):
 
     Attributes
     ----------
-    issue_footer_levels : :class:`list`
+    issue_footer_levels : list, optional
         Custom list of levels on which to show issue footer.
         [Allowed values: warning, error, traceback_error, critical]
-    formatter : :class:`dict`
+    formatter : str, optional
         Custom formatter for the logger.
     """
 
