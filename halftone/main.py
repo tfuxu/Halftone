@@ -1,4 +1,4 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import os
@@ -38,11 +38,11 @@ class HalftoneApplication(Adw.Application):
 
         if not self.window:
             self.window = HalftoneMainWindow(
-                application=self,
-                default_height=self.settings.get_int("window-height"),
-                default_width=self.settings.get_int("window-width"),
-                maximized=self.settings.get_boolean("window-maximized")
-            )
+                application=self, # pyright: ignore
+                default_height=self.settings.get_int("window-height"), # pyright: ignore
+                default_width=self.settings.get_int("window-width"), # pyright: ignore
+                maximized=self.settings.get_boolean("window-maximized") # pyright: ignore
+            ) # pyright: ignore
 
         self.window.present()
 
@@ -85,7 +85,7 @@ class HalftoneApplication(Adw.Application):
     def show_preview_image(self, _action, *args):
         """ Helper for `show-preview-image` action. """
 
-        preview_image_path = self.window.dither_page.preview_image_path
+        preview_image_path = self.window.dither_page.preview_image_path # pyright: ignore
         image_path_variant = GLib.Variant("s", preview_image_path)
 
         self.show_image_external(None, image_path_variant)
@@ -102,7 +102,7 @@ class HalftoneApplication(Adw.Application):
             image_file = Gio.File.new_for_path(image_path.get_string())
         except GLib.Error as e:
             logging.traceback_error("Failed to construct a new Gio.File object from path.",
-                                    exc=e, show_exception=True)
+                                    exception=e, show_exception=True)
         else:
             launcher = Gtk.FileLauncher.new(image_file)
 
@@ -112,7 +112,7 @@ class HalftoneApplication(Adw.Application):
                 except GLib.Error as e:
                     if e.code != 2: # 'The portal dialog was dismissed by the user' error
                         logging.traceback_error("Failed to finish Gtk.FileLauncher procedure.",
-                                                exc=e, show_exception=True)
+                                                exception=e, show_exception=True)
 
             launcher.launch(self.window, None, open_image_finish)
 
