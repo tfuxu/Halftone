@@ -488,7 +488,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         selected_content_fit = self.settings.get_int("preview-content-fit")
 
         content_fit = Gtk.ContentFit.FILL
-        
+
         if selected_content_fit == 0:
             content_fit = Gtk.ContentFit.FILL
         elif selected_content_fit == 1:
@@ -524,7 +524,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             thread.start()
             self.task_id = thread.ident
             self.tasks.append(thread)
-        except GLib.Error:
+        except GLib.Error as e:
+            logging.traceback_error(
+                "Failed to finish async task.",
+                exception=e, show_exception=True)
             self.toast_overlay.add_toast(
-                Adw.Toast(title=_("Failed to load preview image"))
+                Adw.Toast(title=_("Failed to load preview image. Check logs for more information"))
             )
+            self.win.latest_traceback = logging.get_traceback(e)

@@ -3,7 +3,7 @@
 
 from typing import Literal
 
-from gi.repository import GObject, GLib, Gdk, Gio, Gtk, Adw
+from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
 from halftone.views.error_page import HalftoneErrorPage
 from halftone.views.dither_page import HalftoneDitherPage
@@ -14,6 +14,8 @@ from halftone.backend.logger import Logger
 
 from halftone.utils.filters import get_file_filter
 from halftone.constants import rootdir, app_id, build_type # pyright: ignore
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/main_window.ui")
@@ -124,11 +126,16 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         except GLib.Error as e:
             # TODO: Modify error page for different error codes
             if e.code == 3:  # Unrecognized image file format
-                pass
+                return
+
+            logging.traceback_error("Failed to load an image.",
+                                        exception=e, show_exception=True)
             self.toast_overlay.add_toast(
-                Adw.Toast(title=_("Failed to load an image"))
+                Adw.Toast(title=_("Failed to load an image. Check logs for more information"))
             )
+            self.latest_traceback = logging.get_traceback(e)
             self.show_error_page()
+            return
         else:
             self.show_dither_page()
 
@@ -137,13 +144,26 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_dialog.open(self, None, self.on_image_dialog_result)
 
     def on_image_dialog_result(self, dialog: Gtk.FileDialog, result: Gio.AsyncResult):
-        file = dialog.open_finish(result)
+        try:
+            file = dialog.open_finish(result)
+        except GLib.Error as e:
+            if e.code == 2: # 'Dismissed by user' error
+                return
+            else:
+                logging.traceback_error("Failed to finish Gtk.FileDialog procedure.",
+                                        exception=e, show_exception=True)
+                self.toast_overlay.add_toast(
+                    Adw.Toast(title=_("Failed to retrieve a file. Check logs for more information"))
+                )
+                self.latest_traceback = logging.get_traceback(e)
+                return
 
         if file is not None:
             self.load_image(file)
 
     def on_target_drop(self, widget: Gtk.DropTarget, file: Gio.File, *args):
-        self.load_image(file)
+        if file is not None:
+            self.load_image(file)
 
     def on_target_enter(self, *args) -> Literal[Gdk.DragAction.COPY]:
         self.previous_stack = self.main_stack.get_visible_child_name()
