@@ -9,7 +9,10 @@ from halftone.views.error_page import HalftoneErrorPage
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.report_page import HalftoneReportPage
 
-from halftone.utils.filters import get_file_filter, supported_input_formats
+from halftone.backend.utils.filetypes import get_input_formats
+from halftone.backend.logger import Logger
+
+from halftone.utils.filters import get_file_filter
 from halftone.constants import rootdir, app_id, build_type # pyright: ignore
 
 
@@ -96,8 +99,10 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.setup_main_stack()
 
     def setup_image_dialog(self):
+        input_formats = get_input_formats()
+
         supported_filter = get_file_filter(
-            _("Supported image formats"), supported_input_formats
+            _("Supported image formats"), input_formats
         )
 
         filters = Gio.ListStore.new(Gtk.FileFilter)

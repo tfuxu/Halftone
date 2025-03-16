@@ -7,6 +7,7 @@ from typing import Callable, Literal
 
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
+from halftone.backend.utils.filetypes import FileType, get_output_formats
 from halftone.backend.utils.temp import HalftoneTempFile
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
@@ -14,7 +15,6 @@ from halftone.backend.magick import HalftoneImageMagick
 from halftone.backend.logger import Logger
 
 from halftone.utils.killable_thread import KillableThread
-from halftone.utils.filters import supported_output_formats
 from halftone.constants import rootdir # pyright: ignore
 
 logging = Logger()
@@ -142,10 +142,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.algorithms_stringlist.append(algorithm)
 
     def setup_save_formats(self):
-        for image_format in supported_output_formats:
-            self.image_formats_stringlist.append(image_format)
+        output_formats = get_output_formats(True) # TODO: Add a setting to toggle showing all formats
 
-        self.export_format_combo.set_selected(supported_output_formats.index("png"))
+        for filetype in output_formats:
+            self.image_formats_stringlist.append(filetype.as_extension())
+
+        self.export_format_combo.set_selected(output_formats.index(FileType.PNG))
 
     def setup_controllers(self):
         preview_drag_ctrl = Gtk.GestureDrag.new()
