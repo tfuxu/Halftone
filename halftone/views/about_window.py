@@ -1,6 +1,8 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from wand.version import MAGICK_VERSION_INFO, VERSION, MAGICK_VERSION_FEATURES
+
 from gi.repository import Gtk, Adw
 
 from halftone import constants # pyright: ignore
@@ -12,6 +14,7 @@ class HalftoneAboutWindow:
         self.app = self.parent.get_application()
 
         self.setup()
+        self.set_debug_info()
 
     def setup(self):
         self.about_window = Adw.AboutDialog(
@@ -36,6 +39,21 @@ class HalftoneAboutWindow:
             version=constants.version,
             release_notes_version=constants.rel_ver,
         )
+        self.about_window.add_legal_section("ImageMagick", None, Gtk.License.MIT_X11, None)
+
+    def set_debug_info(self):
+        magick_version = f"ImageMagick: {".".join(map(str, MAGICK_VERSION_INFO))}"
+        wand_version = f"Wand: {VERSION}"
+        magick_features = f"Features: {MAGICK_VERSION_FEATURES}"
+
+        info_list = [magick_version, wand_version, magick_features]
+
+        debug_info = ""
+        for info in info_list:
+            debug_info += info + "\n"
+
+        self.about_window.set_debug_info(debug_info)
+        self.about_window.set_debug_info_filename("halftone-debug-info")
 
     def show_about(self):
         self.about_window.present(self.parent)
