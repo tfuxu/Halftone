@@ -10,7 +10,6 @@ def get_file_filter(filter_name: str, filetypes: list[FileType]) -> Gtk.FileFilt
     file_filter = Gtk.FileFilter()
 
     for filetype in filetypes:
-        print(filetype)
         file_filter.add_mime_type(filetype.as_mimetype())
 
     file_filter.set_name(filter_name)
