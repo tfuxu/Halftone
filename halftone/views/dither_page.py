@@ -5,6 +5,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Callable, Literal
 
+from wand.exceptions import BaseError, BaseFatalError
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
 from halftone.backend.utils.filetypes import FileType, get_output_formats
@@ -182,13 +183,22 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.clean_preview_paintable()
 
         self.output_options = output_options
-        self.preview_image_path = HalftoneImageMagick().dither_image(path, self.output_options)
+
+        try:
+            self.preview_image_path = HalftoneImageMagick().dither_image(path, self.output_options)
+        except (BaseError, BaseFatalError) as e:
+            logging.traceback_error(
+                "Failed to finish ImageMagick dithering operations.",
+                exception=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
+            self.win.show_error_page()
+            return
 
         try:
             self.set_updated_paintable(self.preview_image_path)
         except GLib.Error:
             self.win.show_error_page()
-            raise
+            return
 
         self.on_successful_image_load()
         self.is_image_ready = True
