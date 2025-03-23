@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from enum import StrEnum, auto
-from typing import Optional, Self
+from typing import Self
 
 
 class FileType(StrEnum):
@@ -62,7 +62,7 @@ class FileType(StrEnum):
                 return "image/gif"
 
     @classmethod
-    def from_mimetype(cls, mimetype: str) -> Optional[Self]:
+    def from_mimetype(cls, mimetype: str) -> Self | None:
         match mimetype:
             case "image/png":
                 return cls("png")
@@ -119,7 +119,7 @@ class FileType(StrEnum):
                 return "gif"
 
     @classmethod
-    def from_extension(cls, extension: str) -> Optional[Self]:
+    def from_extension(cls, extension: str) -> Self | None:
         match extension:
             case "png":
                 return cls("png")
@@ -165,7 +165,7 @@ def get_input_formats() -> list[FileType]:
     ]
 
     return filetypes
-    
+
 def get_output_formats(all_formats: bool) -> list[FileType]:
     all_filetypes = [
         FileType.PNG,
@@ -187,7 +187,7 @@ def get_output_formats(all_formats: bool) -> list[FileType]:
         FileType.TIFF,
         FileType.GIF
     ]
-    
+
     if all_formats:
         return all_filetypes
 

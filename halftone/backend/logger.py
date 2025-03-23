@@ -6,7 +6,6 @@ import sys
 
 import logging
 import traceback
-from typing_extensions import Optional
 
 from halftone.constants import build_type # pyright: ignore
 
@@ -45,7 +44,7 @@ class Logger(logging.getLoggerClass()):
         "critical"
     ]
 
-    def __set_traceback_info(self, exception: Optional[BaseException] = None) -> str:
+    def __set_traceback_info(self, exception: BaseException | None = None) -> str:
         if not exception:
             exception = sys.exc_info()[1]
         traceback = self.get_traceback(exception)
@@ -56,7 +55,7 @@ class Logger(logging.getLoggerClass()):
 
         return message_head + message_body
 
-    def __set_exception_info(self, exception: Optional[BaseException] = None) -> str:
+    def __set_exception_info(self, exception: BaseException | None = None) -> str:
         if not exception:
             exception = sys.exc_info()[1]
 
@@ -71,7 +70,7 @@ class Logger(logging.getLoggerClass()):
 
         return f"[\033[1;{color_id}m{level.upper()}\033[0m] {message}"
 
-    def __init__(self, issue_footer_levels: Optional[list] = None, fmt: Optional[str] = None):
+    def __init__(self, issue_footer_levels: list | None = None, fmt: str | None = None):
         """
         The constructor for Logger class.
         """
@@ -101,7 +100,7 @@ class Logger(logging.getLoggerClass()):
     def info(self, message: str, *args, **kwargs) -> None:
         self.root.info(self.__set_level_color("info", str(message)))
 
-    def warning(self, message: str, exception: Optional[BaseException] = None,
+    def warning(self, message: str, exception: BaseException | None = None,
                     show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
@@ -112,7 +111,7 @@ class Logger(logging.getLoggerClass()):
         if "warning" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def error(self, message: str, exception: Optional[BaseException] = None,
+    def error(self, message: str, exception: BaseException | None = None,
                 show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
@@ -123,7 +122,7 @@ class Logger(logging.getLoggerClass()):
         if "error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def traceback_error(self, message: str, exception: Optional[BaseException] = None,
+    def traceback_error(self, message: str, exception: BaseException | None = None,
                             show_exception: bool = False) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
@@ -133,7 +132,7 @@ class Logger(logging.getLoggerClass()):
         if "traceback_error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def critical(self, message: str, exception: Optional[BaseException] = None,
+    def critical(self, message: str, exception: BaseException | None = None,
                     show_exception: bool = False, show_traceback: bool = True, *args, **kwargs) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
@@ -150,7 +149,7 @@ class Logger(logging.getLoggerClass()):
     def print_issue_footer(self) -> None:
         self.root.info(self.__set_level_color("info", self.issue_footer))
 
-    def get_traceback(self, exception: Optional[BaseException]) -> str | None:
+    def get_traceback(self, exception: BaseException | None) -> str | None:
         if not exception:
             return
 
