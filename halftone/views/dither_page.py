@@ -371,15 +371,25 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             #widget.props.tooltip_text = _("Don't keep aspect ratio")
             self.image_height_row.set_sensitive(True)
 
-    def on_image_dialog_result(self, dialog, result):
-        file = dialog.save_finish(result)
-
-        if file is not None:
-            self.start_task(self.save_image,
-                            self.updated_paintable,
-                            file.get_path(),
-                            self.output_options,
-                            self.win.show_dither_page)
+    def on_image_dialog_result(self, dialog: Gtk.FileDialog, result: Gio.AsyncResult):
+        try:
+            file = dialog.save_finish(result)
+        except GLib.Error as e:
+            if e.code != 2: # 'Dismissed by user' error
+                logging.traceback_error(
+                    "Failed to finish save dialog procedure.",
+                    exception=e, show_exception=True)
+                self.toast_overlay.add_toast(
+                    Adw.Toast(title=_("Failed to save an image. Check logs for more information"))
+                )
+                self.win.latest_traceback = logging.get_traceback(e)
+        else:
+            if file is not None:
+                self.start_task(self.save_image,
+                                self.updated_paintable,
+                                file.get_path(),
+                                self.output_options,
+                                self.win.show_dither_page)
 
     def on_dither_algorithm_selected(self, widget, *args):
         algorithm_string = self.get_dither_algorithm_pref(widget)
