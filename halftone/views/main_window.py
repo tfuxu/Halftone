@@ -147,19 +147,16 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         try:
             file = dialog.open_finish(result)
         except GLib.Error as e:
-            if e.code == 2: # 'Dismissed by user' error
-                return
-            else:
+            if e.code != 2: # 'Dismissed by user' error
                 logging.traceback_error("Failed to finish Gtk.FileDialog procedure.",
                                         exception=e, show_exception=True)
                 self.toast_overlay.add_toast(
                     Adw.Toast(title=_("Failed to retrieve a file. Check logs for more information"))
                 )
                 self.latest_traceback = logging.get_traceback(e)
-                return
-
-        if file is not None:
-            self.load_image(file)
+        else:
+            if file is not None:
+                self.load_image(file)
 
     def on_target_drop(self, widget: Gtk.DropTarget, file: Gio.File, *args):
         if file is not None:

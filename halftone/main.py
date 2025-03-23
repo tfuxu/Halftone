@@ -106,7 +106,7 @@ class HalftoneApplication(Adw.Application):
         else:
             launcher = Gtk.FileLauncher.new(image_file)
 
-            def open_image_finish(_, result, *args):
+            def open_image_finish(_, result: Gio.AsyncResult, *args):
                 try:
                     launcher.launch_finish(result)
                 except GLib.Error as e:
