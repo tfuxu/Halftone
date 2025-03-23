@@ -28,7 +28,7 @@ class FileType(StrEnum):
     SVG  = auto()
     HEIF = auto()
     HEIC = auto()
-    BMP  = auto()
+    #BMP  = auto()
     AVIF = auto()
     JXL  = auto()
     TIFF = auto()
@@ -50,8 +50,8 @@ class FileType(StrEnum):
                 return "image/heif"
             case FileType.HEIC:
                 return "image/heic"
-            case FileType.BMP:
-                return "image/bmp"
+            #case FileType.BMP:
+            #    return "image/bmp"
             case FileType.AVIF:
                 return "image/avif"
             case FileType.JXL:
@@ -78,8 +78,8 @@ class FileType(StrEnum):
                 return cls("heif")
             case "image/heic":
                 return cls("heic")
-            case "image/bmp":
-                return cls("bmp")
+            #case "image/bmp":
+            #    return cls("bmp")
             case "image/avif":
                 return cls("avif")
             case "image/jxl":
@@ -107,8 +107,8 @@ class FileType(StrEnum):
                 return "heif"
             case FileType.HEIC:
                 return "heic"
-            case FileType.BMP:
-                return "bmp"
+            #case FileType.BMP:
+            #    return "bmp"
             case FileType.AVIF:
                 return "avif"
             case FileType.JXL:
@@ -135,8 +135,8 @@ class FileType(StrEnum):
                 return cls("heif")
             case "heic":
                 return cls("heic")
-            case "bmp":
-                return cls("bmp")
+            #case "bmp":
+            #    return cls("bmp")
             case "avif":
                 return cls("avif")
             case "jxl":
@@ -157,7 +157,7 @@ def get_input_formats() -> list[FileType]:
         FileType.SVG,
         FileType.HEIF,
         FileType.HEIC,
-        FileType.BMP,
+        #FileType.BMP,
         FileType.AVIF,
         FileType.JXL,
         FileType.TIFF,
@@ -173,7 +173,7 @@ def get_output_formats(all_formats: bool) -> list[FileType]:
         FileType.WEBP,
         FileType.HEIF,
         FileType.HEIC,
-        FileType.BMP,
+        #FileType.BMP,
         FileType.AVIF,
         FileType.JXL,
         FileType.TIFF,
