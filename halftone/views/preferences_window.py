@@ -1,4 +1,4 @@
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from gi.repository import Adw, Gtk
@@ -10,7 +10,7 @@ from halftone.constants import rootdir # pyright: ignore
 class HalftonePreferencesWindow(Adw.PreferencesWindow):
     __gtype_name__ = "HalftonePreferencesWindow"
 
-    content_fit_combo = Gtk.Template.Child()
+    content_fit_combo: Adw.ComboRow = Gtk.Template.Child()
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
