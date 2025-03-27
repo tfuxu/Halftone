@@ -169,7 +169,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         return Gdk.DragAction.COPY
 
     def on_target_leave(self, *args):
-        self.main_stack.set_visible_child_name(self.previous_stack)
+        if self.previous_stack:
+            self.main_stack.set_visible_child_name(self.previous_stack)
 
     def show_loading_page(self, *args):
         self.toggle_sheet_action.set_enabled(False)
