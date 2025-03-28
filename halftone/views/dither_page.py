@@ -25,43 +25,43 @@ logging = Logger()
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
-    image_box = Gtk.Template.Child()
-    image_dithered = Gtk.Template.Child()
+    image_box: Gtk.Box = Gtk.Template.Child()
+    image_dithered: Gtk.Picture = Gtk.Template.Child()
 
-    image_prefs_bin = Gtk.Template.Child()
+    image_prefs_bin: Adw.Bin = Gtk.Template.Child()
 
-    split_view = Gtk.Template.Child()
-    sidebar_view = Gtk.Template.Child()
+    split_view: Adw.OverlaySplitView = Gtk.Template.Child()
+    sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
 
-    bottom_sheet_box = Gtk.Template.Child()
-    bottom_sheet = Gtk.Template.Child()
+    bottom_sheet_box: Gtk.Box = Gtk.Template.Child()
+    bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
-    preview_scroll_window = Gtk.Template.Child()
+    preview_scroll_window: Gtk.ScrolledWindow = Gtk.Template.Child()
 
-    save_image_button = Gtk.Template.Child()
-    toggle_sheet_button = Gtk.Template.Child()
+    save_image_button: Gtk.Button = Gtk.Template.Child()
+    toggle_sheet_button: Gtk.Button = Gtk.Template.Child()
 
-    export_format_combo = Gtk.Template.Child()
-    dither_algorithms_combo = Gtk.Template.Child()
+    export_format_combo: Adw.ComboRow = Gtk.Template.Child()
+    dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
 
-    image_width_row = Gtk.Template.Child()
-    aspect_ratio_toggle = Gtk.Template.Child()
-    image_height_row = Gtk.Template.Child()
+    image_width_row: Adw.SpinRow = Gtk.Template.Child()
+    aspect_ratio_toggle: Adw.SwitchRow = Gtk.Template.Child()
+    image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
-    brightness_row = Gtk.Template.Child()
-    contrast_row = Gtk.Template.Child()
+    brightness_row: Adw.SpinRow = Gtk.Template.Child()
+    contrast_row: Adw.SpinRow = Gtk.Template.Child()
 
-    image_formats_stringlist = Gtk.Template.Child()
-    algorithms_stringlist = Gtk.Template.Child()
+    image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
+    algorithms_stringlist: Gtk.StringList = Gtk.Template.Child()
 
-    color_amount_row = Gtk.Template.Child()
+    color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
-    save_image_dialog = Gtk.Template.Child()
-    all_filter = Gtk.Template.Child()
+    save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
+    all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
-    preview_loading_overlay = Gtk.Template.Child()
+    preview_loading_overlay: Gtk.Box = Gtk.Template.Child()
 
-    mobile_breakpoint = Gtk.Template.Child()
+    mobile_breakpoint: Adw.Breakpoint = Gtk.Template.Child()
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
@@ -468,6 +468,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         selected_format = self.export_format_combo.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
+        # TODO: Possible edge case; Make sure to return something when string is None
         return format_string
 
     def get_color_amount_pref(self, widget) -> int:
