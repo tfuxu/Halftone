@@ -3,15 +3,15 @@
 
 from wand.version import MAGICK_VERSION_INFO, VERSION, MAGICK_VERSION_FEATURES
 
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 from halftone import constants # pyright: ignore
 
 
 class HalftoneAboutWindow:
-    def __init__(self, parent):
+    def __init__(self, parent: Gtk.Widget):
         self.parent = parent
-        self.app = self.parent.get_application()
+        self.app: Adw.Application = self.parent.get_application()
 
         self.setup()
         self.set_debug_info()

@@ -26,8 +26,8 @@ class HalftoneApplication(Adw.Application):
         )
         self.set_resource_base_path(rootdir)
 
-        self.window = None
-        self.settings = Gio.Settings.new(app_id)
+        self.window: Adw.ApplicationWindow = None
+        self.settings: Gio.Settings = Gio.Settings.new(app_id)
 
         self.setup_actions()
 
@@ -82,7 +82,7 @@ class HalftoneApplication(Adw.Application):
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
-    def show_preview_image(self, _action, *args):
+    def show_preview_image(self, _action: Gio.SimpleAction, *args):
         """ Helper for `show-preview-image` action. """
 
         preview_image_path = self.window.dither_page.preview_image_path # pyright: ignore
@@ -90,7 +90,7 @@ class HalftoneApplication(Adw.Application):
 
         self.show_image_external(None, image_path_variant)
 
-    def show_image_external(self, _action, image_path: GLib.Variant, *args):
+    def show_image_external(self, _action: Gio.SimpleAction | None, image_path: GLib.Variant, *args):
         """
         Launch an external application to display provided image.
 

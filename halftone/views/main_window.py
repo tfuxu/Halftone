@@ -37,10 +37,10 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
 
         # Application object
-        self.app = kwargs['application']
-        self.settings = Gio.Settings(app_id)
+        self.app: Adw.Application = kwargs['application']
+        self.settings: Gio.Settings = Gio.Settings(app_id)
 
-        self.latest_traceback = ""
+        self.latest_traceback: str = ""
 
         self.add_controller(self.drop_target)
 
