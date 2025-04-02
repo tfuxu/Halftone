@@ -461,8 +461,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def clean_preview_paintable(self):
         try:
             HalftoneTempFile().delete_temp_file(self.preview_image_path)
-        except FileNotFoundError:
-            pass
+        except FileNotFoundError as e:
+            logging.warning(f"Failed to delete temporary file. Path: {self.preview_image_path} Error: {e}")
 
     def get_output_format_suffix(self) -> str:
         selected_format = self.export_format_combo.props.selected
