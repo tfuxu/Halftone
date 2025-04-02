@@ -22,13 +22,13 @@ logging = Logger()
 class HalftoneMainWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'HalftoneMainWindow'
 
-    toast_overlay = Gtk.Template.Child()
+    toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
 
-    main_stack = Gtk.Template.Child()
-    open_image_button = Gtk.Template.Child()
+    main_stack: Gtk.Stack = Gtk.Template.Child()
+    open_image_button: Gtk.Button = Gtk.Template.Child()
 
-    open_image_dialog = Gtk.Template.Child()
-    all_filter = Gtk.Template.Child()
+    open_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
+    all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
     content = Gdk.ContentFormats.new_for_gtype(Gio.File)
     drop_target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
@@ -37,16 +37,16 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
 
         # Application object
-        self.app = kwargs['application']
-        self.settings = Gio.Settings(app_id)
+        self.app: Adw.Application = kwargs['application']
+        self.settings: Gio.Settings = Gio.Settings(app_id)
 
-        self.latest_traceback = ""
+        self.latest_traceback: str = ""
 
         self.add_controller(self.drop_target)
 
-        self.error_page = HalftoneErrorPage(self)
-        self.dither_page = HalftoneDitherPage(self)
-        self.report_page = HalftoneReportPage(self)
+        self.error_page: Adw.Bin = HalftoneErrorPage(self)
+        self.dither_page: Adw.BreakpointBin = HalftoneDitherPage(self)
+        self.report_page: Gtk.Box = HalftoneReportPage(self)
 
         self.setup_actions()
         self.setup_signals()
@@ -169,7 +169,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         return Gdk.DragAction.COPY
 
     def on_target_leave(self, *args):
-        self.main_stack.set_visible_child_name(self.previous_stack)
+        if self.previous_stack:
+            self.main_stack.set_visible_child_name(self.previous_stack)
 
     def show_loading_page(self, *args):
         self.toggle_sheet_action.set_enabled(False)

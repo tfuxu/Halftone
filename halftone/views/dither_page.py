@@ -20,59 +20,61 @@ from halftone.constants import rootdir # pyright: ignore
 
 logging = Logger()
 
+LOADING_OVERLAY_DELAY = 2000  # In milliseconds
+
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
-    image_box = Gtk.Template.Child()
-    image_dithered = Gtk.Template.Child()
+    image_box: Gtk.Box = Gtk.Template.Child()
+    image_dithered: Gtk.Picture = Gtk.Template.Child()
 
-    image_prefs_bin = Gtk.Template.Child()
+    image_prefs_bin: Adw.Bin = Gtk.Template.Child()
 
-    split_view = Gtk.Template.Child()
-    sidebar_view = Gtk.Template.Child()
+    split_view: Adw.OverlaySplitView = Gtk.Template.Child()
+    sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
 
-    bottom_sheet_box = Gtk.Template.Child()
-    bottom_sheet = Gtk.Template.Child()
+    bottom_sheet_box: Gtk.Box = Gtk.Template.Child()
+    bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
-    preview_scroll_window = Gtk.Template.Child()
+    preview_scroll_window: Gtk.ScrolledWindow = Gtk.Template.Child()
 
-    save_image_button = Gtk.Template.Child()
-    toggle_sheet_button = Gtk.Template.Child()
+    save_image_button: Gtk.Button = Gtk.Template.Child()
+    toggle_sheet_button: Gtk.Button = Gtk.Template.Child()
 
-    export_format_combo = Gtk.Template.Child()
-    dither_algorithms_combo = Gtk.Template.Child()
+    export_format_combo: Adw.ComboRow = Gtk.Template.Child()
+    dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
 
-    image_width_row = Gtk.Template.Child()
-    aspect_ratio_toggle = Gtk.Template.Child()
-    image_height_row = Gtk.Template.Child()
+    image_width_row: Adw.SpinRow = Gtk.Template.Child()
+    aspect_ratio_toggle: Adw.SwitchRow = Gtk.Template.Child()
+    image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
-    brightness_row = Gtk.Template.Child()
-    contrast_row = Gtk.Template.Child()
+    brightness_row: Adw.SpinRow = Gtk.Template.Child()
+    contrast_row: Adw.SpinRow = Gtk.Template.Child()
 
-    image_formats_stringlist = Gtk.Template.Child()
-    algorithms_stringlist = Gtk.Template.Child()
+    image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
+    algorithms_stringlist: Gtk.StringList = Gtk.Template.Child()
 
-    color_amount_row = Gtk.Template.Child()
+    color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
-    save_image_dialog = Gtk.Template.Child()
-    all_filter = Gtk.Template.Child()
+    save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
+    all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
-    preview_loading_overlay = Gtk.Template.Child()
+    preview_loading_overlay: Gtk.Box = Gtk.Template.Child()
 
-    mobile_breakpoint = Gtk.Template.Child()
+    mobile_breakpoint: Adw.Breakpoint = Gtk.Template.Child()
 
-    def __init__(self, parent, **kwargs):
+    def __init__(self, parent: Gtk.Widget, **kwargs):
         super().__init__(**kwargs)
 
         self.parent = parent
-        self.settings = parent.settings
+        self.settings: Gio.Settings = parent.settings
 
-        self.app = self.parent.get_application()
-        self.win = self.app.get_active_window()
+        self.app: Adw.Application = self.parent.get_application()
+        self.win: Adw.ApplicationWindow = self.app.get_active_window()
 
-        self.toast_overlay = self.parent.toast_overlay
+        self.toast_overlay: Adw.ToastOverlay = self.parent.toast_overlay
 
         self.is_image_ready: bool = False
         self.is_mobile: bool = False
@@ -80,8 +82,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.origin_x: float = None
         self.origin_y: float = None
 
-        self.task_id = None
-        self.tasks = []
+        self.task_id: int | None = None
+        self.tasks: list[KillableThread] = []
 
         self.input_image_path: str = None
         self.preview_image_path: str = None
@@ -90,9 +92,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.updated_paintable: Gdk.Paintable = None
 
         self.output_options: OutputOptions = OutputOptions()
-
-        self.keep_aspect_ratio = True
-        self.loading_overlay_delay = 2000  # In milliseconds
+        self.keep_aspect_ratio: bool = True
 
         self.setup_signals()
         self.setup()
@@ -161,7 +161,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.origin_x = self.preview_scroll_window.get_hadjustment().get_value()
         self.origin_y = self.preview_scroll_window.get_vadjustment().get_value()
 
-    def preview_drag_update(self, widget, offset_x: float, offset_y: float, *args):
+    def preview_drag_update(self, widget: Gtk.GestureDrag, offset_x: float, offset_y: float, *args):
         hadj = self.preview_scroll_window.get_hadjustment()
         vadj = self.preview_scroll_window.get_vadjustment()
 
@@ -175,7 +175,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.is_image_ready = False
 
         if run_delay:
-            GLib.timeout_add(self.loading_overlay_delay, self.on_awaiting_image_load)
+            GLib.timeout_add(LOADING_OVERLAY_DELAY, self.on_awaiting_image_load)
         else:
             self.on_awaiting_image_load()
 
@@ -216,8 +216,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.show_error_page()
             raise
 
-        self.set_size_spins(self.original_paintable.get_width(),
-                            self.original_paintable.get_height())
+        self.set_size_spins(self.original_paintable.get_intrinsic_width(),
+                            self.original_paintable.get_intrinsic_height())
 
         self.start_task(self.update_preview_image,
                         self.input_image_path,
@@ -248,7 +248,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     """ Signal callbacks """
 
     @Gtk.Template.Callback()
-    def on_color_amount_changed(self, widget):
+    def on_color_amount_changed(self, widget: Adw.SpinRow):
         new_color_amount = self.get_color_amount_pref(widget)
 
         if new_color_amount == self.output_options.color_amount:
@@ -264,7 +264,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_brightness_changed(self, widget):
+    def on_brightness_changed(self, widget: Adw.SpinRow):
         new_brightness = int(widget.props.value)
 
         if new_brightness == self.output_options.brightness:
@@ -279,7 +279,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_contrast_changed(self, widget):
+    def on_contrast_changed(self, widget: Adw.SpinRow):
         new_contrast = int(widget.props.value)
 
         if new_contrast == self.output_options.contrast:
@@ -294,7 +294,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                         self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_width_changed(self, widget):
+    def on_image_width_changed(self, widget: Adw.SpinRow):
         new_width = self.get_image_width_pref(widget)
 
         if new_width == self.output_options.width:
@@ -318,7 +318,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                             self.on_successful_image_load)
 
     @Gtk.Template.Callback()
-    def on_image_height_changed(self, widget):
+    def on_image_height_changed(self, widget: Adw.SpinRow):
         new_height = self.get_image_height_pref(widget)
 
         if new_height == self.output_options.height:
@@ -344,7 +344,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
 
-    def on_toggle_sheet(self, widget, *args):
+    def on_toggle_sheet(self, action: Gio.SimpleAction, *args):
         if self.is_mobile:
             if self.bottom_sheet_box.props.visible:
                 self.bottom_sheet_box.set_visible(False)
@@ -358,7 +358,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
             self.split_view.set_show_sidebar(True)
 
-    def on_aspect_ratio_toggled(self, widget, *args):
+    def on_aspect_ratio_toggled(self, widget: Adw.SwitchRow, *args):
         if widget.props.active is True:
             self.keep_aspect_ratio = True
             #widget.props.icon_name = "chain-link-symbolic"
@@ -391,7 +391,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                 self.output_options,
                                 self.win.show_dither_page)
 
-    def on_dither_algorithm_selected(self, widget, *args):
+    def on_dither_algorithm_selected(self, widget: Adw.ComboRow, *args):
         algorithm_string = self.get_dither_algorithm_pref(widget)
 
         self.output_options.algorithm = algorithm_string
@@ -403,7 +403,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                             True,
                             self.on_successful_image_load)
 
-    def on_save_format_selected(self, widget, *args):
+    def on_save_format_selected(self, widget: Adw.ComboRow, *args):
         selected_format = widget.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
@@ -468,21 +468,22 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         selected_format = self.export_format_combo.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
+        # TODO: Possible edge case; Make sure to return something when string is None
         return format_string
 
-    def get_color_amount_pref(self, widget) -> int:
+    def get_color_amount_pref(self, widget: Adw.SpinRow) -> int:
         color_amount = int(widget.props.value)
         return color_amount
 
-    def get_image_width_pref(self, widget) -> int:
+    def get_image_width_pref(self, widget: Adw.SpinRow) -> int:
         new_width = int(widget.props.value)
         return new_width
 
-    def get_image_height_pref(self, widget) -> int:
+    def get_image_height_pref(self, widget: Adw.SpinRow) -> int:
         new_height = int(widget.props.value)
         return new_height
 
-    def get_dither_algorithm_pref(self, widget) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
+    def get_dither_algorithm_pref(self, widget: Adw.ComboRow) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
         selected_algorithm = widget.props.selected
 
         class selectedAlgo(Enum):
@@ -520,7 +521,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.image_dithered.set_content_fit(content_fit)
 
-    def set_size_spins(self, width, height):
+    def set_size_spins(self, width: int, height: int):
         self.image_width_row.set_value(width)
         self.image_height_row.set_value(height)
 
