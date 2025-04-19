@@ -87,12 +87,12 @@ This is a little bit more advanced way of building Flatpak packages, but if you 
 #### Prerequisites:
 
 - Flatpak Builder `flatpak-builder`
-- GNOME SDK runtime `org.gnome.Sdk//47`
-- GNOME Platform runtime `org.gnome.Platform//47`
+- GNOME SDK runtime `org.gnome.Sdk//48`
+- GNOME Platform runtime `org.gnome.Platform//48`
 
 Install required runtimes:
 ```shell
-flatpak install org.gnome.Sdk//47 org.gnome.Platform//47
+flatpak install org.gnome.Sdk//48 org.gnome.Platform//48
 ```
 
 #### Building Instructions:
@@ -122,7 +122,7 @@ The following packages are required to build Halftone:
 - PyGObject `python-gobject`
 - Blueprint [`blueprint-compiler`](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/setup.html)
 - GTK 4 `gtk4`
-- Libadwaita (>= 1.5.0) `libadwaita`
+- Libadwaita (>= 1.6.0) `libadwaita`
 - Imagemagick `imagemagick`
 - Meson `meson`
 - Ninja `ninja-build`
