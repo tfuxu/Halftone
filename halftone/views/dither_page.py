@@ -191,13 +191,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 "Failed to finish ImageMagick dithering operations.",
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
-            self.win.show_error_page()
+            self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
 
         try:
             self.set_updated_paintable(self.preview_image_path)
-        except GLib.Error:
-            self.win.show_error_page()
+        except (GLib.Error, TypeError):
+            self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
 
         self.on_successful_image_load()
@@ -210,11 +210,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
 
-        try:
-            self.set_original_paintable(self.input_image_path)
-        except GLib.Error:
-            self.win.show_error_page()
-            raise
+        self.set_original_paintable(self.input_image_path)
 
         self.set_size_spins(self.original_paintable.get_intrinsic_width(),
                             self.original_paintable.get_intrinsic_height())
@@ -443,6 +439,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
+        except TypeError as e:
+            logging.traceback_error(
+                "Missing Gdk.Texture decoding plugin for requested image.",
+                exception=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
+            raise
 
         self.image_dithered.set_paintable(self.original_paintable)
 
@@ -452,6 +454,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
+                exception=e, show_exception=True)
+            self.win.latest_traceback = logging.get_traceback(e)
+            raise
+        except TypeError as e:
+            logging.traceback_error(
+                "Missing Gdk.Texture decoding plugin for requested image.",
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise

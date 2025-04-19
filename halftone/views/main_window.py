@@ -121,23 +121,22 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     def load_image(self, file: Gio.File):
         self.show_loading_page()
+
         try:
             self.dither_page.load_preview_image(file)
-        except GLib.Error as e:
+        except (GLib.Error, TypeError) as e:
             # TODO: Modify error page for different error codes
-            if e.code == 3:  # Unrecognized image file format
-                return
+            if isinstance(e, GLib.Error):
+                if e.code == 3:  # Unrecognized image file format
+                    return
 
-            logging.traceback_error("Failed to load an image.",
-                                        exception=e, show_exception=True)
             self.toast_overlay.add_toast(
                 Adw.Toast(title=_("Failed to load an image. Check logs for more information"))
             )
-            self.latest_traceback = logging.get_traceback(e)
             self.show_error_page()
             return
-        else:
-            self.show_dither_page()
+
+        self.show_dither_page()
 
     @Gtk.Template.Callback()
     def on_open_image(self, *args):
