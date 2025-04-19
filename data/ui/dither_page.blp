@@ -278,7 +278,9 @@ Adw.Bin image_prefs_bin {
           output => $on_image_width_changed();
         }
 
+        // TODO: Remove option completely if there's no user feedback to bring it back
         Adw.SwitchRow aspect_ratio_toggle {
+          visible: false;
           title: _("Keep aspect ratio");
 
           [suffix]
@@ -294,7 +296,9 @@ Adw.Bin image_prefs_bin {
           }
         }
 
+        // TODO: Remove option completely if there's no user feedback to bring it back
         Adw.SpinRow image_height_row {
+          visible: false;
           title: _("Height");
           subtitle: _("In pixels");
           adjustment: Gtk.Adjustment image_height_adjustment {
