@@ -373,12 +373,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         except GLib.Error as e:
             if e.code != 2: # 'Dismissed by user' error
                 logging.traceback_error(
-                    "Failed to finish save dialog procedure.",
+                    "Failed to finish Gtk.FileDialog save procedure.",
                     exception=e, show_exception=True)
+                self.win.latest_traceback = logging.get_traceback(e)
                 self.toast_overlay.add_toast(
                     Adw.Toast(title=_("Failed to save an image. Check logs for more information"))
                 )
-                self.win.latest_traceback = logging.get_traceback(e)
         else:
             if file is not None:
                 self.start_task(self.save_image,

@@ -147,12 +147,13 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             file = dialog.open_finish(result)
         except GLib.Error as e:
             if e.code != 2: # 'Dismissed by user' error
-                logging.traceback_error("Failed to finish Gtk.FileDialog procedure.",
-                                        exception=e, show_exception=True)
-                self.toast_overlay.add_toast(
-                    Adw.Toast(title=_("Failed to retrieve a file. Check logs for more information"))
-                )
+                logging.traceback_error(
+                    "Failed to finish Gtk.FileDialog open procedure.",
+                    exception=e, show_exception=True)
                 self.latest_traceback = logging.get_traceback(e)
+                self.toast_overlay.add_toast(
+                    Adw.Toast(title=_("Failed to open an image. Check logs for more information"))
+                )
         else:
             if file is not None:
                 self.load_image(file)
@@ -170,6 +171,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     def on_target_leave(self, *args):
         if self.previous_stack:
             self.main_stack.set_visible_child_name(self.previous_stack)
+        else:
+            logging.error("EDGE CASE: No stack page set as previous. Staying at current page")
 
     def show_loading_page(self, *args):
         self.toggle_sheet_action.set_enabled(False)
