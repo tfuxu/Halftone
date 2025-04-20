@@ -103,16 +103,24 @@ class HalftoneApplication(Adw.Application):
         except GLib.Error as e:
             logging.traceback_error("Failed to construct a new Gio.File object from path.",
                                     exception=e, show_exception=True)
+            self.window.latest_traceback = logging.get_traceback(e)
+            self.window.toast_overlay.add_toast(
+                Adw.Toast(title=_("Failed to open preview image. Check logs for more information"))
+            )
         else:
             launcher = Gtk.FileLauncher.new(image_file)
 
-            def open_image_finish(_, result: Gio.AsyncResult, *args):
+            def open_image_finish(_launcher: Gtk.FileLauncher, result: Gio.AsyncResult, *args):
                 try:
                     launcher.launch_finish(result)
                 except GLib.Error as e:
                     if e.code != 2: # 'The portal dialog was dismissed by the user' error
                         logging.traceback_error("Failed to finish Gtk.FileLauncher procedure.",
                                                 exception=e, show_exception=True)
+                        self.window.latest_traceback = logging.get_traceback(e)
+                        self.window.toast_overlay.add_toast(
+                            Adw.Toast(title=_("Failed to open preview image. Check logs for more information"))
+                        )
 
             launcher.launch(self.window, None, open_image_finish)
 
