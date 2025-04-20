@@ -10,17 +10,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - New loading overlay used in image preview
+- Missing image encoders/decoders in Flatpaks
 - Initial Bulgarian (bg) translation
+- Initial German (de) translation
 - Initial Norwegian Bokmål (nb) translation
 - Initial Hindi (hi) translation
-- `pyproject.toml` file to hold project's metadata and pyright configuration
-- `__builtins__.pyi` type stubs file to define gettext's `_` function to pyright
+- New `filetypes` module for providing compatible image formats
+- Basic debugging information to about dialog
+- Type hints for template children and some other objects
+- `pyproject.toml` file to hold project's metadata and `pyright` configuration
+- Warning when failing to remove a temporary file
 - Spell checking using `codespell` in CI
 
 ### Changed
 
+- Updated Flatpak runtime version to 48
+- Increased minimal required Python version to 3.11
+- Improved exception handling for image loading/saving and editing operations
+- Refactored `logger` module
+- Decoupled error page from main window (for future expansions)
+- Changed default main window width to 600
+- Replaced `Gtk.Spinner` with `Adw.Spinner`
 - Replaced deprecated `Gtk.FileChooser` with `Gtk.FileDialog`
 - Started using `top-bar-style` setting instead of deprecated `.flat` headerbar style class
+- Replaced `pylint` configuration with `pyright`
 - Updated Brazilian Portuguese (pt_BR) translation
 - Updated Italian (it) translation
 
@@ -29,6 +42,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use `GLib.Error` instead of `GLib.GError`
 - Globally set 294 as a height request for window (to be in par with GNOME HIG recommendations)
 - Added German translation to `LINGUAS`
+
+### Removed
+
+- Disabled aspect ratio toggle and image height row 
+- Temporarily removed support for `BMP` image format
+- Replaced `Optional[]` type hint with union type expression and removed `typing-extensions` dependency
 
 ## [0.6.1] - 2024-04-04
 
