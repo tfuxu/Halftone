@@ -128,7 +128,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             # TODO: Modify error page for different error codes
             if isinstance(e, GLib.Error):
                 if e.code == 3:  # Unrecognized image file format
-                    return
+                    pass
 
             self.toast_overlay.add_toast(
                 Adw.Toast(title=_("Failed to load an image. Check logs for more information"))
