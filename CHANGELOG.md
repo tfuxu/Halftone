@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Type hints for template children and some other objects
 - `pyproject.toml` file to hold project's metadata and `pyright` configuration
 - Warning when failing to remove a temporary file
+- Mnemonics to buttons for accessibility
 - Spell checking using `codespell` in CI
 
 ### Changed
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced deprecated `Gtk.FileChooser` with `Gtk.FileDialog`
 - Started using `top-bar-style` setting instead of deprecated `.flat` headerbar style class
 - Replaced `pylint` configuration with `pyright`
+- Updated Polish (pl) translation
 - Updated Brazilian Portuguese (pt_BR) translation
 - Updated Italian (it) translation
 
