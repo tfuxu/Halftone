@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 19:03+0200\n"
+"POT-Creation-Date: 2025-05-07 19:22+0200\n"
 "PO-Revision-Date: 2024-09-23 09:37+0200\n"
 "Last-Translator: Sunniva Løvstad <turtle@turtle.garden>\n"
 "Language-Team: \n"
@@ -18,14 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. Translators: Application name. Keep this string as "Halftone"
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:4
-#: data/io.github.tfuxu.Halftone.desktop.in.in:4
-msgid "Halftone"
-msgstr "Halvtone"
-
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:40
 msgid "Dither your images"
 msgstr "Dither bildene dine"
 
@@ -39,203 +33,104 @@ msgstr ""
 "bildene dine en pikselkunstaktig stil og reduser filstørrelsen samtidig med "
 "Halvtone."
 
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:76
-msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
-msgstr "Oppdaterte widgetene for å bruke nye libadwaita 1.5-widgeter"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:77
-msgid "Updated translations for Russian, Turkish and Simplified Chinese"
-msgstr "Oppdaterte oversettingene til russisk, tyrkisk, og forenklet kinesisk"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:83
-msgid ""
-"Another major UI design update! This update notably moves sidebar to the "
-"left and makes image preview area extra large, by making headerbar "
-"transparent."
-msgstr ""
-"En til stor grensesnittsoppdatering! Denne oppdateringen flytter nemlig "
-"sidefeltet til den venstre siden og gjør bildeforhåndsvisningsområdet "
-"ekstra stor ved å gjøre hovedlinjen gjennomsiktig."
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:88
-msgid "Changes:"
-msgstr "Endringer:"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:90
-msgid "Implement UI suggestions from GNOME Circle application"
-msgstr "Ta i bruk grensesnittsanbefalinger fra GNOME Circle-applikasjonen"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:91
-msgid "Add keyboard shortcuts for toggling sidebar and main menu"
-msgstr ""
-"Legg til tastatursnarveier for å vise/skjule sidefeltet og hovedmenyen"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:92
-msgid ""
-"Fixed formatting in appdata, now release info should finally show up in "
-"Flathub!"
-msgstr "Fikset formatering i appdata, nå skal utgaveinfo vises i Flathub!"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:93
-msgid "Updated translations"
-msgstr "Oppdaterte oversettinger"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:100
-msgid "Bottom options sheet for mobile users"
-msgstr "Innstillingsområde på bunnsiden for mobilbrukere"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:101
-msgid "Fix main window not being able to resize width down to 360px"
-msgstr "Fiks hovedvindu: nå kan størrelsen endres til 360px"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:102
-msgid "Load image options from previous image to next loaded image"
-msgstr "Behold bildeinnstillinger fra forrige bilde til neste innlastet bilde"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:103
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:112
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:121
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:133
-msgid "New translations"
-msgstr "Nye oversettinger"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:110
-msgid "New refreshed user interface"
-msgstr "Nytt oppdatert grensesnitt"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:111
-msgid ""
-"Fix issue with \"Open in External Image Viewer\" button not working on "
-"Flatpak builds"
-msgstr ""
-"Fiks feil med at «Åpne med ekstern bildeviser» fungerte ikke på Flatpak-"
-"versjonen"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:119
-msgid ""
-"Added option to change how image should be resized to fit inside preview box"
-msgstr ""
-"La til alternative for å endre hvordan bildet bør justeres for å passe inn "
-"i forhåndsvisningsområdet"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:120
-msgid "Now Halftone uses flat headerbar style"
-msgstr "Ny Halvtone bruker en flat hovedlinje"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:128
-msgid "Added brightness and contrast control"
-msgstr "La til lysstyrke- og kontrastkontroller"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:129
-msgid "Added button for opening preview image in external image viewers"
-msgstr "La til knapp for å åpne forhåndsvisningsbilde i eksterne bildevisere"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:130
-msgid "Added custom logging facility for easier issue reporting"
-msgstr "La til tilpasset logging for forenkling av feilrapportering"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:131
-msgid "Added logic code to \"Copy Logs\" button"
-msgstr "La til kode til knappen «Kopier logger»"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:132
-msgid "Moved image size option to Image Properties"
-msgstr "Flyttet alternativet for bildestørrelse til Bildeegenskaper"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:139
-msgid "Renamed Pixely to Halftone."
-msgstr "Ga Pixely nytt navn: nå er appen Halvton."
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:144
-msgid "Initial release of Pixely."
-msgstr "Første utgave av Pixely."
+#. Translators: Application name. Keep this string as "Halftone"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:4
+msgid "Halftone"
+msgstr "Halvtone"
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;compression;pixelart;dither;processing;"
 msgstr "bilde;komprimering;pikselkonst;pixelart;dither:behandling;"
 
-#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
+#: data/ui/dither_page.blp:22 data/ui/dither_page.blp:60
+#: data/ui/error_page.blp:14
 msgid "Open Image (Ctrl+O)"
 msgstr "Åpne bilde (Ctrl + O)"
 
-#: data/ui/dither_page.blp:31 data/ui/dither_page.blp:69
+#: data/ui/dither_page.blp:29 data/ui/dither_page.blp:67
 msgid "Main Menu"
 msgstr "Hovedmeny"
 
-#: data/ui/dither_page.blp:111
+#: data/ui/dither_page.blp:103
 msgid "Toggle Sidebar"
 msgstr "Vis/skjul sidefelt"
 
-#: data/ui/dither_page.blp:125
+#: data/ui/dither_page.blp:117
 msgid "Open in External Image Viewer"
 msgstr "Åpne med ekstern bildeviser"
 
-#: data/ui/dither_page.blp:179
+#: data/ui/dither_page.blp:149
+#, fuzzy
+msgid "Dithering your image…"
+msgstr "Dither bildene dine"
+
+#: data/ui/dither_page.blp:187
 msgid "Toggle Bottom Sheet"
 msgstr "Vis/skjul bunnområdet"
 
-#: data/ui/dither_page.blp:189
+#: data/ui/dither_page.blp:197
 msgid "Options"
 msgstr "Alternativer"
 
-#: data/ui/dither_page.blp:196 data/ui/dither_page.blp:281
+#: data/ui/dither_page.blp:204 data/ui/dither_page.blp:291
 msgid "Explanation"
 msgstr "Forklaring"
 
-#: data/ui/dither_page.blp:204
+#: data/ui/dither_page.blp:212
 msgid "Dither Algorithm"
 msgstr "Dither-algoritme"
 
-#: data/ui/dither_page.blp:214
+#: data/ui/dither_page.blp:222
 msgid "Color Amount"
 msgstr "Fargemengde"
 
-#: data/ui/dither_page.blp:225
+#: data/ui/dither_page.blp:233
 msgid "Convert To"
 msgstr "Konverter til"
 
-#: data/ui/dither_page.blp:231
+#: data/ui/dither_page.blp:239
 msgid "Adjustments"
 msgstr "Justeringer"
 
-#: data/ui/dither_page.blp:234
+#: data/ui/dither_page.blp:242
 msgid "Brightness"
 msgstr "Lysstyrke"
 
-#: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
+#: data/ui/dither_page.blp:243 data/ui/dither_page.blp:255
 msgid "Range -100 to 100"
 msgstr "Fra -100 til 100"
 
-#: data/ui/dither_page.blp:246
+#: data/ui/dither_page.blp:254
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:267
 msgid "Image Size"
 msgstr "Bildestørrelse"
 
-#: data/ui/dither_page.blp:262
+#: data/ui/dither_page.blp:270
 msgid "Width"
 msgstr "Bredde"
 
-#: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:271 data/ui/dither_page.blp:303
 msgid "In pixels"
 msgstr "I piksler"
 
-#: data/ui/dither_page.blp:274
+#: data/ui/dither_page.blp:284
 msgid "Keep aspect ratio"
 msgstr "Behold sideforhold"
 
-#: data/ui/dither_page.blp:290
+#: data/ui/dither_page.blp:302
 msgid "Height"
 msgstr "Høyde"
 
-#: data/ui/dither_page.blp:307
-msgid "Save Image"
+#: data/ui/dither_page.blp:319
+#, fuzzy
+msgid "_Save Image"
 msgstr "Lagre bilde"
 
-#: data/ui/dither_page.blp:333
+#: data/ui/dither_page.blp:346
 msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
@@ -243,7 +138,7 @@ msgstr ""
 "For å lære mer om enkelte alternativer, besøk <a href=\"https://github.com/"
 "tfuxu/Halftone/wiki/Options\">wiki-siden</a>."
 
-#: data/ui/dither_page.blp:346
+#: data/ui/dither_page.blp:359
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
@@ -251,22 +146,39 @@ msgstr ""
 "Dette alternativet beholder det opprinnelige sideforholdet når du endrer "
 "størrelsen på et bilde."
 
-#: data/ui/dither_page.blp:351
+#: data/ui/dither_page.blp:364
 msgid "Save an Image in…"
 msgstr "Lagre bilde i…"
 
-#: data/ui/dither_page.blp:356 data/ui/main_window.blp:175
+#: data/ui/dither_page.blp:369 data/ui/main_window.blp:124
 msgid "All files"
 msgstr "Alle filer"
 
-#: data/ui/dither_page.blp:368
+#: data/ui/dither_page.blp:381
 msgid "Keyboard Shortcuts"
 msgstr "Tastatursnarveier"
 
-#: data/ui/dither_page.blp:373 data/ui/main_window.blp:30
-#: data/ui/main_window.blp:82 data/ui/main_window.blp:132
+#: data/ui/dither_page.blp:386 data/ui/error_page.blp:22
+#: data/ui/main_window.blp:28 data/ui/main_window.blp:79
 msgid "About Halftone"
 msgstr "Om Halvtone"
+
+#: data/ui/error_page.blp:35
+msgid "Image Error Occurred"
+msgstr "En feil har oppstått med bildet"
+
+#: data/ui/error_page.blp:36
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
+"copy logs and report issue to the bug tracker."
+msgstr ""
+"En feil har oppstått under innlasting av bildet. Hvis denne feilen forblir, "
+"vennligst kopier loggene og rapporter feilen i GitHub."
+
+#: data/ui/error_page.blp:44
+#, fuzzy
+msgid "_Copy Logs"
+msgstr "Kopier logger"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -303,55 +215,150 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: data/ui/main_window.blp:55 halftone/views/dither_page.py:231
-msgid "Open Image"
+#: data/ui/main_window.blp:52
+#, fuzzy
+msgid "_Open Image"
 msgstr "Åpne bilde"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:107
 msgid "Drop Here to Load Image"
 msgstr "Slipp her for å laste inn bilde"
 
-#: data/ui/main_window.blp:145
-msgid "Image Error Occurred"
-msgstr "En feil har oppstått med bildet"
-
-#: data/ui/main_window.blp:146
-msgid ""
-"An error occurred while loading an image. If this error persists, please "
-"copy logs and report issue to the bug tracker."
-msgstr ""
-"En feil har oppstått under innlasting av bildet. Hvis denne feilen forblir, "
-"vennligst kopier loggene og rapporter feilen i GitHub."
-
-#: data/ui/main_window.blp:154
-msgid "Copy Logs"
-msgstr "Kopier logger"
-
-#: data/ui/main_window.blp:170
+#: data/ui/main_window.blp:119
 msgid "Select an Image"
 msgstr "Velg et bilde"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:33
+#: halftone/views/about_window.py:36
 msgid "translator-credits"
 msgstr "Sunniva Løvstad <halvtone@turtle.garden>"
 
-#: halftone/views/main_window.py:103
-msgid "Supported image formats"
-msgstr "Støttede bildeformater"
-
-#: halftone/views/main_window.py:123
-msgid "Failed to load an image"
-msgstr "En feil har oppstått ved innlasting av bildet"
-
-#: halftone/views/main_window.py:140
-msgid "Copied logs to clipboard"
-msgstr "Kopierte loggene til utklippstavlen"
-
-#: halftone/views/dither_page.py:230
+#: halftone/views/dither_page.py:238
 msgid "Image dithered successfully!"
 msgstr "Bilde har blitt ditheret!"
 
-#: halftone/views/dither_page.py:514
-msgid "Failed to load preview image"
+#: halftone/views/dither_page.py:239
+msgid "Open Image"
+msgstr "Åpne bilde"
+
+#: halftone/views/dither_page.py:380
+msgid "Failed to save an image. Check logs for more information"
+msgstr ""
+
+#: halftone/views/dither_page.py:561
+#, fuzzy
+msgid "Failed to load preview image. Check logs for more information"
 msgstr "Kunne ikke laste inn bildeforhåndsvisning"
+
+#: halftone/views/error_page.py:37
+msgid "Copied logs to clipboard"
+msgstr "Kopierte loggene til utklippstavlen"
+
+#: halftone/views/main_window.py:107
+msgid "Supported image formats"
+msgstr "Støttede bildeformater"
+
+#: halftone/views/main_window.py:134
+msgid "Failed to load an image. Check logs for more information"
+msgstr ""
+
+#: halftone/views/main_window.py:155
+msgid "Failed to open an image. Check logs for more information"
+msgstr ""
+
+#: halftone/main.py:108 halftone/main.py:122
+#, fuzzy
+msgid "Failed to open preview image. Check logs for more information"
+msgstr "Kunne ikke laste inn bildeforhåndsvisning"
+
+#~ msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
+#~ msgstr "Oppdaterte widgetene for å bruke nye libadwaita 1.5-widgeter"
+
+#~ msgid "Updated translations for Russian, Turkish and Simplified Chinese"
+#~ msgstr ""
+#~ "Oppdaterte oversettingene til russisk, tyrkisk, og forenklet kinesisk"
+
+#~ msgid ""
+#~ "Another major UI design update! This update notably moves sidebar to the "
+#~ "left and makes image preview area extra large, by making headerbar "
+#~ "transparent."
+#~ msgstr ""
+#~ "En til stor grensesnittsoppdatering! Denne oppdateringen flytter nemlig "
+#~ "sidefeltet til den venstre siden og gjør bildeforhåndsvisningsområdet "
+#~ "ekstra stor ved å gjøre hovedlinjen gjennomsiktig."
+
+#~ msgid "Changes:"
+#~ msgstr "Endringer:"
+
+#~ msgid "Implement UI suggestions from GNOME Circle application"
+#~ msgstr "Ta i bruk grensesnittsanbefalinger fra GNOME Circle-applikasjonen"
+
+#~ msgid "Add keyboard shortcuts for toggling sidebar and main menu"
+#~ msgstr ""
+#~ "Legg til tastatursnarveier for å vise/skjule sidefeltet og hovedmenyen"
+
+#~ msgid ""
+#~ "Fixed formatting in appdata, now release info should finally show up in "
+#~ "Flathub!"
+#~ msgstr "Fikset formatering i appdata, nå skal utgaveinfo vises i Flathub!"
+
+#~ msgid "Updated translations"
+#~ msgstr "Oppdaterte oversettinger"
+
+#~ msgid "Bottom options sheet for mobile users"
+#~ msgstr "Innstillingsområde på bunnsiden for mobilbrukere"
+
+#~ msgid "Fix main window not being able to resize width down to 360px"
+#~ msgstr "Fiks hovedvindu: nå kan størrelsen endres til 360px"
+
+#~ msgid "Load image options from previous image to next loaded image"
+#~ msgstr ""
+#~ "Behold bildeinnstillinger fra forrige bilde til neste innlastet bilde"
+
+#~ msgid "New translations"
+#~ msgstr "Nye oversettinger"
+
+#~ msgid "New refreshed user interface"
+#~ msgstr "Nytt oppdatert grensesnitt"
+
+#~ msgid ""
+#~ "Fix issue with \"Open in External Image Viewer\" button not working on "
+#~ "Flatpak builds"
+#~ msgstr ""
+#~ "Fiks feil med at «Åpne med ekstern bildeviser» fungerte ikke på Flatpak-"
+#~ "versjonen"
+
+#~ msgid ""
+#~ "Added option to change how image should be resized to fit inside preview "
+#~ "box"
+#~ msgstr ""
+#~ "La til alternative for å endre hvordan bildet bør justeres for å passe "
+#~ "inn i forhåndsvisningsområdet"
+
+#~ msgid "Now Halftone uses flat headerbar style"
+#~ msgstr "Ny Halvtone bruker en flat hovedlinje"
+
+#~ msgid "Added brightness and contrast control"
+#~ msgstr "La til lysstyrke- og kontrastkontroller"
+
+#~ msgid "Added button for opening preview image in external image viewers"
+#~ msgstr ""
+#~ "La til knapp for å åpne forhåndsvisningsbilde i eksterne bildevisere"
+
+#~ msgid "Added custom logging facility for easier issue reporting"
+#~ msgstr "La til tilpasset logging for forenkling av feilrapportering"
+
+#~ msgid "Added logic code to \"Copy Logs\" button"
+#~ msgstr "La til kode til knappen «Kopier logger»"
+
+#~ msgid "Moved image size option to Image Properties"
+#~ msgstr "Flyttet alternativet for bildestørrelse til Bildeegenskaper"
+
+#~ msgid "Renamed Pixely to Halftone."
+#~ msgstr "Ga Pixely nytt navn: nå er appen Halvton."
+
+#~ msgid "Initial release of Pixely."
+#~ msgstr "Første utgave av Pixely."
+
+#~ msgid "Failed to load an image"
+#~ msgstr "En feil har oppstått ved innlasting av bildet"

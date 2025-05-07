@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 19:03+0200\n"
+"POT-Creation-Date: 2025-05-07 19:22+0200\n"
 "PO-Revision-Date: 2024-07-30 17:13-0300\n"
 "Last-Translator: Fúlvio Leo <fulviokaldas@outlook.com>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -19,14 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Gtranslator 46.1\n"
 
-#. Translators: Application name. Keep this string as "Halftone"
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:4
-#: data/io.github.tfuxu.Halftone.desktop.in.in:4
-msgid "Halftone"
-msgstr "Halftone"
-
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:42
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:40
 msgid "Dither your images"
 msgstr "Use o algoritmo Dither nas suas imagens"
 
@@ -40,211 +34,104 @@ msgstr ""
 "usando a técnica de pontilhamento (dithering). Dê às suas imagens um estilo "
 "de pixel art e reduza o tamanho do arquivo no processo com o Halftone."
 
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:76
-msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
-msgstr "Atualizado widgets para usar os novos widgets da Libadwaita 1.5"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:77
-msgid "Updated translations for Russian, Turkish and Simplified Chinese"
-msgstr "Atualizadas traduções para russo, turco e chinês simplificado"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:83
-msgid ""
-"Another major UI design update! This update notably moves sidebar to the "
-"left and makes image preview area extra large, by making headerbar "
-"transparent."
-msgstr ""
-"Outra grande atualização de IU! Esta atualização move notavelmente a barra "
-"lateral para a esquerda e torna a área de visualização da imagem maior, "
-"tornando a barra de cabeçalho transparente."
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:88
-msgid "Changes:"
-msgstr "Mudanças:"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:90
-msgid "Implement UI suggestions from GNOME Circle application"
-msgstr "Implementa sugestões de mudanças de IU do Círculo de Aplicações GNOME"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:91
-msgid "Add keyboard shortcuts for toggling sidebar and main menu"
-msgstr ""
-"Adiciona atalhos de teclado para alternar a barra lateral e o menu principal"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:92
-msgid ""
-"Fixed formatting in appdata, now release info should finally show up in "
-"Flathub!"
-msgstr ""
-"Corrigida a formatação no appdata, agora as informações de lançamento devem "
-"finalmente aparecer no Flathub!"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:93
-msgid "Updated translations"
-msgstr "Traduções atualizadas"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:100
-msgid "Bottom options sheet for mobile users"
-msgstr "Área de opções na parte inferior para usuários mobile"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:101
-msgid "Fix main window not being able to resize width down to 360px"
-msgstr ""
-"Corrige a janela principal que não conseguir redimensionar a largura para "
-"360px"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:102
-msgid "Load image options from previous image to next loaded image"
-msgstr "Carrega opções da imagem anterior para a próxima imagem carregada"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:103
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:112
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:121
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:133
-msgid "New translations"
-msgstr "Novas traduções"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:110
-msgid "New refreshed user interface"
-msgstr "Nova interface de usuário atualizada"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:111
-msgid ""
-"Fix issue with \"Open in External Image Viewer\" button not working on "
-"Flatpak builds"
-msgstr ""
-"Corrige problema em que o botão \"Abrir em Visualizador de Imagens Externo\" "
-"não funciona em builds Flatpak"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:119
-msgid ""
-"Added option to change how image should be resized to fit inside preview box"
-msgstr ""
-"Adicionada opção para alterar como a imagem deve ser redimensionada para "
-"caber dentro da caixa de visualização"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:120
-msgid "Now Halftone uses flat headerbar style"
-msgstr "Agora o Halftone usa um estilo plano de barra de cabeçalho"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:128
-msgid "Added brightness and contrast control"
-msgstr "Adicionado controle de brilho e contraste"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:129
-msgid "Added button for opening preview image in external image viewers"
-msgstr ""
-"Adicionado botão para abrir imagem de pré-visualização em visualizadores de "
-"imagens externos"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:130
-msgid "Added custom logging facility for easier issue reporting"
-msgstr ""
-"Adicionado recurso de registro personalizado para facilitar a geração de "
-"relatórios de problemas"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:131
-msgid "Added logic code to \"Copy Logs\" button"
-msgstr "Adicionado código lógico ao botão \"Copiar Registros\""
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:132
-msgid "Moved image size option to Image Properties"
-msgstr "Opção de tamanho de imagem movida para Propriedades da Imagem"
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:139
-msgid "Renamed Pixely to Halftone."
-msgstr "Renomeado Pixely para Halftone."
-
-#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:144
-msgid "Initial release of Pixely."
-msgstr "Versão inicial do Pixely."
+#. Translators: Application name. Keep this string as "Halftone"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:4
+msgid "Halftone"
+msgstr "Halftone"
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;compression;pixelart;dither;processing;"
 msgstr "imagem;compressão;pixelart;pontilhamento;dither;processamento;"
 
-#: data/ui/dither_page.blp:24 data/ui/dither_page.blp:62
+#: data/ui/dither_page.blp:22 data/ui/dither_page.blp:60
+#: data/ui/error_page.blp:14
 msgid "Open Image (Ctrl+O)"
 msgstr "Abrir Imagem (Ctrl+O)"
 
-#: data/ui/dither_page.blp:31 data/ui/dither_page.blp:69
+#: data/ui/dither_page.blp:29 data/ui/dither_page.blp:67
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: data/ui/dither_page.blp:111
+#: data/ui/dither_page.blp:103
 msgid "Toggle Sidebar"
 msgstr "Alternar Barra Lateral"
 
-#: data/ui/dither_page.blp:125
+#: data/ui/dither_page.blp:117
 msgid "Open in External Image Viewer"
 msgstr "Abrir em Visualizador de Imagens Externo"
 
-#: data/ui/dither_page.blp:179
+#: data/ui/dither_page.blp:149
+#, fuzzy
+msgid "Dithering your image…"
+msgstr "Use o algoritmo Dither nas suas imagens"
+
+#: data/ui/dither_page.blp:187
 msgid "Toggle Bottom Sheet"
 msgstr "Alternar Área Inferior"
 
-#: data/ui/dither_page.blp:189
+#: data/ui/dither_page.blp:197
 msgid "Options"
 msgstr "Opções"
 
-#: data/ui/dither_page.blp:196 data/ui/dither_page.blp:281
+#: data/ui/dither_page.blp:204 data/ui/dither_page.blp:291
 msgid "Explanation"
 msgstr "Explicação"
 
-#: data/ui/dither_page.blp:204
+#: data/ui/dither_page.blp:212
 msgid "Dither Algorithm"
 msgstr "Algoritmo Dither"
 
-#: data/ui/dither_page.blp:214
+#: data/ui/dither_page.blp:222
 msgid "Color Amount"
 msgstr "Quantidade de Cores"
 
-#: data/ui/dither_page.blp:225
+#: data/ui/dither_page.blp:233
 msgid "Convert To"
 msgstr "Converter Para"
 
-#: data/ui/dither_page.blp:231
+#: data/ui/dither_page.blp:239
 msgid "Adjustments"
 msgstr "Ajustes"
 
-#: data/ui/dither_page.blp:234
+#: data/ui/dither_page.blp:242
 msgid "Brightness"
 msgstr "Brilho"
 
-#: data/ui/dither_page.blp:235 data/ui/dither_page.blp:247
+#: data/ui/dither_page.blp:243 data/ui/dither_page.blp:255
 msgid "Range -100 to 100"
 msgstr "Intervalo -100 a 100"
 
-#: data/ui/dither_page.blp:246
+#: data/ui/dither_page.blp:254
 msgid "Contrast"
 msgstr "Contraste"
 
-#: data/ui/dither_page.blp:259
+#: data/ui/dither_page.blp:267
 msgid "Image Size"
 msgstr "Tamanho da Imagem"
 
-#: data/ui/dither_page.blp:262
+#: data/ui/dither_page.blp:270
 msgid "Width"
 msgstr "Largura"
 
-#: data/ui/dither_page.blp:263 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:271 data/ui/dither_page.blp:303
 msgid "In pixels"
 msgstr "Em pixels"
 
-#: data/ui/dither_page.blp:274
+#: data/ui/dither_page.blp:284
 msgid "Keep aspect ratio"
 msgstr "Manter a proporção"
 
-#: data/ui/dither_page.blp:290
+#: data/ui/dither_page.blp:302
 msgid "Height"
 msgstr "Altura"
 
-#: data/ui/dither_page.blp:307
-msgid "Save Image"
+#: data/ui/dither_page.blp:319
+#, fuzzy
+msgid "_Save Image"
 msgstr "Salvar Imagem"
 
-#: data/ui/dither_page.blp:333
+#: data/ui/dither_page.blp:346
 msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
@@ -252,7 +139,7 @@ msgstr ""
 "Para entender mais sobre opções individuais, vá para a <a href=\"https://"
 "github.com/tfuxu/Halftone/wiki/Options\">página da wiki</a>."
 
-#: data/ui/dither_page.blp:346
+#: data/ui/dither_page.blp:359
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
@@ -260,22 +147,39 @@ msgstr ""
 "Esta opção permite preservar a proporção original ao redimensionar uma "
 "imagem."
 
-#: data/ui/dither_page.blp:351
+#: data/ui/dither_page.blp:364
 msgid "Save an Image in…"
 msgstr "Salvar uma Imagem em…"
 
-#: data/ui/dither_page.blp:356 data/ui/main_window.blp:175
+#: data/ui/dither_page.blp:369 data/ui/main_window.blp:124
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: data/ui/dither_page.blp:368
+#: data/ui/dither_page.blp:381
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de Teclado"
 
-#: data/ui/dither_page.blp:373 data/ui/main_window.blp:30
-#: data/ui/main_window.blp:82 data/ui/main_window.blp:132
+#: data/ui/dither_page.blp:386 data/ui/error_page.blp:22
+#: data/ui/main_window.blp:28 data/ui/main_window.blp:79
 msgid "About Halftone"
 msgstr "Sobre o Halftone"
+
+#: data/ui/error_page.blp:35
+msgid "Image Error Occurred"
+msgstr "Ocorreu um erro de imagem"
+
+#: data/ui/error_page.blp:36
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
+"copy logs and report issue to the bug tracker."
+msgstr ""
+"Ocorreu um erro ao carregar uma imagem. Se o erro persistir, por favor copie "
+"os logs e relate o problema ao rastreador de bugs."
+
+#: data/ui/error_page.blp:44
+#, fuzzy
+msgid "_Copy Logs"
+msgstr "Copiar Registros"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -312,60 +216,162 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Sair"
 
-#: data/ui/main_window.blp:55 halftone/views/dither_page.py:231
-msgid "Open Image"
+#: data/ui/main_window.blp:52
+#, fuzzy
+msgid "_Open Image"
 msgstr "Abrir Imagem"
 
-#: data/ui/main_window.blp:109
+#: data/ui/main_window.blp:107
 msgid "Drop Here to Load Image"
 msgstr "Solte aqui para carregar a imagem"
 
-#: data/ui/main_window.blp:145
-msgid "Image Error Occurred"
-msgstr "Ocorreu um erro de imagem"
-
-#: data/ui/main_window.blp:146
-msgid ""
-"An error occurred while loading an image. If this error persists, please "
-"copy logs and report issue to the bug tracker."
-msgstr ""
-"Ocorreu um erro ao carregar uma imagem. Se o erro persistir, por favor copie "
-"os logs e relate o problema ao rastreador de bugs."
-
-#: data/ui/main_window.blp:154
-msgid "Copy Logs"
-msgstr "Copiar Registros"
-
-#: data/ui/main_window.blp:170
+#: data/ui/main_window.blp:119
 msgid "Select an Image"
 msgstr "Selecione uma Imagem"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:33
+#: halftone/views/about_window.py:36
 msgid "translator-credits"
 msgstr ""
 "Fúlvio Leo <fulviokaldas@outlook.com>\n"
 "Tiago Lucas Flach <tiagolucas9830@gmail.com>"
 
-#: halftone/views/main_window.py:103
-msgid "Supported image formats"
-msgstr "Formatos de imagem suportados"
-
-#: halftone/views/main_window.py:123
-msgid "Failed to load an image"
-msgstr "Falha ao carregar uma imagem"
-
-#: halftone/views/main_window.py:140
-msgid "Copied logs to clipboard"
-msgstr "Logs copiados para a área de transferência"
-
-#: halftone/views/dither_page.py:230
+#: halftone/views/dither_page.py:238
 msgid "Image dithered successfully!"
 msgstr "Imagem pontilhada com sucesso!"
 
-#: halftone/views/dither_page.py:514
-msgid "Failed to load preview image"
+#: halftone/views/dither_page.py:239
+msgid "Open Image"
+msgstr "Abrir Imagem"
+
+#: halftone/views/dither_page.py:380
+msgid "Failed to save an image. Check logs for more information"
+msgstr ""
+
+#: halftone/views/dither_page.py:561
+#, fuzzy
+msgid "Failed to load preview image. Check logs for more information"
 msgstr "Falha ao carregar a imagem de pré-visualização"
+
+#: halftone/views/error_page.py:37
+msgid "Copied logs to clipboard"
+msgstr "Logs copiados para a área de transferência"
+
+#: halftone/views/main_window.py:107
+msgid "Supported image formats"
+msgstr "Formatos de imagem suportados"
+
+#: halftone/views/main_window.py:134
+msgid "Failed to load an image. Check logs for more information"
+msgstr ""
+
+#: halftone/views/main_window.py:155
+msgid "Failed to open an image. Check logs for more information"
+msgstr ""
+
+#: halftone/main.py:108 halftone/main.py:122
+#, fuzzy
+msgid "Failed to open preview image. Check logs for more information"
+msgstr "Falha ao carregar a imagem de pré-visualização"
+
+#~ msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
+#~ msgstr "Atualizado widgets para usar os novos widgets da Libadwaita 1.5"
+
+#~ msgid "Updated translations for Russian, Turkish and Simplified Chinese"
+#~ msgstr "Atualizadas traduções para russo, turco e chinês simplificado"
+
+#~ msgid ""
+#~ "Another major UI design update! This update notably moves sidebar to the "
+#~ "left and makes image preview area extra large, by making headerbar "
+#~ "transparent."
+#~ msgstr ""
+#~ "Outra grande atualização de IU! Esta atualização move notavelmente a "
+#~ "barra lateral para a esquerda e torna a área de visualização da imagem "
+#~ "maior, tornando a barra de cabeçalho transparente."
+
+#~ msgid "Changes:"
+#~ msgstr "Mudanças:"
+
+#~ msgid "Implement UI suggestions from GNOME Circle application"
+#~ msgstr ""
+#~ "Implementa sugestões de mudanças de IU do Círculo de Aplicações GNOME"
+
+#~ msgid "Add keyboard shortcuts for toggling sidebar and main menu"
+#~ msgstr ""
+#~ "Adiciona atalhos de teclado para alternar a barra lateral e o menu "
+#~ "principal"
+
+#~ msgid ""
+#~ "Fixed formatting in appdata, now release info should finally show up in "
+#~ "Flathub!"
+#~ msgstr ""
+#~ "Corrigida a formatação no appdata, agora as informações de lançamento "
+#~ "devem finalmente aparecer no Flathub!"
+
+#~ msgid "Updated translations"
+#~ msgstr "Traduções atualizadas"
+
+#~ msgid "Bottom options sheet for mobile users"
+#~ msgstr "Área de opções na parte inferior para usuários mobile"
+
+#~ msgid "Fix main window not being able to resize width down to 360px"
+#~ msgstr ""
+#~ "Corrige a janela principal que não conseguir redimensionar a largura para "
+#~ "360px"
+
+#~ msgid "Load image options from previous image to next loaded image"
+#~ msgstr "Carrega opções da imagem anterior para a próxima imagem carregada"
+
+#~ msgid "New translations"
+#~ msgstr "Novas traduções"
+
+#~ msgid "New refreshed user interface"
+#~ msgstr "Nova interface de usuário atualizada"
+
+#~ msgid ""
+#~ "Fix issue with \"Open in External Image Viewer\" button not working on "
+#~ "Flatpak builds"
+#~ msgstr ""
+#~ "Corrige problema em que o botão \"Abrir em Visualizador de Imagens "
+#~ "Externo\" não funciona em builds Flatpak"
+
+#~ msgid ""
+#~ "Added option to change how image should be resized to fit inside preview "
+#~ "box"
+#~ msgstr ""
+#~ "Adicionada opção para alterar como a imagem deve ser redimensionada para "
+#~ "caber dentro da caixa de visualização"
+
+#~ msgid "Now Halftone uses flat headerbar style"
+#~ msgstr "Agora o Halftone usa um estilo plano de barra de cabeçalho"
+
+#~ msgid "Added brightness and contrast control"
+#~ msgstr "Adicionado controle de brilho e contraste"
+
+#~ msgid "Added button for opening preview image in external image viewers"
+#~ msgstr ""
+#~ "Adicionado botão para abrir imagem de pré-visualização em visualizadores "
+#~ "de imagens externos"
+
+#~ msgid "Added custom logging facility for easier issue reporting"
+#~ msgstr ""
+#~ "Adicionado recurso de registro personalizado para facilitar a geração de "
+#~ "relatórios de problemas"
+
+#~ msgid "Added logic code to \"Copy Logs\" button"
+#~ msgstr "Adicionado código lógico ao botão \"Copiar Registros\""
+
+#~ msgid "Moved image size option to Image Properties"
+#~ msgstr "Opção de tamanho de imagem movida para Propriedades da Imagem"
+
+#~ msgid "Renamed Pixely to Halftone."
+#~ msgstr "Renomeado Pixely para Halftone."
+
+#~ msgid "Initial release of Pixely."
+#~ msgstr "Versão inicial do Pixely."
+
+#~ msgid "Failed to load an image"
+#~ msgstr "Falha ao carregar uma imagem"
 
 #~ msgid "Give your images that pixel art-like style"
 #~ msgstr "Dê às suas imagens aquele estilo pixel art"
