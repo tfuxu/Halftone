@@ -41,8 +41,9 @@ template $HalftoneErrorPage : Adw.Bin {
         spacing: 6;
 
         Gtk.Button {
-          label: _("Copy Logs");
+          label: _("_Copy Logs");
           clicked => $on_copy_logs_clicked();
+          use-underline: true;
 
           styles [
             "pill"

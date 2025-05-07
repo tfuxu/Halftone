@@ -2,8 +2,11 @@ data/io.github.tfuxu.Halftone.metainfo.xml.in.in
 data/io.github.tfuxu.Halftone.desktop.in.in
 data/io.github.tfuxu.Halftone.gschema.xml.in
 data/ui/dither_page.blp
+data/ui/error_page.blp
 data/ui/help_overlay.blp
 data/ui/main_window.blp
 halftone/views/about_window.py
-halftone/views/main_window.py
 halftone/views/dither_page.py
+halftone/views/error_page.py
+halftone/views/main_window.py
+halftone/main.py

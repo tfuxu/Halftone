@@ -48,9 +48,10 @@ template $HalftoneMainWindow: Adw.ApplicationWindow {
               Gtk.Button open_image_button {
                 valign: center;
                 halign: center;
-                clicked => $on_open_image();
 
-                label: _("Open Image");
+                label: _("_Open Image");
+                clicked => $on_open_image();
+                use-underline: true;
 
                 styles [
                   "suggested-action",
