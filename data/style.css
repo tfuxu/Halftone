@@ -5,8 +5,8 @@ button.custom-on-image {
 }
 
 .dragndrop_overlay {
-  background-color: alpha(@accent_bg_color, 0.5);
-  color: @accent_fg_color;
+  background-color: alpha(--accent_bg_color, 0.5);
+  color: --accent_fg_color;
 }
 
 headerbar.desktop windowcontrols button image {
