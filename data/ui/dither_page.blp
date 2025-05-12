@@ -92,21 +92,68 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
             };
 
             [overlay]
-            Gtk.Button toggle_sheet_button {
-              halign: start;
+            Gtk.Box toggle_sheet_box {
               valign: end;
-              icon-name: "sidebar-show-left-symbolic";
-              action-name: "app.toggle-sheet";
-              tooltip-text: _("Toggle Sidebar");
+              halign: start;
+              margin-start: 18;
+              margin-bottom: 18;
 
-              styles [
-                "osd",
-                "circular",
-                "custom-on-image"
-              ]
+              Gtk.Box {
+                orientation: horizontal;
+                spacing: 12;
+
+                Gtk.Button toggle_sheet_button {
+                  icon-name: "sidebar-show-left-symbolic";
+                  tooltip-text: _("Toggle Sidebar");
+                  action-name: "app.toggle-sheet";
+
+                  styles [
+                    "osd",
+                    "image-viewer-fab",
+                    "circular"
+                  ]
+                }
+              }
             }
 
             [overlay]
+            Gtk.Box zoom_box {
+              valign: end;
+              halign: end;
+              margin-end: 18;
+              margin-bottom: 18;
+
+              Gtk.Box {
+                orientation: horizontal;
+                spacing: 12;
+
+                Gtk.Button zoom_out_button {
+                  icon-name: "zoom-out-symbolic";
+                  tooltip-text: _("Zoom Out");
+                  action-name: "zoom.out";
+
+                  styles [
+                    "osd",
+                    "image-viewer-fab",
+                    "circular"
+                  ]
+                }
+
+                Gtk.Button zoom_in_button {
+                  icon-name: "zoom-in-symbolic";
+                  tooltip-text: _("Zoom In");
+                  action-name: "zoom.in";
+
+                  styles [
+                    "osd",
+                    "image-viewer-fab",
+                    "circular"
+                  ]
+                }
+              }
+            }
+
+            /*[overlay]
             Gtk.Button {
               halign: end;
               valign: end;
@@ -119,7 +166,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
                 "circular",
                 "custom-on-image"
               ]
-            }
+            }*/
           };
 
           [overlay]

@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Callable, Literal
 
 from wand.exceptions import BaseError, BaseFatalError
-from gi.repository import GLib, Gdk, Gio, Gtk, Adw
+from gi.repository import GLib, Gdk, Gsk, Gio, Gtk, Adw
 
 from halftone.views.image_view import HalftoneImageView
 
@@ -94,6 +94,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.setup_controllers()
         self.setup_gestures()
+        self.setup_actions()
         self.connect_signals()
         self.setup()
 
@@ -117,7 +118,16 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.scrolled_window.add_controller(drag_gesture)
 
+    def setup_actions(self):
+        """ `zoom.*` action group """
+
+        self.install_action("zoom.in", None, self.image_view.on_zoom)
+        self.install_action("zoom.out", None, self.image_view.on_zoom)
+
     def connect_signals(self):
+        self.image_view.connect("zoom-changed",
+            self.on_zoom_changed)
+
         self.aspect_ratio_toggle.connect("notify::active",
             self.on_aspect_ratio_toggled)
 
@@ -329,6 +339,19 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
+
+    def on_zoom_changed(self, *args):
+        current_filter = self.image_view.scaling_filter
+        nearest = Gsk.ScalingFilter.NEAREST
+        linear = Gsk.ScalingFilter.LINEAR
+
+        if self.image_view.scale >= 1.0 and current_filter is not nearest:
+            self.image_view.scaling_filter = nearest
+        elif self.image_view.scale < 1.0 and current_filter is not linear:
+            self.image_view.scaling_filter = linear
+
+        self.action_set_enabled("zoom.in", self.image_view.can_zoom_in)
+        self.action_set_enabled("zoom.out", self.image_view.can_zoom_out)
 
     def on_scroll_end(self, controller: Gtk.EventControllerScroll):
         # Avoid kinetic scrolling in scrolled window after zooming

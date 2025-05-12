@@ -1,9 +1,3 @@
-button.custom-on-image {
-  min-width: 42px;
-  min-height: 42px;
-  margin: 12px;
-}
-
 .dragndrop_overlay {
   background-color: alpha(var(--accent-bg-color), 0.5);
   color: var(--accent-fg-color);
@@ -28,4 +22,9 @@ headerbar.desktop windowcontrols button:active image {
 
 .preview-loading-blur {
     filter: blur(6px);
+}
+
+.image-viewer-fab {
+    min-width: 42px;
+    min-height: 42px;
 }
