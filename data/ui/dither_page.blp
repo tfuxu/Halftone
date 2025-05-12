@@ -74,7 +74,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         visible-child-name: "desktop";
       }
 
-      content: Gtk.Box image_box {
+      content: Gtk.Box preview_box {
         orientation: vertical;
         homogeneous: true;
         vexpand: true;
@@ -82,11 +82,11 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
         Gtk.Overlay {
           child: Gtk.Overlay {
-            child: Gtk.ScrolledWindow preview_scroll_window {
+            child: Gtk.ScrolledWindow scrolled_window {
               vexpand: true;
               hexpand: true;
 
-              Gtk.Picture image_dithered {
+              Gtk.Picture image_view {
                 content-fit: cover;
                 can-shrink: false;
                 halign: center;
@@ -190,7 +190,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   }
 }
 
-Adw.Bin image_prefs_bin {
+Adw.Bin image_preferences_bin {
   child: Adw.ToolbarView {
     content: Adw.PreferencesPage {
       Adw.PreferencesGroup options_group {
@@ -365,7 +365,7 @@ Gtk.FileDialog save_image_dialog {
   modal: true;
 }
 
-Gtk.FileFilter all_filter {
+Gtk.FileFilter all_files_filter {
   name: _("All files");
   mime-types ["application/octet-stream"]
 }
