@@ -143,9 +143,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.mobile_breakpoint.connect("unapply",
             self.on_breakpoint_unapply)
 
-        '''self.settings.connect("changed::preview-content-fit",
-            self.update_preview_content_fit)'''
-
     def setup(self):
         # Set utility page in sidebar by default
         self.sidebar_view.set_content(self.image_preferences_bin)
@@ -571,22 +568,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         algorithm_string = __get_algorithm_string()
 
         return algorithm_string
-
-    '''def update_preview_content_fit(self, *args):
-        selected_content_fit = self.settings.get_int("preview-content-fit")
-
-        content_fit = Gtk.ContentFit.FILL
-
-        if selected_content_fit == 0:
-            content_fit = Gtk.ContentFit.FILL
-        elif selected_content_fit == 1:
-            content_fit = Gtk.ContentFit.CONTAIN
-        elif selected_content_fit == 2:
-            content_fit = Gtk.ContentFit.COVER
-        elif selected_content_fit == 3:
-            content_fit = Gtk.ContentFit.SCALE_DOWN
-
-        self.image_view.set_content_fit(content_fit)'''
 
     def set_size_spins(self, width: int, height: int):
         self.image_width_row.set_value(width)
