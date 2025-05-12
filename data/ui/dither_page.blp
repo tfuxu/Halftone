@@ -86,11 +86,8 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
               vexpand: true;
               hexpand: true;
 
-              Gtk.Picture image_view {
-                content-fit: cover;
-                can-shrink: false;
-                halign: center;
-                valign: center;
+              Gtk.Viewport image_viewport {
+                scroll-to-focus: false;
               }
             };
 

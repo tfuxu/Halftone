@@ -8,6 +8,8 @@ from typing import Callable, Literal
 from wand.exceptions import BaseError, BaseFatalError
 from gi.repository import GLib, Gdk, Gio, Gtk, Adw
 
+from halftone.views.image_view import HalftoneImageView
+
 from halftone.backend.utils.filetypes import FileType, get_output_formats
 from halftone.backend.utils.temp import HalftoneTempFile
 from halftone.backend.utils.image import calculate_height
@@ -27,7 +29,7 @@ LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
-    image_view: Gtk.Picture = Gtk.Template.Child()
+    image_viewport: Gtk.Viewport = Gtk.Template.Child()
 
     image_preferences_bin: Adw.Bin = Gtk.Template.Child()
 
@@ -81,15 +83,28 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.input_image_path: str = ""
         self.preview_image_path: str = ""
 
-        self.original_paintable: Gdk.Paintable = None
-        self.updated_paintable: Gdk.Paintable = None
+        self.original_texture: Gdk.Texture = None
+        self.updated_texture: Gdk.Texture = None
 
         self.output_options: OutputOptions = OutputOptions()
         self.keep_aspect_ratio: bool = True
 
+        self.image_view = HalftoneImageView(self.parent, None)
+        self.image_viewport.set_child(self.image_view)
+
+        self.setup_controllers()
         self.setup_gestures()
         self.connect_signals()
         self.setup()
+
+    def setup_controllers(self):
+        # Zoom via scroll wheels, etc.
+        scroll_controller = Gtk.EventControllerScroll.new(Gtk.EventControllerScrollFlags.BOTH_AXES)
+
+        scroll_controller.connect("scroll-end", self.on_scroll_end)
+        scroll_controller.connect("scroll", self.on_scroll)
+
+        self.scrolled_window.add_controller(scroll_controller)
 
     def setup_gestures(self):
         # Drag for moving image around
@@ -118,8 +133,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.mobile_breakpoint.connect("unapply",
             self.on_breakpoint_unapply)
 
-        self.settings.connect("changed::preview-content-fit",
-            self.update_preview_content_fit)
+        '''self.settings.connect("changed::preview-content-fit",
+            self.update_preview_content_fit)'''
 
     def setup(self):
         # Set utility page in sidebar by default
@@ -170,7 +185,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             return
 
         try:
-            self.set_updated_paintable(self.preview_image_path)
+            self.set_updated_texture(self.preview_image_path)
         except (GLib.Error, TypeError):
             self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
@@ -185,10 +200,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
 
-        self.set_original_paintable(self.input_image_path)
+        self.set_original_texture(self.input_image_path)
 
-        self.set_size_spins(self.original_paintable.get_intrinsic_width(),
-                            self.original_paintable.get_intrinsic_height())
+        self.set_size_spins(self.original_texture.get_width(),
+                            self.original_texture.get_height())
 
         self.start_task(self.update_preview_image,
                         self.input_image_path,
@@ -227,7 +242,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.color_amount = new_color_amount
 
-        if self.original_paintable:
+        if self.original_texture:
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
@@ -273,9 +288,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.width = new_width
 
-        if self.original_paintable:
-            img_height = self.original_paintable.get_height()
-            img_width = self.original_paintable.get_width()
+        if self.original_texture:
+            img_height = self.original_texture.get_height()
+            img_width = self.original_texture.get_width()
 
             if self.aspect_ratio_toggle.get_active() is True:
                 new_height = calculate_height(img_width, img_height, new_width)
@@ -297,7 +312,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.height = new_height
 
-        if self.original_paintable:
+        if self.original_texture:
             if not self.keep_aspect_ratio:
                 self.start_task(self.update_preview_image,
                                 self.input_image_path,
@@ -314,6 +329,28 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
+
+    def on_scroll_end(self, controller: Gtk.EventControllerScroll):
+        # Avoid kinetic scrolling in scrolled window after zooming
+        # Some gestures can become buggy if deceleration is not canceled
+        if controller.get_current_event_state() == (Gdk.ModifierType.CONTROL_MASK):
+            self.cancel_deceleration()
+
+    def on_scroll(self, controller: Gtk.EventControllerScroll, _x: float, y: float) -> bool:
+        state = controller.get_current_event_state()
+
+        # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
+        if (state == Gdk.ModifierType.CONTROL_MASK or
+            state == Gdk.ModifierType.SHIFT_MASK):
+            return Gdk.EVENT_PROPAGATE
+
+        if y < 0.0:
+            self.image_view.zoom_in()
+        else:
+            self.image_view.zoom_out()
+
+        # Do not propagate event to scrolled window
+        return Gdk.EVENT_STOP
 
     def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
         device = gesture.get_device()
@@ -381,7 +418,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         else:
             if file is not None:
                 self.start_task(self.save_image,
-                                self.updated_paintable,
+                                self.updated_texture,
                                 file.get_path(),
                                 self.output_options,
                                 self.win.show_dither_page)
@@ -391,7 +428,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.algorithm = algorithm_string
 
-        if self.original_paintable:
+        if self.original_texture:
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
@@ -429,9 +466,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     """ Module-specific helpers """
 
-    def set_original_paintable(self, path: str):
+    def set_original_texture(self, path: str):
         try:
-            self.original_paintable = Gdk.Texture.new_from_filename(path)
+            self.original_texture = Gdk.Texture.new_from_filename(path)
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
@@ -445,11 +482,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
-        self.image_view.set_paintable(self.original_paintable)
+        self.image_view.texture = self.original_texture
 
-    def set_updated_paintable(self, path: str):
+    def set_updated_texture(self, path: str):
         try:
-            self.updated_paintable = Gdk.Texture.new_from_filename(path)
+            self.updated_texture = Gdk.Texture.new_from_filename(path)
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
@@ -463,7 +500,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
-        self.image_view.set_paintable(self.updated_paintable)
+        self.image_view.texture = self.updated_texture
 
     def clean_preview_paintable(self):
         try:
@@ -512,7 +549,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         return algorithm_string
 
-    def update_preview_content_fit(self, *args):
+    '''def update_preview_content_fit(self, *args):
         selected_content_fit = self.settings.get_int("preview-content-fit")
 
         content_fit = Gtk.ContentFit.FILL
@@ -526,7 +563,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         elif selected_content_fit == 3:
             content_fit = Gtk.ContentFit.SCALE_DOWN
 
-        self.image_view.set_content_fit(content_fit)
+        self.image_view.set_content_fit(content_fit)'''
 
     def set_size_spins(self, width: int, height: int):
         self.image_width_row.set_value(width)
@@ -539,6 +576,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.scrolled_window.get_vadjustment().set_value(
             self.scrolled_window.get_vadjustment().get_value() - y + self.last_y
         )
+
+    def cancel_deceleration(self) -> None:
+        self.scrolled_window.set_kinetic_scrolling(False)
+        self.scrolled_window.set_kinetic_scrolling(True)
 
     def start_task(self, task: Callable, *args): #callback: callable
         logging.debug("Starting new async task")
