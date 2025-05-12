@@ -49,7 +49,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
     image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
-    algorithms_stringlist: Gtk.StringList = Gtk.Template.Child()
 
     color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
@@ -134,18 +133,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         # By default keep image aspect ratio
         self.aspect_ratio_toggle.set_active(True)
 
-        self.setup_dither_algorithms()
         self.setup_save_formats()
-
-    def setup_dither_algorithms(self):
-        algorithms_list = [
-            "Floyd-Steinberg",
-            "Riemersma",
-            "Bayer (ordered)"
-        ]
-
-        for algorithm in algorithms_list:
-            self.algorithms_stringlist.append(algorithm)
 
     def setup_save_formats(self):
         output_formats = get_output_formats(True) # TODO: Add a setting to toggle showing all formats
