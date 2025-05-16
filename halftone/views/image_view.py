@@ -155,8 +155,14 @@ class HalftoneImageView(Gtk.Widget):
 
     """ Public methods """
 
-    def zoom_in(self):
+    def zoom_to(self, zoom: float) -> None:
+        self.scale = zoom
+
+    def zoom_in(self) -> None:
         self.scale = min(1024.0, self.scale * math.sqrt(2))
 
-    def zoom_out(self):
+    def zoom_out(self) -> None:
         self.scale = max(1.0/1024.0, self.scale / math.sqrt(2))
+
+    def reset_zoom(self) -> None:
+        self.scale = 1.0

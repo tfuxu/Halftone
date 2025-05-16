@@ -102,8 +102,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         # Zoom via scroll wheels, etc.
         scroll_controller = Gtk.EventControllerScroll.new(Gtk.EventControllerScrollFlags.BOTH_AXES)
 
-        scroll_controller.connect("scroll-end", self.on_scroll_end)
         scroll_controller.connect("scroll", self.on_scroll)
+        scroll_controller.connect("scroll-end", self.on_scroll_end)
 
         self.scrolled_window.add_controller(scroll_controller)
 
@@ -350,19 +350,21 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.action_set_enabled("zoom.in", self.image_view.can_zoom_in)
         self.action_set_enabled("zoom.out", self.image_view.can_zoom_out)
 
-    def on_scroll_end(self, controller: Gtk.EventControllerScroll):
-        # Avoid kinetic scrolling in scrolled window after zooming
-        # Some gestures can become buggy if deceleration is not canceled
-        if controller.get_current_event_state() == (Gdk.ModifierType.CONTROL_MASK):
-            self.cancel_deceleration()
-
     def on_scroll(self, controller: Gtk.EventControllerScroll, _x: float, y: float) -> bool:
         state = controller.get_current_event_state()
+        device = controller.get_current_event_device()
 
-        # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
-        if (state == Gdk.ModifierType.CONTROL_MASK or
-            state == Gdk.ModifierType.SHIFT_MASK):
-            return Gdk.EVENT_PROPAGATE
+        if device and device.get_source() == Gdk.InputSource.TOUCHPAD:
+            # Touchpads do zoom via gestures, expect when Ctrl key is pressed
+            if state != Gdk.ModifierType.CONTROL_MASK:
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
+        else:
+            # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
+            if (state == Gdk.ModifierType.CONTROL_MASK or
+                state == Gdk.ModifierType.SHIFT_MASK):
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
 
         if y < 0.0:
             self.image_view.zoom_in()
@@ -371,6 +373,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         # Do not propagate event to scrolled window
         return Gdk.EVENT_STOP
+
+    def on_scroll_end(self, controller: Gtk.EventControllerScroll):
+        # Avoid kinetic scrolling in scrolled window after zooming
+        # Some gestures can become buggy if deceleration is not canceled
+        if controller.get_current_event_state() == Gdk.ModifierType.CONTROL_MASK:
+            self.cancel_deceleration()
 
     def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
         device = gesture.get_device()
