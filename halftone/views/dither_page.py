@@ -74,6 +74,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.is_image_ready: bool = False
         self.is_mobile: bool = False
 
+        self.zoom_target: float = 1.0
+
         self.last_x: float = 0.0
         self.last_y: float = 0.0
 
@@ -117,6 +119,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         drag_gesture.connect("drag-end", self.on_drag_end)
 
         self.scrolled_window.add_controller(drag_gesture)
+
+        # Zoom using 2-finger pinch/zoom gestures
+        zoom_gesture = Gtk.GestureZoom.new()
+
+        zoom_gesture.connect("begin", self.on_zoom_begin)
+        zoom_gesture.connect("scale-changed", self.on_zoom_scale_changed)
+        zoom_gesture.connect("end", self.on_zoom_end)
+
+        self.scrolled_window.add_controller(zoom_gesture)
 
     def setup_actions(self):
         """ `zoom.*` action group """
@@ -403,6 +414,17 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.image_view.set_cursor(None)
         self.last_x = 0.0
         self.last_y = 0.0
+
+    def on_zoom_begin(self, _gesture: Gtk.GestureZoom, _sequence: Gdk.EventSequence) -> None:
+        print("Zoom gesture begin")
+        self.cancel_deceleration()
+        self.zoom_target = self.image_view.scale
+
+    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
+        self.image_view.scale = self.zoom_target * scale
+
+    def on_zoom_end(self, _gesture: Gtk.GestureZoom, _sequence: Gdk.EventSequence) -> None:
+        print("Zoom gesture end")
 
     def on_toggle_sheet(self, action: Gio.SimpleAction, *args):
         if self.is_mobile:
