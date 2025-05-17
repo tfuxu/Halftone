@@ -58,10 +58,6 @@ class HalftoneApplication(Adw.Application):
         show_image_external_action.connect('activate', self.show_image_external)
         self.add_action(show_image_external_action)
 
-        show_preview_image_action = Gio.SimpleAction.new('show-preview-image', None)
-        show_preview_image_action.connect('activate', self.show_preview_image)
-        self.add_action(show_preview_image_action)
-
         '''preferences_action = Gio.SimpleAction.new('preferences', None)
         preferences_action.connect('activate', self.on_preferences)
         self.add_action(preferences_action)'''
@@ -81,14 +77,6 @@ class HalftoneApplication(Adw.Application):
         self.set_accels_for_action('app.save-image', ['<Primary>S'])
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
-
-    def show_preview_image(self, _action: Gio.SimpleAction, *args):
-        """ Helper for `show-preview-image` action. """
-
-        preview_image_path = self.window.dither_page.preview_image_path # pyright: ignore
-        image_path_variant = GLib.Variant("s", preview_image_path)
-
-        self.show_image_external(None, image_path_variant)
 
     def show_image_external(self, _action: Gio.SimpleAction | None, image_path: GLib.Variant, *args):
         """

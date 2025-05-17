@@ -6,7 +6,9 @@ from pathlib import Path
 from typing import Callable, Literal
 
 from wand.exceptions import BaseError, BaseFatalError
-from gi.repository import GLib, Gdk, Gio, Gtk, Adw
+from gi.repository import GLib, Gdk, Gsk, Gio, Gtk, Adw
+
+from halftone.views.image_view import HalftoneImageView
 
 from halftone.backend.utils.filetypes import FileType, get_output_formats
 from halftone.backend.utils.temp import HalftoneTempFile
@@ -27,10 +29,11 @@ LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
-    image_box: Gtk.Box = Gtk.Template.Child()
-    image_dithered: Gtk.Picture = Gtk.Template.Child()
+    shortcut_controller: Gtk.ShortcutController = Gtk.Template.Child()
 
-    image_prefs_bin: Adw.Bin = Gtk.Template.Child()
+    image_viewport: Gtk.Viewport = Gtk.Template.Child()
+
+    image_preferences_bin: Adw.Bin = Gtk.Template.Child()
 
     split_view: Adw.OverlaySplitView = Gtk.Template.Child()
     sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
@@ -38,10 +41,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     bottom_sheet_box: Gtk.Box = Gtk.Template.Child()
     bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
-    preview_scroll_window: Gtk.ScrolledWindow = Gtk.Template.Child()
+    scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
 
     save_image_button: Gtk.Button = Gtk.Template.Child()
-    toggle_sheet_button: Gtk.Button = Gtk.Template.Child()
 
     export_format_combo: Adw.ComboRow = Gtk.Template.Child()
     dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
@@ -50,16 +52,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     aspect_ratio_toggle: Adw.SwitchRow = Gtk.Template.Child()
     image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
-    brightness_row: Adw.SpinRow = Gtk.Template.Child()
-    contrast_row: Adw.SpinRow = Gtk.Template.Child()
-
     image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
-    algorithms_stringlist: Gtk.StringList = Gtk.Template.Child()
 
     color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
     save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
-    all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
     preview_loading_overlay: Gtk.Box = Gtk.Template.Child()
 
@@ -79,26 +76,90 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.is_image_ready: bool = False
         self.is_mobile: bool = False
 
-        self.origin_x: float = None
-        self.origin_y: float = None
+        self.zoom_target: float = 1.0
+
+        self.last_x: float = 0.0
+        self.last_y: float = 0.0
 
         self.task_id: int | None = None
         self.tasks: list[KillableThread] = []
 
-        self.input_image_path: str = None
-        self.preview_image_path: str = None
+        self.input_image_path: str = ""
+        self.preview_image_path: str = ""
 
-        self.original_paintable: Gdk.Paintable = None
-        self.updated_paintable: Gdk.Paintable = None
+        self.original_texture: Gdk.Texture = None
+        self.updated_texture: Gdk.Texture = None
 
         self.output_options: OutputOptions = OutputOptions()
         self.keep_aspect_ratio: bool = True
 
-        self.setup_signals()
-        self.setup()
-        self.setup_controllers()
+        self.image_view = HalftoneImageView(self.parent, None)
+        self.image_viewport.set_child(self.image_view)
 
-    def setup_signals(self):
+        self.setup_controllers()
+        self.setup_gestures()
+        self.setup_actions()
+        self.connect_signals()
+        self.setup()
+
+    def setup_controllers(self):
+        # Zoom via scroll wheels, etc.
+        scroll_controller = Gtk.EventControllerScroll.new(Gtk.EventControllerScrollFlags.BOTH_AXES)
+
+        scroll_controller.connect("scroll", self.on_scroll)
+        scroll_controller.connect("scroll-end", self.on_scroll_end)
+
+        self.scrolled_window.add_controller(scroll_controller)
+
+    def setup_gestures(self):
+        # Drag for moving image around
+        drag_gesture = Gtk.GestureDrag.new()
+        drag_gesture.set_button(0)
+
+        drag_gesture.connect("drag-begin", self.on_drag_begin)
+        drag_gesture.connect("drag-update", self.on_drag_update)
+        drag_gesture.connect("drag-end", self.on_drag_end)
+
+        self.scrolled_window.add_controller(drag_gesture)
+
+        # Zoom using 2-finger pinch/zoom gestures
+        zoom_gesture = Gtk.GestureZoom.new()
+
+        zoom_gesture.connect("begin", self.on_zoom_begin)
+        zoom_gesture.connect("scale-changed", self.on_zoom_scale_changed)
+
+        self.scrolled_window.add_controller(zoom_gesture)
+
+    def setup_actions(self):
+        """ `zoom.*` action group """
+
+        self.install_action("zoom.in", None, self.image_view.on_zoom)
+        self.install_action("zoom.out", None, self.image_view.on_zoom)
+
+        # Add bindings for `zoom.*` action group
+
+        zoom_in_shortcuts = [
+            (Gdk.KEY_equal, []),
+            (Gdk.KEY_equal, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_plus, []),
+            (Gdk.KEY_plus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Add, []),
+            (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
+        ]
+        self.add_shortcuts("zoom.in", zoom_in_shortcuts)
+
+        zoom_out_shortcuts = [
+            (Gdk.KEY_minus, []),
+            (Gdk.KEY_minus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Subtract, []),
+            (Gdk.KEY_KP_Subtract, [Gdk.ModifierType.CONTROL_MASK]),
+        ]
+        self.add_shortcuts("zoom.out", zoom_out_shortcuts)
+
+    def connect_signals(self):
+        self.image_view.connect("zoom-changed",
+            self.on_zoom_changed)
+
         self.aspect_ratio_toggle.connect("notify::active",
             self.on_aspect_ratio_toggled)
 
@@ -114,12 +175,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.mobile_breakpoint.connect("unapply",
             self.on_breakpoint_unapply)
 
-        self.settings.connect("changed::preview-content-fit",
-            self.update_preview_content_fit)
-
     def setup(self):
         # Set utility page in sidebar by default
-        self.sidebar_view.set_content(self.image_prefs_bin)
+        self.sidebar_view.set_content(self.image_preferences_bin)
 
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
@@ -129,18 +187,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         # By default keep image aspect ratio
         self.aspect_ratio_toggle.set_active(True)
 
-        self.setup_dither_algorithms()
         self.setup_save_formats()
-
-    def setup_dither_algorithms(self):
-        algorithms_list = [
-            "Floyd-Steinberg",
-            "Riemersma",
-            "Bayer (ordered)"
-        ]
-
-        for algorithm in algorithms_list:
-            self.algorithms_stringlist.append(algorithm)
 
     def setup_save_formats(self):
         output_formats = get_output_formats(True) # TODO: Add a setting to toggle showing all formats
@@ -149,24 +196,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.image_formats_stringlist.append(filetype.as_extension())
 
         self.export_format_combo.set_selected(output_formats.index(FileType.PNG))
-
-    def setup_controllers(self):
-        preview_drag_ctrl = Gtk.GestureDrag.new()
-        preview_drag_ctrl.connect("drag-begin", self.preview_drag_begin)
-        preview_drag_ctrl.connect("drag-update", self.preview_drag_update)
-
-        self.preview_scroll_window.add_controller(preview_drag_ctrl)
-
-    def preview_drag_begin(self, x: float, y: float, *args):
-        self.origin_x = self.preview_scroll_window.get_hadjustment().get_value()
-        self.origin_y = self.preview_scroll_window.get_vadjustment().get_value()
-
-    def preview_drag_update(self, widget: Gtk.GestureDrag, offset_x: float, offset_y: float, *args):
-        hadj = self.preview_scroll_window.get_hadjustment()
-        vadj = self.preview_scroll_window.get_vadjustment()
-
-        hadj.set_value(self.origin_x - offset_x)
-        vadj.set_value(self.origin_y - offset_y)
 
     """ Main functions """
 
@@ -195,7 +224,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             return
 
         try:
-            self.set_updated_paintable(self.preview_image_path)
+            self.set_updated_texture(self.preview_image_path)
         except (GLib.Error, TypeError):
             self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
@@ -210,10 +239,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def load_preview_image(self, file: Gio.File):
         self.input_image_path = file.get_path()
 
-        self.set_original_paintable(self.input_image_path)
+        self.set_original_texture(self.input_image_path)
 
-        self.set_size_spins(self.original_paintable.get_intrinsic_width(),
-                            self.original_paintable.get_intrinsic_height())
+        self.set_size_spins(self.original_texture.get_width(),
+                            self.original_texture.get_height())
 
         self.start_task(self.update_preview_image,
                         self.input_image_path,
@@ -241,7 +270,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 action_target=GLib.Variant("s", output_path))
         )
 
-    """ Signal callbacks """
+    """ Callbacks """
 
     @Gtk.Template.Callback()
     def on_color_amount_changed(self, widget: Adw.SpinRow):
@@ -252,7 +281,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.color_amount = new_color_amount
 
-        if self.original_paintable:
+        if self.original_texture:
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
@@ -298,9 +327,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.width = new_width
 
-        if self.original_paintable:
-            img_height = self.original_paintable.get_height()
-            img_width = self.original_paintable.get_width()
+        if self.original_texture:
+            img_height = self.original_texture.get_height()
+            img_width = self.original_texture.get_width()
 
             if self.aspect_ratio_toggle.get_active() is True:
                 new_height = calculate_height(img_width, img_height, new_width)
@@ -322,7 +351,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.height = new_height
 
-        if self.original_paintable:
+        if self.original_texture:
             if not self.keep_aspect_ratio:
                 self.start_task(self.update_preview_image,
                                 self.input_image_path,
@@ -339,6 +368,80 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
+
+    def on_zoom_changed(self, *args):
+        current_filter = self.image_view.scaling_filter
+        nearest = Gsk.ScalingFilter.NEAREST
+        linear = Gsk.ScalingFilter.LINEAR
+
+        if self.image_view.scale >= 1.0 and current_filter is not nearest:
+            self.image_view.scaling_filter = nearest
+        elif self.image_view.scale < 1.0 and current_filter is not linear:
+            self.image_view.scaling_filter = linear
+
+        self.action_set_enabled("zoom.in", self.image_view.can_zoom_in)
+        self.action_set_enabled("zoom.out", self.image_view.can_zoom_out)
+
+    def on_scroll(self, controller: Gtk.EventControllerScroll, _x: float, y: float) -> bool:
+        state = controller.get_current_event_state()
+        device = controller.get_current_event_device()
+
+        if device and device.get_source() == Gdk.InputSource.TOUCHPAD:
+            # Touchpads do zoom via gestures, expect when Ctrl key is pressed
+            if state != Gdk.ModifierType.CONTROL_MASK:
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
+        else:
+            # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
+            if (state == Gdk.ModifierType.CONTROL_MASK or
+                state == Gdk.ModifierType.SHIFT_MASK):
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
+
+        if y < 0.0:
+            self.image_view.zoom_in()
+        else:
+            self.image_view.zoom_out()
+
+        # Do not propagate event to scrolled window
+        return Gdk.EVENT_STOP
+
+    def on_scroll_end(self, controller: Gtk.EventControllerScroll):
+        # Avoid kinetic scrolling in scrolled window after zooming
+        # Some gestures can become buggy if deceleration is not canceled
+        if controller.get_current_event_state() == Gdk.ModifierType.CONTROL_MASK:
+            self.cancel_deceleration()
+
+    def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+        device = gesture.get_device()
+
+        # Allow only left and middle button
+        if (not gesture.get_current_button() in [1, 2] or
+            # Drag gesture for touchscreens is handled by ScrolledWindow
+            device and device.get_source() == Gdk.InputSource.TOUCHSCREEN):
+            gesture.set_state(Gtk.EventSequenceState.DENIED)
+            return
+
+        self.image_view.set_cursor_from_name("grabbing")
+        self.last_x = 0.0
+        self.last_y = 0.0
+
+    def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float) -> None:
+        self.update_adjustment(x, y)
+        self.last_x = x
+        self.last_y = y
+
+    def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+        self.image_view.set_cursor(None)
+        self.last_x = 0.0
+        self.last_y = 0.0
+
+    def on_zoom_begin(self, _gesture: Gtk.GestureZoom, _sequence: Gdk.EventSequence) -> None:
+        self.cancel_deceleration()
+        self.zoom_target = self.image_view.scale
+
+    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
+        self.image_view.scale = self.zoom_target * scale
 
     def on_toggle_sheet(self, action: Gio.SimpleAction, *args):
         if self.is_mobile:
@@ -382,7 +485,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         else:
             if file is not None:
                 self.start_task(self.save_image,
-                                self.updated_paintable,
+                                self.updated_texture,
                                 file.get_path(),
                                 self.output_options,
                                 self.win.show_dither_page)
@@ -392,7 +495,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options.algorithm = algorithm_string
 
-        if self.original_paintable:
+        if self.original_texture:
             self.start_task(self.update_preview_image,
                             self.input_image_path,
                             self.output_options,
@@ -407,32 +510,32 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_successful_image_load(self, *args):
         self.preview_loading_overlay.set_visible(False)
-        self.image_dithered.remove_css_class("preview-loading-blur")
+        self.image_view.remove_css_class("preview-loading-blur")
         self.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args):
         if not self.is_image_ready:
             self.preview_loading_overlay.set_visible(True)
-            self.image_dithered.add_css_class("preview-loading-blur")
+            self.image_view.add_css_class("preview-loading-blur")
             self.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args):
         self.sidebar_view.set_content(None)
-        self.bottom_sheet.set_child(self.image_prefs_bin)
+        self.bottom_sheet.set_child(self.image_preferences_bin)
 
         self.is_mobile = True
 
     def on_breakpoint_unapply(self, *args):
         self.bottom_sheet.set_child(None)
-        self.sidebar_view.set_content(self.image_prefs_bin)
+        self.sidebar_view.set_content(self.image_preferences_bin)
 
         self.is_mobile = False
 
     """ Module-specific helpers """
 
-    def set_original_paintable(self, path: str):
+    def set_original_texture(self, path: str):
         try:
-            self.original_paintable = Gdk.Texture.new_from_filename(path)
+            self.original_texture = Gdk.Texture.new_from_filename(path)
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
@@ -446,11 +549,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
-        self.image_dithered.set_paintable(self.original_paintable)
+        self.image_view.texture = self.original_texture
 
-    def set_updated_paintable(self, path: str):
+    def set_updated_texture(self, path: str):
         try:
-            self.updated_paintable = Gdk.Texture.new_from_filename(path)
+            self.updated_texture = Gdk.Texture.new_from_filename(path)
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
@@ -464,7 +567,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
 
-        self.image_dithered.set_paintable(self.updated_paintable)
+        self.image_view.texture = self.updated_texture
 
     def clean_preview_paintable(self):
         try:
@@ -513,25 +616,35 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         return algorithm_string
 
-    def update_preview_content_fit(self, *args):
-        selected_content_fit = self.settings.get_int("preview-content-fit")
-
-        content_fit = Gtk.ContentFit.FILL
-
-        if selected_content_fit == 0:
-            content_fit = Gtk.ContentFit.FILL
-        elif selected_content_fit == 1:
-            content_fit = Gtk.ContentFit.CONTAIN
-        elif selected_content_fit == 2:
-            content_fit = Gtk.ContentFit.COVER
-        elif selected_content_fit == 3:
-            content_fit = Gtk.ContentFit.SCALE_DOWN
-
-        self.image_dithered.set_content_fit(content_fit)
-
     def set_size_spins(self, width: int, height: int):
         self.image_width_row.set_value(width)
         self.image_height_row.set_value(height)
+
+    def add_shortcuts(self, action_name: str, shortcut_list: list[tuple[int, list[Gdk.ModifierType]]]) -> None:
+        for key, modifiers in shortcut_list:
+            modifier = Gdk.ModifierType.NO_MODIFIER_MASK
+
+            for m in modifiers:
+                modifier = modifier | m
+
+            shortcut = Gtk.Shortcut.new(
+                Gtk.KeyvalTrigger.new(key, modifier),
+                Gtk.NamedAction.new(action_name)
+            )
+
+            self.shortcut_controller.add_shortcut(shortcut)
+
+    def update_adjustment(self, x: float, y: float) -> None:
+        self.scrolled_window.get_hadjustment().set_value(
+            self.scrolled_window.get_hadjustment().get_value() - x + self.last_x
+        )
+        self.scrolled_window.get_vadjustment().set_value(
+            self.scrolled_window.get_vadjustment().get_value() - y + self.last_y
+        )
+
+    def cancel_deceleration(self) -> None:
+        self.scrolled_window.set_kinetic_scrolling(False)
+        self.scrolled_window.set_kinetic_scrolling(True)
 
     def start_task(self, task: Callable, *args): #callback: callable
         logging.debug("Starting new async task")

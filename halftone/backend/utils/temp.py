@@ -37,7 +37,7 @@ class HalftoneTempFile:
         :rtype: :class:`None`
         """
 
-        if not isinstance(path, (str, bytes)):
+        if not path:
             return
 
         temp_file = Path(path)
