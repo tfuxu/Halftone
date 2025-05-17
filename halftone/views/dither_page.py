@@ -29,6 +29,8 @@ LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
+    shortcut_controller: Gtk.ShortcutController = Gtk.Template.Child()
+
     image_viewport: Gtk.Viewport = Gtk.Template.Child()
 
     image_preferences_bin: Adw.Bin = Gtk.Template.Child()
@@ -133,6 +135,26 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.install_action("zoom.in", None, self.image_view.on_zoom)
         self.install_action("zoom.out", None, self.image_view.on_zoom)
+
+        # Add bindings for `zoom.*` action group
+
+        zoom_in_shortcuts = [
+            (Gdk.KEY_equal, []),
+            (Gdk.KEY_equal, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_plus, []),
+            (Gdk.KEY_plus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Add, []),
+            (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
+        ]
+        self.add_shortcuts("zoom.in", zoom_in_shortcuts)
+
+        zoom_out_shortcuts = [
+            (Gdk.KEY_minus, []),
+            (Gdk.KEY_minus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Subtract, []),
+            (Gdk.KEY_KP_Subtract, [Gdk.ModifierType.CONTROL_MASK]),
+        ]
+        self.add_shortcuts("zoom.out", zoom_out_shortcuts)
 
     def connect_signals(self):
         self.image_view.connect("zoom-changed",
@@ -597,6 +619,20 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def set_size_spins(self, width: int, height: int):
         self.image_width_row.set_value(width)
         self.image_height_row.set_value(height)
+
+    def add_shortcuts(self, action_name: str, shortcut_list: list[tuple[int, list[Gdk.ModifierType]]]) -> None:
+        for key, modifiers in shortcut_list:
+            modifier = Gdk.ModifierType.NO_MODIFIER_MASK
+
+            for m in modifiers:
+                modifier = modifier | m
+
+            shortcut = Gtk.Shortcut.new(
+                Gtk.KeyvalTrigger.new(key, modifier),
+                Gtk.NamedAction.new(action_name)
+            )
+
+            self.shortcut_controller.add_shortcut(shortcut)
 
     def update_adjustment(self, x: float, y: float) -> None:
         self.scrolled_window.get_hadjustment().set_value(
