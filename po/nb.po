@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 19:22+0200\n"
+"POT-Creation-Date: 2025-05-19 01:16+0200\n"
 "PO-Revision-Date: 2024-09-23 09:37+0200\n"
 "Last-Translator: Sunniva Løvstad <turtle@turtle.garden>\n"
 "Language-Team: \n"
@@ -52,85 +52,89 @@ msgstr "Åpne bilde (Ctrl + O)"
 msgid "Main Menu"
 msgstr "Hovedmeny"
 
-#: data/ui/dither_page.blp:103
+#: data/ui/dither_page.blp:107
 msgid "Toggle Sidebar"
 msgstr "Vis/skjul sidefelt"
 
-#: data/ui/dither_page.blp:117
-msgid "Open in External Image Viewer"
-msgstr "Åpne med ekstern bildeviser"
+#: data/ui/dither_page.blp:132
+msgid "Zoom Out"
+msgstr ""
 
-#: data/ui/dither_page.blp:149
+#: data/ui/dither_page.blp:144
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/dither_page.blp:178
 #, fuzzy
 msgid "Dithering your image…"
 msgstr "Dither bildene dine"
 
-#: data/ui/dither_page.blp:187
+#: data/ui/dither_page.blp:216
 msgid "Toggle Bottom Sheet"
 msgstr "Vis/skjul bunnområdet"
 
-#: data/ui/dither_page.blp:197
+#: data/ui/dither_page.blp:230
 msgid "Options"
 msgstr "Alternativer"
 
-#: data/ui/dither_page.blp:204 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:237 data/ui/dither_page.blp:326
 msgid "Explanation"
 msgstr "Forklaring"
 
-#: data/ui/dither_page.blp:212
+#: data/ui/dither_page.blp:245
 msgid "Dither Algorithm"
 msgstr "Dither-algoritme"
 
-#: data/ui/dither_page.blp:222
+#: data/ui/dither_page.blp:257
 msgid "Color Amount"
 msgstr "Fargemengde"
 
-#: data/ui/dither_page.blp:233
+#: data/ui/dither_page.blp:268
 msgid "Convert To"
 msgstr "Konverter til"
 
-#: data/ui/dither_page.blp:239
+#: data/ui/dither_page.blp:274
 msgid "Adjustments"
 msgstr "Justeringer"
 
-#: data/ui/dither_page.blp:242
+#: data/ui/dither_page.blp:277
 msgid "Brightness"
 msgstr "Lysstyrke"
 
-#: data/ui/dither_page.blp:243 data/ui/dither_page.blp:255
+#: data/ui/dither_page.blp:278 data/ui/dither_page.blp:290
 msgid "Range -100 to 100"
 msgstr "Fra -100 til 100"
 
-#: data/ui/dither_page.blp:254
+#: data/ui/dither_page.blp:289
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: data/ui/dither_page.blp:267
+#: data/ui/dither_page.blp:302
 msgid "Image Size"
 msgstr "Bildestørrelse"
 
-#: data/ui/dither_page.blp:270
+#: data/ui/dither_page.blp:305
 msgid "Width"
 msgstr "Bredde"
 
-#: data/ui/dither_page.blp:271 data/ui/dither_page.blp:303
+#: data/ui/dither_page.blp:306 data/ui/dither_page.blp:338
 msgid "In pixels"
 msgstr "I piksler"
 
-#: data/ui/dither_page.blp:284
+#: data/ui/dither_page.blp:319
 msgid "Keep aspect ratio"
 msgstr "Behold sideforhold"
 
-#: data/ui/dither_page.blp:302
+#: data/ui/dither_page.blp:337
 msgid "Height"
 msgstr "Høyde"
 
-#: data/ui/dither_page.blp:319
+#: data/ui/dither_page.blp:354
 #, fuzzy
 msgid "_Save Image"
 msgstr "Lagre bilde"
 
-#: data/ui/dither_page.blp:346
+#: data/ui/dither_page.blp:381
 msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
@@ -138,7 +142,7 @@ msgstr ""
 "For å lære mer om enkelte alternativer, besøk <a href=\"https://github.com/"
 "tfuxu/Halftone/wiki/Options\">wiki-siden</a>."
 
-#: data/ui/dither_page.blp:359
+#: data/ui/dither_page.blp:394
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
@@ -146,19 +150,19 @@ msgstr ""
 "Dette alternativet beholder det opprinnelige sideforholdet når du endrer "
 "størrelsen på et bilde."
 
-#: data/ui/dither_page.blp:364
+#: data/ui/dither_page.blp:399
 msgid "Save an Image in…"
 msgstr "Lagre bilde i…"
 
-#: data/ui/dither_page.blp:369 data/ui/main_window.blp:124
+#: data/ui/dither_page.blp:404 data/ui/main_window.blp:124
 msgid "All files"
 msgstr "Alle filer"
 
-#: data/ui/dither_page.blp:381
+#: data/ui/dither_page.blp:416
 msgid "Keyboard Shortcuts"
 msgstr "Tastatursnarveier"
 
-#: data/ui/dither_page.blp:386 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:421 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:79
 msgid "About Halftone"
 msgstr "Om Halvtone"
@@ -195,25 +199,46 @@ msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "Lagre bilde"
 
-#: data/ui/help_overlay.blp:25
+#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:67
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:72
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr ""
+
+#: data/ui/help_overlay.blp:35
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Generelt"
 
-#: data/ui/help_overlay.blp:28
+#: data/ui/help_overlay.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr "Vis/skjul innstillingsområdet"
 
-#: data/ui/help_overlay.blp:33
+#: data/ui/help_overlay.blp:43
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "Hovedmeny"
+
+#: data/ui/help_overlay.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Vis tastatursnarveier"
 
-#: data/ui/help_overlay.blp:43
+#: data/ui/help_overlay.blp:58
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Avslutt"
+
+#: data/ui/help_overlay.blp:64
+msgctxt "shortcut window"
+msgid "Gestures"
+msgstr ""
 
 #: data/ui/main_window.blp:52
 #, fuzzy
@@ -233,19 +258,19 @@ msgstr "Velg et bilde"
 msgid "translator-credits"
 msgstr "Sunniva Løvstad <halvtone@turtle.garden>"
 
-#: halftone/views/dither_page.py:238
+#: halftone/views/dither_page.py:267
 msgid "Image dithered successfully!"
 msgstr "Bilde har blitt ditheret!"
 
-#: halftone/views/dither_page.py:239
+#: halftone/views/dither_page.py:268
 msgid "Open Image"
 msgstr "Åpne bilde"
 
-#: halftone/views/dither_page.py:380
+#: halftone/views/dither_page.py:483
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:561
+#: halftone/views/dither_page.py:674
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Kunne ikke laste inn bildeforhåndsvisning"
@@ -266,10 +291,13 @@ msgstr ""
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/main.py:108 halftone/main.py:122
+#: halftone/main.py:96 halftone/main.py:110
 #, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "Kunne ikke laste inn bildeforhåndsvisning"
+
+#~ msgid "Open in External Image Viewer"
+#~ msgstr "Åpne med ekstern bildeviser"
 
 #~ msgid "Updated widgets to make use of new Libadwaita 1.5 widgets"
 #~ msgstr "Oppdaterte widgetene for å bruke nye libadwaita 1.5-widgeter"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 19:22+0200\n"
+"POT-Creation-Date: 2025-05-19 01:16+0200\n"
 "PO-Revision-Date: 2023-12-30 18:58+0200\n"
 "Last-Translator: volkov <volkovissocool@gmail.com>\n"
 "Language-Team: \n"
@@ -55,91 +55,95 @@ msgstr "Відкрити зображення (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: data/ui/dither_page.blp:103
+#: data/ui/dither_page.blp:107
 msgid "Toggle Sidebar"
 msgstr "Показати / приховати бокову панель"
 
-#: data/ui/dither_page.blp:117
-msgid "Open in External Image Viewer"
-msgstr "Відкрити у зовнішній програмі перегляду зображень"
+#: data/ui/dither_page.blp:132
+msgid "Zoom Out"
+msgstr ""
 
-#: data/ui/dither_page.blp:149
+#: data/ui/dither_page.blp:144
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/dither_page.blp:178
 #, fuzzy
 msgid "Dithering your image…"
 msgstr "Алгоритм розмивання"
 
-#: data/ui/dither_page.blp:187
+#: data/ui/dither_page.blp:216
 msgid "Toggle Bottom Sheet"
 msgstr "Показати / приховати нижню панель"
 
-#: data/ui/dither_page.blp:197
+#: data/ui/dither_page.blp:230
 msgid "Options"
 msgstr "Опції"
 
-#: data/ui/dither_page.blp:204 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:237 data/ui/dither_page.blp:326
 msgid "Explanation"
 msgstr "Пояснення"
 
-#: data/ui/dither_page.blp:212
+#: data/ui/dither_page.blp:245
 msgid "Dither Algorithm"
 msgstr "Алгоритм розмивання"
 
-#: data/ui/dither_page.blp:222
+#: data/ui/dither_page.blp:257
 msgid "Color Amount"
 msgstr "Кількість кольорів"
 
-#: data/ui/dither_page.blp:233
+#: data/ui/dither_page.blp:268
 msgid "Convert To"
 msgstr "Конвертувати у"
 
-#: data/ui/dither_page.blp:239
+#: data/ui/dither_page.blp:274
 msgid "Adjustments"
 msgstr ""
 
-#: data/ui/dither_page.blp:242
+#: data/ui/dither_page.blp:277
 msgid "Brightness"
 msgstr "Яскравість"
 
-#: data/ui/dither_page.blp:243 data/ui/dither_page.blp:255
+#: data/ui/dither_page.blp:278 data/ui/dither_page.blp:290
 msgid "Range -100 to 100"
 msgstr "Діапазон: від -100 до 100"
 
-#: data/ui/dither_page.blp:254
+#: data/ui/dither_page.blp:289
 msgid "Contrast"
 msgstr "Контраст"
 
-#: data/ui/dither_page.blp:267
+#: data/ui/dither_page.blp:302
 msgid "Image Size"
 msgstr "Розмір зображення"
 
-#: data/ui/dither_page.blp:270
+#: data/ui/dither_page.blp:305
 msgid "Width"
 msgstr "Ширина"
 
-#: data/ui/dither_page.blp:271 data/ui/dither_page.blp:303
+#: data/ui/dither_page.blp:306 data/ui/dither_page.blp:338
 msgid "In pixels"
 msgstr "У пікселях"
 
-#: data/ui/dither_page.blp:284
+#: data/ui/dither_page.blp:319
 msgid "Keep aspect ratio"
 msgstr "Зберігати пропорції"
 
-#: data/ui/dither_page.blp:302
+#: data/ui/dither_page.blp:337
 msgid "Height"
 msgstr "Висота"
 
-#: data/ui/dither_page.blp:319
+#: data/ui/dither_page.blp:354
 #, fuzzy
 msgid "_Save Image"
 msgstr "Зберегти зображення"
 
-#: data/ui/dither_page.blp:346
+#: data/ui/dither_page.blp:381
 msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
 
-#: data/ui/dither_page.blp:359
+#: data/ui/dither_page.blp:394
 #, fuzzy
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
@@ -148,19 +152,19 @@ msgstr ""
 "Ця опція дозволяє вам зберегти оригінальні пропорції при зміні розмірів "
 "зображення."
 
-#: data/ui/dither_page.blp:364
+#: data/ui/dither_page.blp:399
 msgid "Save an Image in…"
 msgstr "Зберегти зображення в…"
 
-#: data/ui/dither_page.blp:369 data/ui/main_window.blp:124
+#: data/ui/dither_page.blp:404 data/ui/main_window.blp:124
 msgid "All files"
 msgstr "Всі файли"
 
-#: data/ui/dither_page.blp:381
+#: data/ui/dither_page.blp:416
 msgid "Keyboard Shortcuts"
 msgstr "Клавіатурні скорочення"
 
-#: data/ui/dither_page.blp:386 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:421 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:79
 msgid "About Halftone"
 msgstr "Про Halftone"
@@ -197,25 +201,46 @@ msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "Зберегти зображення"
 
-#: data/ui/help_overlay.blp:25
+#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:67
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:72
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr ""
+
+#: data/ui/help_overlay.blp:35
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Загальні"
 
-#: data/ui/help_overlay.blp:28
+#: data/ui/help_overlay.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr ""
 
-#: data/ui/help_overlay.blp:33
+#: data/ui/help_overlay.blp:43
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "Головне меню"
+
+#: data/ui/help_overlay.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Показати клавіатурні скорочення"
 
-#: data/ui/help_overlay.blp:43
+#: data/ui/help_overlay.blp:58
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти"
+
+#: data/ui/help_overlay.blp:64
+msgctxt "shortcut window"
+msgid "Gestures"
+msgstr ""
 
 #: data/ui/main_window.blp:52
 #, fuzzy
@@ -235,19 +260,19 @@ msgstr "Обрати зображення"
 msgid "translator-credits"
 msgstr "volkov <volkovissocool@gmail.com>"
 
-#: halftone/views/dither_page.py:238
+#: halftone/views/dither_page.py:267
 msgid "Image dithered successfully!"
 msgstr "Зображення було успішно розмите!"
 
-#: halftone/views/dither_page.py:239
+#: halftone/views/dither_page.py:268
 msgid "Open Image"
 msgstr "Відкрити зображення"
 
-#: halftone/views/dither_page.py:380
+#: halftone/views/dither_page.py:483
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:561
+#: halftone/views/dither_page.py:674
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Не вдалося завантажити зображення для попереднього перегляду"
@@ -268,10 +293,13 @@ msgstr ""
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/main.py:108 halftone/main.py:122
+#: halftone/main.py:96 halftone/main.py:110
 #, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "Не вдалося завантажити зображення для попереднього перегляду"
+
+#~ msgid "Open in External Image Viewer"
+#~ msgstr "Відкрити у зовнішній програмі перегляду зображень"
 
 #~ msgid "Failed to load an image"
 #~ msgstr "Не вдалося завантажити зображення"

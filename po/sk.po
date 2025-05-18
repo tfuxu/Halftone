@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 19:22+0200\n"
+"POT-Creation-Date: 2025-05-19 01:16+0200\n"
 "PO-Revision-Date: 2023-06-12 22:47+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: \n"
@@ -52,111 +52,115 @@ msgstr "Otvoriť obrázok (Ctrl+O)"
 msgid "Main Menu"
 msgstr "Hlavná ponuka"
 
-#: data/ui/dither_page.blp:103
+#: data/ui/dither_page.blp:107
 msgid "Toggle Sidebar"
 msgstr ""
 
-#: data/ui/dither_page.blp:117
-msgid "Open in External Image Viewer"
-msgstr "Otvoriť v externom prehliadači obrázkov"
+#: data/ui/dither_page.blp:132
+msgid "Zoom Out"
+msgstr ""
 
-#: data/ui/dither_page.blp:149
+#: data/ui/dither_page.blp:144
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/dither_page.blp:178
 #, fuzzy
 msgid "Dithering your image…"
 msgstr "Algoritmus ditheringu"
 
-#: data/ui/dither_page.blp:187
+#: data/ui/dither_page.blp:216
 msgid "Toggle Bottom Sheet"
 msgstr ""
 
-#: data/ui/dither_page.blp:197
+#: data/ui/dither_page.blp:230
 msgid "Options"
 msgstr "Možnosti"
 
-#: data/ui/dither_page.blp:204 data/ui/dither_page.blp:291
+#: data/ui/dither_page.blp:237 data/ui/dither_page.blp:326
 msgid "Explanation"
 msgstr "Vysvetlenie"
 
-#: data/ui/dither_page.blp:212
+#: data/ui/dither_page.blp:245
 msgid "Dither Algorithm"
 msgstr "Algoritmus ditheringu"
 
-#: data/ui/dither_page.blp:222
+#: data/ui/dither_page.blp:257
 msgid "Color Amount"
 msgstr "Počet farieb"
 
-#: data/ui/dither_page.blp:233
+#: data/ui/dither_page.blp:268
 msgid "Convert To"
 msgstr "Previesť na"
 
-#: data/ui/dither_page.blp:239
+#: data/ui/dither_page.blp:274
 msgid "Adjustments"
 msgstr ""
 
-#: data/ui/dither_page.blp:242
+#: data/ui/dither_page.blp:277
 msgid "Brightness"
 msgstr "Jas"
 
-#: data/ui/dither_page.blp:243 data/ui/dither_page.blp:255
+#: data/ui/dither_page.blp:278 data/ui/dither_page.blp:290
 msgid "Range -100 to 100"
 msgstr ""
 
-#: data/ui/dither_page.blp:254
+#: data/ui/dither_page.blp:289
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: data/ui/dither_page.blp:267
+#: data/ui/dither_page.blp:302
 msgid "Image Size"
 msgstr "Veľkosť obrázka"
 
-#: data/ui/dither_page.blp:270
+#: data/ui/dither_page.blp:305
 #, fuzzy
 msgid "Width"
 msgstr "Šírka obrázka"
 
-#: data/ui/dither_page.blp:271 data/ui/dither_page.blp:303
+#: data/ui/dither_page.blp:306 data/ui/dither_page.blp:338
 msgid "In pixels"
 msgstr ""
 
-#: data/ui/dither_page.blp:284
+#: data/ui/dither_page.blp:319
 msgid "Keep aspect ratio"
 msgstr "Zachovať pomer strán"
 
-#: data/ui/dither_page.blp:302
+#: data/ui/dither_page.blp:337
 #, fuzzy
 msgid "Height"
 msgstr "Výška obrázka"
 
-#: data/ui/dither_page.blp:319
+#: data/ui/dither_page.blp:354
 #, fuzzy
 msgid "_Save Image"
 msgstr "Uložiť obrázok"
 
-#: data/ui/dither_page.blp:346
+#: data/ui/dither_page.blp:381
 msgid ""
 "To learn more about individual options, go to the <a href=\"https://github."
 "com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
 msgstr ""
 
-#: data/ui/dither_page.blp:359
+#: data/ui/dither_page.blp:394
 msgid ""
 "This option allows you to preserve original aspect ratio when resizing an "
 "image."
 msgstr ""
 
-#: data/ui/dither_page.blp:364
+#: data/ui/dither_page.blp:399
 msgid "Save an Image in…"
 msgstr "Uložiť obrázok do…"
 
-#: data/ui/dither_page.blp:369 data/ui/main_window.blp:124
+#: data/ui/dither_page.blp:404 data/ui/main_window.blp:124
 msgid "All files"
 msgstr "Všetky súbory"
 
-#: data/ui/dither_page.blp:381
+#: data/ui/dither_page.blp:416
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové skratky"
 
-#: data/ui/dither_page.blp:386 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:421 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:79
 msgid "About Halftone"
 msgstr "O Halftone"
@@ -193,25 +197,46 @@ msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "Uložiť obrázok"
 
-#: data/ui/help_overlay.blp:25
+#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:67
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:72
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr ""
+
+#: data/ui/help_overlay.blp:35
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Všeobecné"
 
-#: data/ui/help_overlay.blp:28
+#: data/ui/help_overlay.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr ""
 
-#: data/ui/help_overlay.blp:33
+#: data/ui/help_overlay.blp:43
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "Hlavná ponuka"
+
+#: data/ui/help_overlay.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Zobraziť klávesové skratky"
 
-#: data/ui/help_overlay.blp:43
+#: data/ui/help_overlay.blp:58
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Ukončiť"
+
+#: data/ui/help_overlay.blp:64
+msgctxt "shortcut window"
+msgid "Gestures"
+msgstr ""
 
 #: data/ui/main_window.blp:52
 #, fuzzy
@@ -231,19 +256,19 @@ msgstr "Vyberte obrázok"
 msgid "translator-credits"
 msgstr "Jose Riha <jose1711@gmail.com>"
 
-#: halftone/views/dither_page.py:238
+#: halftone/views/dither_page.py:267
 msgid "Image dithered successfully!"
 msgstr "Dithering bol úspešne aplikovaný!"
 
-#: halftone/views/dither_page.py:239
+#: halftone/views/dither_page.py:268
 msgid "Open Image"
 msgstr "Otvoriť obrázok"
 
-#: halftone/views/dither_page.py:380
+#: halftone/views/dither_page.py:483
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:561
+#: halftone/views/dither_page.py:674
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Nepodarilo sa načítať obrázok s ukážkou"
@@ -264,10 +289,13 @@ msgstr ""
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/main.py:108 halftone/main.py:122
+#: halftone/main.py:96 halftone/main.py:110
 #, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "Nepodarilo sa načítať obrázok s ukážkou"
+
+#~ msgid "Open in External Image Viewer"
+#~ msgstr "Otvoriť v externom prehliadači obrázkov"
 
 #~ msgid "Renamed Pixely to Halftone."
 #~ msgstr "Pixely premenované na Halftone."
