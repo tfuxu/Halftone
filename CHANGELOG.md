@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.0] - 2025-05-19
 
 ### Added
 
+- New preview viewer with basic image interpolation capabilities
 - New loading overlay used in image preview
 - Missing image encoders/decoders in Flatpaks
 - Initial Bulgarian (bg) translation
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced deprecated `Gtk.FileChooser` with `Gtk.FileDialog`
 - Started using `top-bar-style` setting instead of deprecated `.flat` headerbar style class
 - Replaced `pylint` configuration with `pyright`
+- Switch to using CSS variables for Libadwaita-defined colors
 - Updated Polish (pl) translation
 - Updated Brazilian Portuguese (pt_BR) translation
 - Updated Italian (it) translation

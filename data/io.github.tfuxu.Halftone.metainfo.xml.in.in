@@ -49,11 +49,6 @@
   <url type="help">@HELP_URL@</url>
   <!--<url type="translate">@TRANSLATE_URL@</url>-->
 
-  <kudos>
-    <kudo>HiDpiIcon</kudo>
-    <kudo>ModernToolkit</kudo>
-  </kudos>
-
   <requires>
     <internet>offline-only</internet>
     <display_length compare="ge">360</display_length>
@@ -70,6 +65,28 @@
   </custom>
 
   <releases>
+    <release version="0.7.0" date="2025-05-19">
+      <description translate="no">
+        <p>
+          Finally, an update!
+          This is a big one, it introduces a long-awaited feature, the preview viewer with support for zooming using dedicated buttons, scroll wheel and gestures.
+          There's also user experience improvements, such as a new preview loading overlay, and fixes for most bugs and crashes that occured during image loading in previous versions.
+        </p>
+
+        <p>Changes:</p>
+        <ul>
+          <li>Added new preview viewer with basic image zooming capabilities</li>
+          <li>Refined loading overlay used in image preview</li>
+          <li>Added missing image encoders/decoders in Flatpaks</li>
+          <li>Added mnemonics to buttons for accessibility</li>
+          <li>Added translations for Bulgarian, German, Norwegian Bokmål and Hindi</li>
+          <li>Improved exception handling, which means much less unexpected errors and crashes!</li>
+          <li>Temporarily removed support for BMP image format</li>
+          <li>Removed rows for image height and aspect ratio</li>
+          <li>Updated translations for Polish, Brazilian Portuguese and Italian</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6.1" date="2024-04-04">
       <description translate="no">
         <ul>
