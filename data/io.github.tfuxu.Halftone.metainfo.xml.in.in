@@ -45,6 +45,7 @@
   </branding>
 
   <url type="homepage">@PROJECT_URL@</url>
+  <url type="vcs-browser">@PROJECT_URL@</url>
   <url type="bugtracker">@BUGTRACKER_URL@</url>
   <url type="help">@HELP_URL@</url>
   <!--<url type="translate">@TRANSLATE_URL@</url>-->
