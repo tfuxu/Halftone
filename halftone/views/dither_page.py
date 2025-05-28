@@ -274,7 +274,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_color_amount_changed(self, widget: Adw.SpinRow):
-        new_color_amount = self.get_color_amount_pref(widget)
+        new_color_amount = int(widget.props.value)
 
         if new_color_amount == self.output_options.color_amount:
             return
@@ -320,7 +320,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_image_width_changed(self, widget: Adw.SpinRow):
-        new_width = self.get_image_width_pref(widget)
+        new_width = int(widget.props.value)
 
         if new_width == self.output_options.width:
             return
@@ -344,7 +344,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     @Gtk.Template.Callback()
     def on_image_height_changed(self, widget: Adw.SpinRow):
-        new_height = self.get_image_height_pref(widget)
+        new_height = int(widget.props.value)
 
         if new_height == self.output_options.height:
             return
@@ -581,18 +581,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         # TODO: Possible edge case; Make sure to return something when string is None
         return format_string
-
-    def get_color_amount_pref(self, widget: Adw.SpinRow) -> int:
-        color_amount = int(widget.props.value)
-        return color_amount
-
-    def get_image_width_pref(self, widget: Adw.SpinRow) -> int:
-        new_width = int(widget.props.value)
-        return new_width
-
-    def get_image_height_pref(self, widget: Adw.SpinRow) -> int:
-        new_height = int(widget.props.value)
-        return new_height
 
     def get_dither_algorithm_pref(self, widget: Adw.ComboRow) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
         selected_algorithm = widget.props.selected
