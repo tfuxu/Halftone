@@ -533,9 +533,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     """ Module-specific helpers """
 
-    def set_original_texture(self, path: str):
+    def set_original_texture(self, path: str) -> None:
+        self._set_texture(path, as_original=True)
+
+    def set_updated_texture(self, path: str) -> None:
+        self._set_texture(path)
+
+    def _set_texture(self, path: str, as_original: bool = False) -> None:
         try:
-            self.original_texture = Gdk.Texture.new_from_filename(path)
+            texture = Gdk.Texture.new_from_filename(path)
         except GLib.Error as e:
             logging.traceback_error(
                 "Failed to construct new Gdk.Texture from path.",
@@ -548,26 +554,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
+        else:
+            if as_original:
+                self.original_texture = texture
+            else:
+                self.updated_texture = texture
 
-        self.image_view.texture = self.original_texture
-
-    def set_updated_texture(self, path: str):
-        try:
-            self.updated_texture = Gdk.Texture.new_from_filename(path)
-        except GLib.Error as e:
-            logging.traceback_error(
-                "Failed to construct new Gdk.Texture from path.",
-                exception=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
-            raise
-        except TypeError as e:
-            logging.traceback_error(
-                "Missing Gdk.Texture decoding plugin for requested image.",
-                exception=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
-            raise
-
-        self.image_view.texture = self.updated_texture
+            self.image_view.texture = texture
 
     def clean_preview_paintable(self):
         try:
