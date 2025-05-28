@@ -597,26 +597,17 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def get_dither_algorithm_pref(self, widget: Adw.ComboRow) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
         selected_algorithm = widget.props.selected
 
-        class selectedAlgo(Enum):
-            FLOYD_STEINBERG = 0
-            RIEMERSMA = 1
-            ORDERED = 2
-
-        def __get_algorithm_string() -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
-            if selected_algorithm == selectedAlgo.FLOYD_STEINBERG.value:
+        match selected_algorithm:
+            case 0:
                 return "floyd_steinberg"
-            if selected_algorithm == selectedAlgo.RIEMERSMA.value:
+            case 1:
                 return "riemersma"
-            if selected_algorithm == selectedAlgo.ORDERED.value:
+            case 2:
                 return "ordered"
+            case _:
+                return None
 
-            return None
-
-        algorithm_string = __get_algorithm_string()
-
-        return algorithm_string
-
-    def set_size_spins(self, width: int, height: int):
+    def set_size_spins(self, width: int, height: int) -> None:
         self.image_width_row.set_value(width)
         self.image_height_row.set_value(height)
 
