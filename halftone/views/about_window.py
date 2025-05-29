@@ -41,7 +41,7 @@ class HalftoneAboutWindow:
         )
         self.about_window.add_legal_section("ImageMagick", None, Gtk.License.MIT_X11, None)
 
-    def set_debug_info(self):
+    def set_debug_info(self) -> None:
         magick_version = f"ImageMagick: {".".join(map(str, MAGICK_VERSION_INFO))}"
         wand_version = f"Wand: {VERSION}"
         magick_features = f"Features: {MAGICK_VERSION_FEATURES}"
@@ -55,5 +55,5 @@ class HalftoneAboutWindow:
         self.about_window.set_debug_info(debug_info)
         self.about_window.set_debug_info_filename("halftone-debug-info")
 
-    def show_about(self):
+    def show_about(self) -> None:
         self.about_window.present(self.parent)

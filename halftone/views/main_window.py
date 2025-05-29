@@ -119,7 +119,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.main_stack.add_named(self.error_page, "stack_error_page")
         self.main_stack.add_named(self.dither_page, "stack_dither_page")
 
-    def load_image(self, file: Gio.File):
+    def load_image(self, file: Gio.File) -> None:
         self.show_loading_page()
 
         try:
@@ -174,19 +174,19 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         else:
             logging.error("EDGE CASE: No stack page set as previous. Staying at current page")
 
-    def show_loading_page(self, *args):
+    def show_loading_page(self, *args) -> None:
         self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(False)
         self.save_image_action.set_enabled(False)
         self.main_stack.set_visible_child_name("stack_loading_page")
 
-    def show_error_page(self, *args):
+    def show_error_page(self, *args) -> None:
         self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(False)
         self.main_stack.set_visible_child_name("stack_error_page")
 
-    def show_dither_page(self, *args):
+    def show_dither_page(self, *args) -> None:
         self.toggle_sheet_action.set_enabled(True)
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(True)
@@ -195,7 +195,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     def on_close_request(self, *args):
         self.dither_page.clean_preview_paintable()
 
-    def save_window_props(self, *args):
+    def save_window_props(self, *args) -> None:
         window_size = self.get_default_size()
 
         self.settings.set_int("window-width", window_size.width)

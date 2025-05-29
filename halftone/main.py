@@ -78,7 +78,7 @@ class HalftoneApplication(Adw.Application):
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
-    def show_image_external(self, _action: Gio.SimpleAction | None, image_path: GLib.Variant, *args):
+    def show_image_external(self, _action: Gio.SimpleAction | None, image_path: GLib.Variant, *args) -> None:
         """
         Launch an external application to display provided image.
 

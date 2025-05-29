@@ -200,7 +200,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     """ Main functions """
 
     def update_preview_image(self, path: str, output_options: OutputOptions,
-                                   run_delay: bool = True, callback: Callable | None = None):
+                                   run_delay: bool = True, callback: Callable | None = None) -> None:
         self.is_image_ready = False
 
         if run_delay:
@@ -236,7 +236,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             callback()
 
     # NOTE: Use this only if you initially load the picture (eg. from file dialog)
-    def load_preview_image(self, file: Gio.File):
+    def load_preview_image(self, file: Gio.File) -> None:
         self.input_image_path = file.get_path()
 
         self.set_original_texture(self.input_image_path)
@@ -251,7 +251,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                         self.on_successful_image_load)
 
     def save_image(self, paintable: Gdk.Paintable, output_path: str,
-                         output_options: OutputOptions, callback: Callable):
+                         output_options: OutputOptions, callback: Callable) -> None:
         self.win.show_loading_page()
 
         image_bytes = paintable.save_to_tiff_bytes()
@@ -412,7 +412,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         if controller.get_current_event_state() == Gdk.ModifierType.CONTROL_MASK:
             self.cancel_deceleration()
 
-    def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+    def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float):
         device = gesture.get_device()
 
         # Allow only left and middle button
@@ -426,21 +426,21 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.last_x = 0.0
         self.last_y = 0.0
 
-    def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float) -> None:
+    def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float):
         self.update_adjustment(x, y)
         self.last_x = x
         self.last_y = y
 
-    def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+    def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float):
         self.image_view.set_cursor(None)
         self.last_x = 0.0
         self.last_y = 0.0
 
-    def on_zoom_begin(self, _gesture: Gtk.GestureZoom, _sequence: Gdk.EventSequence) -> None:
+    def on_zoom_begin(self, _gesture: Gtk.GestureZoom, _sequence: Gdk.EventSequence):
         self.cancel_deceleration()
         self.zoom_target = self.image_view.scale
 
-    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
+    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float):
         self.image_view.scale = self.zoom_target * scale
 
     def on_toggle_sheet(self, action: Gio.SimpleAction, *args):
@@ -562,7 +562,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
             self.image_view.texture = texture
 
-    def clean_preview_paintable(self):
+    def clean_preview_paintable(self) -> None:
         try:
             HalftoneTempFile().delete_temp_file(self.preview_image_path)
         except FileNotFoundError as e:
@@ -618,7 +618,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.scrolled_window.set_kinetic_scrolling(False)
         self.scrolled_window.set_kinetic_scrolling(True)
 
-    def start_task(self, task: Callable, *args): #callback: callable
+    def start_task(self, task: Callable, *args) -> None: #callback: callable
         logging.debug("Starting new async task")
 
         for t in self.tasks:
