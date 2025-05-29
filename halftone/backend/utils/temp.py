@@ -4,41 +4,36 @@
 import tempfile
 from pathlib import Path
 
+def create_temp_file(text: bool = False, suffix: str | None = None) -> str:
+    """
+    Safely create file for storing temporary data.
 
-class HalftoneTempFile:
-    def __init__(self):
-        pass
+    :param text: Select if temporary file should be opened in text mode.
+    :type text: :class:`bool`
 
-    def create_temp_file(self, text: bool = False, suffix: str | None = None) -> str:
-        """
-        Safely create file for storing temporary data.
+    :param suffix: Use custom filename suffix (eg. file extension).
+    :type suffix: :class:`str`
 
-        :param text: Select if temporary file should be opened in text mode.
-        :type text: :class:`bool`
+    :returns: An absolute path to the temp file.
+    :rtype: :class:`str`
+    """
 
-        :param suffix: Use custom filename suffix (eg. file extension).
-        :type suffix: :class:`str`
+    temp_file = tempfile.mkstemp(prefix="halftone-", suffix=suffix, text=text)
+    temp_path = temp_file[1]
+    return temp_path
 
-        :returns: An absolute path to the temp file.
-        :rtype: :class:`str`
-        """
+def delete_temp_file(path: str) -> None:
+    """
+    Delete temporary file located at given path.
 
-        temp_file = tempfile.mkstemp(prefix="halftone-", suffix=suffix, text=text)
-        temp_path = temp_file[1]
-        return temp_path
+    :param path: Absolute path to the temporary file.
+    :type path: :class:`str`
 
-    def delete_temp_file(self, path: str) -> None:
-        """
-        Delete temporary file located at given path.
+    :rtype: :class:`None`
+    """
 
-        :param path: Absolute path to the temporary file.
-        :type path: :class:`str`
+    if not path:
+        return
 
-        :rtype: :class:`None`
-        """
-
-        if not path:
-            return
-
-        temp_file = Path(path)
-        temp_file.unlink()
+    temp_file = Path(path)
+    temp_file.unlink()

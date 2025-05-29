@@ -3,7 +3,7 @@
 
 from wand.image import Image
 
-from halftone.backend.utils.temp import HalftoneTempFile
+from halftone.backend.utils.temp import create_temp_file
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
 
@@ -51,7 +51,7 @@ class HalftoneImageMagick:
                 else:
                     clone.quantize(color_amount, colorspace_type="undefined", dither=algorithm) # pyright: ignore
 
-                temp_path = HalftoneTempFile().create_temp_file()
+                temp_path = create_temp_file()
                 clone.save(filename=temp_path)
 
         return temp_path

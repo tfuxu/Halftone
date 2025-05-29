@@ -11,7 +11,7 @@ from gi.repository import GLib, Gdk, Gsk, Gio, Gtk, Adw
 from halftone.views.image_view import HalftoneImageView
 
 from halftone.backend.utils.filetypes import FileType, get_output_formats
-from halftone.backend.utils.temp import HalftoneTempFile
+from halftone.backend.utils.temp import delete_temp_file
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
 from halftone.backend.magick import HalftoneImageMagick
@@ -564,7 +564,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def clean_preview_paintable(self) -> None:
         try:
-            HalftoneTempFile().delete_temp_file(self.preview_image_path)
+            delete_temp_file(self.preview_image_path)
         except FileNotFoundError as e:
             logging.warning(f"Failed to delete temporary file. Path: {self.preview_image_path} Error: {e}")
 
