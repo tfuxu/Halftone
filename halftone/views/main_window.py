@@ -158,7 +158,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             if file is not None:
                 self.load_image(file)
 
-    def on_target_drop(self, widget: Gtk.DropTarget, file: Gio.File, *args):
+    def on_target_drop(self, _widget: Gtk.DropTarget, file: Gio.File, *args):
         if file is not None:
             self.load_image(file)
 
@@ -173,6 +173,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             self.main_stack.set_visible_child_name(self.previous_stack)
         else:
             logging.error("EDGE CASE: No stack page set as previous. Staying at current page")
+
+    def on_close_request(self, *args):
+        self.dither_page.clean_preview_paintable()
 
     def show_loading_page(self, *args) -> None:
         self.toggle_sheet_action.set_enabled(False)
@@ -191,9 +194,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(True)
         self.main_stack.set_visible_child_name("stack_dither_page")
-
-    def on_close_request(self, *args):
-        self.dither_page.clean_preview_paintable()
 
     def save_window_props(self, *args) -> None:
         window_size = self.get_default_size()

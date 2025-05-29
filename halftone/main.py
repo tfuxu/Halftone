@@ -31,7 +31,9 @@ class HalftoneApplication(Adw.Application):
 
         self.setup_actions()
 
-    def do_activate(self, *args, **kwargs):
+    """ Overrides """
+
+    def do_activate(self, *args, **kwargs) -> None:
         """ Called when the application is activated. """
 
         self.window = self.props.active_window
@@ -45,6 +47,8 @@ class HalftoneApplication(Adw.Application):
             ) # pyright: ignore
 
         self.window.present()
+
+    """ Setup methods """
 
     def setup_actions(self):
         """ Setup menu actions and accelerators. """
@@ -78,6 +82,8 @@ class HalftoneApplication(Adw.Application):
         #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
         self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
 
+    """ Main methods """
+
     def show_image_external(self, _action: Gio.SimpleAction | None, image_path: GLib.Variant, *args) -> None:
         """
         Launch an external application to display provided image.
@@ -98,7 +104,7 @@ class HalftoneApplication(Adw.Application):
         else:
             launcher = Gtk.FileLauncher.new(image_file)
 
-            def open_image_finish(_launcher: Gtk.FileLauncher, result: Gio.AsyncResult, *args):
+            def open_image_finish(_launcher: Gtk.FileLauncher, result: Gio.AsyncResult, *args) -> None:
                 try:
                     launcher.launch_finish(result)
                 except GLib.Error as e:
@@ -111,6 +117,8 @@ class HalftoneApplication(Adw.Application):
                         )
 
             launcher.launch(self.window, None, open_image_finish)
+
+    """ Callbacks """
 
     '''def on_preferences(self, *args):
         """ Show preferences window. """

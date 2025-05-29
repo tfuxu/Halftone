@@ -1,7 +1,6 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from enum import Enum
 from pathlib import Path
 from typing import Callable, Literal
 

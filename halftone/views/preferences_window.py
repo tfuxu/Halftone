@@ -23,8 +23,8 @@ class HalftonePreferencesWindow(Adw.PreferencesWindow):
 
         self.set_transient_for(self.win)
 
-        self.setup()
         self.setup_signals()
+        self.setup()
 
     def setup_signals(self):
         self.content_fit_combo.connect("notify::selected",
