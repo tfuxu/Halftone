@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from pathlib import Path
-from typing import Callable, Literal
+from typing import Literal
+from collections.abc import Callable
 
 from wand.exceptions import BaseError, BaseFatalError
 from gi.repository import GLib, Gdk, Gsk, Gio, Gtk, Adw
