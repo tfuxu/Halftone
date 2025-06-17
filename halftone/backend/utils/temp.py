@@ -1,8 +1,8 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import tempfile
 from pathlib import Path
+import tempfile
 
 def create_temp_file(text: bool = False, suffix: str | None = None) -> str:
     """

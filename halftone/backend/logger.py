@@ -2,9 +2,8 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import sys
-
 import logging
+import sys
 import traceback
 
 from halftone.constants import build_type # pyright: ignore
@@ -70,7 +69,11 @@ class Logger(logging.getLoggerClass()):
 
         return f"[\033[1;{color_id}m{level.upper()}\033[0m] {message}"
 
-    def __init__(self, issue_footer_levels: list | None = None, fmt: str | None = None):
+    def __init__(
+        self,
+        issue_footer_levels: list | None = None,
+        fmt: str | None = None
+    ) -> None:
         """
         The constructor for Logger class.
         """
@@ -100,8 +103,15 @@ class Logger(logging.getLoggerClass()):
     def info(self, message: str, *args, **kwargs) -> None:
         self.root.info(self.__set_level_color("info", str(message)))
 
-    def warning(self, message: str, exception: BaseException | None = None,
-                    show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
+    def warning(
+        self,
+        message: str,
+        exception: BaseException | None = None,
+        show_exception: bool = False,
+        show_traceback: bool = False,
+        *args,
+        **kwargs
+    ) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
         if show_traceback:
@@ -111,8 +121,15 @@ class Logger(logging.getLoggerClass()):
         if "warning" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def error(self, message: str, exception: BaseException | None = None,
-                show_exception: bool = False, show_traceback: bool = False, *args, **kwargs) -> None:
+    def error(
+        self,
+        message: str,
+        exception: BaseException | None = None,
+        show_exception: bool = False,
+        show_traceback: bool = False,
+        *args,
+        **kwargs
+    ) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
         if show_traceback:
@@ -122,8 +139,12 @@ class Logger(logging.getLoggerClass()):
         if "error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def traceback_error(self, message: str, exception: BaseException | None = None,
-                            show_exception: bool = False) -> None:
+    def traceback_error(
+        self,
+        message: str,
+        exception: BaseException | None = None,
+        show_exception: bool = False
+    ) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
         message += self.__set_traceback_info(exception)
@@ -132,8 +153,15 @@ class Logger(logging.getLoggerClass()):
         if "traceback_error" in self.issue_footer_levels:
             self.print_issue_footer()
 
-    def critical(self, message: str, exception: BaseException | None = None,
-                    show_exception: bool = False, show_traceback: bool = True, *args, **kwargs) -> None:
+    def critical(
+        self,
+        message: str,
+        exception: BaseException | None = None,
+        show_exception: bool = False,
+        show_traceback: bool = True,
+        *args,
+        **kwargs
+    ) -> None:
         if show_exception:
             message += self.__set_exception_info(exception)
         if show_traceback:
@@ -176,6 +204,10 @@ if __name__ == "__main__":
         try:
             raise Exception("General Exception")
         except Exception as e:
-            logging.traceback_error("This is an test error.", exception=e, show_exception=True)
+            logging.traceback_error(
+                message="This is an test error.",
+                exception=e,
+                show_exception=True
+            )
 
             print(f"Retrieved traceback: {logging.get_traceback(e)}")

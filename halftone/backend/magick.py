@@ -3,9 +3,9 @@
 
 from wand.image import Image
 
-from halftone.backend.utils.temp import create_temp_file
-from halftone.backend.utils.image import calculate_height
 from halftone.backend.model.output_options import OutputOptions
+from halftone.backend.utils.image import calculate_height
+from halftone.backend.utils.temp import create_temp_file
 
 
 class HalftoneImageMagick:
@@ -49,14 +49,23 @@ class HalftoneImageMagick:
                     clone.ordered_dither("o4x4")
                     clone.quantize(color_amount, colorspace_type="undefined")
                 else:
-                    clone.quantize(color_amount, colorspace_type="undefined", dither=algorithm) # pyright: ignore
+                    clone.quantize(
+                        number_colors=color_amount,
+                        colorspace_type="undefined",
+                        dither=algorithm  # pyright: ignore
+                    )
 
                 temp_path = create_temp_file()
                 clone.save(filename=temp_path)
 
         return temp_path
 
-    def save_image(self, blob: bytes, output_filename: str, output_options: OutputOptions) -> None:
+    def save_image(
+        self,
+        blob: bytes,
+        output_filename: str,
+        output_options: OutputOptions
+    ) -> None:
         with Image(blob=blob) as img:
             output_image = img.convert(output_options.output_format)
             output_image.save(filename=output_filename)

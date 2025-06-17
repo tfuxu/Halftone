@@ -1,7 +1,7 @@
 # Copyright 2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw, Gtk, Gio
+from gi.repository import Adw, Gio, Gtk
 
 from halftone.constants import rootdir # pyright: ignore
 
@@ -10,7 +10,7 @@ from halftone.constants import rootdir # pyright: ignore
 class HalftoneErrorPage(Adw.Bin):
     __gtype_name__ = "HalftoneErrorPage"
 
-    def __init__(self, parent: Gtk.Widget, **kwargs):
+    def __init__(self, parent: Gtk.Widget, **kwargs) -> None:
         super().__init__(**kwargs)
 
         self.parent = parent
@@ -19,17 +19,25 @@ class HalftoneErrorPage(Adw.Bin):
         self.app: Adw.Application = self.parent.get_application()
         self.win: Adw.ApplicationWindow = self.app.get_active_window()
 
-        self.setup_signals()
-        self.setup()
+        self._setup_signals()
+        self._setup()
 
-    def setup_signals(self):
+    """
+    Setup methods
+    """
+
+    def _setup_signals(self):
         pass
 
-    def setup(self):
+    def _setup(self):
         pass
+
+    """
+    Callbacks
+    """
 
     @Gtk.Template.Callback()
-    def on_copy_logs_clicked(self, *args):
+    def on_copy_logs_clicked(self, *args) -> None:
         clipboard = self.get_clipboard()
         clipboard.set(self.parent.latest_traceback)
 
