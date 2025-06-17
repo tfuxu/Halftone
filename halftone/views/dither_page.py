@@ -572,7 +572,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         selected_format = self.export_format_combo.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format)
 
-        # TODO: Possible edge case; Make sure to return something when string is None
+        # NOTE: This should only happen if the list isn't populated
+        if format_string is None:
+            format_string = "png"
+
         return format_string
 
     def get_dither_algorithm_pref(self, widget: Adw.ComboRow) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
