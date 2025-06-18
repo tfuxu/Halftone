@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-# Copyright 2023, tfuxu <https://github.com/tfuxu>
+# Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import os
-import sys
-import signal
-import locale
 import gettext
+import locale
+import os
+import signal
+import sys
 
 builddir = os.environ.get('MESON_BUILD_ROOT')
 

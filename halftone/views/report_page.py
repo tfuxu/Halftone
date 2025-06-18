@@ -1,7 +1,7 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw, Gtk, Gio
+from gi.repository import Adw, Gio, Gtk
 
 from halftone.constants import rootdir # pyright: ignore
 
@@ -10,7 +10,7 @@ from halftone.constants import rootdir # pyright: ignore
 class HalftoneReportPage(Gtk.Box):
     __gtype_name__ = "HalftoneReportPage"
 
-    def __init__(self, parent: Gtk.Widget, **kwargs):
+    def __init__(self, parent: Gtk.Widget, **kwargs) -> None:
         super().__init__(**kwargs)
 
         self.parent = parent
@@ -19,11 +19,15 @@ class HalftoneReportPage(Gtk.Box):
         self.app: Adw.Application = self.parent.get_application()
         self.win: Adw.ApplicationWindow = self.app.get_active_window()
 
-        self.setup_signals()
-        self.setup()
+        self._setup_signals()
+        self._setup()
 
-    def setup_signals(self):
+    """
+    Setup methods
+    """
+
+    def _setup_signals(self) -> None:
         pass
 
-    def setup(self):
+    def _setup(self) -> None:
         pass

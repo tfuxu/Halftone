@@ -1,22 +1,25 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from wand.version import MAGICK_VERSION_INFO, VERSION, MAGICK_VERSION_FEATURES
-
 from gi.repository import Adw, Gtk
+from wand.version import MAGICK_VERSION_FEATURES, MAGICK_VERSION_INFO, VERSION
 
 from halftone import constants # pyright: ignore
 
 
 class HalftoneAboutWindow:
-    def __init__(self, parent: Gtk.Widget):
+    def __init__(self, parent: Gtk.Widget) -> None:
         self.parent = parent
         self.app: Adw.Application = self.parent.get_application()
 
-        self.setup()
-        self.set_debug_info()
+        self._setup()
+        self._set_debug_info()
 
-    def setup(self):
+    """
+    Setup methods
+    """
+
+    def _setup(self) -> None:
         self.about_window = Adw.AboutDialog(
             application_name="Halftone",
             application_icon=constants.app_id,
@@ -39,9 +42,25 @@ class HalftoneAboutWindow:
             version=constants.version,
             release_notes_version=constants.rel_ver,
         )
-        self.about_window.add_legal_section("ImageMagick", None, Gtk.License.MIT_X11, None)
+        self.about_window.add_legal_section(
+            title="ImageMagick",
+            copyright=None,
+            license_type=Gtk.License.MIT_X11,
+            license=None
+        )
 
-    def set_debug_info(self):
+    """
+    Public methods
+    """
+
+    def show_about(self) -> None:
+        self.about_window.present(self.parent)
+
+    """
+    Private methods
+    """
+
+    def _set_debug_info(self) -> None:
         magick_version = f"ImageMagick: {".".join(map(str, MAGICK_VERSION_INFO))}"
         wand_version = f"Wand: {VERSION}"
         magick_features = f"Features: {MAGICK_VERSION_FEATURES}"
@@ -54,6 +73,3 @@ class HalftoneAboutWindow:
 
         self.about_window.set_debug_info(debug_info)
         self.about_window.set_debug_info_filename("halftone-debug-info")
-
-    def show_about(self):
-        self.about_window.present(self.parent)

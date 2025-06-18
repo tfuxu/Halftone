@@ -1,188 +1,188 @@
 {
-  "app-id" : "io.github.tfuxu.Halftone",
-  "runtime" : "org.gnome.Platform",
-  "runtime-version" : "48",
-  "sdk" : "org.gnome.Sdk",
-  "command" : "halftone",
-  "finish-args" : [
-      "--share=ipc",
-      "--device=dri",
-      "--socket=fallback-x11",
-      "--socket=wayland",
-      "--filesystem=/tmp"
+  "app-id": "io.github.tfuxu.Halftone",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "48",
+  "sdk": "org.gnome.Sdk",
+  "command": "halftone",
+  "finish-args": [
+    "--share=ipc",
+    "--device=dri",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--filesystem=/tmp"
   ],
-  "cleanup" : [
-      "/include",
-      "/lib/pkgconfig",
-      "/man",
-      "/share/doc",
-      "/share/gtk-doc",
-      "/share/man",
-      "/share/pkgconfig",
-      "*.la",
-      "*.a"
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "/man",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "*.la",
+    "*.a"
   ],
-  "modules" : [
-      "pypi-dependencies.json",
-      {
-          "name" : "blueprint-compiler",
-          "buildsystem" : "meson",
-          "cleanup": [
-              "*"
-          ],
-          "sources" : [
-              {
-                  "type" : "git",
-                  "url" : "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-                  "tag" : "v0.16.0"
-              }
-          ]
-      },
-      {
-          "name": "libheif",
-          "cleanup": [
-              "/bin"
-          ],
-          "buildsystem": "cmake-ninja",
-          "modules": [
-              {
-                  "name": "libde265",
-                  "config-opts": [
-                      "--disable-dec265",
-                      "--disable-encoder",
-                      "--disable-sherlock265"
-                  ],
-                  "cleanup": [
-                      "/bin"
-                  ],
-                  "sources": [
-                      {
-                          "type": "archive",
-                          "url": "https://github.com/strukturag/libde265/releases/download/v1.0.15/libde265-1.0.15.tar.gz",
-                          "sha256": "00251986c29d34d3af7117ed05874950c875dd9292d016be29d3b3762666511d"
-                      }
-                  ]
-              },
-              {
-                  "name": "libx265",
-                  "buildsystem": "cmake",
-                  "subdir": "source",
-                  "config-opts": [
-                      "-DEXTRA_LIB='libx265-10.a;libx265-12.a'",
-                      "-DEXTRA_LINK_FLAGS=-L.",
-                      "-DLINKED_10BIT=ON",
-                      "-DLINKED_12BIT=ON"
-                  ],
-                  "cleanup": [
-                      "/bin"
-                  ],
-                  "sources": [
-                      {
-                          "type": "archive",
-                          "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                          "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                      },
-                      {
-                          "type": "shell",
-                          "commands": [
-                              "ln -s ${FLATPAK_DEST}/lib/libx265-10.a",
-                              "ln -s ${FLATPAK_DEST}/lib/libx265-12.a",
-                              "rm -fr ${FLATPAK_DEST}/lib/libx265.so*"
-                          ]
-                      }
-                  ],
-                  "modules": [
-                      {
-                          "name": "libx265-10bpc",
-                          "buildsystem": "cmake",
-                          "subdir": "source",
-                          "config-opts": [
-                              "-DCMAKE_BUILD_TYPE=Release",
-                              "-DHIGH_BIT_DEPTH=ON",
-                              "-DEXPORT_C_API=OFF",
-                              "-DENABLE_SHARED=OFF",
-                              "-DENABLE_CLI=OFF",
-                              "-DENABLE_ASSEMBLY=OFF"
-                          ],
-                          "sources": [
-                              {
-                                  "type": "archive",
-                                  "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                                  "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                              }
-                          ],
-                          "post-install": [
-                              "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-10.a"
-                          ]
-                      },
-                      {
-                          "name": "libx265-12bpc",
-                          "buildsystem": "cmake",
-                          "subdir": "source",
-                          "config-opts": [
-                              "-DHIGH_BIT_DEPTH=ON",
-                              "-DCMAKE_BUILD_TYPE=Release",
-                              "-DEXPORT_C_API=OFF",
-                              "-DENABLE_SHARED=OFF",
-                              "-DENABLE_CLI=OFF",
-                              "-DENABLE_ASSEMBLY=OFF",
-                              "-DMAIN12=ON"
-                          ],
-                          "sources": [
-                              {
-                                  "type": "archive",
-                                  "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
-                                  "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
-                              }
-                          ],
-                          "post-install": [
-                              "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-12.a"
-                          ]
-                      }
-                  ]
-              }
-          ],
+  "modules": [
+    "pypi-dependencies.json",
+    {
+      "name": "blueprint-compiler",
+      "buildsystem": "meson",
+      "cleanup": [
+        "*"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+          "tag": "v0.16.0"
+        }
+      ]
+    },
+    {
+      "name": "libheif",
+      "cleanup": [
+        "/bin"
+      ],
+      "buildsystem": "cmake-ninja",
+      "modules": [
+        {
+          "name": "libde265",
           "config-opts": [
-              "-DCMAKE_COMPILE_WARNING_AS_ERROR=OFF",
-              "-DBUILD_TESTING=OFF",
-              "-DWITH_EXAMPLES=OFF"
+            "--disable-dec265",
+            "--disable-encoder",
+            "--disable-sherlock265"
+          ],
+          "cleanup": [
+            "/bin"
           ],
           "sources": [
-              {
-                  "type": "archive",
-                  "url": "https://github.com/strukturag/libheif/releases/download/v1.19.5/libheif-1.19.5.tar.gz",
-                  "sha256": "d3cf0a76076115a070f9bc87cf5259b333a1f05806500045338798486d0afbaf"
-              }
+            {
+              "type": "archive",
+              "url": "https://github.com/strukturag/libde265/releases/download/v1.0.16/libde265-1.0.16.tar.gz",
+              "sha256": "b92beb6b53c346db9a8fae968d686ab706240099cdd5aff87777362d668b0de7"
+            }
           ]
-      },
-      {
-        "name": "magick",
-        "buildsystem": "autotools",
-        "config-opts": [
-          "--with-heic=yes",
-          "--with-rsvg=yes"
-        ],
-        "sources": [
-          {
-            "type": "git",
-            "url": "https://github.com/ImageMagick/ImageMagick.git",
-            "tag": "7.1.1-46"
-          }
-        ]
-      },
-      {
-          "name" : "halftone",
-          "builddir" : true,
-          "buildsystem" : "meson",
+        },
+        {
+          "name": "libx265",
+          "buildsystem": "cmake-ninja",
+          "subdir": "source",
           "config-opts": [
-              "-Dbuildtype=release"
+            "-DEXTRA_LIB='libx265-10.a;libx265-12.a'",
+            "-DEXTRA_LINK_FLAGS=-L.",
+            "-DLINKED_10BIT=ON",
+            "-DLINKED_12BIT=ON"
           ],
-          "sources" : [
-              {
-                  "type" : "dir",
-                  "path" : "../../."
-              }
+          "cleanup": [
+            "/bin"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
+              "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
+            },
+            {
+              "type": "shell",
+              "commands": [
+                "ln -s ${FLATPAK_DEST}/lib/libx265-10.a",
+                "ln -s ${FLATPAK_DEST}/lib/libx265-12.a",
+                "rm -fr ${FLATPAK_DEST}/lib/libx265.so*"
+              ]
+            }
+          ],
+          "modules": [
+            {
+              "name": "libx265-10bpc",
+              "buildsystem": "cmake-ninja",
+              "subdir": "source",
+              "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DHIGH_BIT_DEPTH=ON",
+                "-DEXPORT_C_API=OFF",
+                "-DENABLE_SHARED=OFF",
+                "-DENABLE_CLI=OFF",
+                "-DENABLE_ASSEMBLY=OFF"
+              ],
+              "sources": [
+                {
+                  "type": "archive",
+                  "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
+                  "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
+                }
+              ],
+              "post-install": [
+                "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-10.a"
+              ]
+            },
+            {
+              "name": "libx265-12bpc",
+              "buildsystem": "cmake-ninja",
+              "subdir": "source",
+              "config-opts": [
+                "-DHIGH_BIT_DEPTH=ON",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DEXPORT_C_API=OFF",
+                "-DENABLE_SHARED=OFF",
+                "-DENABLE_CLI=OFF",
+                "-DENABLE_ASSEMBLY=OFF",
+                "-DMAIN12=ON"
+              ],
+              "sources": [
+                {
+                  "type": "archive",
+                  "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz",
+                  "sha256": "a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29"
+                }
+              ],
+              "post-install": [
+                "mv ${FLATPAK_DEST}/lib/libx265.a ${FLATPAK_DEST}/lib/libx265-12.a"
+              ]
+            }
           ]
-      }
+        }
+      ],
+      "config-opts": [
+        "-DCMAKE_COMPILE_WARNING_AS_ERROR=OFF",
+        "-DBUILD_TESTING=OFF",
+        "-DWITH_EXAMPLES=OFF"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/strukturag/libheif/releases/download/v1.19.8/libheif-1.19.8.tar.gz",
+          "sha256": "6c4a5b08e6eae66d199977468859dea3b5e059081db8928f7c7c16e53836c906"
+        }
+      ]
+    },
+    {
+      "name": "magick",
+      "buildsystem": "autotools",
+      "config-opts": [
+        "--with-heic=yes",
+        "--with-rsvg=yes"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/ImageMagick/ImageMagick.git",
+          "tag": "7.1.1-47"
+        }
+      ]
+    },
+    {
+      "name": "halftone",
+      "builddir": true,
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dbuildtype=release"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "../../."
+        }
+      ]
+    }
   ]
 }

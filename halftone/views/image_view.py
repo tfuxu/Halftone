@@ -5,7 +5,7 @@
 
 import math
 
-from gi.repository import Adw, Gtk, Gdk, Gsk, Gio, GLib, Graphene, GObject
+from gi.repository import Adw, GLib, GObject, Gdk, Gio, Graphene, Gsk, Gtk
 
 
 class HalftoneImageView(Gtk.Widget):
@@ -16,7 +16,12 @@ class HalftoneImageView(Gtk.Widget):
 
     _scale = 1.0
 
-    def __init__(self, parent: Gtk.Widget, texture: Gdk.Texture | None, **kwargs):
+    def __init__(
+        self,
+        parent: Gtk.Widget,
+        texture: Gdk.Texture | None,
+        **kwargs
+    ) -> None:
         super().__init__(**kwargs)
 
         self.parent = parent
@@ -29,7 +34,9 @@ class HalftoneImageView(Gtk.Widget):
 
         self._texture = texture
 
-    """ Properties """
+    """
+    Properties
+    """
 
     @GObject.Property(type=Gdk.Texture)
     def texture(self) -> Gdk.Texture | None:
@@ -78,13 +85,17 @@ class HalftoneImageView(Gtk.Widget):
     def can_reset_zoom(self) -> bool:
         return self._scale != 1.0
 
-    """ Signals """
+    """
+    Signals
+    """
 
     @GObject.Signal(name="zoom-changed")
     def zoom_changed(self):
         pass
 
-    """ Overrides """
+    """
+    Overrides
+    """
 
     # Here's where the zoom magic happens
     def do_snapshot(self, snapshot: Gdk.Snapshot) -> None:
@@ -118,7 +129,11 @@ class HalftoneImageView(Gtk.Widget):
 
     # NOTE: Needed for Gtk.Viewport to implement scrollability
     # TODO: Interface with `Gtk.Scrollable` to enable more capabilities
-    def do_measure(self, orientation: Gtk.Orientation, for_size: int) -> tuple[int, int, int, int]:
+    def do_measure(
+        self,
+        orientation: Gtk.Orientation,
+        for_size: int
+    ) -> tuple[int, int, int, int]:
         baseline = self.get_baseline()
         size: int
 
@@ -136,9 +151,16 @@ class HalftoneImageView(Gtk.Widget):
         minimum = natural = math.ceil(self.scale * size)
         return (minimum, natural, baseline, baseline)
 
-    """ Callbacks """
+    """
+    Callbacks
+    """
 
-    def on_zoom(self, _widget: Gtk.Widget, action_name: str, _parameter: GLib.Variant | None):
+    def on_zoom(
+        self,
+        _widget: Gtk.Widget,
+        action_name: str,
+        _parameter: GLib.Variant | None
+    ) -> None:
         scale: float
 
         match action_name:
@@ -149,11 +171,15 @@ class HalftoneImageView(Gtk.Widget):
             case "zoom.reset":
                 scale = 1.0
             case _:
-                raise ValueError("Invalid action name provided. Make sure it's from \"zoom.*\" namespace.")
+                raise ValueError(
+                    "Invalid action name provided. Make sure it's from \"zoom.*\" namespace."
+                )
 
         self.scale = scale
 
-    """ Public methods """
+    """
+    Public methods
+    """
 
     def zoom_to(self, zoom: float) -> None:
         self.scale = zoom

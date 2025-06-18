@@ -18,30 +18,32 @@ class KillableThread(threading.Thread):
 
         self.killed = False
 
-    def start(self):
+    def start(self) -> None:
         self._run_backup = self.run
         self.run = self._run
 
         threading.Thread.start(self)
 
-    def _run(self):
+    def _run(self) -> None:
         sys.settrace(self.globaltrace)
         self._run_backup()
         self.run = self._run_backup
 
-    def globaltrace(self, frame, event, *args):
+    # TODO: Define return type
+    def globaltrace(self, _frame, event, *args):
         if event == 'call':
             return self.localtrace
 
         return None
 
-    def localtrace(self, frame, event, *args):
+    # TODO: Define return type
+    def localtrace(self, _frame, event, *args):
         if self.killed:
             if event == 'line':
                 raise SystemExit()
 
         return self.localtrace
 
-    def kill(self):
+    def kill(self) -> None:
         logging.debug(f"Killing {threading.get_ident()}")
         self.killed = True
