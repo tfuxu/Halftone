@@ -25,6 +25,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     main_stack: Gtk.Stack = Gtk.Template.Child()
     open_image_button: Gtk.Button = Gtk.Template.Child()
 
+    welcome_page_content: Adw.StatusPage = Gtk.Template.Child()
+
     open_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
     all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
@@ -94,6 +96,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     def _setup(self) -> None:
         self.set_default_icon_name(app_id)
+        self.welcome_page_content.set_icon_name(app_id)
 
         # Set devel style
         if build_type == "debug":
