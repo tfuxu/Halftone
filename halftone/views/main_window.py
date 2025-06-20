@@ -207,10 +207,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.show_dither_page()
 
-    """
-    Public methods
-    """
-
     def show_loading_page(self, *args) -> None:
         self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(False)
