@@ -605,12 +605,17 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
+            current_scale = self.image_view.scale
+            current_scaling_filter = self.image_view.scaling_filter
+
+            self.image_view.texture = texture
+
             if as_original:
                 self.original_texture = texture
             else:
                 self.updated_texture = texture
-
-            self.image_view.texture = texture
+                self.image_view.scale = current_scale
+                self.image_view.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.export_format_combo.props.selected
