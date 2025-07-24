@@ -80,110 +80,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
         vexpand: true;
         hexpand: true;
 
-        Gtk.Overlay {
-          child: Gtk.Overlay {
-            child: Gtk.ScrolledWindow scrolled_window {
-              vexpand: true;
-              hexpand: true;
-
-              Gtk.Viewport image_viewport {
-                scroll-to-focus: false;
-              }
-            };
-
-            [overlay]
-            Gtk.Box toggle_sheet_box {
-              valign: end;
-              halign: start;
-              margin-start: 18;
-              margin-bottom: 18;
-
-              Gtk.Box {
-                orientation: horizontal;
-                spacing: 12;
-
-                Gtk.Button toggle_sheet_button {
-                  icon-name: "sidebar-show-left-symbolic";
-                  tooltip-text: _("Toggle Sidebar");
-                  action-name: "app.toggle-sheet";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-              }
-            }
-
-            [overlay]
-            Gtk.Box zoom_box {
-              valign: end;
-              halign: end;
-              margin-end: 18;
-              margin-bottom: 18;
-
-              Gtk.Box {
-                orientation: horizontal;
-                spacing: 12;
-
-                Gtk.Button zoom_out_button {
-                  icon-name: "zoom-out-symbolic";
-                  tooltip-text: _("Zoom Out");
-                  action-name: "zoom.out";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-
-                Gtk.Button zoom_in_button {
-                  icon-name: "zoom-in-symbolic";
-                  tooltip-text: _("Zoom In");
-                  action-name: "zoom.in";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-              }
-            }
-          };
-
-          [overlay]
-          Gtk.Box preview_loading_overlay {
-            vexpand: true;
-            hexpand: true;
-            orientation: vertical;
-            visible: false;
-
-            Gtk.Box {
-              vexpand: true;
-              hexpand: true;
-              valign: center;
-              halign: center;
-              spacing: 10;
-              orientation: vertical;
-
-              Adw.Spinner {
-                height-request: 64;
-                width-request: 64;
-              }
-
-              Gtk.Label {
-                label: _("Dithering your image…");
-              }
-            }
-
-            styles [
-              "osd"
-            ]
-          }
-        }
+        $HalftoneImageView image_view {}
 
         // TODO: Add SpringAnimation to animate sheet hiding
         // TODO: Add scroll and touch drag gestures for triggering bottom sheet hide animation
@@ -212,14 +109,8 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
       dither_view.extend-content-to-top-edge: false;
       dither_view.top-bar-style: raised_border;
       dither_header_stack.visible-child-name: "mobile";
-      toggle_sheet_button.icon-name: "sheet-show-bottom-symbolic";
-      toggle_sheet_button.tooltip-text: _("Toggle Bottom Sheet");
       bottom_sheet_box.visible: true;
     }
-  }
-
-  Gtk.ShortcutController shortcut_controller {
-    scope: global;
   }
 }
 

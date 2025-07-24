@@ -4,7 +4,7 @@
 from collections.abc import Callable
 from pathlib import Path
 
-from gi.repository import Adw, GLib, Gdk, Gio, Gsk, Gtk
+from gi.repository import Adw, GLib, Gdk, Gio, Gtk
 from wand.exceptions import BaseError, BaseFatalError
 
 from halftone.backend.logger import Logger
@@ -14,7 +14,7 @@ from halftone.backend.utils.temp import delete_temp_file
 from halftone.constants import rootdir  # pyright: ignore
 from halftone.utils.killable_thread import KillableThread
 from halftone.views.image_options_view import HalftoneImageOptionsView
-from halftone.views.image import HalftoneImage
+from halftone.views.image_view import HalftoneImageView
 
 logging = Logger()
 
@@ -25,9 +25,7 @@ LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
-    shortcut_controller: Gtk.ShortcutController = Gtk.Template.Child()
-
-    image_viewport: Gtk.Viewport = Gtk.Template.Child()
+    image_view: HalftoneImageView = Gtk.Template.Child()
 
     split_view: Adw.OverlaySplitView = Gtk.Template.Child()
     sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
@@ -35,11 +33,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     bottom_sheet_box: Gtk.Box = Gtk.Template.Child()
     bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
-    scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
-
     save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
-
-    preview_loading_overlay: Gtk.Box = Gtk.Template.Child()
 
     mobile_breakpoint: Adw.Breakpoint = Gtk.Template.Child()
 
@@ -57,11 +51,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.is_image_ready: bool = False
         self.is_mobile: bool = False
 
-        self.zoom_target: float = 1.0
-
-        self.last_x: float = 0.0
-        self.last_y: float = 0.0
-
         self.task_id: int | None = None
         self.tasks: list[KillableThread] = []
 
@@ -73,18 +62,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options: OutputOptions = OutputOptions()
 
-        self.image_widget = HalftoneImage(self.parent, None)
-        self.image_viewport.set_child(self.image_widget)
-
         self.image_options_view = HalftoneImageOptionsView(
             self.parent,
             self.output_options,
             self.start_image_update_task
         )
 
-        self._setup_controllers()
-        self._setup_gestures()
-        self._setup_actions()
         self._connect_signals()
         self._setup()
 
@@ -92,66 +75,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     Setup methods
     """
 
-    def _setup_controllers(self) -> None:
-        # Zoom via scroll wheels, etc.
-        scroll_controller = Gtk.EventControllerScroll.new(
-            flags=Gtk.EventControllerScrollFlags.BOTH_AXES
-        )
-
-        scroll_controller.connect("scroll", self.on_scroll)
-        scroll_controller.connect("scroll-end", self.on_scroll_end)
-
-        self.scrolled_window.add_controller(scroll_controller)
-
-    def _setup_gestures(self) -> None:
-        # Drag for moving image around
-        drag_gesture = Gtk.GestureDrag.new()
-        drag_gesture.set_button(0)
-
-        drag_gesture.connect("drag-begin", self.on_drag_begin)
-        drag_gesture.connect("drag-update", self.on_drag_update)
-        drag_gesture.connect("drag-end", self.on_drag_end)
-
-        self.scrolled_window.add_controller(drag_gesture)
-
-        # Zoom using 2-finger pinch/zoom gestures
-        zoom_gesture = Gtk.GestureZoom.new()
-
-        zoom_gesture.connect("begin", self.on_zoom_begin)
-        zoom_gesture.connect("scale-changed", self.on_zoom_scale_changed)
-
-        self.scrolled_window.add_controller(zoom_gesture)
-
-    def _setup_actions(self) -> None:
-        """ `zoom.*` action group """
-
-        self.install_action("zoom.in", None, self.image_widget.on_zoom)
-        self.install_action("zoom.out", None, self.image_widget.on_zoom)
-
-        # Add bindings for `zoom.*` action group
-
-        zoom_in_shortcuts = [
-            (Gdk.KEY_equal, []),
-            (Gdk.KEY_equal, [Gdk.ModifierType.CONTROL_MASK]),
-            (Gdk.KEY_plus, []),
-            (Gdk.KEY_plus, [Gdk.ModifierType.CONTROL_MASK]),
-            (Gdk.KEY_KP_Add, []),
-            (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
-        ]
-        self._add_shortcuts("zoom.in", zoom_in_shortcuts)
-
-        zoom_out_shortcuts = [
-            (Gdk.KEY_minus, []),
-            (Gdk.KEY_minus, [Gdk.ModifierType.CONTROL_MASK]),
-            (Gdk.KEY_KP_Subtract, []),
-            (Gdk.KEY_KP_Subtract, [Gdk.ModifierType.CONTROL_MASK]),
-        ]
-        self._add_shortcuts("zoom.out", zoom_out_shortcuts)
-
     def _connect_signals(self) -> None:
-        self.image_widget.connect("zoom-changed",
-            self.on_zoom_changed)
-
         self.mobile_breakpoint.connect("apply",
             self.on_breakpoint_apply)
 
@@ -175,89 +99,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
-
-    def on_zoom_changed(self, *args) -> None:
-        current_filter = self.image_widget.scaling_filter
-        nearest = Gsk.ScalingFilter.NEAREST
-        linear = Gsk.ScalingFilter.LINEAR
-
-        if self.image_widget.scale >= 1.0 and current_filter is not nearest:
-            self.image_widget.scaling_filter = nearest
-        elif self.image_widget.scale < 1.0 and current_filter is not linear:
-            self.image_widget.scaling_filter = linear
-
-        self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
-        self.action_set_enabled("zoom.out", self.image_widget.can_zoom_out)
-
-    def on_scroll(
-        self,
-        controller: Gtk.EventControllerScroll,
-        _x: float,
-        y: float
-    ) -> bool:
-        state = controller.get_current_event_state()
-        device = controller.get_current_event_device()
-
-        if device and device.get_source() == Gdk.InputSource.TOUCHPAD:
-            # Touchpads do zoom via gestures, expect when Ctrl key is pressed
-            if state != Gdk.ModifierType.CONTROL_MASK:
-                # Propagate event to scrolled window
-                return Gdk.EVENT_PROPAGATE
-        else:
-            # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
-            if (state == Gdk.ModifierType.CONTROL_MASK or
-                state == Gdk.ModifierType.SHIFT_MASK):
-                # Propagate event to scrolled window
-                return Gdk.EVENT_PROPAGATE
-
-        if y < 0.0:
-            self.image_widget.zoom_in()
-        else:
-            self.image_widget.zoom_out()
-
-        # Do not propagate event to scrolled window
-        return Gdk.EVENT_STOP
-
-    def on_scroll_end(self, controller: Gtk.EventControllerScroll) -> None:
-        # Avoid kinetic scrolling in scrolled window after zooming
-        # Some gestures can become buggy if deceleration is not canceled
-        if controller.get_current_event_state() == Gdk.ModifierType.CONTROL_MASK:
-            self._cancel_deceleration()
-
-    def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
-        device = gesture.get_device()
-
-        # Allow only left and middle button
-        if (not gesture.get_current_button() in [1, 2] or
-            # Drag gesture for touchscreens is handled by ScrolledWindow
-            device and device.get_source() == Gdk.InputSource.TOUCHSCREEN):
-            gesture.set_state(Gtk.EventSequenceState.DENIED)
-            return
-
-        self.image_widget.set_cursor_from_name("grabbing")
-        self.last_x = 0.0
-        self.last_y = 0.0
-
-    def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float) -> None:
-        self._update_adjustment(x, y)
-        self.last_x = x
-        self.last_y = y
-
-    def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
-        self.image_widget.set_cursor(None)
-        self.last_x = 0.0
-        self.last_y = 0.0
-
-    def on_zoom_begin(
-        self,
-        _gesture: Gtk.GestureZoom,
-        _sequence: Gdk.EventSequence
-    ) -> None:
-        self._cancel_deceleration()
-        self.zoom_target = self.image_widget.scale
-
-    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
-        self.image_widget.scale = self.zoom_target * scale
 
     def on_toggle_sheet(self, action: Gio.SimpleAction, *args) -> None:
         if self.is_mobile:
@@ -300,25 +141,31 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                  self.win.show_dither_page)
 
     def on_successful_image_load(self, *args) -> None:
-        self.preview_loading_overlay.set_visible(False)
-        self.image_widget.remove_css_class("preview-loading-blur")
+        self.image_view.loading_screen_box.set_visible(False)
+        self.image_view.image_widget.remove_css_class("preview-loading-blur")
         self.image_options_view.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args) -> None:
         if not self.is_image_ready:
-            self.preview_loading_overlay.set_visible(True)
-            self.image_widget.add_css_class("preview-loading-blur")
+            self.image_view.loading_screen_box.set_visible(True)
+            self.image_view.image_widget.add_css_class("preview-loading-blur")
             self.image_options_view.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args) -> None:
         self.sidebar_view.set_content(None)
         self.bottom_sheet.set_child(self.image_options_view)
 
+        self.image_view.toggle_sheet_button.set_icon_name("sheet-show-bottom-symbolic")
+        self.image_view.toggle_sheet_button.set_tooltip_text(_("Toggle Bottom Sheet"))
+
         self.is_mobile = True
 
     def on_breakpoint_unapply(self, *args) -> None:
         self.bottom_sheet.set_child(None)
         self.sidebar_view.set_content(self.image_options_view)
+
+        self.image_view.toggle_sheet_button.set_icon_name("sidebar-show-left-symbolic")
+        self.image_view.toggle_sheet_button.set_tooltip_text(_("Toggle Sidebar"))
 
         self.is_mobile = False
 
@@ -453,18 +300,20 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
-            current_scale = self.image_widget.scale
-            current_scaling_filter = self.image_widget.scaling_filter
+            image_widget = self.image_view.image_widget
 
-            self.image_widget.texture = texture
+            current_scale = image_widget.scale
+            current_scaling_filter = image_widget.scaling_filter
+
+            image_widget.texture = texture
 
             if as_original:
                 self.original_texture = texture
                 self.image_options_view.original_texture = texture
             else:
                 self.updated_texture = texture
-                self.image_widget.scale = current_scale
-                self.image_widget.scaling_filter = current_scaling_filter
+                image_widget.scale = current_scale
+                image_widget.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.image_options_view.export_format_combo.props.selected
@@ -479,36 +328,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def _set_size_spins(self, width: int, height: int) -> None:
         self.image_options_view.image_width_row.set_value(width)
         self.image_options_view.image_height_row.set_value(height)
-
-    def _add_shortcuts(
-        self,
-        action_name: str,
-        shortcut_list: list[tuple[int, list[Gdk.ModifierType]]]
-    ) -> None:
-        for key, modifiers in shortcut_list:
-            modifier = Gdk.ModifierType.NO_MODIFIER_MASK
-
-            for m in modifiers:
-                modifier = modifier | m
-
-            shortcut = Gtk.Shortcut.new(
-                Gtk.KeyvalTrigger.new(key, modifier),
-                Gtk.NamedAction.new(action_name)
-            )
-
-            self.shortcut_controller.add_shortcut(shortcut)
-
-    def _update_adjustment(self, x: float, y: float) -> None:
-        self.scrolled_window.get_hadjustment().set_value(
-            self.scrolled_window.get_hadjustment().get_value() - x + self.last_x
-        )
-        self.scrolled_window.get_vadjustment().set_value(
-            self.scrolled_window.get_vadjustment().get_value() - y + self.last_y
-        )
-
-    def _cancel_deceleration(self) -> None:
-        self.scrolled_window.set_kinetic_scrolling(False)
-        self.scrolled_window.set_kinetic_scrolling(True)
 
     def _start_task(self, task: Callable, *args) -> None:
         logging.debug("Starting new async task")
