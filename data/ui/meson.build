@@ -3,6 +3,7 @@ blueprints = custom_target('blueprints',
     'dither_page.blp',
     'error_page.blp',
     'help_overlay.blp',
+    'image_options_view.blp',
     'main_window.blp',
     'preferences_window.blp',
     'report_page.blp'

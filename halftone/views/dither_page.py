@@ -3,7 +3,6 @@
 
 from collections.abc import Callable
 from pathlib import Path
-from typing import Literal
 
 from gi.repository import Adw, GLib, Gdk, Gio, Gsk, Gtk
 from wand.exceptions import BaseError, BaseFatalError
@@ -11,11 +10,10 @@ from wand.exceptions import BaseError, BaseFatalError
 from halftone.backend.logger import Logger
 from halftone.backend.magick import HalftoneImageMagick
 from halftone.backend.model.output_options import OutputOptions
-from halftone.backend.utils.filetypes import FileType, get_output_formats
-from halftone.backend.utils.image import calculate_height
 from halftone.backend.utils.temp import delete_temp_file
 from halftone.constants import rootdir  # pyright: ignore
 from halftone.utils.killable_thread import KillableThread
+from halftone.views.image_options_view import HalftoneImageOptionsView
 from halftone.views.image_view import HalftoneImageView
 
 logging = Logger()
@@ -31,8 +29,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     image_viewport: Gtk.Viewport = Gtk.Template.Child()
 
-    image_preferences_bin: Adw.Bin = Gtk.Template.Child()
-
     split_view: Adw.OverlaySplitView = Gtk.Template.Child()
     sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
 
@@ -40,19 +36,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
     scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
-
-    save_image_button: Gtk.Button = Gtk.Template.Child()
-
-    export_format_combo: Adw.ComboRow = Gtk.Template.Child()
-    dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
-
-    image_width_row: Adw.SpinRow = Gtk.Template.Child()
-    aspect_ratio_toggle: Adw.SwitchRow = Gtk.Template.Child()
-    image_height_row: Adw.SpinRow = Gtk.Template.Child()
-
-    image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
-
-    color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
     save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
 
@@ -89,10 +72,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.updated_texture: Gdk.Texture = None
 
         self.output_options: OutputOptions = OutputOptions()
-        self.keep_aspect_ratio: bool = True
 
         self.image_view = HalftoneImageView(self.parent, None)
         self.image_viewport.set_child(self.image_view)
+
+        self.image_options_view = HalftoneImageOptionsView(
+            self.parent,
+            self.output_options,
+            self.start_image_update_task
+        )
 
         self._setup_controllers()
         self._setup_gestures()
@@ -164,15 +152,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.image_view.connect("zoom-changed",
             self.on_zoom_changed)
 
-        self.aspect_ratio_toggle.connect("notify::active",
-            self.on_aspect_ratio_toggled)
-
-        self.dither_algorithms_combo.connect("notify::selected",
-            self.on_dither_algorithm_selected)
-
-        self.export_format_combo.connect("notify::selected",
-            self.on_save_format_selected)
-
         self.mobile_breakpoint.connect("apply",
             self.on_breakpoint_apply)
 
@@ -181,116 +160,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def _setup(self) -> None:
         # Set utility page in sidebar by default
-        self.sidebar_view.set_content(self.image_preferences_bin)
-
-        # Workaround: Set default values for SpinRows
-        self.color_amount_row.set_value(10)
-        self.image_width_row.set_value(1)
-        self.image_height_row.set_value(1)
-
-        # By default keep image aspect ratio
-        self.aspect_ratio_toggle.set_active(True)
-
-        self._setup_save_formats()
-
-    def _setup_save_formats(self) -> None:
-        output_formats = get_output_formats(True) # TODO: Add a setting to toggle showing all formats
-
-        for filetype in output_formats:
-            self.image_formats_stringlist.append(filetype.as_extension())
-
-        self.export_format_combo.set_selected(output_formats.index(FileType.PNG))
+        self.sidebar_view.set_content(self.image_options_view)
 
     """
     Callbacks
     """
-
-    @Gtk.Template.Callback()
-    def on_color_amount_changed(self, widget: Adw.SpinRow) -> None:
-        new_color_amount = int(widget.props.value)
-
-        if new_color_amount == self.output_options.color_amount:
-            return
-
-        self.output_options.color_amount = new_color_amount
-
-        if self.original_texture:
-            self._start_task(self._update_preview_image,
-                             self.input_image_path,
-                             self.output_options,
-                             True,
-                             self.on_successful_image_load)
-
-    @Gtk.Template.Callback()
-    def on_brightness_changed(self, widget: Adw.SpinRow) -> None:
-        new_brightness = int(widget.props.value)
-
-        if new_brightness == self.output_options.brightness:
-            return
-
-        self.output_options.brightness = new_brightness
-
-        self._start_task(self._update_preview_image,
-                         self.input_image_path,
-                         self.output_options,
-                         True,
-                         self.on_successful_image_load)
-
-    @Gtk.Template.Callback()
-    def on_contrast_changed(self, widget: Adw.SpinRow) -> None:
-        new_contrast = int(widget.props.value)
-
-        if new_contrast == self.output_options.contrast:
-            return
-
-        self.output_options.contrast = new_contrast
-
-        self._start_task(self._update_preview_image,
-                         self.input_image_path,
-                         self.output_options,
-                         True,
-                         self.on_successful_image_load)
-
-    @Gtk.Template.Callback()
-    def on_image_width_changed(self, widget: Adw.SpinRow) -> None:
-        new_width = int(widget.props.value)
-
-        if new_width == self.output_options.width:
-            return
-
-        self.output_options.width = new_width
-
-        if self.original_texture:
-            img_height = self.original_texture.get_height()
-            img_width = self.original_texture.get_width()
-
-            if self.aspect_ratio_toggle.get_active() is True:
-                new_height = calculate_height(img_width, img_height, new_width)
-                self.output_options.height = new_height
-                self.image_height_row.set_value(new_height)
-
-            self._start_task(self._update_preview_image,
-                             self.input_image_path,
-                             self.output_options,
-                             True,
-                             self.on_successful_image_load)
-
-    @Gtk.Template.Callback()
-    def on_image_height_changed(self, widget: Adw.SpinRow) -> None:
-        new_height = int(widget.props.value)
-
-        if new_height == self.output_options.height:
-            return
-
-        self.output_options.height = new_height
-
-        if self.original_texture:
-            if not self.keep_aspect_ratio:
-                self._start_task(self._update_preview_image,
-                                 self.input_image_path,
-                                 self.output_options,
-                                 True,
-                                 self.on_successful_image_load)
 
     def on_save_image(self, *args) -> None:
         file_extension = self._get_output_format_suffix()
@@ -399,19 +273,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
             self.split_view.set_show_sidebar(True)
 
-    def on_aspect_ratio_toggled(self, widget: Adw.SwitchRow, *args) -> None:
-        if widget.props.active is True:
-            self.keep_aspect_ratio = True
-            #widget.props.icon_name = "chain-link-symbolic"
-            #widget.props.tooltip_text = _("Keep aspect ratio")
-            self.image_height_row.set_sensitive(False)
-
-        if widget.props.active is False:
-            self.keep_aspect_ratio = False
-            #widget.props.icon_name = "chain-link-loose-symbolic"
-            #widget.props.tooltip_text = _("Don't keep aspect ratio")
-            self.image_height_row.set_sensitive(True)
-
     def on_image_dialog_result(
         self,
         dialog: Gtk.FileDialog,
@@ -438,44 +299,26 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                                  self.output_options,
                                  self.win.show_dither_page)
 
-    def on_dither_algorithm_selected(self, widget: Adw.ComboRow, *args) -> None:
-        algorithm_string = self._get_dither_algorithm_pref(widget)
-
-        self.output_options.algorithm = algorithm_string
-
-        if self.original_texture:
-            self._start_task(self._update_preview_image,
-                             self.input_image_path,
-                             self.output_options,
-                             True,
-                             self.on_successful_image_load)
-
-    def on_save_format_selected(self, widget: Adw.ComboRow, *args) -> None:
-        selected_format = widget.props.selected
-        format_string = self.image_formats_stringlist.get_string(selected_format)
-
-        self.output_options.output_format = format_string
-
     def on_successful_image_load(self, *args) -> None:
         self.preview_loading_overlay.set_visible(False)
         self.image_view.remove_css_class("preview-loading-blur")
-        self.save_image_button.set_sensitive(True)
+        self.image_options_view.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args) -> None:
         if not self.is_image_ready:
             self.preview_loading_overlay.set_visible(True)
             self.image_view.add_css_class("preview-loading-blur")
-            self.save_image_button.set_sensitive(False)
+            self.image_options_view.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args) -> None:
         self.sidebar_view.set_content(None)
-        self.bottom_sheet.set_child(self.image_preferences_bin)
+        self.bottom_sheet.set_child(self.image_options_view)
 
         self.is_mobile = True
 
     def on_breakpoint_unapply(self, *args) -> None:
         self.bottom_sheet.set_child(None)
-        self.sidebar_view.set_content(self.image_preferences_bin)
+        self.sidebar_view.set_content(self.image_options_view)
 
         self.is_mobile = False
 
@@ -492,11 +335,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self._set_size_spins(self.original_texture.get_width(),
                             self.original_texture.get_height())
 
-        self._start_task(self._update_preview_image,
-                        self.input_image_path,
-                        self.output_options,
-                        False,
-                        self.on_successful_image_load)
+        self.start_image_update_task(run_delay=False)
 
     def clean_preview_paintable(self) -> None:
         try:
@@ -505,6 +344,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             logging.warning(
                 f"Failed to delete temporary file. Path: {self.preview_image_path} Error: {e}"
             )
+
+    def start_image_update_task(self, run_delay: bool = True) -> None:
+        self._start_task(
+            self._update_preview_image,
+            self.input_image_path,
+            self.output_options,
+            run_delay,
+            self.on_successful_image_load
+        )
 
     """
     Private methods
@@ -612,14 +460,15 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
             if as_original:
                 self.original_texture = texture
+                self.image_options_view.original_texture = texture
             else:
                 self.updated_texture = texture
                 self.image_view.scale = current_scale
                 self.image_view.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
-        selected_format = self.export_format_combo.props.selected
-        format_string = self.image_formats_stringlist.get_string(selected_format)
+        selected_format = self.image_options_view.export_format_combo.props.selected
+        format_string = self.image_options_view.image_formats_stringlist.get_string(selected_format)
 
         # NOTE: This should only happen if the list isn't populated
         if format_string is None:
@@ -627,25 +476,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         return format_string
 
-    def _get_dither_algorithm_pref(
-        self,
-        widget: Adw.ComboRow
-    ) -> Literal['floyd_steinberg', 'riemersma', 'ordered'] | None:
-        selected_algorithm = widget.props.selected
-
-        match selected_algorithm:
-            case 0:
-                return "floyd_steinberg"
-            case 1:
-                return "riemersma"
-            case 2:
-                return "ordered"
-            case _:
-                return None
-
     def _set_size_spins(self, width: int, height: int) -> None:
-        self.image_width_row.set_value(width)
-        self.image_height_row.set_value(height)
+        self.image_options_view.image_width_row.set_value(width)
+        self.image_options_view.image_height_row.set_value(height)
 
     def _add_shortcuts(
         self,
