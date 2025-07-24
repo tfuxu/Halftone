@@ -5,7 +5,7 @@
 
 import math
 
-from gi.repository import Adw, GLib, GObject, Gdk, Gio, Graphene, Gsk, Gtk
+from gi.repository import GLib, GObject, Gdk, Graphene, Gsk, Gtk
 
 
 class HalftoneImage(Gtk.Widget):
@@ -18,20 +18,12 @@ class HalftoneImage(Gtk.Widget):
 
     def __init__(
         self,
-        parent: Gtk.Widget,
-        texture: Gdk.Texture | None,
+        texture: Gdk.Texture | None = None,
         **kwargs
     ) -> None:
         super().__init__(**kwargs)
 
-        self.parent = parent
-        self.settings: Gio.Settings = parent.settings
-
-        self.app: Adw.Application = self.parent.get_application()
-        self.win: Adw.ApplicationWindow = self.app.get_active_window()
-
         self.set_accessible_role(Gtk.AccessibleRole.IMG)
-
         self._texture = texture
 
     """
