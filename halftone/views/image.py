@@ -8,8 +8,8 @@ import math
 from gi.repository import Adw, GLib, GObject, Gdk, Gio, Graphene, Gsk, Gtk
 
 
-class HalftoneImageView(Gtk.Widget):
-    __gtype_name__ = "HalftoneImageView"
+class HalftoneImage(Gtk.Widget):
+    __gtype_name__ = "HalftoneImage"
 
     _texture: Gdk.Texture | None
     _scaling_filter = Gsk.ScalingFilter.LINEAR

@@ -14,7 +14,7 @@ from halftone.backend.utils.temp import delete_temp_file
 from halftone.constants import rootdir  # pyright: ignore
 from halftone.utils.killable_thread import KillableThread
 from halftone.views.image_options_view import HalftoneImageOptionsView
-from halftone.views.image_view import HalftoneImageView
+from halftone.views.image import HalftoneImage
 
 logging = Logger()
 
@@ -73,8 +73,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self.output_options: OutputOptions = OutputOptions()
 
-        self.image_view = HalftoneImageView(self.parent, None)
-        self.image_viewport.set_child(self.image_view)
+        self.image_widget = HalftoneImage(self.parent, None)
+        self.image_viewport.set_child(self.image_widget)
 
         self.image_options_view = HalftoneImageOptionsView(
             self.parent,
@@ -125,8 +125,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def _setup_actions(self) -> None:
         """ `zoom.*` action group """
 
-        self.install_action("zoom.in", None, self.image_view.on_zoom)
-        self.install_action("zoom.out", None, self.image_view.on_zoom)
+        self.install_action("zoom.in", None, self.image_widget.on_zoom)
+        self.install_action("zoom.out", None, self.image_widget.on_zoom)
 
         # Add bindings for `zoom.*` action group
 
@@ -149,7 +149,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self._add_shortcuts("zoom.out", zoom_out_shortcuts)
 
     def _connect_signals(self) -> None:
-        self.image_view.connect("zoom-changed",
+        self.image_widget.connect("zoom-changed",
             self.on_zoom_changed)
 
         self.mobile_breakpoint.connect("apply",
@@ -177,17 +177,17 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
 
     def on_zoom_changed(self, *args) -> None:
-        current_filter = self.image_view.scaling_filter
+        current_filter = self.image_widget.scaling_filter
         nearest = Gsk.ScalingFilter.NEAREST
         linear = Gsk.ScalingFilter.LINEAR
 
-        if self.image_view.scale >= 1.0 and current_filter is not nearest:
-            self.image_view.scaling_filter = nearest
-        elif self.image_view.scale < 1.0 and current_filter is not linear:
-            self.image_view.scaling_filter = linear
+        if self.image_widget.scale >= 1.0 and current_filter is not nearest:
+            self.image_widget.scaling_filter = nearest
+        elif self.image_widget.scale < 1.0 and current_filter is not linear:
+            self.image_widget.scaling_filter = linear
 
-        self.action_set_enabled("zoom.in", self.image_view.can_zoom_in)
-        self.action_set_enabled("zoom.out", self.image_view.can_zoom_out)
+        self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
+        self.action_set_enabled("zoom.out", self.image_widget.can_zoom_out)
 
     def on_scroll(
         self,
@@ -211,9 +211,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 return Gdk.EVENT_PROPAGATE
 
         if y < 0.0:
-            self.image_view.zoom_in()
+            self.image_widget.zoom_in()
         else:
-            self.image_view.zoom_out()
+            self.image_widget.zoom_out()
 
         # Do not propagate event to scrolled window
         return Gdk.EVENT_STOP
@@ -234,7 +234,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             gesture.set_state(Gtk.EventSequenceState.DENIED)
             return
 
-        self.image_view.set_cursor_from_name("grabbing")
+        self.image_widget.set_cursor_from_name("grabbing")
         self.last_x = 0.0
         self.last_y = 0.0
 
@@ -244,7 +244,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.last_y = y
 
     def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
-        self.image_view.set_cursor(None)
+        self.image_widget.set_cursor(None)
         self.last_x = 0.0
         self.last_y = 0.0
 
@@ -254,10 +254,10 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         _sequence: Gdk.EventSequence
     ) -> None:
         self._cancel_deceleration()
-        self.zoom_target = self.image_view.scale
+        self.zoom_target = self.image_widget.scale
 
     def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
-        self.image_view.scale = self.zoom_target * scale
+        self.image_widget.scale = self.zoom_target * scale
 
     def on_toggle_sheet(self, action: Gio.SimpleAction, *args) -> None:
         if self.is_mobile:
@@ -301,13 +301,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def on_successful_image_load(self, *args) -> None:
         self.preview_loading_overlay.set_visible(False)
-        self.image_view.remove_css_class("preview-loading-blur")
+        self.image_widget.remove_css_class("preview-loading-blur")
         self.image_options_view.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args) -> None:
         if not self.is_image_ready:
             self.preview_loading_overlay.set_visible(True)
-            self.image_view.add_css_class("preview-loading-blur")
+            self.image_widget.add_css_class("preview-loading-blur")
             self.image_options_view.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args) -> None:
@@ -453,18 +453,18 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.win.latest_traceback = logging.get_traceback(e)
             raise
         else:
-            current_scale = self.image_view.scale
-            current_scaling_filter = self.image_view.scaling_filter
+            current_scale = self.image_widget.scale
+            current_scaling_filter = self.image_widget.scaling_filter
 
-            self.image_view.texture = texture
+            self.image_widget.texture = texture
 
             if as_original:
                 self.original_texture = texture
                 self.image_options_view.original_texture = texture
             else:
                 self.updated_texture = texture
-                self.image_view.scale = current_scale
-                self.image_view.scaling_filter = current_scaling_filter
+                self.image_widget.scale = current_scale
+                self.image_widget.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.image_options_view.export_format_combo.props.selected
