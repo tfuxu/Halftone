@@ -84,6 +84,13 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
             action-name: "app.open-image";
           }
 
+          [start]
+          Gtk.Button {
+            tooltip-text: _("Save Image (Ctrl+S)");
+            icon-name: "document-save-symbolic";
+            action-name: "app.save-image";
+          }
+
           [end]
           Gtk.MenuButton {
             tooltip-text: _("Main Menu");
@@ -95,7 +102,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
         content: Gtk.Box mobile_content_box {
           orientation: vertical;
-          //homogeneous: true;  // NOTE: This breaks revealer
 
           Adw.LayoutSlot mobile_image_view_slot {
             id: "viewer";
@@ -114,10 +120,6 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
               Adw.LayoutSlot mobile_options_slot {
                 id: "options";
-              }
-
-              Adw.LayoutSlot mobile_save_toolbar {
-                id: "save-image-toolbar";
               }
             };
           }
