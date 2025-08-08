@@ -4,6 +4,8 @@
     <file preprocess="xml-stripblanks">ui/dither_page.ui</file>
     <file preprocess="xml-stripblanks">ui/error_page.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help_overlay.ui</file>
+    <file preprocess="xml-stripblanks">ui/image_options_view.ui</file>
+    <file preprocess="xml-stripblanks">ui/image_view.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/preferences_window.ui</file>
     <file preprocess="xml-stripblanks">ui/report_page.ui</file>
@@ -13,6 +15,7 @@
     <file preprocess="xml-stripblanks" alias="arrow-into-box-symbolic.svg">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-symbolic.svg">icons/scalable/actions/chain-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-loose-symbolic.svg">icons/scalable/actions/chain-link-loose-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="document-save-symbolic.svg">icons/scalable/actions/document-save-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="help-about-symbolic.svg">icons/scalable/actions/help-about-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-brightness-symbolic.svg">icons/scalable/actions/image-adjust-brightness-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-contrast-symbolic.svg">icons/scalable/actions/image-adjust-contrast-symbolic.svg</file>

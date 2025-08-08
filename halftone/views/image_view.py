@@ -1,194 +1,221 @@
 # Copyright 2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-# NOTE: This code is mostly a port of the `Image Scaling` example from gtk4-demo: https://gitlab.gnome.org/GNOME/gtk/-/blob/main/demos/gtk-demo/imageview.c
+from typing import Any
 
-import math
+from gi.repository import Adw, Gdk, Gsk, Gtk
 
-from gi.repository import Adw, GLib, GObject, Gdk, Gio, Graphene, Gsk, Gtk
+from halftone.constants import rootdir  # pyright: ignore
+from halftone.views.image import HalftoneImage
 
 
-class HalftoneImageView(Gtk.Widget):
+@Gtk.Template(resource_path=f"{rootdir}/ui/image_view.ui")
+class HalftoneImageView(Adw.Bin):
     __gtype_name__ = "HalftoneImageView"
 
-    _texture: Gdk.Texture | None
-    _scaling_filter = Gsk.ScalingFilter.LINEAR
+    shortcut_controller: Gtk.ShortcutController = Gtk.Template.Child()
 
-    _scale = 1.0
+    loading_screen_box: Gtk.Box = Gtk.Template.Child()
 
-    def __init__(
-        self,
-        parent: Gtk.Widget,
-        texture: Gdk.Texture | None,
-        **kwargs
-    ) -> None:
+    toggle_sheet_button: Gtk.Button = Gtk.Template.Child()
+
+    viewer_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
+    image_widget: HalftoneImage = Gtk.Template.Child()
+
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
-        self.parent = parent
-        self.settings: Gio.Settings = parent.settings
+        self.last_x: float = 0.0
+        self.last_y: float = 0.0
 
-        self.app: Adw.Application = self.parent.get_application()
-        self.win: Adw.ApplicationWindow = self.app.get_active_window()
+        self.zoom_target: float = 1.0
 
-        self.set_accessible_role(Gtk.AccessibleRole.IMG)
-
-        self._texture = texture
-
-    """
-    Properties
-    """
-
-    @GObject.Property(type=Gdk.Texture)
-    def texture(self) -> Gdk.Texture | None:
-        return self._texture
-
-    @texture.setter
-    def set_texture(self, texture: Gdk.Texture) -> None:
-        self._texture = texture
-        self._scale = 1.0
-        self._scaling_filter = Gsk.ScalingFilter.LINEAR
-
-        self.queue_resize()
-
-        self.notify("scale")
-        self.notify("scaling_filter")
-
-    @GObject.Property(type=float, minimum=1.0/1024.0, maximum=1024.0, default=1.0)
-    def scale(self) -> float:
-        return self._scale
-
-    @scale.setter
-    def set_scale(self, scale: float) -> None:
-        self._scale = scale
-
-        self.queue_resize()
-
-    @GObject.Property(type=Gsk.ScalingFilter, default=Gsk.ScalingFilter.LINEAR)
-    def scaling_filter(self) -> Gsk.ScalingFilter:
-        return self._scaling_filter
-
-    @scaling_filter.setter
-    def set_scaling_filter(self, filter: Gsk.ScalingFilter) -> None:
-        self._scaling_filter = filter
-
-        self.queue_resize()
-
-    @GObject.Property(type=bool, default=True)
-    def can_zoom_in(self) -> bool:
-        return self._scale < 1024.0
-
-    @GObject.Property(type=bool, default=True)
-    def can_zoom_out(self) -> bool:
-        return self._scale > 1.0/1024.0
-
-    @GObject.Property(type=bool, default=False)
-    def can_reset_zoom(self) -> bool:
-        return self._scale != 1.0
+        self._setup_controllers()
+        self._setup_gestures()
+        self._setup_actions()
+        self._setup_signals()
 
     """
-    Signals
+    Setup methods
     """
 
-    @GObject.Signal(name="zoom-changed")
-    def zoom_changed(self):
-        pass
-
-    """
-    Overrides
-    """
-
-    # Here's where the zoom magic happens
-    def do_snapshot(self, snapshot: Gdk.Snapshot) -> None:
-        width = self.get_width()
-        height = self.get_height()
-
-        if self.texture is None:
-            return
-
-        new_width = self.scale * self.texture.get_width()
-        new_height = self.scale * self.texture.get_height()
-
-        x = (width - math.ceil(new_width)) / 2
-        y = (height - math.ceil(new_height)) / 2
-
-        snapshot.push_clip(Graphene.Rect().alloc().init(0, 0, width, height))
-        snapshot.save()
-        snapshot.translate(Graphene.Point().alloc().init(x, y))
-        snapshot.translate(Graphene.Point().alloc().init(new_width / 2, new_height / 2))
-        snapshot.translate(Graphene.Point().alloc().init(-new_width / 2, -new_height / 2))
-        snapshot.append_scaled_texture(
-            self.texture,
-            self.scaling_filter,
-            Graphene.Rect().alloc().init(0, 0, new_width, new_height)
+    def _setup_controllers(self) -> None:
+        # Zoom via scroll wheels, etc.
+        scroll_controller = Gtk.EventControllerScroll.new(
+            flags=Gtk.EventControllerScrollFlags.BOTH_AXES
         )
 
-        snapshot.restore()
-        snapshot.pop()
+        scroll_controller.connect("scroll", self.on_scroll)
+        scroll_controller.connect("scroll-end", self.on_scroll_end)
 
-        self.emit("zoom-changed")
+        self.viewer_scrolled_window.add_controller(scroll_controller)
 
-    # NOTE: Needed for Gtk.Viewport to implement scrollability
-    # TODO: Interface with `Gtk.Scrollable` to enable more capabilities
-    def do_measure(
-        self,
-        orientation: Gtk.Orientation,
-        for_size: int
-    ) -> tuple[int, int, int, int]:
-        baseline = self.get_baseline()
-        size: int
+    def _setup_gestures(self) -> None:
+        # Drag for moving image around
+        drag_gesture = Gtk.GestureDrag.new()
+        drag_gesture.set_button(0)
 
-        if self.texture is None:
-            return (0, 0, baseline, baseline)
+        drag_gesture.connect("drag-begin", self.on_drag_begin)
+        drag_gesture.connect("drag-update", self.on_drag_update)
+        drag_gesture.connect("drag-end", self.on_drag_end)
 
-        width = self.texture.get_width()
-        height = self.texture.get_height()
+        self.viewer_scrolled_window.add_controller(drag_gesture)
 
-        if orientation == Gtk.Orientation.HORIZONTAL:
-            size = width
-        else:
-            size = height
+        # Zoom using 2-finger pinch/zoom gestures
+        zoom_gesture = Gtk.GestureZoom.new()
 
-        minimum = natural = math.ceil(self.scale * size)
-        return (minimum, natural, baseline, baseline)
+        zoom_gesture.connect("begin", self.on_zoom_begin)
+        zoom_gesture.connect("scale-changed", self.on_zoom_scale_changed)
+
+        self.viewer_scrolled_window.add_controller(zoom_gesture)
+
+    def _setup_actions(self) -> None:
+        """ `zoom.*` action group """
+
+        self.install_action("zoom.in", None, self.image_widget.on_zoom)
+        self.install_action("zoom.out", None, self.image_widget.on_zoom)
+
+        # Add bindings for `zoom.*` action group
+
+        zoom_in_shortcuts = [
+            (Gdk.KEY_equal, []),
+            (Gdk.KEY_equal, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_plus, []),
+            (Gdk.KEY_plus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Add, []),
+            (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
+        ]
+        self._add_shortcuts("zoom.in", zoom_in_shortcuts)
+
+        zoom_out_shortcuts = [
+            (Gdk.KEY_minus, []),
+            (Gdk.KEY_minus, [Gdk.ModifierType.CONTROL_MASK]),
+            (Gdk.KEY_KP_Subtract, []),
+            (Gdk.KEY_KP_Subtract, [Gdk.ModifierType.CONTROL_MASK]),
+        ]
+        self._add_shortcuts("zoom.out", zoom_out_shortcuts)
+
+    def _setup_signals(self) -> None:
+        self.image_widget.connect("zoom-changed",
+            self.on_zoom_changed)
 
     """
     Callbacks
     """
 
-    def on_zoom(
+    def on_scroll(
         self,
-        _widget: Gtk.Widget,
-        action_name: str,
-        _parameter: GLib.Variant | None
+        controller: Gtk.EventControllerScroll,
+        _x: float,
+        y: float
+    ) -> bool:
+        state = controller.get_current_event_state()
+        device = controller.get_current_event_device()
+
+        if device and device.get_source() == Gdk.InputSource.TOUCHPAD:
+            # Touchpads do zoom via gestures, expect when Ctrl key is pressed
+            if state != Gdk.ModifierType.CONTROL_MASK:
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
+        else:
+            # Use Ctrl key as a modifier for vertical scrolling and Shift for horizontal
+            if (state == Gdk.ModifierType.CONTROL_MASK or
+                state == Gdk.ModifierType.SHIFT_MASK):
+                # Propagate event to scrolled window
+                return Gdk.EVENT_PROPAGATE
+
+        if y < 0.0:
+            self.image_widget.zoom_in()
+        else:
+            self.image_widget.zoom_out()
+
+        # Do not propagate event to scrolled window
+        return Gdk.EVENT_STOP
+
+    def on_scroll_end(self, controller: Gtk.EventControllerScroll) -> None:
+        # Avoid kinetic scrolling in scrolled window after zooming
+        # Some gestures can become buggy if deceleration is not canceled
+        if controller.get_current_event_state() == Gdk.ModifierType.CONTROL_MASK:
+            self._cancel_deceleration()
+
+    def on_drag_begin(self, gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+        device = gesture.get_device()
+
+        # Allow only left and middle button
+        if (not gesture.get_current_button() in [1, 2] or
+            # Drag gesture for touchscreens is handled by ScrolledWindow
+            device and device.get_source() == Gdk.InputSource.TOUCHSCREEN):
+            gesture.set_state(Gtk.EventSequenceState.DENIED)
+            return
+
+        self.image_widget.set_cursor_from_name("grabbing")
+        self.last_x = 0.0
+        self.last_y = 0.0
+
+    def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float) -> None:
+        self._update_adjustment(x, y)
+        self.last_x = x
+        self.last_y = y
+
+    def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
+        self.image_widget.set_cursor(None)
+        self.last_x = 0.0
+        self.last_y = 0.0
+
+    def on_zoom_begin(
+        self,
+        _gesture: Gtk.GestureZoom,
+        _sequence: Gdk.EventSequence
     ) -> None:
-        scale: float
+        self._cancel_deceleration()
+        self.zoom_target = self.image_widget.scale
 
-        match action_name:
-            case "zoom.in":
-                scale = min(1024.0, self.scale * math.sqrt(2))
-            case "zoom.out":
-                scale = max(1.0/1024.0, self.scale / math.sqrt(2))
-            case "zoom.reset":
-                scale = 1.0
-            case _:
-                raise ValueError(
-                    "Invalid action name provided. Make sure it's from \"zoom.*\" namespace."
-                )
+    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
+        self.image_widget.scale = self.zoom_target * scale
 
-        self.scale = scale
+    def on_zoom_changed(self, *args: Any) -> None:
+        current_filter = self.image_widget.scaling_filter
+        nearest = Gsk.ScalingFilter.NEAREST
+        linear = Gsk.ScalingFilter.LINEAR
+
+        if self.image_widget.scale >= 1.0 and current_filter is not nearest:
+            self.image_widget.scaling_filter = nearest
+        elif self.image_widget.scale < 1.0 and current_filter is not linear:
+            self.image_widget.scaling_filter = linear
+
+        self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
+        self.action_set_enabled("zoom.out", self.image_widget.can_zoom_out)
 
     """
-    Public methods
+    Private methods
     """
 
-    def zoom_to(self, zoom: float) -> None:
-        self.scale = zoom
+    def _cancel_deceleration(self) -> None:
+        self.viewer_scrolled_window.set_kinetic_scrolling(False)
+        self.viewer_scrolled_window.set_kinetic_scrolling(True)
 
-    def zoom_in(self) -> None:
-        self.scale = min(1024.0, self.scale * math.sqrt(2))
+    def _update_adjustment(self, x: float, y: float) -> None:
+        self.viewer_scrolled_window.get_hadjustment().set_value(
+            self.viewer_scrolled_window.get_hadjustment().get_value() - x + self.last_x
+        )
+        self.viewer_scrolled_window.get_vadjustment().set_value(
+            self.viewer_scrolled_window.get_vadjustment().get_value() - y + self.last_y
+        )
 
-    def zoom_out(self) -> None:
-        self.scale = max(1.0/1024.0, self.scale / math.sqrt(2))
+    def _add_shortcuts(
+        self,
+        action_name: str,
+        shortcut_list: list[tuple[int, list[Gdk.ModifierType]]]
+    ) -> None:
+        for key, modifiers in shortcut_list:
+            modifier = Gdk.ModifierType.NO_MODIFIER_MASK
 
-    def reset_zoom(self) -> None:
-        self.scale = 1.0
+            for m in modifiers:
+                modifier = modifier | m
+
+            shortcut = Gtk.Shortcut.new(
+                Gtk.KeyvalTrigger.new(key, modifier),
+                Gtk.NamedAction.new(action_name)
+            )
+
+            self.shortcut_controller.add_shortcut(shortcut)

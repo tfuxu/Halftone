@@ -5,351 +5,136 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
   width-request: 360;
   height-request: 294;
 
-  child: Adw.OverlaySplitView split_view {
-    sidebar-position: start;
-    show-sidebar: true;
-    min-sidebar-width: 360;
+  child: Adw.MultiLayoutView multi_layout_view {
+    Adw.Layout desktop_layout {
+      name: "desktop";
 
-    sidebar: Adw.ToolbarView sidebar_view {
-      top-bar-style: flat;
+      content: Adw.OverlaySplitView desktop_split_view {
+        sidebar-position: start;
+        show-sidebar: true;
+        max-sidebar-width: 360;
+        min-sidebar-width: 280;
 
-      [top]
-      Adw.HeaderBar {
-        centering-policy: strict;
+        sidebar: Adw.ToolbarView desktop_sidebar_view {
+          top-bar-style: flat;
 
-        [start]
-        Gtk.Button {
-          tooltip-text: _("Open Image (Ctrl+O)");
-          icon-name: "arrow-into-box-symbolic";
-          action-name: "app.open-image";
-        }
+          [top]
+          Adw.HeaderBar desktop_sidebar_headerbar {
+            centering-policy: strict;
 
-        [end]
-        Gtk.MenuButton sidebar_main_menu {
-          tooltip-text: _("Main Menu");
-          icon-name: "open-menu-symbolic";
-          menu-model: main_menu;
-          primary: bind split_view.show-sidebar;
-        }
-      }
-    };
-
-    content: Adw.ToolbarView dither_view {
-      extend-content-to-top-edge: true;
-
-      [top]
-      Gtk.Stack dither_header_stack {
-        Gtk.StackPage {
-          name: "desktop";
-
-          child: Adw.HeaderBar {
-            show-title: false;
-
-            styles [
-              "desktop"
-            ]
-          };
-        }
-
-        Gtk.StackPage {
-          name: "mobile";
-
-          child: Adw.HeaderBar {
             [start]
-            Gtk.Button content_open_button {
+            Gtk.Button {
               tooltip-text: _("Open Image (Ctrl+O)");
               icon-name: "arrow-into-box-symbolic";
               action-name: "app.open-image";
             }
 
             [end]
-            Gtk.MenuButton content_main_menu {
+            Gtk.MenuButton {
               tooltip-text: _("Main Menu");
               icon-name: "open-menu-symbolic";
               menu-model: main_menu;
+              primary: bind desktop_split_view.show-sidebar;
             }
+          }
+
+          [bottom]
+          Adw.LayoutSlot desktop_save_toolbar {
+            id: "save-image-toolbar";
+          }
+
+          content: Adw.LayoutSlot desktop_options_slot {
+            id: "options";
           };
+        };
+
+        content: Adw.ToolbarView desktop_image_view {
+          extend-content-to-top-edge: true;
+
+          [top]
+          Adw.HeaderBar desktop_image_view_headerbar {
+            show-title: false;
+
+            styles [
+              "desktop"
+            ]
+          }
+
+          content: Adw.LayoutSlot desktop_image_view_slot {
+            id: "viewer";
+          };
+        };
+      };
+    }
+
+    Adw.Layout mobile_layout {
+      name: "mobile";
+
+      content: Adw.ToolbarView mobile_image_view {
+        top-bar-style: raised_border;
+
+        [top]
+        Adw.HeaderBar mobile_image_view_headerbar {
+          centering-policy: strict;
+
+          [start]
+          Gtk.Button {
+            tooltip-text: _("Open Image (Ctrl+O)");
+            icon-name: "arrow-into-box-symbolic";
+            action-name: "app.open-image";
+          }
+
+          [start]
+          Gtk.Button {
+            tooltip-text: _("Save Image (Ctrl+S)");
+            icon-name: "document-save-symbolic";
+            action-name: "app.save-image";
+          }
+
+          [end]
+          Gtk.MenuButton {
+            tooltip-text: _("Main Menu");
+            icon-name: "open-menu-symbolic";
+            menu-model: main_menu;
+            primary: true;
+          }
         }
 
-        visible-child-name: "desktop";
-      }
+        content: Gtk.Box mobile_content_box {
+          orientation: vertical;
 
-      content: Gtk.Box preview_box {
-        orientation: vertical;
-        homogeneous: true;
-        vexpand: true;
-        hexpand: true;
+          Adw.LayoutSlot mobile_image_view_slot {
+            id: "viewer";
+          }
 
-        Gtk.Overlay {
-          child: Gtk.Overlay {
-            child: Gtk.ScrolledWindow scrolled_window {
-              vexpand: true;
-              hexpand: true;
+          Gtk.Revealer mobile_options_revealer {
+            transition-type: slide_up;
+            reveal-child: true;
 
-              Gtk.Viewport image_viewport {
-                scroll-to-focus: false;
-              }
-            };
-
-            [overlay]
-            Gtk.Box toggle_sheet_box {
-              valign: end;
-              halign: start;
-              margin-start: 18;
-              margin-bottom: 18;
-
-              Gtk.Box {
-                orientation: horizontal;
-                spacing: 12;
-
-                Gtk.Button toggle_sheet_button {
-                  icon-name: "sidebar-show-left-symbolic";
-                  tooltip-text: _("Toggle Sidebar");
-                  action-name: "app.toggle-sheet";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-              }
-            }
-
-            [overlay]
-            Gtk.Box zoom_box {
-              valign: end;
-              halign: end;
-              margin-end: 18;
-              margin-bottom: 18;
-
-              Gtk.Box {
-                orientation: horizontal;
-                spacing: 12;
-
-                Gtk.Button zoom_out_button {
-                  icon-name: "zoom-out-symbolic";
-                  tooltip-text: _("Zoom Out");
-                  action-name: "zoom.out";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-
-                Gtk.Button zoom_in_button {
-                  icon-name: "zoom-in-symbolic";
-                  tooltip-text: _("Zoom In");
-                  action-name: "zoom.in";
-
-                  styles [
-                    "osd",
-                    "image-viewer-fab",
-                    "circular"
-                  ]
-                }
-              }
-            }
-          };
-
-          [overlay]
-          Gtk.Box preview_loading_overlay {
-            vexpand: true;
-            hexpand: true;
-            orientation: vertical;
-            visible: false;
-
-            Gtk.Box {
-              vexpand: true;
-              hexpand: true;
-              valign: center;
-              halign: center;
-              spacing: 10;
+            child: Gtk.Box mobile_options_content_box {
               orientation: vertical;
 
-              Adw.Spinner {
-                height-request: 64;
-                width-request: 64;
+              Gtk.Separator {
+                orientation: horizontal;
               }
 
-              Gtk.Label {
-                label: _("Dithering your image…");
+              Adw.LayoutSlot mobile_options_slot {
+                id: "options";
               }
-            }
-
-            styles [
-              "osd"
-            ]
+            };
           }
-        }
-
-        // TODO: Add SpringAnimation to animate sheet hiding
-        // TODO: Add scroll and touch drag gestures for triggering bottom sheet hide animation
-
-        Gtk.Box bottom_sheet_box {
-          orientation: vertical;
-          valign: end;
-          visible: false;
-
-          Gtk.Separator {
-            orientation: horizontal;
-          }
-
-          Adw.Bin bottom_sheet {}
-        }
+        };
       };
-    };
-  };
-
-  Adw.Breakpoint mobile_breakpoint {
-    condition ("max-width: 640px")
-    setters {
-      sidebar_main_menu.primary: false;
-      content_main_menu.primary: true;
-      split_view.collapsed: true;
-      dither_view.extend-content-to-top-edge: false;
-      dither_view.top-bar-style: raised_border;
-      dither_header_stack.visible-child-name: "mobile";
-      toggle_sheet_button.icon-name: "sheet-show-bottom-symbolic";
-      toggle_sheet_button.tooltip-text: _("Toggle Bottom Sheet");
-      bottom_sheet_box.visible: true;
     }
-  }
 
-  Gtk.ShortcutController shortcut_controller {
-    scope: global;
-  }
-}
+    [viewer]
+    $HalftoneImageView image_view {}
 
-Adw.Bin image_preferences_bin {
-  child: Adw.ToolbarView {
-    content: Adw.PreferencesPage {
-      Adw.PreferencesGroup options_group {
-        title: _("Options");
-
-        [header-suffix]
-        Gtk.MenuButton options_information_button {
-          valign: center;
-          popover: options_information_popover;
-          icon-name: "help-about-symbolic";
-          tooltip-text: _("Explanation");
-
-          styles [
-            "flat"
-          ]
-        }
-
-        Adw.ComboRow dither_algorithms_combo {
-          title: _("Dither Algorithm");
-          model: Gtk.StringList algorithms_stringlist {
-            strings ["Floyd-Steinberg", "Riemersma", "Bayer (ordered)"]
-          };
-        }
-
-        //Adw.ComboRow color_palette {
-        //  title: _("Color Palette");
-        //  model: Gtk.StringList color_palettes {};
-        //}
-
-        Adw.SpinRow color_amount_row {
-          title: _("Color Amount");
-          adjustment: Gtk.Adjustment color_amount_adjustment {
-            lower: 1;
-            upper: 256;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_color_amount_changed();
-        }
-
-        Adw.ComboRow export_format_combo {
-          title: _("Convert To");
-          model: Gtk.StringList image_formats_stringlist {};
-        }
-      }
-
-      Adw.PreferencesGroup adjustments_group {
-        title: _("Adjustments");
-
-        Adw.SpinRow brightness_row {
-          title: _("Brightness");
-          subtitle: _("Range -100 to 100");
-          adjustment: Gtk.Adjustment brightness_adjustment {
-            lower: -100;
-            upper: 100;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_brightness_changed();
-        }
-
-        Adw.SpinRow contrast_row {
-          title: _("Contrast");
-          subtitle: _("Range -100 to 100");
-          adjustment: Gtk.Adjustment contrast_adjustment {
-            lower: -100;
-            upper: 100;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_contrast_changed();
-        }
-      }
-
-      Adw.PreferencesGroup image_size_group {
-        title: _("Image Size");
-
-        Adw.SpinRow image_width_row {
-          title: _("Width");
-          subtitle: _("In pixels");
-          adjustment: Gtk.Adjustment image_width_adjustment {
-            lower: 1;
-            upper: 8192;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_image_width_changed();
-        }
-
-        // TODO: Remove option completely if there's no user feedback to bring it back
-        Adw.SwitchRow aspect_ratio_toggle {
-          visible: false;
-          title: _("Keep aspect ratio");
-
-          [suffix]
-          Gtk.MenuButton aspect_ratio_button {
-            valign: center;
-            popover: aspect_ratio_popover;
-            icon-name: "help-about-symbolic";
-            tooltip-text: _("Explanation");
-
-            styles [
-              "flat"
-            ]
-          }
-        }
-
-        // TODO: Remove option completely if there's no user feedback to bring it back
-        Adw.SpinRow image_height_row {
-          visible: false;
-          title: _("Height");
-          subtitle: _("In pixels");
-          adjustment: Gtk.Adjustment image_height_adjustment {
-            lower: 1;
-            upper: 8192;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_image_height_changed();
-        }
-      }
-    };
-
-    [bottom]
-    Gtk.Box {
+    [save-image-toolbar]
+    Gtk.Box save_image_toolbar {
+      orientation: horizontal;
       halign: center;
+
       Gtk.Button save_image_button {
         label: _("_Save Image");
         action-name: "app.save-image";
@@ -362,36 +147,17 @@ Adw.Bin image_preferences_bin {
       }
 
       styles [
+        "toolbar",
         "sheet-toolbar"
       ]
     }
   };
-}
 
-Gtk.Popover options_information_popover {
-  Gtk.Label {
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-    wrap: true;
-    justify: center;
-    max-width-chars: 30;
-    use-markup: true;
-    label: _("To learn more about individual options, go to the <a href=\"https://github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>.");
-  }
-}
-
-Gtk.Popover aspect_ratio_popover {
-  Gtk.Label {
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-    wrap: true;
-    justify: center;
-    max-width-chars: 30;
-    label: _("This option allows you to preserve original aspect ratio when resizing an image.");
+  Adw.Breakpoint mobile_breakpoint {
+    condition ("max-width: 540px")
+    setters {
+      multi_layout_view.layout-name: "mobile";
+    }
   }
 }
 

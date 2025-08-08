@@ -1,0 +1,111 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $HalftoneImageView : Adw.Bin {
+  Gtk.ShortcutController shortcut_controller {
+    scope: global;
+  }
+
+  child: Gtk.Overlay loading_overlay {
+    [overlay]
+    Gtk.Box loading_screen_box {
+      orientation: vertical;
+      vexpand: true;
+      hexpand: true;
+      visible: false;
+
+      Gtk.Box loading_content_box {
+        orientation: vertical;
+        spacing: 10;
+
+        vexpand: true;
+        hexpand: true;
+        valign: center;
+        halign: center;
+
+        Adw.Spinner loading_spinner {
+          height-request: 64;
+          width-request: 64;
+        }
+
+        Gtk.Label loading_label {
+          label: _("Dithering your image…");
+        }
+      }
+
+      styles [
+        "osd"
+      ]
+    }
+
+    child: Gtk.Overlay controls_overlay {
+      [overlay]
+      Gtk.Box toggle_sheet_box {
+        orientation: horizontal;
+
+        valign: end;
+        halign: start;
+        margin-start: 18;
+        margin-bottom: 18;
+
+        Gtk.Button toggle_sheet_button {
+          icon-name: "sidebar-show-left-symbolic";
+          tooltip-text: _("Toggle Sidebar");
+          action-name: "app.toggle-sheet";
+
+          styles [
+            "osd",
+            "image-viewer-fab",
+            "circular"
+          ]
+        }
+      }
+
+      [overlay]
+      Gtk.Box zoom_box {
+        orientation: horizontal;
+        spacing: 12;
+
+        valign: end;
+        halign: end;
+        margin-end: 18;
+        margin-bottom: 18;
+
+        Gtk.Button zoom_out_button {
+          icon-name: "zoom-out-symbolic";
+          tooltip-text: _("Zoom Out");
+          action-name: "zoom.out";
+
+          styles [
+            "osd",
+            "image-viewer-fab",
+            "circular"
+          ]
+        }
+
+        Gtk.Button zoom_in_button {
+          icon-name: "zoom-in-symbolic";
+          tooltip-text: _("Zoom In");
+          action-name: "zoom.in";
+
+          styles [
+            "osd",
+            "image-viewer-fab",
+            "circular"
+          ]
+        }
+      }
+
+      child: Gtk.ScrolledWindow viewer_scrolled_window {
+        vexpand: true;
+        hexpand: true;
+
+        Gtk.Viewport image_viewport {
+          scroll-to-focus: false;
+
+          child: $HalftoneImage image_widget {};
+        }
+      };
+    };
+  };
+}
