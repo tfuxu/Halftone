@@ -2,8 +2,18 @@ using Gtk 4.0;
 using Adw 1;
 
 template $HalftoneImageOptionsView : Adw.Bin {
-  child: Adw.ToolbarView toolbar_view {
-    content: Adw.PreferencesPage preferences_page {
+  child: Gtk.ScrolledWindow content_scrolled_window {
+    propagate-natural-height: true;
+    max-content-height: 316;
+
+    child: Gtk.Box content_box {
+      orientation: vertical;
+      spacing: 24;
+      margin-top: 24;
+      margin-bottom: 24;
+      margin-start: 12;
+      margin-end: 12;
+
       Adw.PreferencesGroup options_group {
         title: _("Options");
 
@@ -124,27 +134,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
         }
       }
     };
-
-    [bottom]
-    Gtk.Box bottom_bar_box {
-      orientation: horizontal;
-      halign: center;
-
-      Gtk.Button save_image_button {
-        label: _("_Save Image");
-        action-name: "app.save-image";
-        use-underline: true;
-
-        styles [
-          "pill",
-          "suggested-action"
-        ]
-      }
-
-      styles [
-        "sheet-toolbar"
-      ]
-    }
   };
 }
 

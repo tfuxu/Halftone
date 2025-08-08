@@ -26,8 +26,6 @@ class HalftoneImageOptionsView(Adw.Bin):
 
     color_amount_row: Adw.SpinRow = Gtk.Template.Child()
 
-    save_image_button: Gtk.Button = Gtk.Template.Child()
-
     def __init__(
         self,
         parent: Gtk.Widget,

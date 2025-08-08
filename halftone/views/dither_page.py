@@ -25,16 +25,14 @@ LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 
+    multi_layout_view: Adw.MultiLayoutView = Gtk.Template.Child()
+    desktop_split_view: Adw.OverlaySplitView = Gtk.Template.Child()
+
     image_view: HalftoneImageView = Gtk.Template.Child()
-
-    split_view: Adw.OverlaySplitView = Gtk.Template.Child()
-    sidebar_view: Adw.ToolbarView = Gtk.Template.Child()
-
-    bottom_sheet_box: Gtk.Box = Gtk.Template.Child()
-    bottom_sheet: Adw.Bin = Gtk.Template.Child()
 
     save_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
 
+    mobile_options_revealer: Gtk.Revealer = Gtk.Template.Child()
     mobile_breakpoint: Adw.Breakpoint = Gtk.Template.Child()
 
     def __init__(self, parent: Gtk.Widget, **kwargs) -> None:
@@ -83,8 +81,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.on_breakpoint_unapply)
 
     def _setup(self) -> None:
-        # Set utility page in sidebar by default
-        self.sidebar_view.set_content(self.image_options_view)
+        self.multi_layout_view.set_child("options", self.image_options_view)
 
     """
     Callbacks
@@ -100,19 +97,19 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.save_image_dialog.set_initial_name(output_filename)
         self.save_image_dialog.save(self.win, None, self.on_image_dialog_result)
 
-    def on_toggle_sheet(self, action: Gio.SimpleAction, *args) -> None:
+    def on_toggle_sheet(self, _action: Gio.SimpleAction, *args) -> None:
         if self.is_mobile:
-            if self.bottom_sheet_box.props.visible:
-                self.bottom_sheet_box.set_visible(False)
+            if self.mobile_options_revealer.props.reveal_child:
+                self.mobile_options_revealer.set_reveal_child(False)
                 return
 
-            self.bottom_sheet_box.set_visible(True)
+            self.mobile_options_revealer.set_reveal_child(True)
         else:
-            if self.split_view.props.show_sidebar:
-                self.split_view.set_show_sidebar(False)
+            if self.desktop_split_view.props.show_sidebar:
+                self.desktop_split_view.set_show_sidebar(False)
                 return
 
-            self.split_view.set_show_sidebar(True)
+            self.desktop_split_view.set_show_sidebar(True)
 
     def on_image_dialog_result(
         self,
@@ -143,27 +140,21 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def on_successful_image_load(self, *args) -> None:
         self.image_view.loading_screen_box.set_visible(False)
         self.image_view.image_widget.remove_css_class("preview-loading-blur")
-        self.image_options_view.save_image_button.set_sensitive(True)
+        #self.image_options_view.save_image_button.set_sensitive(True)
 
     def on_awaiting_image_load(self, *args) -> None:
         if not self.is_image_ready:
             self.image_view.loading_screen_box.set_visible(True)
             self.image_view.image_widget.add_css_class("preview-loading-blur")
-            self.image_options_view.save_image_button.set_sensitive(False)
+            #self.image_options_view.save_image_button.set_sensitive(False)
 
     def on_breakpoint_apply(self, *args) -> None:
-        self.sidebar_view.set_content(None)
-        self.bottom_sheet.set_child(self.image_options_view)
-
         self.image_view.toggle_sheet_button.set_icon_name("sheet-show-bottom-symbolic")
         self.image_view.toggle_sheet_button.set_tooltip_text(_("Toggle Bottom Sheet"))
 
         self.is_mobile = True
 
     def on_breakpoint_unapply(self, *args) -> None:
-        self.bottom_sheet.set_child(None)
-        self.sidebar_view.set_content(self.image_options_view)
-
         self.image_view.toggle_sheet_button.set_icon_name("sidebar-show-left-symbolic")
         self.image_view.toggle_sheet_button.set_tooltip_text(_("Toggle Sidebar"))
 
