@@ -39,13 +39,17 @@ template $HalftoneImageView : Adw.Bin {
     }
 
     child: Gtk.Overlay controls_overlay {
+      hexpand: true;
+
       [overlay]
-      Gtk.Box toggle_sheet_box {
+      Gtk.Box controls_box_start {
         orientation: horizontal;
 
         valign: end;
         halign: start;
         margin-start: 18;
+        margin-end: 18;
+        margin-top: 18;
         margin-bottom: 18;
 
         Gtk.Button toggle_sheet_button {
@@ -54,21 +58,25 @@ template $HalftoneImageView : Adw.Bin {
           action-name: "app.toggle-sheet";
 
           styles [
-            "osd",
-            "image-viewer-fab",
-            "circular"
+            "flat"
           ]
         }
+
+        styles [
+          "osd-box"
+        ]
       }
 
       [overlay]
-      Gtk.Box zoom_box {
+      Gtk.Box controls_box_end {
         orientation: horizontal;
         spacing: 12;
 
         valign: end;
         halign: end;
+        margin-start: 18;
         margin-end: 18;
+        margin-top: 18;
         margin-bottom: 18;
 
         Gtk.Button zoom_out_button {
@@ -77,9 +85,7 @@ template $HalftoneImageView : Adw.Bin {
           action-name: "zoom.out";
 
           styles [
-            "osd",
-            "image-viewer-fab",
-            "circular"
+            "flat"
           ]
         }
 
@@ -89,11 +95,13 @@ template $HalftoneImageView : Adw.Bin {
           action-name: "zoom.in";
 
           styles [
-            "osd",
-            "image-viewer-fab",
-            "circular"
+            "flat"
           ]
         }
+
+        styles [
+          "osd-box"
+        ]
       }
 
       child: Gtk.ScrolledWindow viewer_scrolled_window {

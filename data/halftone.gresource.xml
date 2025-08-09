@@ -9,6 +9,7 @@
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/preferences_window.ui</file>
     <file preprocess="xml-stripblanks">ui/report_page.ui</file>
+    <file>style-dark.css</file>
     <file>style.css</file>
   </gresource>
   <gresource prefix="/io/github/tfuxu/Halftone/icons/scalable/actions/">

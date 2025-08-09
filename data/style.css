@@ -1,3 +1,7 @@
+:root {
+  --osd-background-color: rgba(240, 240, 240, 0.75);
+}
+
 .dragndrop_overlay {
   background-color: alpha(var(--accent-bg-color), 0.5);
   color: var(--accent-fg-color);
@@ -27,4 +31,15 @@ headerbar.desktop windowcontrols button:active image {
 .image-viewer-fab {
     min-width: 42px;
     min-height: 42px;
+}
+
+.osd-box {
+    border-radius: 12px;
+    background-color: var(--osd-background-color);
+    padding: 6px;
+}
+
+.osd-box menubutton button {
+  padding-left: 0;
+  padding-right: 0;
 }
