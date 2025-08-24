@@ -314,7 +314,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         if format_string is None:
             format_string = "png"
 
-        return format_string
+        return format_string.lower()
 
     def _set_size_spins(self, width: int, height: int) -> None:
         self.image_options_view.image_width_row.set_value(width)
