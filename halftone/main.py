@@ -1,10 +1,9 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import os
 import sys
 
-from gi.repository import Adw, GLib, Gio, Gtk
+from gi.repository import Adw, Gio
 
 from halftone.backend.logger import Logger
 from halftone.constants import app_id, rootdir  # pyright: ignore
@@ -28,6 +27,8 @@ class HalftoneApplication(Adw.Application):
         self.window: Adw.ApplicationWindow = None
         self.settings: Gio.Settings = Gio.Settings.new(app_id)
 
+        self._setup_actions()
+
     """
     Overrides
     """
@@ -46,6 +47,29 @@ class HalftoneApplication(Adw.Application):
             )
 
         self.window.present()
+
+    """
+    Setup methods
+    """
+
+    def _setup_actions(self) -> None:
+        """ Setup menu actions and accelerators. """
+
+        quit_action = Gio.SimpleAction.new('quit', None)
+        quit_action.connect('activate', self._on_quit)
+        self.add_action(quit_action)
+
+        self.set_accels_for_action('app.quit', ['<Primary>Q'])
+        self.set_accels_for_action('window.close', ['<Primary>W'])
+
+    """
+    Callbacks
+    """
+
+    def _on_quit(self, *args) -> None:
+        """ Quit application process. """
+
+        self.quit()
 
 """
 Main entry point

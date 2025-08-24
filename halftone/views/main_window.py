@@ -81,14 +81,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.create_action(
             name='about',
-            callback=self._on_about,
-            shortcuts=['<Primary>question']
-        )
-
-        self.create_action(
-            name='quit',
-            callback=self.destroy,
-            shortcuts=['<Primary>Q', '<Primary>W']
+            callback=self._on_about
         )
 
         self.create_action(
