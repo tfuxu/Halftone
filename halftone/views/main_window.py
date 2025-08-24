@@ -293,7 +293,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             except GLib.Error as e:
                 if e.code != 2:
                     logging.error(f"Failed to launch external application: {e}")
-                    self.window.toast_overlay.add_toast(
+                    self.toast_overlay.add_toast(
                         Adw.Toast(
                             title=_("Failed to open preview image. Check logs for more information")
                         )
