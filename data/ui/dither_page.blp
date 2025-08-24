@@ -26,7 +26,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
             Gtk.Button {
               tooltip-text: _("Open Image (Ctrl+O)");
               icon-name: "arrow-into-box-symbolic";
-              action-name: "app.open-image";
+              action-name: "win.open-image";
             }
 
             [end]
@@ -81,14 +81,14 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           Gtk.Button {
             tooltip-text: _("Open Image (Ctrl+O)");
             icon-name: "arrow-into-box-symbolic";
-            action-name: "app.open-image";
+            action-name: "win.open-image";
           }
 
           [start]
           Gtk.Button {
             tooltip-text: _("Save Image (Ctrl+S)");
             icon-name: "document-save-symbolic";
-            action-name: "app.save-image";
+            action-name: "win.save-image";
           }
 
           [end]
@@ -137,7 +137,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
       Gtk.Button save_image_button {
         label: _("_Save Image");
-        action-name: "app.save-image";
+        action-name: "win.save-image";
         use-underline: true;
 
         styles [
@@ -173,10 +173,6 @@ Gtk.FileFilter all_files_filter {
 
 menu main_menu {
   section {
-    /*item {
-      label: _("Preferences");
-      action: "app.preferences";
-    }*/
 
     item {
       label: _("Keyboard Shortcuts");
@@ -185,7 +181,7 @@ menu main_menu {
 
     item {
       label: _("About Halftone");
-      action: "app.about";
+      action: "win.about";
     }
   }
 }

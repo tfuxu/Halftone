@@ -8,7 +8,6 @@ from gi.repository import Adw, GLib, Gio, Gtk
 
 from halftone.backend.logger import Logger
 from halftone.constants import app_id, rootdir  # pyright: ignore
-from halftone.views.about_window import HalftoneAboutWindow
 from halftone.views.main_window import HalftoneMainWindow
 #from halftone.views.preferences_window import HalftonePreferencesWindow
 
@@ -29,8 +28,6 @@ class HalftoneApplication(Adw.Application):
         self.window: Adw.ApplicationWindow = None
         self.settings: Gio.Settings = Gio.Settings.new(app_id)
 
-        self._setup_actions()
-
     """
     Overrides
     """
@@ -49,120 +46,6 @@ class HalftoneApplication(Adw.Application):
             )
 
         self.window.present()
-
-    """
-    Setup methods
-    """
-
-    def _setup_actions(self) -> None:
-        """ Setup menu actions and accelerators. """
-
-        user_home_dir = os.environ.get("XDG_CONFIG_HOME", os.environ["HOME"])
-
-        show_image_external_action = Gio.SimpleAction.new_stateful(
-                'show-image-externally',
-                GLib.VariantType.new("s"),
-                GLib.Variant("s", user_home_dir))
-        show_image_external_action.connect('activate', self._show_image_external)
-        self.add_action(show_image_external_action)
-
-        '''preferences_action = Gio.SimpleAction.new('preferences', None)
-        preferences_action.connect('activate', self.on_preferences)
-        self.add_action(preferences_action)'''
-
-        about_action = Gio.SimpleAction.new('about', None)
-        about_action.connect('activate', self.on_about)
-        self.add_action(about_action)
-
-        quit_action = Gio.SimpleAction.new('quit', None)
-        quit_action.connect('activate', self.on_quit)
-        self.add_action(quit_action)
-
-        self.set_accels_for_action('win.show-help-overlay', ['<Primary>question'])
-
-        self.set_accels_for_action('app.toggle-sheet', ['F9'])
-        self.set_accels_for_action('app.open-image', ['<Primary>O'])
-        self.set_accels_for_action('app.save-image', ['<Primary>S'])
-        #self.set_accels_for_action('app.preferences', ['<Primary>comma'])
-        self.set_accels_for_action('app.quit', ['<Primary>Q', '<Primary>W'])
-
-    """
-    Callbacks
-    """
-
-    '''def on_preferences(self, *args):
-        """ Show preferences window. """
-
-        pref_window = HalftonePreferencesWindow(self.window)
-        pref_window.present()'''
-
-    def on_about(self, *args):
-        """ Show about dialog. """
-
-        about_window = HalftoneAboutWindow(self.window)
-        about_window.show_about()
-
-    def on_quit(self, *args):
-        """ Quit application process. """
-
-        self.quit()
-
-    """
-    Private methods
-    """
-
-    def _show_image_external(
-        self,
-        _action: Gio.SimpleAction | None,
-        image_path: GLib.Variant,
-        *args
-    ) -> None:
-        """
-        Launch an external application to display provided image.
-
-        This may present an app chooser dialog to the user
-        depending on system and configuration.
-        """
-
-        try:
-            image_file = Gio.File.new_for_path(image_path.get_string())
-        except GLib.Error as e:
-            logging.traceback_error(
-                message="Failed to construct a new Gio.File object from path.",
-                exception=e,
-                show_exception=True
-            )
-            self.window.latest_traceback = logging.get_traceback(e)
-            self.window.toast_overlay.add_toast(
-                Adw.Toast(
-                    title=_("Failed to open preview image. Check logs for more information")
-                )
-            )
-        else:
-            launcher = Gtk.FileLauncher.new(image_file)
-
-            def _open_image_finish(
-                _launcher: Gtk.FileLauncher,
-                result: Gio.AsyncResult,
-                *args
-            ) -> None:
-                try:
-                    launcher.launch_finish(result)
-                except GLib.Error as e:
-                    if e.code != 2: # 'The portal dialog was dismissed by the user' error
-                        logging.traceback_error(
-                            message="Failed to finish Gtk.FileLauncher procedure.",
-                            exception=e,
-                            show_exception=True
-                        )
-                        self.window.latest_traceback = logging.get_traceback(e)
-                        self.window.toast_overlay.add_toast(
-                            Adw.Toast(
-                                title=_("Failed to open preview image. Check logs for more information")
-                            )
-                        )
-
-            launcher.launch(self.window, None, _open_image_finish)
 
 """
 Main entry point
