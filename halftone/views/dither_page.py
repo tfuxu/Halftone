@@ -308,7 +308,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.image_options_view.export_format_combo.props.selected
-        format_string = self.image_options_view.image_formats_stringlist.get_string(selected_format)
+        format_string = self.image_options_view.image_formats_stringlist.get_string(selected_format).lower()
 
         # NOTE: This should only happen if the list isn't populated
         if format_string is None:

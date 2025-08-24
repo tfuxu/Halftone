@@ -20,13 +20,26 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
 
           [top]
           Adw.HeaderBar desktop_sidebar_headerbar {
-            centering-policy: strict;
 
             [start]
             Gtk.Button {
+              width-request: 1;
+              hexpand: false;
+              halign: start;
+
+              child: Box {
+                spacing:6;
+                Image {
+                  icon-name:"folder-open-symbolic";
+                }
+                Label {
+                  label: _("Open");
+
+                }
+              };
               tooltip-text: _("Open Image (Ctrl+O)");
-              icon-name: "arrow-into-box-symbolic";
               action-name: "app.open-image";
+              styles ["flat"]
             }
 
             [end]
@@ -80,7 +93,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           [start]
           Gtk.Button {
             tooltip-text: _("Open Image (Ctrl+O)");
-            icon-name: "arrow-into-box-symbolic";
+            icon-name: "folder-open-symbolic";
             action-name: "app.open-image";
           }
 
@@ -189,3 +202,4 @@ menu main_menu {
     }
   }
 }
+

@@ -80,7 +80,7 @@ class HalftoneImageOptionsView(Adw.Bin):
         output_formats = get_output_formats(True) # TODO: Add a setting to toggle showing all formats
 
         for filetype in output_formats:
-            self.image_formats_stringlist.append(filetype.as_extension())
+            self.image_formats_stringlist.append(filetype.as_extension().upper())
 
         self.export_format_combo.set_selected(output_formats.index(FileType.PNG))
 
@@ -174,7 +174,8 @@ class HalftoneImageOptionsView(Adw.Bin):
 
     def on_save_format_selected(self, widget: Adw.ComboRow, *args) -> None:
         selected_format = widget.props.selected
-        format_string = self.image_formats_stringlist.get_string(selected_format)
+        format_string = self.image_formats_stringlist.get_string(selected_format).lower()
+        print(format_string)
 
         self.output_options.output_format = format_string
 

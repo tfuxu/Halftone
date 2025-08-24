@@ -13,7 +13,6 @@
     <file>style.css</file>
   </gresource>
   <gresource prefix="/io/github/tfuxu/Halftone/icons/scalable/actions/">
-    <file preprocess="xml-stripblanks" alias="arrow-into-box-symbolic.svg">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-symbolic.svg">icons/scalable/actions/chain-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-loose-symbolic.svg">icons/scalable/actions/chain-link-loose-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="document-save-symbolic.svg">icons/scalable/actions/document-save-symbolic.svg</file>
