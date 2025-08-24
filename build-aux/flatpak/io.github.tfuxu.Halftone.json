@@ -1,5 +1,5 @@
 {
-  "app-id": "io.github.tfuxu.Halftone",
+  "id": "io.github.tfuxu.Halftone",
   "runtime": "org.gnome.Platform",
   "runtime-version": "48",
   "sdk": "org.gnome.Sdk",
@@ -8,8 +8,7 @@
     "--share=ipc",
     "--device=dri",
     "--socket=fallback-x11",
-    "--socket=wayland",
-    "--filesystem=/tmp"
+    "--socket=wayland"
   ],
   "cleanup": [
     "/include",
