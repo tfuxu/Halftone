@@ -63,7 +63,7 @@ class FileType(StrEnum):
 
     @classmethod
     def from_mimetype(cls, mimetype: str) -> Self | None:
-        match mimetype:
+        match mimetype.lower():
             case "image/png":
                 return cls("png")
             case "image/jpeg":
@@ -120,7 +120,7 @@ class FileType(StrEnum):
 
     @classmethod
     def from_extension(cls, extension: str) -> Self | None:
-        match extension:
+        match extension.lower():
             case "png":
                 return cls("png")
             case "jpeg":

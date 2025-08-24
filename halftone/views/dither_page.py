@@ -308,13 +308,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.image_options_view.export_format_combo.props.selected
-        format_string = self.image_options_view.image_formats_stringlist.get_string(selected_format).lower()
+        format_string = self.image_options_view.image_formats_stringlist.get_string(selected_format)
 
         # NOTE: This should only happen if the list isn't populated
         if format_string is None:
             format_string = "png"
 
-        return format_string
+        return format_string.lower()
 
     def _set_size_spins(self, width: int, height: int) -> None:
         self.image_options_view.image_width_row.set_value(width)
