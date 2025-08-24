@@ -265,7 +265,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.toast_overlay.add_toast(
             Adw.Toast(title=_("Image dithered successfully!"),
                 button_label=_("Open Image"),
-                action_name="app.show-image-externally",
+                action_name="win.show-image-externally",
                 action_target=GLib.Variant("s", output_path))
         )
 

@@ -1,7 +1,7 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from typing import Literal
+from typing import Literal, Callable, Any, Optional
 
 from gi.repository import Adw, GLib, Gdk, Gio, Gtk
 
@@ -12,6 +12,7 @@ from halftone.utils.filters import get_file_filter
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.error_page import HalftoneErrorPage
 from halftone.views.report_page import HalftoneReportPage
+from halftone.views.about_window import HalftoneAboutWindow
 
 logging = Logger()
 
@@ -58,25 +59,36 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     def _setup_actions(self) -> None:
         """ Setup menu actions and accelerators. """
+        self.toggle_sheet_action = self.create_action(
+            name='toggle-sheet',
+            callback=self.dither_page.on_toggle_sheet,
+            shortcuts=['F9'],
+            enabled=False,
+        )
 
-        self.toggle_sheet_action = Gio.SimpleAction.new('toggle-sheet', None)
-        self.toggle_sheet_action.connect('activate',
-            self.dither_page.on_toggle_sheet)
-        self.app.add_action(self.toggle_sheet_action)
+        self.save_image_action = self.create_action(
+            name='save-image',
+            callback=self.dither_page.on_save_image,
+            shortcuts=['<Primary>S'],
+            enabled=False,
+        )
 
-        self.open_image_action = Gio.SimpleAction.new('open-image', None)
-        self.open_image_action.connect('activate',
-            self.on_open_image)
-        self.app.add_action(self.open_image_action)
+        self.open_image_action = self.create_action(
+            name='open-image',
+            callback=self.on_open_image,
+            shortcuts=['<Primary>O']
+        )
 
-        self.save_image_action = Gio.SimpleAction.new('save-image', None)
-        self.save_image_action.connect('activate',
-            self.dither_page.on_save_image)
-        self.app.add_action(self.save_image_action)
+        self.create_action(
+            name='about',
+            callback=self._on_about
+        )
 
-        # By default disable dither page specific actions
-        self.toggle_sheet_action.set_enabled(False)
-        self.save_image_action.set_enabled(False)
+        self.create_action(
+            name='show-image-externally',
+            callback=lambda _action, param: self._show_image_externally(param.get_string()),
+            variant_type_string="s"
+        )
 
     def _setup_signals(self) -> None:
         self.drop_target.connect("drop",
@@ -189,6 +201,35 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     Public methods
     """
 
+    def create_action(
+        self,
+        name: str,
+        callback: Callable[..., Any],
+        shortcuts: Optional[list[str]] = None,
+        enabled: bool = True,
+        variant_type_string: Optional[str] = None,
+    ) -> Gio.SimpleAction:
+        """
+        Helper method for quick action creation (with shortcut
+        and typed callback support).
+        """
+
+        variant_type: Optional[GLib.VariantType] = None
+
+        if variant_type_string is not None:
+            variant_type = GLib.VariantType.new(variant_type_string)
+
+        action: Gio.SimpleAction = Gio.SimpleAction.new(name, variant_type)
+        action.connect("activate", callback)
+        action.set_enabled(enabled)
+
+        self.add_action(action)
+
+        if shortcuts:
+            self.app.set_accels_for_action(f"win.{name}", shortcuts)
+
+        return action
+
     def load_image(self, file: Gio.File) -> None:
         self.show_loading_page()
 
@@ -231,6 +272,39 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     """
     Private methods
     """
+
+    def _on_about(self, *args) -> None:
+        """ Show about dialog. """
+        about_window = HalftoneAboutWindow(self)
+        about_window.show_about()
+
+    def _show_image_externally(self, path: str) -> None:
+        """
+        Launch an external application to display provided image.
+
+        This may present an app chooser dialog to the user
+        depending on system and configuration.
+        """
+        file = Gio.File.new_for_path(path)
+        launcher = Gtk.FileLauncher.new(file)
+
+        def _on_external_launch_result(
+            launcher: Gtk.FileLauncher,
+            result: Gio.AsyncResult
+        ) -> None:
+            try:
+                launcher.launch_finish(result)
+            except GLib.Error as e:
+                if e.code != 2:  # 'The portal dialog was dismissed by the user' error
+                    logging.error(f"Failed to launch external application: {e}")
+                    self.latest_traceback = logging.get_traceback(e)
+                    self.toast_overlay.add_toast(
+                        Adw.Toast(
+                            title=_("Failed to open preview image. Check logs for more information")
+                        )
+                    )
+
+        launcher.launch(self, None, _on_external_launch_result)
 
     def _save_window_props(self, *args) -> None:
         window_size = self.get_default_size()
