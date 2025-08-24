@@ -93,8 +93,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.create_action(
             name='show-image-externally',
-            callback=lambda action, param: self._show_image_externally(param.get_string()),
-            vt="s"
+            callback=lambda _action, param: self._show_image_externally(param.get_string()),
+            variant_type_string="s"
         )
 
     def _setup_signals(self) -> None:
@@ -214,14 +214,22 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         callback: Callable[..., Any],
         shortcuts: Optional[list[str]] = None,
         enabled: bool = True,
-        vt: Optional[str] = None,
-    ) -> None:
-        """Helper method for quickly creation actions with shortcut and typed callback support"""
-        variant_type = GLib.VariantType.new(vt) if vt is not None else None
-        action: Gio.SimpleAction = Gio.SimpleAction.new(name, variant_type)
+        variant_type_string: Optional[str] = None,
+    ) -> Gio.SimpleAction:
+        """
+        Helper method for quick action creation (with shortcut
+        and typed callback support).
+        """
 
+        variant_type: Optional[GLib.VariantType] = None
+
+        if variant_type_string is not None:
+            variant_type = GLib.VariantType.new(variant_type_string)
+
+        action: Gio.SimpleAction = Gio.SimpleAction.new(name, variant_type)
         action.connect("activate", callback)
         action.set_enabled(enabled)
+
         self.add_action(action)
 
         if shortcuts:
@@ -272,12 +280,12 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     Private methods
     """
 
-    def _on_about(self, *args):
+    def _on_about(self, *args) -> None:
         """ Show about dialog. """
         about_window = HalftoneAboutWindow(self)
         about_window.show_about()
 
-    def _show_image_externally(self, path):
+    def _show_image_externally(self, path: str) -> None:
         """
         Launch an external application to display provided image.
 
@@ -287,12 +295,16 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         file = Gio.File.new_for_path(path)
         launcher = Gtk.FileLauncher.new(file)
 
-        def _on_external_launch_result(launcher, result):
+        def _on_external_launch_result(
+            launcher: Gtk.FileLauncher,
+            result: Gio.AsyncResult
+        ) -> None:
             try:
                 launcher.launch_finish(result)
             except GLib.Error as e:
-                if e.code != 2:
+                if e.code != 2:  # 'The portal dialog was dismissed by the user' error
                     logging.error(f"Failed to launch external application: {e}")
+                    self.latest_traceback = logging.get_traceback(e)
                     self.toast_overlay.add_toast(
                         Adw.Toast(
                             title=_("Failed to open preview image. Check logs for more information")
