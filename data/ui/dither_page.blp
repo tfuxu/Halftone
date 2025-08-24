@@ -27,21 +27,11 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
               tooltip-text: _("Open Image (Ctrl+O)");
               action-name: "app.open-image";
 
-              child: Gtk.Box {
-                spacing: 6;
-
-                Gtk.Image {
-                  icon-name: "folder-open-symbolic";
-                }
-
-                Gtk.Label {
-                  label: _("Open");
-                }
+              child: Adw.ButtonContent {
+                icon-name: "folder-open-symbolic";
+                label: _("_Open");
+                use-underline: true;
               };
-
-              styles [
-                "flat"
-              ]
             }
 
             [end]
