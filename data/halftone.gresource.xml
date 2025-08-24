@@ -16,6 +16,7 @@
     <file preprocess="xml-stripblanks" alias="chain-link-symbolic.svg">icons/scalable/actions/chain-link-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="chain-link-loose-symbolic.svg">icons/scalable/actions/chain-link-loose-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="document-save-symbolic.svg">icons/scalable/actions/document-save-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="folder-open-symbolic.svg">icons/scalable/actions/folder-open-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="help-about-symbolic.svg">icons/scalable/actions/help-about-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-brightness-symbolic.svg">icons/scalable/actions/image-adjust-brightness-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="image-adjust-contrast-symbolic.svg">icons/scalable/actions/image-adjust-contrast-symbolic.svg</file>
