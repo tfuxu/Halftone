@@ -175,7 +175,6 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_save_format_selected(self, widget: Adw.ComboRow, *args) -> None:
         selected_format = widget.props.selected
         format_string = self.image_formats_stringlist.get_string(selected_format).lower()
-        print(format_string)
 
         self.output_options.output_format = format_string
 
