@@ -32,31 +32,16 @@ class HalftoneApplication(Adw.Application):
     Overrides
     """
 
-    def do_open(self, files: Sequence[Gio.File], n_files: int, hint: str):
-        """Handle opening a new windows with specified file paths"""
+    def do_open(self, files: Sequence[Gio.File], n_files: int, hint: str) -> None:  # pyright: ignore
+        """ Handle opening new windows with specified file paths. """
         for file in files:
             path = file.get_path()
             if path:
                 self._open_window(file_path=path)
 
     def do_activate(self, *args, **kwargs) -> None:
-        """Called when the application is activated without files."""
+        """ Called when the application is activated without files. """
         self._open_window()
-
-    """
-    Private methods
-    """
-
-    def _open_window(self, file_path: Optional[str] = None):
-        """Create and show a new window, optionally with a file loaded."""
-        window = HalftoneMainWindow(
-            application=self,  # pyright: ignore
-            default_height=self.settings.get_int("window-height"),  # pyright: ignore
-            default_width=self.settings.get_int("window-width"),  # pyright: ignore
-            maximized=self.settings.get_boolean("window-maximized"),  # pyright: ignore
-            file_path=file_path
-        )
-        window.present()
 
     """
     Setup methods
@@ -80,6 +65,21 @@ class HalftoneApplication(Adw.Application):
         """ Quit application process. """
 
         self.quit()
+
+    """
+    Private methods
+    """
+
+    def _open_window(self, file_path: Optional[str] = None) -> None:
+        """ Create and show a new window, optionally with a file loaded. """
+        window = HalftoneMainWindow(
+            application=self,
+            default_height=self.settings.get_int("window-height"),
+            default_width=self.settings.get_int("window-width"),
+            maximized=self.settings.get_boolean("window-maximized"),
+            file_path=file_path
+        )
+        window.present()
 
 """
 Main entry point

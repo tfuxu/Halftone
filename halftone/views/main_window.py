@@ -31,9 +31,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     open_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
     all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
-    content = Gdk.ContentFormats.new_for_gtype(Gio.File)
-
-    def __init__(self, file_path, **kwargs) -> None:
+    def __init__(self, file_path: Optional[str], **kwargs) -> None:
         super().__init__(**kwargs)
 
         # Application object
@@ -145,19 +143,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         #self.main_stack.add_named(self.report_page, "stack_report_page")
         self.main_stack.add_named(self.error_page, "stack_error_page")
         self.main_stack.add_named(self.dither_page, "stack_dither_page")
-
-    def _load_initial_file(self, file_path) -> None:
-        """Load the file that was passed to the window on initialization."""
-        try:
-            file = Gio.File.new_for_path(file_path)
-            self.load_image(file)
-        except Exception as e:
-            logging.error(f"Failed to load initial file {file_path}: {e}")
-            self.toast_overlay.add_toast(
-                Adw.Toast(
-                    title=_("Failed to load the given image file")
-                )
-            )
 
     """
     Callbacks
@@ -295,6 +280,21 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         """ Show about dialog. """
         about_window = HalftoneAboutWindow(self)
         about_window.show_about()
+
+    def _load_initial_file(self, file_path: str) -> None:
+        """ Load the file that was passed to the window on initialization. """
+        file = Gio.File.new_for_path(file_path)
+
+        try:
+            self.load_image(file)
+        except Exception as e:
+            logging.error(f"Failed to load initial file {file_path}. Error: {e}")
+            self.latest_traceback = logging.get_traceback(e)
+            self.toast_overlay.add_toast(
+                Adw.Toast(
+                    title=_("Failed to load an image. Check logs for more information")
+                )
+            )
 
     def _show_image_externally(self, path: str) -> None:
         """
