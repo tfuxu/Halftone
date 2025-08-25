@@ -31,10 +31,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
     open_image_dialog: Gtk.FileDialog = Gtk.Template.Child()
     all_filter: Gtk.FileFilter = Gtk.Template.Child()
 
-    content = Gdk.ContentFormats.new_for_gtype(Gio.File)
-    drop_target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
-
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, file_path: Optional[str], **kwargs) -> None:
         super().__init__(**kwargs)
 
         # Application object
@@ -42,6 +39,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.settings: Gio.Settings = Gio.Settings(app_id)
 
         self.latest_traceback: str = ""
+
+        content = Gdk.ContentFormats.new_for_gtype(Gio.File)
+        self.drop_target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
 
         self.add_controller(self.drop_target)
 
@@ -52,6 +52,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self._setup_actions()
         self._setup_signals()
         self._setup()
+
+        if file_path:
+            self._load_initial_file(file_path)
 
     """
     Setup methods
@@ -277,6 +280,21 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         """ Show about dialog. """
         about_window = HalftoneAboutWindow(self)
         about_window.show_about()
+
+    def _load_initial_file(self, file_path: str) -> None:
+        """ Load the file that was passed to the window on initialization. """
+        file = Gio.File.new_for_path(file_path)
+
+        try:
+            self.load_image(file)
+        except Exception as e:
+            logging.error(f"Failed to load initial file {file_path}. Error: {e}")
+            self.latest_traceback = logging.get_traceback(e)
+            self.toast_overlay.add_toast(
+                Adw.Toast(
+                    title=_("Failed to load an image. Check logs for more information")
+                )
+            )
 
     def _show_image_externally(self, path: str) -> None:
         """
