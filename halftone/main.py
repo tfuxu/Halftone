@@ -63,7 +63,7 @@ class HalftoneApplication(Adw.Application):
     """
 
     def _setup_actions(self) -> None:
-        """Setup menu actions and accelerators."""
+        """ Setup menu actions and accelerators. """
 
         quit_action = Gio.SimpleAction.new('quit', None)
         quit_action.connect('activate', self._on_quit)
@@ -77,7 +77,7 @@ class HalftoneApplication(Adw.Application):
     """
 
     def _on_quit(self, *args) -> None:
-        """Quit application process."""
+        """ Quit application process. """
 
         self.quit()
 
@@ -86,7 +86,7 @@ Main entry point
 """
 
 def main() -> int:
-    """The application's entry point."""
+    """ The application's entry point. """
 
     app = HalftoneApplication()
     return app.run(sys.argv)
