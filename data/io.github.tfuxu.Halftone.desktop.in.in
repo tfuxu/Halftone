@@ -4,7 +4,8 @@ Name=Halftone
 Version=1.0
 Type=Application
 Terminal=false
-Exec=halftone
+Exec=halftone %U
+MimeType=image/png;image/jpeg;image/webp;image/svg+xml;image/heif;image/heic;image/avif;image/jxl;image/tiff;image/gif;
 Comment=Dither your images
 Categories=GNOME;GTK;Graphics;ImageProcessing;Utility;
 Icon=@APP_ID@
@@ -12,3 +13,8 @@ Icon=@APP_ID@
 Keywords=image;compression;pixelart;dither;processing;
 # Translators: Do NOT translate or transliterate this text (these are enum types)!
 X-Purism-FormFactor=Workstation;Mobile;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=halftone --new-window
+Icon=application-new-window
