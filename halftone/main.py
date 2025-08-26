@@ -2,13 +2,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
+from collections.abc import Sequence
+from typing import Optional
 
-from gi.repository import Adw, Gio
+from gi.repository import Adw, Gio, GLib
 
 from halftone.backend.logger import Logger
 from halftone.constants import app_id, rootdir  # pyright: ignore
 from halftone.views.main_window import HalftoneMainWindow
-#from halftone.views.preferences_window import HalftonePreferencesWindow
 
 logging = Logger()
 
@@ -19,38 +20,49 @@ class HalftoneApplication(Adw.Application):
     def __init__(self) -> None:
         super().__init__(
             application_id=app_id,
-            flags=Gio.ApplicationFlags.FLAGS_NONE,
+            flags=Gio.ApplicationFlags.HANDLES_OPEN,
         )
 
         self.set_resource_base_path(rootdir)
-
-        self.window: Adw.ApplicationWindow = None
         self.settings: Gio.Settings = Gio.Settings.new(app_id)
 
+        self._setup_options()
         self._setup_actions()
 
     """
     Overrides
     """
 
+    # TODO: We should handle `--new-window` option using `do_handle_local_options` override
+    # References: https://gitlab.gnome.org/World/design/contrast/-/blob/master/src/application.rs,
+    # https://gitlab.gnome.org/World/apostrophe/-/blob/main/apostrophe/application.py
+
+    def do_open(self, files: Sequence[Gio.File], n_files: int, hint: str) -> None:  # pyright: ignore
+        """ Handle opening new windows with specified file paths. """
+        for file in files:
+            path = file.get_path()
+            if path:
+                self._open_window(file_path=path)
+
     def do_activate(self, *args, **kwargs) -> None:
-        """ Called when the application is activated. """
-
-        self.window = self.props.active_window
-
-        if not self.window:
-            self.window = HalftoneMainWindow(
-                application=self, # pyright: ignore
-                default_height=self.settings.get_int("window-height"), # pyright: ignore
-                default_width=self.settings.get_int("window-width"), # pyright: ignore
-                maximized=self.settings.get_boolean("window-maximized") # pyright: ignore
-            )
-
-        self.window.present()
+        """ Called when the application is activated without files. """
+        self._open_window()
 
     """
     Setup methods
     """
+
+    def _setup_options(self) -> None:
+        """ Setup local command-line options. """
+
+        self.add_main_option(
+            "new-window",
+            ord("w"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            _("Open a new window"),
+            None,
+        )
 
     def _setup_actions(self) -> None:
         """ Setup menu actions and accelerators. """
@@ -70,6 +82,21 @@ class HalftoneApplication(Adw.Application):
         """ Quit application process. """
 
         self.quit()
+
+    """
+    Private methods
+    """
+
+    def _open_window(self, file_path: Optional[str] = None) -> None:
+        """ Create and show a new window, optionally with a file loaded. """
+        window = HalftoneMainWindow(
+            application=self,
+            default_height=self.settings.get_int("window-height"),
+            default_width=self.settings.get_int("window-width"),
+            maximized=self.settings.get_boolean("window-maximized"),
+            file_path=file_path
+        )
+        window.present()
 
 """
 Main entry point
