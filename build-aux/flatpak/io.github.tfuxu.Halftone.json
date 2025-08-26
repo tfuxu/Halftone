@@ -174,7 +174,7 @@
       "builddir": true,
       "buildsystem": "meson",
       "config-opts": [
-        "-Dbuildtype=release"
+        "-Dbuildtype=debug"
       ],
       "sources": [
         {
