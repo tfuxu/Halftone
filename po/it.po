@@ -1,14 +1,14 @@
 # ITALIAN TRANSLATION.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
-# ALBANO BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023.
+# ALBANO BATTISTELLA <@ALBANOBATTISTELLA@GMAIL.COM>, 2023,2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-19 01:16+0200\n"
-"PO-Revision-Date: 2024-04-06 11:26+0100\n"
+"PO-Revision-Date: 2025-08-26 20:26+0200\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
@@ -56,16 +56,15 @@ msgstr "Attiva/disattiva la barra laterale"
 
 #: data/ui/dither_page.blp:132
 msgid "Zoom Out"
-msgstr ""
+msgstr "Zoom indietro"
 
 #: data/ui/dither_page.blp:144
 msgid "Zoom In"
-msgstr ""
+msgstr "Zoom avanti"
 
 #: data/ui/dither_page.blp:178
-#, fuzzy
 msgid "Dithering your image…"
-msgstr "Retinatura delle tue immagini"
+msgstr "Elaborare l'immagine…"
 
 #: data/ui/dither_page.blp:216
 msgid "Toggle Bottom Sheet"
@@ -128,9 +127,8 @@ msgid "Height"
 msgstr "Altezza"
 
 #: data/ui/dither_page.blp:354
-#, fuzzy
 msgid "_Save Image"
-msgstr "Salva immagine"
+msgstr "_Salva immagine"
 
 #: data/ui/dither_page.blp:381
 msgid ""
@@ -178,9 +176,8 @@ msgstr ""
 "persiste, per favore copia i log e segnala il problema al bug tracker."
 
 #: data/ui/error_page.blp:44
-#, fuzzy
 msgid "_Copy Logs"
-msgstr "Copia log"
+msgstr "_Copia log"
 
 #: data/ui/help_overlay.blp:11
 msgctxt "shortcut window"
@@ -200,12 +197,12 @@ msgstr "Salva immagine"
 #: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:67
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr ""
+msgstr "Zoom avanti"
 
 #: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:72
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr ""
+msgstr "Zoom indietro"
 
 #: data/ui/help_overlay.blp:35
 msgctxt "shortcut window"
@@ -218,10 +215,9 @@ msgid "Toggle Utility Pane"
 msgstr "Attiva/disattiva il riquadro Utilità"
 
 #: data/ui/help_overlay.blp:43
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Show Main Menu"
-msgstr "Menu principale"
+msgstr "Mostra menu principale"
 
 #: data/ui/help_overlay.blp:48
 msgctxt "shortcut window"
@@ -239,9 +235,8 @@ msgid "Gestures"
 msgstr ""
 
 #: data/ui/main_window.blp:52
-#, fuzzy
 msgid "_Open Image"
-msgstr "Apri immagine"
+msgstr "_Apri immagine"
 
 #: data/ui/main_window.blp:107
 msgid "Drop Here to Load Image"
@@ -266,12 +261,11 @@ msgstr "Apri immagine"
 
 #: halftone/views/dither_page.py:483
 msgid "Failed to save an image. Check logs for more information"
-msgstr ""
+msgstr "Impossibile salvare un'immagine. Controlla i log per ulteriori informazioni."
 
 #: halftone/views/dither_page.py:674
-#, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
-msgstr "Impossibile caricare l'immagine di anteprima"
+msgstr "Impossibile caricare l'immagine di anteprima. Controlla i log per ulteriori informazioni."
 
 #: halftone/views/error_page.py:37
 msgid "Copied logs to clipboard"
@@ -283,16 +277,15 @@ msgstr "Formati immagine supportati"
 
 #: halftone/views/main_window.py:134
 msgid "Failed to load an image. Check logs for more information"
-msgstr ""
+msgstr "Impossibile caricare un'immagine. Controlla i log per ulteriori informazioni"
 
 #: halftone/views/main_window.py:155
 msgid "Failed to open an image. Check logs for more information"
-msgstr ""
+msgstr "Impossibile aprire un'immagine. Controlla i registri per ulteriori informazioni"
 
 #: halftone/main.py:96 halftone/main.py:110
-#, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
-msgstr "Impossibile caricare l'immagine di anteprima"
+msgstr "Impossibile aprire l'immagine di anteprima. Controlla i registri per ulteriori informazioni"
 
 #~ msgid "Open in External Image Viewer"
 #~ msgstr "Apri nel visualizzatore di immagini esterno"
