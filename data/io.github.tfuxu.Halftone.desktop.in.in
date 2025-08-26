@@ -13,6 +13,7 @@ Icon=@APP_ID@
 Keywords=image;compression;pixelart;dither;processing;
 # Translators: Do NOT translate or transliterate this text (these are enum types)!
 X-Purism-FormFactor=Workstation;Mobile;
+Actions=new-window;
 
 [Desktop Action new-window]
 Name=New Window

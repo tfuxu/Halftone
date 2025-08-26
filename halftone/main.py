@@ -5,7 +5,7 @@ import sys
 from collections.abc import Sequence
 from typing import Optional
 
-from gi.repository import Adw, Gio
+from gi.repository import Adw, Gio, GLib
 
 from halftone.backend.logger import Logger
 from halftone.constants import app_id, rootdir  # pyright: ignore
@@ -26,11 +26,16 @@ class HalftoneApplication(Adw.Application):
         self.set_resource_base_path(rootdir)
         self.settings: Gio.Settings = Gio.Settings.new(app_id)
 
+        self._setup_options()
         self._setup_actions()
 
     """
     Overrides
     """
+
+    # TODO: We should handle `--new-window` option using `do_handle_local_options` override
+    # References: https://gitlab.gnome.org/World/design/contrast/-/blob/master/src/application.rs,
+    # https://gitlab.gnome.org/World/apostrophe/-/blob/main/apostrophe/application.py
 
     def do_open(self, files: Sequence[Gio.File], n_files: int, hint: str) -> None:  # pyright: ignore
         """ Handle opening new windows with specified file paths. """
@@ -46,6 +51,18 @@ class HalftoneApplication(Adw.Application):
     """
     Setup methods
     """
+
+    def _setup_options(self) -> None:
+        """ Setup local command-line options. """
+
+        self.add_main_option(
+            "new-window",
+            ord("w"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            _("Open a new window"),
+            None,
+        )
 
     def _setup_actions(self) -> None:
         """ Setup menu actions and accelerators. """
