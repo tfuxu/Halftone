@@ -12,7 +12,7 @@ from halftone.utils.filters import get_file_filter
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.error_page import HalftoneErrorPage
 from halftone.views.report_page import HalftoneReportPage
-from halftone.views.about_window import HalftoneAboutWindow
+from halftone.views.about_window import HalftoneAboutDialog
 
 logging = Logger()
 
@@ -278,8 +278,8 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
     def _on_about(self, *args) -> None:
         """ Show about dialog. """
-        about_window = HalftoneAboutWindow(self)
-        about_window.show_about()
+        dialog = HalftoneAboutDialog()
+        dialog.show(self)
 
     def _load_initial_file(self, file_path: str) -> None:
         """ Load the file that was passed to the window on initialization. """

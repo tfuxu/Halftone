@@ -1,26 +1,27 @@
 # Copyright 2023-2025, tfuxu <https://github.com/tfuxu>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from typing import Optional
+
 from gi.repository import Adw, Gtk
 from wand.version import MAGICK_VERSION_FEATURES, MAGICK_VERSION_INFO, VERSION
 
 from halftone import constants # pyright: ignore
 
 
-class HalftoneAboutWindow:
-    def __init__(self, parent: Gtk.Widget) -> None:
-        self.parent = parent
-        self.app: Adw.Application = self.parent.get_application()
+class HalftoneAboutDialog:
+    def __init__(self) -> None:
+        self.dialog: Adw.AboutDialog = None
 
         self._setup()
-        self._set_debug_info()
+        self._setup_debug_info()
 
     """
     Setup methods
     """
 
     def _setup(self) -> None:
-        self.about_window = Adw.AboutDialog(
+        self.dialog = Adw.AboutDialog(
             application_name="Halftone",
             application_icon=constants.app_id,
             developer_name="tfuxu",
@@ -42,25 +43,14 @@ class HalftoneAboutWindow:
             version=constants.version,
             release_notes_version=constants.rel_ver,
         )
-        self.about_window.add_legal_section(
+        self.dialog.add_legal_section(
             title="ImageMagick",
             copyright=None,
             license_type=Gtk.License.MIT_X11,
             license=None
         )
 
-    """
-    Public methods
-    """
-
-    def show_about(self) -> None:
-        self.about_window.present(self.parent)
-
-    """
-    Private methods
-    """
-
-    def _set_debug_info(self) -> None:
+    def _setup_debug_info(self) -> None:
         magick_version = f"ImageMagick: {".".join(map(str, MAGICK_VERSION_INFO))}"
         wand_version = f"Wand: {VERSION}"
         magick_features = f"Features: {MAGICK_VERSION_FEATURES}"
@@ -71,5 +61,12 @@ class HalftoneAboutWindow:
         for info in info_list:
             debug_info += info + "\n"
 
-        self.about_window.set_debug_info(debug_info)
-        self.about_window.set_debug_info_filename("halftone-debug-info")
+        self.dialog.set_debug_info(debug_info)
+        self.dialog.set_debug_info_filename("halftone-debug-info")
+
+    """
+    Public methods
+    """
+
+    def show(self, parent: Optional[Gtk.Widget] = None) -> None:
+        self.dialog.present(parent)
