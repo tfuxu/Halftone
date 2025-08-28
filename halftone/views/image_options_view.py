@@ -201,4 +201,3 @@ class HalftoneImageOptionsView(Adw.Bin):
                 return "ordered"
             case _:
                 return None
-

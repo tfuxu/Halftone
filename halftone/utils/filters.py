@@ -7,10 +7,9 @@ from halftone.backend.utils.filetypes import FileType
 
 
 def get_file_filter(filter_name: str, filetypes: list[FileType]) -> Gtk.FileFilter:
-    file_filter = Gtk.FileFilter()
+    file_filter = Gtk.FileFilter(name=filter_name)
 
     for filetype in filetypes:
         file_filter.add_mime_type(filetype.as_mimetype())
 
-    file_filter.set_name(filter_name)
     return file_filter
