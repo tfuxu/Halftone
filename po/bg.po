@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 01:16+0200\n"
+"POT-Creation-Date: 2025-09-19 00:36+0200\n"
 "PO-Revision-Date: 2024-04-13 12:46+0200\n"
 "Last-Translator: twlvnn <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Gtranslator 45.3\n"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
-#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:40
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:39
 msgid "Dither your images"
 msgstr "Полутонирайте вашите изображения"
 
@@ -36,7 +36,7 @@ msgstr ""
 "„Halftone“."
 
 #. Translators: Application name. Keep this string as "Halftone"
-#: data/io.github.tfuxu.Halftone.desktop.in.in:4
+#: data/io.github.tfuxu.Halftone.desktop.in.in:3
 msgid "Halftone"
 msgstr "Halftone"
 
@@ -44,130 +44,51 @@ msgstr "Halftone"
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
 msgid "image;compression;pixelart;dither;processing;"
 msgstr ""
-"image;compression;pixelart;dither;processing;изображение;компресиране;"
-"пикселно изкуство;полутониране;обработване"
+"image;compression;pixelart;dither;processing;изображение;компресиране;пикселно "
+"изкуство;полутониране;обработване"
 
-#: data/ui/dither_page.blp:22 data/ui/dither_page.blp:60
+#: data/io.github.tfuxu.Halftone.desktop.in.in:19
+msgid "New Window"
+msgstr ""
+
+#: data/ui/dither_page.blp:27 data/ui/dither_page.blp:87
 #: data/ui/error_page.blp:14
 msgid "Open Image (Ctrl+O)"
 msgstr "Отваряне на изображението (Ctrl+O)"
 
-#: data/ui/dither_page.blp:29 data/ui/dither_page.blp:67
+#: data/ui/dither_page.blp:32
+#, fuzzy
+msgid "_Open"
+msgstr "Отваряне на изображението"
+
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:101
 msgid "Main Menu"
 msgstr "Основно меню"
 
-#: data/ui/dither_page.blp:107
-msgid "Toggle Sidebar"
-msgstr "Превключване на страничната лента"
-
-#: data/ui/dither_page.blp:132
-msgid "Zoom Out"
-msgstr ""
+#: data/ui/dither_page.blp:94
+#, fuzzy
+msgid "Save Image (Ctrl+S)"
+msgstr "Отваряне на изображението (Ctrl+O)"
 
 #: data/ui/dither_page.blp:144
-msgid "Zoom In"
-msgstr ""
-
-#: data/ui/dither_page.blp:178
-#, fuzzy
-msgid "Dithering your image…"
-msgstr "Полутонирайте вашите изображения"
-
-#: data/ui/dither_page.blp:216
-msgid "Toggle Bottom Sheet"
-msgstr "Превключване на долния лист"
-
-#: data/ui/dither_page.blp:230
-msgid "Options"
-msgstr "Настройки"
-
-#: data/ui/dither_page.blp:237 data/ui/dither_page.blp:326
-msgid "Explanation"
-msgstr "Обяснение"
-
-#: data/ui/dither_page.blp:245
-msgid "Dither Algorithm"
-msgstr "Алгоритъм на полутониране"
-
-#: data/ui/dither_page.blp:257
-msgid "Color Amount"
-msgstr "Количество на цвета"
-
-#: data/ui/dither_page.blp:268
-msgid "Convert To"
-msgstr "Преобразуване към"
-
-#: data/ui/dither_page.blp:274
-msgid "Adjustments"
-msgstr "Корекции"
-
-#: data/ui/dither_page.blp:277
-msgid "Brightness"
-msgstr "Яркост"
-
-#: data/ui/dither_page.blp:278 data/ui/dither_page.blp:290
-msgid "Range -100 to 100"
-msgstr "Диапазон -100 до 100"
-
-#: data/ui/dither_page.blp:289
-msgid "Contrast"
-msgstr "Контраст"
-
-#: data/ui/dither_page.blp:302
-msgid "Image Size"
-msgstr "Размер на изображението"
-
-#: data/ui/dither_page.blp:305
-msgid "Width"
-msgstr "Широчина"
-
-#: data/ui/dither_page.blp:306 data/ui/dither_page.blp:338
-msgid "In pixels"
-msgstr "В пиксели"
-
-#: data/ui/dither_page.blp:319
-msgid "Keep aspect ratio"
-msgstr "Запазване на пропорцията"
-
-#: data/ui/dither_page.blp:337
-msgid "Height"
-msgstr "Вискочина"
-
-#: data/ui/dither_page.blp:354
 #, fuzzy
 msgid "_Save Image"
 msgstr "Запазване на изображението"
 
-#: data/ui/dither_page.blp:381
-msgid ""
-"To learn more about individual options, go to the <a href=\"https://github."
-"com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
-msgstr ""
-"За да научите повече за отделните настройки, посетете страницата в <a "
-"href=\"https://github.com/tfuxu/Halftone/wiki/Options\">Уикипедия</a>"
-
-#: data/ui/dither_page.blp:394
-msgid ""
-"This option allows you to preserve original aspect ratio when resizing an "
-"image."
-msgstr ""
-"Тази настройка ви позволява да запазите оригиналната пропорция на страните "
-"при преоразмеряване на изображението."
-
-#: data/ui/dither_page.blp:399
+#: data/ui/dither_page.blp:170
 msgid "Save an Image in…"
 msgstr "Запазване на изображението в…"
 
-#: data/ui/dither_page.blp:404 data/ui/main_window.blp:124
+#: data/ui/dither_page.blp:175 data/ui/main_window.blp:123
 msgid "All files"
 msgstr "Всички файлове"
 
-#: data/ui/dither_page.blp:416
+#: data/ui/dither_page.blp:183
 msgid "Keyboard Shortcuts"
 msgstr "Клавишни комбинации"
 
-#: data/ui/dither_page.blp:421 data/ui/error_page.blp:22
-#: data/ui/main_window.blp:28 data/ui/main_window.blp:79
+#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "Относно „Halftone“"
 
@@ -204,12 +125,12 @@ msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "Запазване на изображението"
 
-#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:67
+#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:72
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr ""
 
-#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:72
+#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:77
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr ""
@@ -237,69 +158,171 @@ msgstr "Показване на клавишните комбинации"
 
 #: data/ui/help_overlay.blp:58
 msgctxt "shortcut window"
+msgid "Close Window"
+msgstr ""
+
+#: data/ui/help_overlay.blp:63
+msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Спиране на програмата"
 
-#: data/ui/help_overlay.blp:64
+#: data/ui/help_overlay.blp:69
 msgctxt "shortcut window"
 msgid "Gestures"
 msgstr ""
 
-#: data/ui/main_window.blp:52
+#: data/ui/image_options_view.blp:18
+msgid "Options"
+msgstr "Настройки"
+
+#: data/ui/image_options_view.blp:25 data/ui/image_options_view.blp:114
+msgid "Explanation"
+msgstr "Обяснение"
+
+#: data/ui/image_options_view.blp:33
+msgid "Dither Algorithm"
+msgstr "Алгоритъм на полутониране"
+
+#: data/ui/image_options_view.blp:45
+msgid "Color Amount"
+msgstr "Количество на цвета"
+
+#: data/ui/image_options_view.blp:56
+msgid "Convert To"
+msgstr "Преобразуване към"
+
+#: data/ui/image_options_view.blp:62
+msgid "Adjustments"
+msgstr "Корекции"
+
+#: data/ui/image_options_view.blp:65
+msgid "Brightness"
+msgstr "Яркост"
+
+#: data/ui/image_options_view.blp:66 data/ui/image_options_view.blp:78
+msgid "Range -100 to 100"
+msgstr "Диапазон -100 до 100"
+
+#: data/ui/image_options_view.blp:77
+msgid "Contrast"
+msgstr "Контраст"
+
+#: data/ui/image_options_view.blp:90
+msgid "Image Size"
+msgstr "Размер на изображението"
+
+#: data/ui/image_options_view.blp:93
+msgid "Width"
+msgstr "Широчина"
+
+#: data/ui/image_options_view.blp:94 data/ui/image_options_view.blp:126
+msgid "In pixels"
+msgstr "В пиксели"
+
+#: data/ui/image_options_view.blp:107
+msgid "Keep aspect ratio"
+msgstr "Запазване на пропорцията"
+
+#: data/ui/image_options_view.blp:125
+msgid "Height"
+msgstr "Вискочина"
+
+#: data/ui/image_options_view.blp:152
+msgid ""
+"To learn more about individual options, go to the <a href=\"https://"
+"github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
+msgstr ""
+"За да научите повече за отделните настройки, посетете страницата в <a "
+"href=\"https://github.com/tfuxu/Halftone/wiki/Options\">Уикипедия</a>"
+
+#: data/ui/image_options_view.blp:167
+msgid ""
+"This option allows you to preserve original aspect ratio when resizing an "
+"image."
+msgstr ""
+"Тази настройка ви позволява да запазите оригиналната пропорция на страните "
+"при преоразмеряване на изображението."
+
+#: data/ui/image_view.blp:32
+#, fuzzy
+msgid "Dithering your image…"
+msgstr "Полутонирайте вашите изображения"
+
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+msgid "Toggle Sidebar"
+msgstr "Превключване на страничната лента"
+
+#: data/ui/image_view.blp:84
+msgid "Zoom Out"
+msgstr ""
+
+#: data/ui/image_view.blp:94
+msgid "Zoom In"
+msgstr ""
+
+#: data/ui/main_window.blp:51
 #, fuzzy
 msgid "_Open Image"
 msgstr "Отваряне на изображението"
 
-#: data/ui/main_window.blp:107
+#: data/ui/main_window.blp:106
 msgid "Drop Here to Load Image"
 msgstr "Пуснете тук, за да заредите изображение"
 
-#: data/ui/main_window.blp:119
+#: data/ui/main_window.blp:118
 msgid "Select an Image"
 msgstr "Избиране на изображение"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:36
+#: halftone/views/about_window.py:40
 msgid "translator-credits"
 msgstr "twlvnn <kraft_werk@tutanota.com>"
 
-#: halftone/views/dither_page.py:267
-msgid "Image dithered successfully!"
-msgstr "Успешно полутониране на изображението!"
-
-#: halftone/views/dither_page.py:268
-msgid "Open Image"
-msgstr "Отваряне на изображението"
-
-#: halftone/views/dither_page.py:483
+#: halftone/views/dither_page.py:129
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:674
+#: halftone/views/dither_page.py:153
+msgid "Toggle Bottom Sheet"
+msgstr "Превключване на долния лист"
+
+#: halftone/views/dither_page.py:266
+msgid "Image dithered successfully!"
+msgstr "Успешно полутониране на изображението!"
+
+#: halftone/views/dither_page.py:267
+msgid "Open Image"
+msgstr "Отваряне на изображението"
+
+#: halftone/views/dither_page.py:349
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Неуспешно зареждане на предварителен преглед на изображение"
 
-#: halftone/views/error_page.py:37
+#: halftone/views/error_page.py:45
 msgid "Copied logs to clipboard"
 msgstr "Копирани журнали в буфера за обмен"
 
-#: halftone/views/main_window.py:107
+#: halftone/views/main_window.py:132
 msgid "Supported image formats"
 msgstr "Поддържани формати на изображенията"
 
-#: halftone/views/main_window.py:134
-msgid "Failed to load an image. Check logs for more information"
-msgstr ""
-
-#: halftone/views/main_window.py:155
+#: halftone/views/main_window.py:170
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/main.py:96 halftone/main.py:110
+#: halftone/views/main_window.py:249 halftone/views/main_window.py:295
+msgid "Failed to load an image. Check logs for more information"
+msgstr ""
+
+#: halftone/views/main_window.py:321
 #, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "Неуспешно зареждане на предварителен преглед на изображение"
+
+#: halftone/main.py:63
+msgid "Open a new window"
+msgstr ""
 
 #~ msgid "Open in External Image Viewer"
 #~ msgstr "Отваряне във външна програма за преглед на изображения"
