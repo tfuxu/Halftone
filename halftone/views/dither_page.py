@@ -55,8 +55,8 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.input_image_path: str = ""
         self.preview_image_path: str = ""
 
-        self.original_texture: Gdk.Texture = None
-        self.updated_texture: Gdk.Texture = None
+        self.original_texture: Gdk.Texture
+        self.updated_texture: Gdk.Texture | None = None
 
         self.output_options: OutputOptions = OutputOptions()
 

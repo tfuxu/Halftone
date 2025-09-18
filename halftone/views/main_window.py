@@ -45,9 +45,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.add_controller(self.drop_target)
 
-        self.error_page: Adw.Bin = HalftoneErrorPage(self)
-        self.dither_page: Adw.BreakpointBin = HalftoneDitherPage(self)
-        self.report_page: Gtk.Box = HalftoneReportPage(self)
+        self.error_page = HalftoneErrorPage(self)
+        self.dither_page = HalftoneDitherPage(self)
+        self.report_page = HalftoneReportPage(self)
 
         self._setup_actions()
         self._setup_signals()

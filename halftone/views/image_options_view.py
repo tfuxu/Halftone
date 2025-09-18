@@ -41,7 +41,7 @@ class HalftoneImageOptionsView(Adw.Bin):
         self.app: Adw.Application = self.parent.get_application()
         self.win: Adw.ApplicationWindow = self.app.get_active_window()
 
-        self.original_texture: Gdk.Texture = None
+        self.original_texture: Gdk.Texture | None = None
 
         self.output_options = output_options
         self.keep_aspect_ratio: bool = True

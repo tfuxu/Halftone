@@ -53,7 +53,7 @@ class HalftoneImageView(Adw.Bin):
     def _setup_gestures(self) -> None:
         # Drag for moving image around
         drag_gesture = Gtk.GestureDrag.new()
-        drag_gesture.set_button(0)
+        drag_gesture.set_button(0)  # Listen to any button
 
         drag_gesture.connect("drag-begin", self.on_drag_begin)
         drag_gesture.connect("drag-update", self.on_drag_update)
