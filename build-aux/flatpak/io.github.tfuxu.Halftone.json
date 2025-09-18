@@ -1,7 +1,7 @@
 {
   "id": "io.github.tfuxu.Halftone",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
   "command": "halftone",
   "finish-args": [
@@ -32,8 +32,8 @@
       "sources": [
         {
           "type": "git",
-          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-          "tag": "v0.16.0"
+          "url": "https://gitlab.gnome.org/GNOME/blueprint-compiler",
+          "tag": "v0.18.0"
         }
       ]
     },
