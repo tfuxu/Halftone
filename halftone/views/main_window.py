@@ -234,8 +234,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         return action
 
     def load_image(self, file: Gio.File) -> None:
-        self.show_loading_page()
-
         try:
             self.dither_page.load_preview_image(file)
         except (GLib.Error, TypeError) as e:
