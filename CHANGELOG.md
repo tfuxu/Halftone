@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2025-09-19
+
+### Added
+
+- External image opening, supports opening multiple images at once (via file manager)
+- Multiple window support (via desktop action or CLI)
+- Animated revealer to the bottom sheet
+- Retention for image scale and scale filter in currently opened file
+- `--new-window` custom command line option
+- Fallback for output format suffix edge case
+- Initial Occitan (oc) translation
+
+### Changed
+
+- Moved desktop/mobile layouts to the `Adw.MultiLayoutView` structure
+- Decoupled window actions from the main application instance
+- Decoupled image options view from the dither page
+- Moved image save button in mobile view from toolbar to the headerbar
+- Updated image controls overlay design to be in par with Loupe
+- Uppercased the file extensions shown in "Convert To" combo row
+- Updated default window width and height (now the width is 800 and height is 600)
+- Replaced `arrow-into-box-symbolic` with `folder-open-symbolic` as a "open image" icon
+- Refactored a big chunk of the codebase
+- Made `HalftoneImage` embeddable in UI markups
+- Changed build type in Flatpak manifest to `debug`
+- Replaced deprecated `app-id` parameter with `id` in Flatpak manifest
+- Updated Flatpak dependencies
+- Updated Italian (it) translation
+
+### Fixed
+
+- Show correct logo in welcome page when building with `debug` profile
+
+### Removed
+
+- `/tmp` system directory access in Flatpak manifest
+
 ## [0.7.0] - 2025-05-19
 
 ### Added

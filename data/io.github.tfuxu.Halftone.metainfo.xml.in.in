@@ -66,6 +66,21 @@
   </custom>
 
   <releases>
+    <release version="0.7.1" date="2025-09-19">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Halftone now supports externally opening multiple images via file managers</li>
+          <li>Halftone now supports opening multiple application instances</li>
+          <li>Most Flatpak app stores should now display Halftone as a safe app!</li>
+          <li>Image previewer should now retain current zoom level after changing image properties</li>
+          <li>The bottom sheet in mobile view is now animated</li>
+          <li>Updated design of the controls in image previewer</li>
+          <li>Added translation for Occitan</li>
+          <li>Updated translation for Italian</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.7.0" date="2025-05-19">
       <description translate="no">
         <p>
