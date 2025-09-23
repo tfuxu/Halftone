@@ -4,7 +4,7 @@
 from collections.abc import Callable
 from pathlib import Path
 
-from gi.repository import Adw, GLib, Gdk, Gio, Gtk
+from gi.repository import Adw, Gly, GlyGtk4, GLib, Gdk, Gio, Gtk
 from wand.exceptions import BaseError, BaseFatalError
 
 from halftone.backend.logger import Logger
@@ -276,35 +276,43 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self._set_texture(path)
 
     def _set_texture(self, path: str, as_original: bool = False) -> None:
+        image_widget = self.image_view.image_widget
+
+        file = Gio.File.new_for_path(path)
+        loader = Gly.Loader.new(file)
+
         try:
-            texture = Gdk.Texture.new_from_filename(path)
+            image = loader.load()  # TODO: Replace with async variant
         except GLib.Error as e:
             logging.traceback_error(
-                "Failed to construct new Gdk.Texture from path.",
+                "Failed to load an image using Glycin.",
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
-        except TypeError as e:
+
+        try:
+            frame = image.next_frame() # TODO: Replace with async variant
+        except GLib.Error as e:
             logging.traceback_error(
-                "Missing Gdk.Texture decoding plugin for requested image.",
+                "Failed to request the next frame of the Glycin image.",
                 exception=e, show_exception=True)
             self.win.latest_traceback = logging.get_traceback(e)
             raise
+
+        texture = GlyGtk4.frame_get_texture(frame)
+
+        current_scale = image_widget.scale
+        current_scaling_filter = image_widget.scaling_filter
+
+        image_widget.texture = texture
+
+        if as_original:
+            self.original_texture = texture
+            self.image_options_view.original_texture = texture
         else:
-            image_widget = self.image_view.image_widget
-
-            current_scale = image_widget.scale
-            current_scaling_filter = image_widget.scaling_filter
-
-            image_widget.texture = texture
-
-            if as_original:
-                self.original_texture = texture
-                self.image_options_view.original_texture = texture
-            else:
-                self.updated_texture = texture
-                image_widget.scale = current_scale
-                image_widget.scaling_filter = current_scaling_filter
+            self.updated_texture = texture
+            image_widget.scale = current_scale
+            image_widget.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
         selected_format = self.image_options_view.export_format_combo.props.selected
