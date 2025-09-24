@@ -40,7 +40,7 @@ class HalftoneImageMagick:
 
             # TODO: Remove `colorspace_type` parameter on Wand 0.7.0 release.
             # See: https://github.com/emcconville/wand/issues/644
-            with img.clone() as clone:
+            with img.convert("PNG").clone() as clone:
                 clone.resize(width=new_width, height=new_height)
                 clone.brightness_contrast(float(brightness), float(contrast))
                 # Available error correction dither algorithms: floyd_steinberg, riemersma (More info: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.DITHER_METHODS)
