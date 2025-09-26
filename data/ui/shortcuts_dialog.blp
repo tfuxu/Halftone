@@ -1,0 +1,62 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ShortcutsDialog shortcuts_dialog {
+  Adw.ShortcutsSection {
+    title: C_("shortcut window", "Image");
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Open Image");
+      action-name: "win.open-image";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Save Image");
+      action-name: "win.save-image";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Zoom In");
+      accelerator: "<Ctrl>plus plus";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Zoom Out");
+      accelerator: "<Ctrl>minus minus";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: C_("shortcut window", "General");
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Toggle Utility Pane");
+      action-name: "win.toggle-sheet";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Show Main Menu");
+      accelerator: "F10";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Show Shortcuts");
+      action-name: "app.shortcuts";
+    }
+
+    //Adw.ShortcutsItem {
+    //  title: C_("shortcut window", "Preferences");
+    //  action-name: "app.preferences";
+    //}
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Close Window");
+      action-name: "window.close";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Quit");
+      action-name: "app.quit";
+    }
+  }
+}
