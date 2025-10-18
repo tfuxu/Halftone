@@ -1,29 +1,28 @@
 # Turkish translation for halftone
-# Copyright (C) 2023-2024 halftone's COPYRIGHT HOLDER
+# Copyright (C) 2023-2025 halftone's COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
 #
-# Sabri Ünal <libreajans@gmail.com>, 2023-2024.
+# Sabri Ünal <yakushabb@gmail.com>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-19 00:36+0200\n"
-"PO-Revision-Date: 2024-01-12 01:58+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2025-10-19 01:41+0300\n"
+"PO-Revision-Date: 2025-10-19 01:52+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:39
-#, fuzzy
 msgid "Dither your images"
-msgstr "Titreme Algoritması"
+msgstr "Görüntülerinizi titretin"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:17
 msgid ""
@@ -47,7 +46,7 @@ msgstr "resim;görüntü;sıkıştırma;piksel sanatı;titreme;işleme;"
 
 #: data/io.github.tfuxu.Halftone.desktop.in.in:19
 msgid "New Window"
-msgstr ""
+msgstr "Yeni Pencere"
 
 #: data/ui/dither_page.blp:27 data/ui/dither_page.blp:87
 #: data/ui/error_page.blp:14
@@ -55,23 +54,20 @@ msgid "Open Image (Ctrl+O)"
 msgstr "Görüntü Aç (Ctrl+O)"
 
 #: data/ui/dither_page.blp:32
-#, fuzzy
 msgid "_Open"
-msgstr "Görüntü Aç"
+msgstr "_Aç"
 
 #: data/ui/dither_page.blp:39 data/ui/dither_page.blp:101
 msgid "Main Menu"
 msgstr "Ana Menü"
 
 #: data/ui/dither_page.blp:94
-#, fuzzy
 msgid "Save Image (Ctrl+S)"
-msgstr "Görüntü Aç (Ctrl+O)"
+msgstr "Görüntüyü Kaydet (Ctrl+S)"
 
 #: data/ui/dither_page.blp:144
-#, fuzzy
 msgid "_Save Image"
-msgstr "Görüntüyü Kaydet"
+msgstr "Görüntüyü _Kaydet"
 
 #: data/ui/dither_page.blp:170
 msgid "Save an Image in…"
@@ -103,70 +99,63 @@ msgstr ""
 "kopyalayın ve sorunu raporlayın."
 
 #: data/ui/error_page.blp:44
-#, fuzzy
 msgid "_Copy Logs"
-msgstr "Günlükleri Kopyala"
+msgstr "Günlükleri _Kopyala"
 
-#: data/ui/help_overlay.blp:11
+#: data/ui/shortcuts_dialog.blp:6
 msgctxt "shortcut window"
 msgid "Image"
 msgstr "Görüntü"
 
-#: data/ui/help_overlay.blp:14
+#: data/ui/shortcuts_dialog.blp:9
 msgctxt "shortcut window"
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
-#: data/ui/help_overlay.blp:19
+#: data/ui/shortcuts_dialog.blp:14
 msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "Görüntüyü Kaydet"
 
-#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:72
+#: data/ui/shortcuts_dialog.blp:19
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr ""
+msgstr "Yankınlaştır"
 
-#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:77
+#: data/ui/shortcuts_dialog.blp:24
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr ""
+msgstr "Uzaklaştır"
 
-#: data/ui/help_overlay.blp:35
+#: data/ui/shortcuts_dialog.blp:30
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Genel"
 
-#: data/ui/help_overlay.blp:38
+#: data/ui/shortcuts_dialog.blp:33
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr "Araç Bölmesini Aç/Kapat"
 
-#: data/ui/help_overlay.blp:43
-#, fuzzy
+#: data/ui/shortcuts_dialog.blp:38
 msgctxt "shortcut window"
 msgid "Show Main Menu"
-msgstr "Ana Menü"
+msgstr "Ana Menüyü Göster"
 
-#: data/ui/help_overlay.blp:48
+#: data/ui/shortcuts_dialog.blp:43
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Kısayolları Göster"
 
-#: data/ui/help_overlay.blp:58
+#: data/ui/shortcuts_dialog.blp:53
 msgctxt "shortcut window"
 msgid "Close Window"
-msgstr ""
+msgstr "Pencereyi Kapat"
 
-#: data/ui/help_overlay.blp:63
+#: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Çık"
-
-#: data/ui/help_overlay.blp:69
-msgctxt "shortcut window"
-msgid "Gestures"
-msgstr ""
 
 #: data/ui/image_options_view.blp:18
 msgid "Options"
@@ -241,9 +230,8 @@ msgstr ""
 "korumanızı sağlar."
 
 #: data/ui/image_view.blp:32
-#, fuzzy
 msgid "Dithering your image…"
-msgstr "Titreme Algoritması"
+msgstr "Görüntünüzü titretin…"
 
 #: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
 msgid "Toggle Sidebar"
@@ -251,16 +239,15 @@ msgstr "Kenar Çubuğunu Aç/Kapat"
 
 #: data/ui/image_view.blp:84
 msgid "Zoom Out"
-msgstr ""
+msgstr "Uzaklaştır"
 
 #: data/ui/image_view.blp:94
 msgid "Zoom In"
-msgstr ""
+msgstr "Yankınlaştır"
 
 #: data/ui/main_window.blp:51
-#, fuzzy
 msgid "_Open Image"
-msgstr "Görüntü Aç"
+msgstr "Görüntü _Aç"
 
 #: data/ui/main_window.blp:106
 msgid "Drop Here to Load Image"
@@ -273,11 +260,11 @@ msgstr "Görüntü Seç"
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
 #: halftone/views/about_window.py:40
 msgid "translator-credits"
-msgstr "Sabri Ünal <libreajans@gmail.com>"
+msgstr "Sabri Ünal <yakushabb@gmail.com>"
 
 #: halftone/views/dither_page.py:129
 msgid "Failed to save an image. Check logs for more information"
-msgstr ""
+msgstr "Görüntü kaydedilemedi. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/views/dither_page.py:153
 msgid "Toggle Bottom Sheet"
@@ -291,10 +278,9 @@ msgstr "Görüntü başarıyla titretildi!"
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
-#: halftone/views/dither_page.py:349
-#, fuzzy
+#: halftone/views/dither_page.py:357
 msgid "Failed to load preview image. Check logs for more information"
-msgstr "Görüntü ön izlemesi yüklenemedi"
+msgstr "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/views/error_page.py:45
 msgid "Copied logs to clipboard"
@@ -306,26 +292,16 @@ msgstr "Desteklenen görüntü biçimleri"
 
 #: halftone/views/main_window.py:170
 msgid "Failed to open an image. Check logs for more information"
-msgstr ""
+msgstr "Görüntü açılamadı. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/views/main_window.py:249 halftone/views/main_window.py:295
 msgid "Failed to load an image. Check logs for more information"
-msgstr ""
+msgstr "Görüntü yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/views/main_window.py:321
-#, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
-msgstr "Görüntü ön izlemesi yüklenemedi"
+msgstr "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/main.py:63
 msgid "Open a new window"
-msgstr ""
-
-#~ msgid "Open in External Image Viewer"
-#~ msgstr "Harici Görüntü Görüntüleyicide Aç"
-
-#~ msgid "Failed to load an image"
-#~ msgstr "Görüntü yüklenemedi"
-
-#~ msgid "Give your images that pixel art-like style"
-#~ msgstr "Görüntülerinize piksel benzeri stil ekleyin"
+msgstr "Yeni pencere aç"
