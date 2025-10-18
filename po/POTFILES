@@ -3,7 +3,7 @@ data/io.github.tfuxu.Halftone.desktop.in.in
 data/io.github.tfuxu.Halftone.gschema.xml.in
 data/ui/dither_page.blp
 data/ui/error_page.blp
-data/ui/help_overlay.blp
+data/ui/shortcuts_dialog.blp
 data/ui/image_options_view.blp
 data/ui/image_view.blp
 data/ui/main_window.blp
