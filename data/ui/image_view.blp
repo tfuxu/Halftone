@@ -104,15 +104,11 @@ template $HalftoneImageView : Adw.Bin {
         ]
       }
 
-      child: Gtk.ScrolledWindow viewer_scrolled_window {
+      child: Gtk.ScrolledWindow scrolled_window {
         vexpand: true;
         hexpand: true;
 
-        Gtk.Viewport image_viewport {
-          scroll-to-focus: false;
-
-          child: $HalftoneImage image_widget {};
-        }
+        child: $HalftoneImage image_widget {};
       };
     };
   };
