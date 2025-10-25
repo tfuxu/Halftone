@@ -89,11 +89,7 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
 
     @zoom.setter
     def set_zoom(self, zoom: float) -> None:
-        logging.debug(f"Setting zoom level to: {zoom}")
-        self._zoom = zoom
-
-        self.queue_allocate()
-        self.queue_draw()
+        self._set_zoom_aiming(zoom, self.pointer_position)
 
     @GObject.Property(type=bool, default=True)
     def best_fit(self) -> bool:
@@ -411,7 +407,9 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         borders = self._get_borders()
         zoom_ratio = self.zoom / zoom
 
-        self.zoom = zoom
+        logging.debug(f"Setting zoom level to: {zoom}")
+
+        self._zoom = zoom
         self._configure_adjustments()
 
         # Aim at the viewport center if `position` is None
@@ -431,6 +429,9 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         v_value = max((y + vadjustment.get_value() - borders[1]) / zoom_ratio - y, 0)
         vadjustment.set_value(v_value)
 
+        self.notify("zoom")
+
+        self.queue_allocate()
         self.queue_draw()
 
     def _configure_adjustments(self) -> None:
