@@ -74,6 +74,7 @@ class HalftoneImageView(Adw.Bin):
         """ `zoom.*` action group """
 
         self.install_action("zoom.in", None, self.image_widget.on_zoom)
+        self.install_action("zoom.best-fit", None, self.image_widget.on_zoom)
         self.install_action("zoom.out", None, self.image_widget.on_zoom)
 
         # Add bindings for `zoom.*` action group
@@ -87,6 +88,12 @@ class HalftoneImageView(Adw.Bin):
             (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
         ]
         self._add_shortcuts("zoom.in", zoom_in_shortcuts)
+
+        zoom_reset_shortcuts = [
+            (Gdk.KEY_0, []),
+            (Gdk.KEY_0, [Gdk.ModifierType.CONTROL_MASK]),
+        ]
+        self._add_shortcuts("zoom.best-fit", zoom_reset_shortcuts)
 
         zoom_out_shortcuts = [
             (Gdk.KEY_minus, []),
@@ -195,6 +202,7 @@ class HalftoneImageView(Adw.Bin):
             self.image_widget.scaling_filter = linear
 
         self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
+        self.action_set_enabled("zoom.best-fit", self.image_widget.can_reset_zoom)
         self.action_set_enabled("zoom.out", self.image_widget.can_zoom_out)
 
     """

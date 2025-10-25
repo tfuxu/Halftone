@@ -89,6 +89,16 @@ template $HalftoneImageView : Adw.Bin {
           ]
         }
 
+        Gtk.Button zoom_reset_button {
+          icon-name: "zoom-original-symbolic";
+          tooltip-text: _("Reset Zoom");
+          action-name: "zoom.best-fit";
+
+          styles [
+            "flat"
+          ]
+        }
+
         Gtk.Button zoom_in_button {
           icon-name: "zoom-in-symbolic";
           tooltip-text: _("Zoom In");
