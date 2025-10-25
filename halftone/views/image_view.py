@@ -192,14 +192,13 @@ class HalftoneImageView(Adw.Bin):
         self.image_widget.zoom = self.zoom_target * zoom
 
     def on_zoom_changed(self, *args: Any) -> None:
-        current_filter = self.image_widget.scaling_filter
         nearest = Gsk.ScalingFilter.NEAREST
-        linear = Gsk.ScalingFilter.LINEAR
+        trilinear = Gsk.ScalingFilter.TRILINEAR
 
-        if self.image_widget.zoom >= 1.0 and current_filter is not nearest:
+        if self.image_widget.zoom <= 1.0:
+            self.image_widget.scaling_filter = trilinear
+        else:
             self.image_widget.scaling_filter = nearest
-        elif self.image_widget.zoom < 1.0 and current_filter is not linear:
-            self.image_widget.scaling_filter = linear
 
         self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
         self.action_set_enabled("zoom.best-fit", self.image_widget.can_reset_zoom)
