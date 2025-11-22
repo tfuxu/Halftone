@@ -17,18 +17,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
       Adw.PreferencesGroup options_group {
         title: _("Options");
 
-        [header-suffix]
-        Gtk.MenuButton options_explanation_button {
-          valign: center;
-          popover: options_explanation_popover;
-          icon-name: "help-about-symbolic";
-          tooltip-text: _("Explanation");
-
-          styles [
-            "flat"
-          ]
-        }
-
         Adw.ComboRow dither_algorithms_combo {
           title: _("Dither Algorithm");
           model: Gtk.StringList algorithms_stringlist {
@@ -55,6 +43,18 @@ template $HalftoneImageOptionsView : Adw.Bin {
         Adw.ComboRow export_format_combo {
           title: _("Convert To");
           model: Gtk.StringList image_formats_stringlist {};
+
+          [suffix]
+          Gtk.MenuButton convert_to_explanation_button {
+            valign: center;
+            popover: convert_to_explanation_popover;
+            icon-name: "help-about-symbolic";
+            tooltip-text: _("Explanation");
+
+            styles [
+              "flat"
+            ]
+          }
         }
       }
 
@@ -137,22 +137,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
   };
 }
 
-Gtk.Popover options_explanation_popover {
-  Gtk.Label options_explanation_label {
-    max-width-chars: 30;
-    use-markup: true;
-    justify: center;
-    wrap: true;
-
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    label: _("To learn more about individual options, go to the <a href=\"https://github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>.");
-  }
-}
-
 Gtk.Popover aspect_ratio_explanation_popover {
   Gtk.Label aspect_ratio_explanation_label {
     max-width-chars: 30;
@@ -165,5 +149,20 @@ Gtk.Popover aspect_ratio_explanation_popover {
     margin-end: 6;
 
     label: _("This option allows you to preserve original aspect ratio when resizing an image.");
+  }
+}
+
+Gtk.Popover convert_to_explanation_popover {
+  Gtk.Label convert_to_explanation_label {
+    max-width-chars: 30;
+    justify: center;
+    wrap: true;
+
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    label: _("Useful if the original image was saved as JPEG, because dithered images tend to increase in size when saved in JPEG, rather than formats that use lossless or hybrid compression techniques.");
   }
 }
