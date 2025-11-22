@@ -36,6 +36,9 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
     # Current pointer position, needed for aimed zooming
     pointer_position: tuple[float, float] | None = None
 
+    # Stores current widget dimensions, used for automatic best-fit
+    widget_dimensions: tuple[int, int] = (0, 0)
+
     def __init__(
         self,
         texture: Gdk.Texture | None = None,
@@ -77,9 +80,12 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         self._texture = texture
         self._zoom = 1.0
         self._scaling_filter = Gsk.ScalingFilter.LINEAR
+        self._best_fit = True
+        self.widget_dimensions = (0, 0)
 
         self.notify("zoom")
         self.notify("scaling_filter")
+
         self.queue_allocate()
 
     # TODO: Check if not having a minimum value can create issues
@@ -247,6 +253,12 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         return (minimum, natural, baseline, baseline)
 
     def do_size_allocate(self, width: int, height: int, baseline: int) -> None:
+        if self.best_fit:
+            # Ensure there is an actual size change
+            if self.widget_dimensions != (width, height):
+                self._configure_best_fit()
+
+        self.widget_dimensions = width, height
         self._configure_adjustments()
 
     """
@@ -287,7 +299,6 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
             case "zoom.in":
                 zoom = self.zoom + 0.1
             case "zoom.out":
-                #zoom = max(self._get_best_fit_zoom_level(), self.zoom - 0.1)
                 zoom = self.zoom - 0.1
             case "zoom.best-fit":
                 zoom = self._get_best_fit_zoom_level()
@@ -337,7 +348,6 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         """
 
         zoom = self.zoom - 0.1
-        #zoom = max(self._get_best_fit_zoom_level(), self.zoom - 0.1)
         self._set_zoom_aiming(zoom, self.pointer_position)
 
     def zoom_out_center(self) -> None:
@@ -348,7 +358,6 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         """
 
         zoom = self.zoom - 0.1
-        #zoom = max(self._get_best_fit_zoom_level(), self.zoom - 0.1)
         self._set_zoom_aiming(zoom, None)
 
     def zoom_best_fit(self) -> None:
@@ -408,6 +417,12 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
         zoom_ratio = self.zoom / zoom
 
         logging.debug(f"Setting zoom level to: {zoom}")
+
+        if zoom <= self._get_best_fit_zoom_level():
+            zoom = self._get_best_fit_zoom_level()
+            self.best_fit = True
+        else:
+            self.best_fit = False
 
         self._zoom = zoom
         self._configure_adjustments()
@@ -479,6 +494,17 @@ class HalftoneImage(Gtk.Widget, Gtk.Scrollable):  # pyright: ignore
             # page size
             min(widget_height, content_height)
         )
+
+    def _configure_best_fit(self) -> None:
+        """
+        Sets respective output values if best-fit is active.
+        """
+
+        # Calculate new zoom value for best fit
+        if self.best_fit:
+            best_fit_level = self._get_best_fit_zoom_level()
+            self.zoom = best_fit_level
+            self._configure_adjustments()
 
     def _get_borders(self) -> tuple[float, float]:
         """
