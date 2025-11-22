@@ -100,20 +100,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
           };
           output => $on_image_width_changed();
         }
-
-        // TODO: Remove option completely if there's no user feedback to bring it back
-        Adw.SpinRow image_height_row {
-          visible: false;
-          title: _("Height");
-          subtitle: _("In pixels");
-          adjustment: Gtk.Adjustment image_height_adjustment {
-            lower: 1;
-            upper: 8192;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_image_height_changed();
-        }
       }
     };
   };

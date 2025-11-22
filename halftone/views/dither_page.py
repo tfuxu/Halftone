@@ -324,9 +324,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         return format_string.lower()
 
+    # TODO: Remove this method, as the image_height_row doesn't exist
     def _set_size_spins(self, width: int, height: int) -> None:
         self.image_options_view.image_width_row.set_value(width)
-        self.image_options_view.image_height_row.set_value(height)
 
     def _start_task(self, task: Callable, *args) -> None:
         logging.debug("Starting new async task")

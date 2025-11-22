@@ -19,7 +19,6 @@ class HalftoneImageOptionsView(Adw.Bin):
     dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
 
     image_width_row: Adw.SpinRow = Gtk.Template.Child()
-    image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
     image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
 
@@ -65,7 +64,6 @@ class HalftoneImageOptionsView(Adw.Bin):
         # Workaround: Set default values for SpinRows
         self.color_amount_row.set_value(10)
         self.image_width_row.set_value(1)
-        self.image_height_row.set_value(1)
 
         self._setup_save_formats()
 
@@ -126,19 +124,6 @@ class HalftoneImageOptionsView(Adw.Bin):
 
         if self.original_texture:
             self.update_image_callback(True)
-
-    @Gtk.Template.Callback()
-    def on_image_height_changed(self, widget: Adw.SpinRow) -> None:
-        new_height = int(widget.props.value)
-
-        if new_height == self.output_options.height:
-            return
-
-        self.output_options.height = new_height
-
-        if self.original_texture:
-            if not self.keep_aspect_ratio:
-                self.update_image_callback(True)
 
     def on_dither_algorithm_selected(self, widget: Adw.ComboRow, *args) -> None:
         algorithm_string = self._get_dither_algorithm_selected_string(widget)
