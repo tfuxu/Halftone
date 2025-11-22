@@ -19,7 +19,6 @@ class HalftoneImageOptionsView(Adw.Bin):
     dither_algorithms_combo: Adw.ComboRow = Gtk.Template.Child()
 
     image_width_row: Adw.SpinRow = Gtk.Template.Child()
-    aspect_ratio_toggle: Adw.SwitchRow = Gtk.Template.Child()
     image_height_row: Adw.SpinRow = Gtk.Template.Child()
 
     image_formats_stringlist: Gtk.StringList = Gtk.Template.Child()
@@ -56,9 +55,6 @@ class HalftoneImageOptionsView(Adw.Bin):
     """
 
     def _setup_signals(self) -> None:
-        self.aspect_ratio_toggle.connect("notify::active",
-            self.on_aspect_ratio_toggled)
-
         self.dither_algorithms_combo.connect("notify::selected",
             self.on_dither_algorithm_selected)
 
@@ -70,9 +66,6 @@ class HalftoneImageOptionsView(Adw.Bin):
         self.color_amount_row.set_value(10)
         self.image_width_row.set_value(1)
         self.image_height_row.set_value(1)
-
-        # By default keep image aspect ratio
-        self.aspect_ratio_toggle.set_active(True)
 
         self._setup_save_formats()
 
@@ -132,14 +125,6 @@ class HalftoneImageOptionsView(Adw.Bin):
         self.output_options.width = new_width
 
         if self.original_texture:
-            img_height = self.original_texture.get_height()
-            img_width = self.original_texture.get_width()
-
-            if self.aspect_ratio_toggle.get_active() is True:
-                new_height = calculate_height(img_width, img_height, new_width)
-                self.output_options.height = new_height
-                self.image_height_row.set_value(new_height)
-
             self.update_image_callback(True)
 
     @Gtk.Template.Callback()
@@ -154,15 +139,6 @@ class HalftoneImageOptionsView(Adw.Bin):
         if self.original_texture:
             if not self.keep_aspect_ratio:
                 self.update_image_callback(True)
-
-    def on_aspect_ratio_toggled(self, widget: Adw.SwitchRow, *args) -> None:
-        if widget.props.active is True:
-            self.keep_aspect_ratio = True
-            self.image_height_row.set_sensitive(False)
-
-        if widget.props.active is False:
-            self.keep_aspect_ratio = False
-            self.image_height_row.set_sensitive(True)
 
     def on_dither_algorithm_selected(self, widget: Adw.ComboRow, *args) -> None:
         algorithm_string = self._get_dither_algorithm_selected_string(widget)

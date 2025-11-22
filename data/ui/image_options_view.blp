@@ -102,24 +102,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
         }
 
         // TODO: Remove option completely if there's no user feedback to bring it back
-        Adw.SwitchRow aspect_ratio_toggle {
-          visible: false;
-          title: _("Keep aspect ratio");
-
-          [suffix]
-          Gtk.MenuButton aspect_ratio_button {
-            valign: center;
-            popover: aspect_ratio_explanation_popover;
-            icon-name: "help-about-symbolic";
-            tooltip-text: _("Explanation");
-
-            styles [
-              "flat"
-            ]
-          }
-        }
-
-        // TODO: Remove option completely if there's no user feedback to bring it back
         Adw.SpinRow image_height_row {
           visible: false;
           title: _("Height");
@@ -135,21 +117,6 @@ template $HalftoneImageOptionsView : Adw.Bin {
       }
     };
   };
-}
-
-Gtk.Popover aspect_ratio_explanation_popover {
-  Gtk.Label aspect_ratio_explanation_label {
-    max-width-chars: 30;
-    justify: center;
-    wrap: true;
-
-    margin-top: 6;
-    margin-bottom: 6;
-    margin-start: 6;
-    margin-end: 6;
-
-    label: _("This option allows you to preserve original aspect ratio when resizing an image.");
-  }
 }
 
 Gtk.Popover convert_to_explanation_popover {
