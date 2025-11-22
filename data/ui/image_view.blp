@@ -89,6 +89,16 @@ template $HalftoneImageView : Adw.Bin {
           ]
         }
 
+        Gtk.Button zoom_reset_button {
+          icon-name: "zoom-original-symbolic";
+          tooltip-text: _("Reset Zoom");
+          action-name: "zoom.best-fit";
+
+          styles [
+            "flat"
+          ]
+        }
+
         Gtk.Button zoom_in_button {
           icon-name: "zoom-in-symbolic";
           tooltip-text: _("Zoom In");
@@ -104,15 +114,11 @@ template $HalftoneImageView : Adw.Bin {
         ]
       }
 
-      child: Gtk.ScrolledWindow viewer_scrolled_window {
+      child: Gtk.ScrolledWindow scrolled_window {
         vexpand: true;
         hexpand: true;
 
-        Gtk.Viewport image_viewport {
-          scroll-to-focus: false;
-
-          child: $HalftoneImage image_widget {};
-        }
+        child: $HalftoneImage image_widget {};
       };
     };
   };

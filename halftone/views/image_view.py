@@ -19,15 +19,16 @@ class HalftoneImageView(Adw.Bin):
 
     toggle_sheet_button: Gtk.Button = Gtk.Template.Child()
 
-    viewer_scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
+    scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     image_widget: HalftoneImage = Gtk.Template.Child()
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
-        self.last_x: float = 0.0
-        self.last_y: float = 0.0
+        # Required for calculating delta while moving window around
+        self.last_drag_value: tuple[float, float] | None = None
 
+        # Targeted zoom level, might differ from the actual `zoom`
         self.zoom_target: float = 1.0
 
         self._setup_controllers()
@@ -48,7 +49,7 @@ class HalftoneImageView(Adw.Bin):
         scroll_controller.connect("scroll", self.on_scroll)
         scroll_controller.connect("scroll-end", self.on_scroll_end)
 
-        self.viewer_scrolled_window.add_controller(scroll_controller)
+        self.scrolled_window.add_controller(scroll_controller)
 
     def _setup_gestures(self) -> None:
         # Drag for moving image around
@@ -59,7 +60,7 @@ class HalftoneImageView(Adw.Bin):
         drag_gesture.connect("drag-update", self.on_drag_update)
         drag_gesture.connect("drag-end", self.on_drag_end)
 
-        self.viewer_scrolled_window.add_controller(drag_gesture)
+        self.scrolled_window.add_controller(drag_gesture)
 
         # Zoom using 2-finger pinch/zoom gestures
         zoom_gesture = Gtk.GestureZoom.new()
@@ -67,12 +68,13 @@ class HalftoneImageView(Adw.Bin):
         zoom_gesture.connect("begin", self.on_zoom_begin)
         zoom_gesture.connect("scale-changed", self.on_zoom_scale_changed)
 
-        self.viewer_scrolled_window.add_controller(zoom_gesture)
+        self.scrolled_window.add_controller(zoom_gesture)
 
     def _setup_actions(self) -> None:
         """ `zoom.*` action group """
 
         self.install_action("zoom.in", None, self.image_widget.on_zoom)
+        self.install_action("zoom.best-fit", None, self.image_widget.on_zoom)
         self.install_action("zoom.out", None, self.image_widget.on_zoom)
 
         # Add bindings for `zoom.*` action group
@@ -86,6 +88,12 @@ class HalftoneImageView(Adw.Bin):
             (Gdk.KEY_KP_Add, [Gdk.ModifierType.CONTROL_MASK])
         ]
         self._add_shortcuts("zoom.in", zoom_in_shortcuts)
+
+        zoom_reset_shortcuts = [
+            (Gdk.KEY_0, []),
+            (Gdk.KEY_0, [Gdk.ModifierType.CONTROL_MASK]),
+        ]
+        self._add_shortcuts("zoom.best-fit", zoom_reset_shortcuts)
 
         zoom_out_shortcuts = [
             (Gdk.KEY_minus, []),
@@ -125,9 +133,9 @@ class HalftoneImageView(Adw.Bin):
                 return Gdk.EVENT_PROPAGATE
 
         if y < 0.0:
-            self.image_widget.zoom_in()
+            self.image_widget.zoom_in_cursor()
         else:
-            self.image_widget.zoom_out()
+            self.image_widget.zoom_out_cursor()
 
         # Do not propagate event to scrolled window
         return Gdk.EVENT_STOP
@@ -148,19 +156,29 @@ class HalftoneImageView(Adw.Bin):
             gesture.set_state(Gtk.EventSequenceState.DENIED)
             return
 
-        self.image_widget.set_cursor_from_name("grabbing")
-        self.last_x = 0.0
-        self.last_y = 0.0
+        if self.image_widget.can_zoom_out:
+            self._cancel_deceleration()
+            self.image_widget.set_cursor_from_name("grabbing")
+            self.last_drag_value = (0.0, 0.0)
+        else:
+            # Allow for different events when not scrollable
+            gesture.set_state(Gtk.EventSequenceState.DENIED)
 
     def on_drag_update(self, _gesture: Gtk.GestureDrag, x: float, y: float) -> None:
-        self._update_adjustment(x, y)
-        self.last_x = x
-        self.last_y = y
+        if self.image_widget.can_zoom_out:
+            if self.last_drag_value:
+                self.scrolled_window.get_hadjustment().set_value(
+                    self.scrolled_window.get_hadjustment().get_value() - x + self.last_drag_value[0]
+                )
+                self.scrolled_window.get_vadjustment().set_value(
+                    self.scrolled_window.get_vadjustment().get_value() - y + self.last_drag_value[1]
+                )
+
+            self.last_drag_value = (x, y)
 
     def on_drag_end(self, _gesture: Gtk.GestureDrag, _x: float, _y: float) -> None:
         self.image_widget.set_cursor(None)
-        self.last_x = 0.0
-        self.last_y = 0.0
+        self.last_drag_value = None
 
     def on_zoom_begin(
         self,
@@ -168,22 +186,22 @@ class HalftoneImageView(Adw.Bin):
         _sequence: Gdk.EventSequence
     ) -> None:
         self._cancel_deceleration()
-        self.zoom_target = self.image_widget.scale
+        self.zoom_target = self.image_widget.zoom
 
-    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, scale: float) -> None:
-        self.image_widget.scale = self.zoom_target * scale
+    def on_zoom_scale_changed(self, _gesture: Gtk.GestureZoom, zoom: float) -> None:
+        self.image_widget.zoom = self.zoom_target * zoom
 
     def on_zoom_changed(self, *args: Any) -> None:
-        current_filter = self.image_widget.scaling_filter
         nearest = Gsk.ScalingFilter.NEAREST
-        linear = Gsk.ScalingFilter.LINEAR
+        trilinear = Gsk.ScalingFilter.TRILINEAR
 
-        if self.image_widget.scale >= 1.0 and current_filter is not nearest:
+        if self.image_widget.zoom <= 1.0:
+            self.image_widget.scaling_filter = trilinear
+        else:
             self.image_widget.scaling_filter = nearest
-        elif self.image_widget.scale < 1.0 and current_filter is not linear:
-            self.image_widget.scaling_filter = linear
 
         self.action_set_enabled("zoom.in", self.image_widget.can_zoom_in)
+        self.action_set_enabled("zoom.best-fit", self.image_widget.can_reset_zoom)
         self.action_set_enabled("zoom.out", self.image_widget.can_zoom_out)
 
     """
@@ -191,16 +209,14 @@ class HalftoneImageView(Adw.Bin):
     """
 
     def _cancel_deceleration(self) -> None:
-        self.viewer_scrolled_window.set_kinetic_scrolling(False)
-        self.viewer_scrolled_window.set_kinetic_scrolling(True)
+        """
+        Cancel kinetic scrolling movements, needed for some gestures.
 
-    def _update_adjustment(self, x: float, y: float) -> None:
-        self.viewer_scrolled_window.get_hadjustment().set_value(
-            self.viewer_scrolled_window.get_hadjustment().get_value() - x + self.last_x
-        )
-        self.viewer_scrolled_window.get_vadjustment().set_value(
-            self.viewer_scrolled_window.get_vadjustment().get_value() - y + self.last_y
-        )
+        If deceleration is not canceled, gestures become buggy.
+        """
+
+        self.scrolled_window.set_kinetic_scrolling(False)
+        self.scrolled_window.set_kinetic_scrolling(True)
 
     def _add_shortcuts(
         self,

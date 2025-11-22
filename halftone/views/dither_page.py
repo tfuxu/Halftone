@@ -301,7 +301,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         texture = GlyGtk4.frame_get_texture(frame)
 
-        current_scale = image_widget.scale
+        current_zoom = image_widget.zoom
         current_scaling_filter = image_widget.scaling_filter
 
         image_widget.texture = texture
@@ -311,7 +311,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             self.image_options_view.original_texture = texture
         else:
             self.updated_texture = texture
-            image_widget.scale = current_scale
+            image_widget.zoom = current_zoom
             image_widget.scaling_filter = current_scaling_filter
 
     def _get_output_format_suffix(self) -> str:
