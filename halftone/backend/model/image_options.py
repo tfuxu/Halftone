@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class OutputOptions:
+class ImageOptionsModel:
     width: int = 0
     height: int = 0
     contrast: int = 0

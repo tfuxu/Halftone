@@ -3,7 +3,7 @@
 
 from wand.image import Image
 
-from halftone.backend.model.output_options import OutputOptions
+from halftone.backend.model.image_options import ImageOptionsModel
 from halftone.backend.utils.image import calculate_height
 from halftone.backend.utils.temp import create_temp_file
 
@@ -17,20 +17,22 @@ class HalftoneImageMagick:
     def __init__(self):
         pass
 
-    def dither_image(self, path: str, output_options: OutputOptions) -> str:
+    # TODO: We should somehow decouple every image operation to a seperate function,
+    # so that only the latest change made by user is applied to the image.
+    def dither_image(self, path: str, image_options: ImageOptionsModel) -> str:
         with Image(filename=path) as img:
             img_width = img.size[0]
             img_height = img.size[1]
 
-            if not output_options.width:
-                output_options.width = img_width
+            if not image_options.width:
+                image_options.width = img_width
 
-            width = output_options.width
-            height = output_options.height
-            contrast = output_options.contrast
-            brightness = output_options.brightness
-            color_amount = output_options.color_amount
-            algorithm = output_options.algorithm
+            width = image_options.width
+            height = image_options.height
+            contrast = image_options.contrast
+            brightness = image_options.brightness
+            color_amount = image_options.color_amount
+            algorithm = image_options.algorithm
 
             new_width = int(width)
             if not height:
@@ -64,8 +66,8 @@ class HalftoneImageMagick:
         self,
         blob: bytes,
         output_filename: str,
-        output_options: OutputOptions
+        image_options: ImageOptionsModel
     ) -> None:
         with Image(blob=blob) as img:
-            output_image = img.convert(output_options.output_format)
+            output_image = img.convert(image_options.output_format)
             output_image.save(filename=output_filename)

@@ -9,7 +9,7 @@ from wand.exceptions import BaseError, BaseFatalError
 
 from halftone.backend.logger import Logger
 from halftone.backend.magick import HalftoneImageMagick
-from halftone.backend.model.output_options import OutputOptions
+from halftone.backend.model.image_options import ImageOptionsModel
 from halftone.backend.utils.temp import delete_temp_file
 from halftone.constants import rootdir  # pyright: ignore
 from halftone.utils.killable_thread import KillableThread
@@ -58,11 +58,11 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self.original_texture: Gdk.Texture
         self.updated_texture: Gdk.Texture | None = None
 
-        self.output_options: OutputOptions = OutputOptions()
+        self.image_options: ImageOptionsModel = ImageOptionsModel()
 
         self.image_options_view = HalftoneImageOptionsView(
             self.parent,
-            self.output_options,
+            self.image_options,
             self.start_image_update_task
         )
 
@@ -134,7 +134,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 self._start_task(self._save_image,
                                  self.updated_texture,
                                  file.get_path(),
-                                 self.output_options,
+                                 self.image_options,
                                  self.win.show_dither_page)
 
     def on_successful_image_load(self, *args) -> None:
@@ -187,7 +187,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self._start_task(
             self._update_preview_image,
             self.input_image_path,
-            self.output_options,
+            self.image_options,
             run_delay,
             self.on_successful_image_load
         )
@@ -199,7 +199,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
     def _update_preview_image(
         self,
         path: str,
-        output_options: OutputOptions,
+        image_options: ImageOptionsModel,
         run_delay: bool = True,
         callback: Callable | None = None
     ) -> None:
@@ -213,12 +213,12 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         if self.preview_image_path:
             self.clean_preview_paintable()
 
-        self.output_options = output_options
+        self.image_options = image_options
 
         try:
             self.preview_image_path = HalftoneImageMagick().dither_image(
                 path=path,
-                output_options=self.output_options
+                image_options=self.image_options
             )
         except (BaseError, BaseFatalError) as e:
             logging.traceback_error(
@@ -244,7 +244,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         self,
         paintable: Gdk.Paintable,
         output_path: str,
-        output_options: OutputOptions,
+        image_options: ImageOptionsModel,
         callback: Callable
     ) -> None:
         self.win.show_loading_page()
@@ -254,7 +254,7 @@ class HalftoneDitherPage(Adw.BreakpointBin):
         HalftoneImageMagick().save_image(
             blob=image_bytes.get_data(),
             output_filename=output_path,
-            output_options=output_options
+            image_options=image_options
         )
 
         if callback:
