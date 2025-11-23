@@ -6,7 +6,7 @@ from typing import Literal
 
 from gi.repository import Adw, Gdk, Gio, Gtk
 
-from halftone.backend.model.output_options import OutputOptions
+from halftone.backend.model.image_options import ImageOptionsModel
 from halftone.backend.utils.filetypes import FileType, get_output_formats
 from halftone.backend.utils.image import calculate_height
 from halftone.constants import rootdir  # pyright: ignore
@@ -29,7 +29,7 @@ class HalftoneImageOptionsView(Adw.Bin):
     def __init__(
         self,
         parent: Gtk.Widget,
-        output_options: OutputOptions,
+        image_options: ImageOptionsModel,
         update_image_callback: Callable[[bool], None],
         **kwargs
     ) -> None:
@@ -43,7 +43,7 @@ class HalftoneImageOptionsView(Adw.Bin):
 
         self.original_texture: Gdk.Texture | None = None
 
-        self.output_options = output_options
+        self.image_options = image_options
         self.keep_aspect_ratio: bool = True
 
         self.update_image_callback = update_image_callback
@@ -92,10 +92,10 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_color_amount_changed(self, widget: Adw.SpinRow) -> None:
         new_color_amount = int(widget.props.value)
 
-        if new_color_amount == self.output_options.color_amount:
+        if new_color_amount == self.image_options.color_amount:
             return
 
-        self.output_options.color_amount = new_color_amount
+        self.image_options.color_amount = new_color_amount
 
         if self.original_texture:
             self.update_image_callback(True)
@@ -104,10 +104,10 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_brightness_changed(self, widget: Adw.SpinRow) -> None:
         new_brightness = int(widget.props.value)
 
-        if new_brightness == self.output_options.brightness:
+        if new_brightness == self.image_options.brightness:
             return
 
-        self.output_options.brightness = new_brightness
+        self.image_options.brightness = new_brightness
 
         self.update_image_callback(True)
 
@@ -115,10 +115,10 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_contrast_changed(self, widget: Adw.SpinRow) -> None:
         new_contrast = int(widget.props.value)
 
-        if new_contrast == self.output_options.contrast:
+        if new_contrast == self.image_options.contrast:
             return
 
-        self.output_options.contrast = new_contrast
+        self.image_options.contrast = new_contrast
 
         self.update_image_callback(True)
 
@@ -126,10 +126,10 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_image_width_changed(self, widget: Adw.SpinRow) -> None:
         new_width = int(widget.props.value)
 
-        if new_width == self.output_options.width:
+        if new_width == self.image_options.width:
             return
 
-        self.output_options.width = new_width
+        self.image_options.width = new_width
 
         if self.original_texture:
             img_height = self.original_texture.get_height()
@@ -137,7 +137,7 @@ class HalftoneImageOptionsView(Adw.Bin):
 
             if self.aspect_ratio_toggle.get_active() is True:
                 new_height = calculate_height(img_width, img_height, new_width)
-                self.output_options.height = new_height
+                self.image_options.height = new_height
                 self.image_height_row.set_value(new_height)
 
             self.update_image_callback(True)
@@ -146,10 +146,10 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_image_height_changed(self, widget: Adw.SpinRow) -> None:
         new_height = int(widget.props.value)
 
-        if new_height == self.output_options.height:
+        if new_height == self.image_options.height:
             return
 
-        self.output_options.height = new_height
+        self.image_options.height = new_height
 
         if self.original_texture:
             if not self.keep_aspect_ratio:
@@ -167,7 +167,7 @@ class HalftoneImageOptionsView(Adw.Bin):
     def on_dither_algorithm_selected(self, widget: Adw.ComboRow, *args) -> None:
         algorithm_string = self._get_dither_algorithm_selected_string(widget)
 
-        self.output_options.algorithm = algorithm_string
+        self.image_options.algorithm = algorithm_string
 
         if self.original_texture:
             self.update_image_callback(True)
@@ -180,7 +180,7 @@ class HalftoneImageOptionsView(Adw.Bin):
         if format_string is None:
             format_string = "png"
 
-        self.output_options.output_format = format_string.lower()
+        self.image_options.output_format = format_string.lower()
 
     """
     Private methods

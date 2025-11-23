@@ -4,8 +4,9 @@
 from dataclasses import dataclass
 
 
+# TODO: Rename this class to something more correct, e.g. `ImageOptions`
 @dataclass
-class OutputOptions:
+class ImageOptionsModel:
     width: int = 0
     height: int = 0
     contrast: int = 0
