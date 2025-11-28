@@ -44,7 +44,7 @@ class HalftoneImageMagick:
             # See: https://github.com/emcconville/wand/issues/644
             with img.convert("PNG").clone() as clone:
                 clone.resize(width=new_width, height=new_height)
-                clone.brightness_contrast(float(brightness), float(contrast))
+                clone.brightness_contrast(float(brightness*10), float(contrast*10))
                 # Available error correction dither algorithms: floyd_steinberg, riemersma (More info: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.DITHER_METHODS)
                 # Available ordered dithers: https://docs.wand-py.org/en/0.6.11/wand/image.html#wand.image.BaseImage.ordered_dither
                 if algorithm == "ordered":

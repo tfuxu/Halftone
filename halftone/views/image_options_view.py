@@ -92,8 +92,8 @@ class HalftoneImageOptionsView(Adw.Bin):
             self.update_image_callback(True)
 
     @Gtk.Template.Callback()
-    def on_brightness_changed(self, widget: Adw.SpinRow) -> None:
-        new_brightness = int(widget.props.value)
+    def on_brightness_changed(self, widget: Gtk.Scale) -> None:
+        new_brightness = int(widget.get_value())
 
         if new_brightness == self.image_options.brightness:
             return
@@ -103,8 +103,8 @@ class HalftoneImageOptionsView(Adw.Bin):
         self.update_image_callback(True)
 
     @Gtk.Template.Callback()
-    def on_contrast_changed(self, widget: Adw.SpinRow) -> None:
-        new_contrast = int(widget.props.value)
+    def on_contrast_changed(self, widget: Gtk.Scale) -> None:
+        new_contrast = int(widget.get_value())
 
         if new_contrast == self.image_options.contrast:
             return

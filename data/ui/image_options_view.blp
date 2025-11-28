@@ -61,28 +61,52 @@ template $HalftoneImageOptionsView : Adw.Bin {
       Adw.PreferencesGroup adjustments_group {
         title: _("Adjustments");
 
-        Adw.SpinRow brightness_row {
+        Adw.ActionRow brightness_row {
           title: _("Brightness");
-          subtitle: _("Range -100 to 100");
-          adjustment: Gtk.Adjustment brightness_adjustment {
-            lower: -100;
-            upper: 100;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_brightness_changed();
+
+          [suffix]
+          Gtk.Scale brightness_scale {
+            hexpand: true;
+            valign: center;
+            orientation: horizontal;
+
+            draw-value: true;
+            value-pos: right;
+            digits: 0;
+
+            adjustment: Gtk.Adjustment brightness_adjustment {
+              lower: -10;
+              upper: 10;
+              step-increment: 1;
+              page-increment: 2;
+            };
+
+            value-changed => $on_brightness_changed();
+          }
         }
 
-        Adw.SpinRow contrast_row {
+        Adw.ActionRow contrast_row {
           title: _("Contrast");
-          subtitle: _("Range -100 to 100");
-          adjustment: Gtk.Adjustment contrast_adjustment {
-            lower: -100;
-            upper: 100;
-            step-increment: 1;
-            page-increment: 5;
-          };
-          output => $on_contrast_changed();
+
+          [suffix]
+          Gtk.Scale contrast_scale {
+            hexpand: true;
+            valign: center;
+            orientation: horizontal;
+
+            draw-value: true;
+            value-pos: right;
+            digits: 0;
+
+            adjustment: Gtk.Adjustment contrast_adjustment {
+              lower: -10;
+              upper: 10;
+              step-increment: 1;
+              page-increment: 2;
+            };
+
+            value-changed => $on_contrast_changed();
+          }
         }
       }
 
