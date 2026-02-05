@@ -32,7 +32,7 @@ template $HalftoneErrorPage : Adw.Bin {
       hexpand: true;
 
       icon-name: "image-missing-symbolic";
-      title: _("Image Error Occurred");
+      title: _("Could not Load Image");
       description: _("An error occurred while loading an image. If this error persists, please copy logs and report issue to the bug tracker.");
 
       Gtk.Box {
@@ -40,7 +40,7 @@ template $HalftoneErrorPage : Adw.Bin {
         halign: center;
         spacing: 6;
 
-        Gtk.Button {
+        Gtk.Button copy_logs_button {
           label: _("_Copy Logs");
           clicked => $on_copy_logs_clicked();
           use-underline: true;
