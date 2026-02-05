@@ -8,7 +8,6 @@ from gi.repository import Adw, Gdk, Gio, Gtk
 
 from halftone.backend.model.image_options import ImageOptionsModel
 from halftone.backend.utils.filetypes import FileType, get_output_formats
-from halftone.backend.utils.image import calculate_height
 from halftone.constants import rootdir  # pyright: ignore
 
 @Gtk.Template(resource_path=f"{rootdir}/ui/image_options_view.ui")
