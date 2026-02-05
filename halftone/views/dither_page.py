@@ -123,7 +123,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                 logging.traceback_error(
                     "Failed to finish Gtk.FileDialog save procedure.",
                     exception=e, show_exception=True)
-                self.win.latest_traceback = logging.get_traceback(e)
                 self.toast_overlay.add_toast(
                     Adw.Toast(
                         title=_("Failed to save an image. Check logs for more information")
@@ -224,14 +223,13 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             logging.traceback_error(
                 "Failed to finish ImageMagick dithering operations.",
                 exception=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
-            self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
+            self.win.show_error_page(logging.get_traceback(e))  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
 
         try:
             self._set_updated_texture(self.preview_image_path)
-        except (GLib.Error, TypeError):
-            self.win.show_error_page()  # TODO: Temporary hack: Replace with an error stack page inside dither page
+        except (GLib.Error, TypeError) as e:
+            self.win.show_error_page(logging.get_traceback(e))  # TODO: Temporary hack: Replace with an error stack page inside dither page
             return
 
         self.on_successful_image_load()
@@ -287,7 +285,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             logging.traceback_error(
                 "Failed to load an image using Glycin.",
                 exception=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
             raise
 
         try:
@@ -296,7 +293,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             logging.traceback_error(
                 "Failed to request the next frame of the Glycin image.",
                 exception=e, show_exception=True)
-            self.win.latest_traceback = logging.get_traceback(e)
             raise
 
         texture = GlyGtk4.frame_get_texture(frame)
@@ -357,4 +353,3 @@ class HalftoneDitherPage(Adw.BreakpointBin):
                     title=_("Failed to load preview image. Check logs for more information")
                 )
             )
-            self.win.latest_traceback = logging.get_traceback(e)

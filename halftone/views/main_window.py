@@ -37,8 +37,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.app: Adw.Application = kwargs['application']
         self.settings: Gio.Settings = Gio.Settings(app_id)
 
-        self.latest_traceback: str = ""
-
         content = Gdk.ContentFormats.new_for_gtype(Gio.File)
         self.drop_target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
 
@@ -160,7 +158,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
                 logging.traceback_error(
                     "Failed to finish Gtk.FileDialog open procedure.",
                     exception=e, show_exception=True)
-                self.latest_traceback = logging.get_traceback(e)
                 self.toast_overlay.add_toast(
                     Adw.Toast(
                         title=_("Failed to open an image. Check logs for more information")
@@ -240,12 +237,7 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
                 if e.code == 3:  # Unrecognized image file format
                     pass
 
-            self.toast_overlay.add_toast(
-                Adw.Toast(
-                    title=_("Failed to load an image. Check logs for more information")
-                )
-            )
-            self.show_error_page()
+            self.show_error_page(logging.get_traceback(e))
             return
 
         self.show_dither_page()
@@ -256,10 +248,12 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.save_image_action.set_enabled(False)
         self.main_stack.set_visible_child_name("stack_loading_page")
 
-    def show_error_page(self, *args) -> None:
+    def show_error_page(self, error_text: Optional[str], *args) -> None:
         self.toggle_sheet_action.set_enabled(False)
         self.open_image_action.set_enabled(True)
         self.save_image_action.set_enabled(False)
+
+        self.error_page.set_latest_error(error_text)
         self.main_stack.set_visible_child_name("stack_error_page")
 
     def show_dither_page(self, *args) -> None:
@@ -285,10 +279,9 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
             self.load_image(file)
         except Exception as e:
             logging.error(f"Failed to load initial file {file_path}. Error: {e}")
-            self.latest_traceback = logging.get_traceback(e)
             self.toast_overlay.add_toast(
                 Adw.Toast(
-                    title=_("Failed to load an image. Check logs for more information")
+                    title=_("Failed to load image from the specified path. Check logs for more information")
                 )
             )
 
@@ -310,11 +303,10 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
                 launcher.launch_finish(result)
             except GLib.Error as e:
                 if e.code != 2:  # 'The portal dialog was dismissed by the user' error
-                    logging.error(f"Failed to launch external application: {e}")
-                    self.latest_traceback = logging.get_traceback(e)
+                    logging.error(f"Failed to launch external application. Error: {e}")
                     self.toast_overlay.add_toast(
                         Adw.Toast(
-                            title=_("Failed to open preview image. Check logs for more information")
+                            title=_("Failed to open the image in an external application. Check logs for more information")
                         )
                     )
 
