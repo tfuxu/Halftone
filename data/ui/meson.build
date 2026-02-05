@@ -6,7 +6,6 @@ blueprints = custom_target('blueprints',
     'image_view.blp',
     'main_window.blp',
     'preferences_window.blp',
-    'report_page.blp',
     'shortcuts_dialog.blp'
   ),
   output: '.',

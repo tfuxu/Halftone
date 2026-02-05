@@ -11,8 +11,7 @@ from halftone.constants import app_id, build_type, rootdir  # pyright: ignore
 from halftone.utils.filters import get_file_filter
 from halftone.views.dither_page import HalftoneDitherPage
 from halftone.views.error_page import HalftoneErrorPage
-from halftone.views.report_page import HalftoneReportPage
-from halftone.views.about_window import HalftoneAboutDialog
+from halftone.views.about_dialog import HalftoneAboutDialog
 
 logging = Logger()
 
@@ -47,7 +46,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
 
         self.error_page = HalftoneErrorPage(self)
         self.dither_page = HalftoneDitherPage(self)
-        self.report_page = HalftoneReportPage(self)
 
         self._setup_actions()
         self._setup_signals()
@@ -139,8 +137,6 @@ class HalftoneMainWindow(Adw.ApplicationWindow):
         self.open_image_dialog.set_filters(filters)
 
     def _setup_main_stack(self) -> None:
-        # TODO: Finish report page
-        #self.main_stack.add_named(self.report_page, "stack_report_page")
         self.main_stack.add_named(self.error_page, "stack_error_page")
         self.main_stack.add_named(self.dither_page, "stack_dither_page")
 
