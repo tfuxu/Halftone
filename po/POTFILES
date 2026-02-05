@@ -7,7 +7,7 @@ data/ui/shortcuts_dialog.blp
 data/ui/image_options_view.blp
 data/ui/image_view.blp
 data/ui/main_window.blp
-halftone/views/about_window.py
+halftone/views/about_dialog.py
 halftone/views/dither_page.py
 halftone/views/error_page.py
 halftone/views/image_options_view.py

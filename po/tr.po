@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-19 01:41+0300\n"
+"POT-Creation-Date: 2025-11-23 19:58+0100\n"
 "PO-Revision-Date: 2025-10-19 01:52+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -124,35 +124,40 @@ msgstr "Yankınlaştır"
 
 #: data/ui/shortcuts_dialog.blp:24
 msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr ""
+
+#: data/ui/shortcuts_dialog.blp:29
+msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
-#: data/ui/shortcuts_dialog.blp:30
+#: data/ui/shortcuts_dialog.blp:35
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Genel"
 
-#: data/ui/shortcuts_dialog.blp:33
+#: data/ui/shortcuts_dialog.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr "Araç Bölmesini Aç/Kapat"
 
-#: data/ui/shortcuts_dialog.blp:38
+#: data/ui/shortcuts_dialog.blp:43
 msgctxt "shortcut window"
 msgid "Show Main Menu"
 msgstr "Ana Menüyü Göster"
 
-#: data/ui/shortcuts_dialog.blp:43
+#: data/ui/shortcuts_dialog.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Kısayolları Göster"
 
-#: data/ui/shortcuts_dialog.blp:53
+#: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
 msgid "Close Window"
 msgstr "Pencereyi Kapat"
 
-#: data/ui/shortcuts_dialog.blp:58
+#: data/ui/shortcuts_dialog.blp:63
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Çık"
@@ -161,21 +166,21 @@ msgstr "Çık"
 msgid "Options"
 msgstr "Seçenekler"
 
-#: data/ui/image_options_view.blp:25 data/ui/image_options_view.blp:114
-msgid "Explanation"
-msgstr "Açıklama"
-
-#: data/ui/image_options_view.blp:33
+#: data/ui/image_options_view.blp:21
 msgid "Dither Algorithm"
 msgstr "Titreme Algoritması"
 
-#: data/ui/image_options_view.blp:45
+#: data/ui/image_options_view.blp:33
 msgid "Color Amount"
 msgstr "Renk Miktarı"
 
-#: data/ui/image_options_view.blp:56
+#: data/ui/image_options_view.blp:44
 msgid "Convert To"
 msgstr "Şuna Dönüştür"
+
+#: data/ui/image_options_view.blp:52
+msgid "Explanation"
+msgstr "Açıklama"
 
 #: data/ui/image_options_view.blp:62
 msgid "Adjustments"
@@ -201,33 +206,16 @@ msgstr "Görüntü Boyutu"
 msgid "Width"
 msgstr "Genişlik"
 
-#: data/ui/image_options_view.blp:94 data/ui/image_options_view.blp:126
+#: data/ui/image_options_view.blp:94
 msgid "In pixels"
 msgstr "Piksel olarak"
 
-#: data/ui/image_options_view.blp:107
-msgid "Keep aspect ratio"
-msgstr "En-boy oranını koru"
-
-#: data/ui/image_options_view.blp:125
-msgid "Height"
-msgstr "Yükseklik"
-
-#: data/ui/image_options_view.blp:152
+#: data/ui/image_options_view.blp:119
 msgid ""
-"To learn more about individual options, go to the <a href=\"https://"
-"github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
+"Useful if the original image was saved as JPEG, because dithered images tend "
+"to increase in size when saved in JPEG, rather than formats that use "
+"lossless or hybrid compression techniques."
 msgstr ""
-"Ayrıntılı seçenekler hakkında bilgi almak için <a href=\"https://github.com/"
-"tfuxu/Halftone/wiki/Options\">Wiki sayfasına</a> bakınız."
-
-#: data/ui/image_options_view.blp:167
-msgid ""
-"This option allows you to preserve original aspect ratio when resizing an "
-"image."
-msgstr ""
-"Bu seçenek, görüntüyü yeniden boyutlandırırken özgün en boy oranını "
-"korumanızı sağlar."
 
 #: data/ui/image_view.blp:32
 msgid "Dithering your image…"
@@ -242,6 +230,10 @@ msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
 #: data/ui/image_view.blp:94
+msgid "Reset Zoom"
+msgstr ""
+
+#: data/ui/image_view.blp:104
 msgid "Zoom In"
 msgstr "Yankınlaştır"
 
@@ -258,7 +250,7 @@ msgid "Select an Image"
 msgstr "Görüntü Seç"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:40
+#: halftone/views/about_dialog.py:40
 msgid "translator-credits"
 msgstr "Sabri Ünal <yakushabb@gmail.com>"
 
@@ -294,14 +286,34 @@ msgstr "Desteklenen görüntü biçimleri"
 msgid "Failed to open an image. Check logs for more information"
 msgstr "Görüntü açılamadı. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/main_window.py:249 halftone/views/main_window.py:295
+#: halftone/views/main_window.py:309
 msgid "Failed to load an image. Check logs for more information"
 msgstr "Görüntü yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/main_window.py:321
+#: halftone/views/main_window.py:335
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr "Yeni pencere aç"
+
+#~ msgid "Keep aspect ratio"
+#~ msgstr "En-boy oranını koru"
+
+#~ msgid "Height"
+#~ msgstr "Yükseklik"
+
+#~ msgid ""
+#~ "To learn more about individual options, go to the <a href=\"https://"
+#~ "github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
+#~ msgstr ""
+#~ "Ayrıntılı seçenekler hakkında bilgi almak için <a href=\"https://"
+#~ "github.com/tfuxu/Halftone/wiki/Options\">Wiki sayfasına</a> bakınız."
+
+#~ msgid ""
+#~ "This option allows you to preserve original aspect ratio when resizing an "
+#~ "image."
+#~ msgstr ""
+#~ "Bu seçenek, görüntüyü yeniden boyutlandırırken özgün en boy oranını "
+#~ "korumanızı sağlar."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-19 00:36+0200\n"
+"POT-Creation-Date: 2025-11-23 19:58+0100\n"
 "PO-Revision-Date: 2024-05-13 15:36+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -106,86 +106,86 @@ msgstr ""
 msgid "_Copy Logs"
 msgstr "लॉग कॉपी करें"
 
-#: data/ui/help_overlay.blp:11
+#: data/ui/shortcuts_dialog.blp:6
 msgctxt "shortcut window"
 msgid "Image"
 msgstr "छवि"
 
-#: data/ui/help_overlay.blp:14
+#: data/ui/shortcuts_dialog.blp:9
 msgctxt "shortcut window"
 msgid "Open Image"
 msgstr "छवि खोलें"
 
-#: data/ui/help_overlay.blp:19
+#: data/ui/shortcuts_dialog.blp:14
 msgctxt "shortcut window"
 msgid "Save Image"
 msgstr "छवि सहेजें"
 
-#: data/ui/help_overlay.blp:24 data/ui/help_overlay.blp:72
+#: data/ui/shortcuts_dialog.blp:19
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr ""
 
-#: data/ui/help_overlay.blp:29 data/ui/help_overlay.blp:77
+#: data/ui/shortcuts_dialog.blp:24
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr ""
+
+#: data/ui/shortcuts_dialog.blp:29
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr ""
 
-#: data/ui/help_overlay.blp:35
+#: data/ui/shortcuts_dialog.blp:35
 msgctxt "shortcut window"
 msgid "General"
 msgstr "सामान्य"
 
-#: data/ui/help_overlay.blp:38
+#: data/ui/shortcuts_dialog.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
 msgstr "उपयोगिता फलक टॉगल करें"
 
-#: data/ui/help_overlay.blp:43
+#: data/ui/shortcuts_dialog.blp:43
 #, fuzzy
 msgctxt "shortcut window"
 msgid "Show Main Menu"
 msgstr "मुख्य मेनू"
 
-#: data/ui/help_overlay.blp:48
+#: data/ui/shortcuts_dialog.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "शॉर्टकट दिखाएं"
 
-#: data/ui/help_overlay.blp:58
+#: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
 msgid "Close Window"
 msgstr ""
 
-#: data/ui/help_overlay.blp:63
+#: data/ui/shortcuts_dialog.blp:63
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "छोड़ें"
-
-#: data/ui/help_overlay.blp:69
-msgctxt "shortcut window"
-msgid "Gestures"
-msgstr ""
 
 #: data/ui/image_options_view.blp:18
 msgid "Options"
 msgstr "विकल्प"
 
-#: data/ui/image_options_view.blp:25 data/ui/image_options_view.blp:114
-msgid "Explanation"
-msgstr "स्पष्टीकरण"
-
-#: data/ui/image_options_view.blp:33
+#: data/ui/image_options_view.blp:21
 msgid "Dither Algorithm"
 msgstr "दिथर कलन-विधि"
 
-#: data/ui/image_options_view.blp:45
+#: data/ui/image_options_view.blp:33
 msgid "Color Amount"
 msgstr "रंग मात्रा"
 
-#: data/ui/image_options_view.blp:56
+#: data/ui/image_options_view.blp:44
 msgid "Convert To"
 msgstr "इसमें परिवर्तित करें"
+
+#: data/ui/image_options_view.blp:52
+msgid "Explanation"
+msgstr "स्पष्टीकरण"
 
 #: data/ui/image_options_view.blp:62
 msgid "Adjustments"
@@ -211,33 +211,16 @@ msgstr "छवि आकार"
 msgid "Width"
 msgstr "चौड़ाई"
 
-#: data/ui/image_options_view.blp:94 data/ui/image_options_view.blp:126
+#: data/ui/image_options_view.blp:94
 msgid "In pixels"
 msgstr "पिक्सल में"
 
-#: data/ui/image_options_view.blp:107
-msgid "Keep aspect ratio"
-msgstr "पहलू अनुपात रखें"
-
-#: data/ui/image_options_view.blp:125
-msgid "Height"
-msgstr "ऊंचाई"
-
-#: data/ui/image_options_view.blp:152
+#: data/ui/image_options_view.blp:119
 msgid ""
-"To learn more about individual options, go to the <a href=\"https://"
-"github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
+"Useful if the original image was saved as JPEG, because dithered images tend "
+"to increase in size when saved in JPEG, rather than formats that use "
+"lossless or hybrid compression techniques."
 msgstr ""
-"व्यक्तिगत विकल्पों के बारे में अधिक जानने के लिए, <a href=\"https://github.com/tfuxu/"
-"Halftone/wiki/Options\">विकी पेज</a> पर जाएं।"
-
-#: data/ui/image_options_view.blp:167
-msgid ""
-"This option allows you to preserve original aspect ratio when resizing an "
-"image."
-msgstr ""
-"यह विकल्प आपको किसी छवि का आकार बदलते समय मूल पहलू अनुपात को संरक्षित करने की अनुमति "
-"देता है।"
 
 #: data/ui/image_view.blp:32
 #, fuzzy
@@ -253,6 +236,10 @@ msgid "Zoom Out"
 msgstr ""
 
 #: data/ui/image_view.blp:94
+msgid "Reset Zoom"
+msgstr ""
+
+#: data/ui/image_view.blp:104
 msgid "Zoom In"
 msgstr ""
 
@@ -270,7 +257,7 @@ msgid "Select an Image"
 msgstr "छवि चुनें"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
-#: halftone/views/about_window.py:40
+#: halftone/views/about_dialog.py:40
 msgid "translator-credits"
 msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
 
@@ -290,7 +277,7 @@ msgstr "छवि सफलतापूर्वक दिथर की गई!"
 msgid "Open Image"
 msgstr "छवि खोलें"
 
-#: halftone/views/dither_page.py:349
+#: halftone/views/dither_page.py:357
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "पूर्वावलोकन छवि लोड करने में विफल"
@@ -307,11 +294,11 @@ msgstr "समर्थित छवि प्रारूप"
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/main_window.py:249 halftone/views/main_window.py:295
+#: halftone/views/main_window.py:309
 msgid "Failed to load an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/main_window.py:321
+#: halftone/views/main_window.py:335
 #, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
 msgstr "पूर्वावलोकन छवि लोड करने में विफल"
@@ -319,6 +306,26 @@ msgstr "पूर्वावलोकन छवि लोड करने म�
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr ""
+
+#~ msgid "Keep aspect ratio"
+#~ msgstr "पहलू अनुपात रखें"
+
+#~ msgid "Height"
+#~ msgstr "ऊंचाई"
+
+#~ msgid ""
+#~ "To learn more about individual options, go to the <a href=\"https://"
+#~ "github.com/tfuxu/Halftone/wiki/Options\">wiki page</a>."
+#~ msgstr ""
+#~ "व्यक्तिगत विकल्पों के बारे में अधिक जानने के लिए, <a href=\"https://github.com/"
+#~ "tfuxu/Halftone/wiki/Options\">विकी पेज</a> पर जाएं।"
+
+#~ msgid ""
+#~ "This option allows you to preserve original aspect ratio when resizing an "
+#~ "image."
+#~ msgstr ""
+#~ "यह विकल्प आपको किसी छवि का आकार बदलते समय मूल पहलू अनुपात को संरक्षित करने की "
+#~ "अनुमति देता है।"
 
 #~ msgid "Open in External Image Viewer"
 #~ msgstr "बाहरी छवि दर्शक में खोलें"
