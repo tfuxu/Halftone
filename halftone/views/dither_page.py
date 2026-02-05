@@ -169,8 +169,9 @@ class HalftoneDitherPage(Adw.BreakpointBin):
 
         self._set_original_texture(self.input_image_path)
 
-        self._set_size_spins(self.original_texture.get_width(),
-                            self.original_texture.get_height())
+        self.image_options_view.image_width_row.set_value(
+            self.original_texture.get_width()
+        )
 
         self.start_image_update_task(run_delay=False)
 
@@ -319,10 +320,6 @@ class HalftoneDitherPage(Adw.BreakpointBin):
             format_string = "png"
 
         return format_string.lower()
-
-    # TODO: Remove this method, as the image_height_row doesn't exist
-    def _set_size_spins(self, width: int, height: int) -> None:
-        self.image_options_view.image_width_row.set_value(width)
 
     def _start_task(self, task: Callable, *args) -> None:
         logging.debug("Starting new async task")
