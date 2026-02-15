@@ -21,7 +21,7 @@ logging = Logger()
 LOADING_OVERLAY_DELAY = 2000  # In milliseconds
 
 
-@Gtk.Template(resource_path=f"{rootdir}/ui/dither_page.ui")
+@Gtk.Template.from_resource(f"{rootdir}/ui/dither_page.ui")
 class HalftoneDitherPage(Adw.BreakpointBin):
     __gtype_name__ = "HalftoneDitherPage"
 

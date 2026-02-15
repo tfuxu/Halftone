@@ -9,7 +9,7 @@ from halftone.constants import rootdir  # pyright: ignore
 from halftone.views.image import HalftoneImage
 
 
-@Gtk.Template(resource_path=f"{rootdir}/ui/image_view.ui")
+@Gtk.Template.from_resource(f"{rootdir}/ui/image_view.ui")
 class HalftoneImageView(Adw.Bin):
     __gtype_name__ = "HalftoneImageView"
 

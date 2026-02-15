@@ -7,7 +7,7 @@ from gi.repository import Adw, Gio, Gtk
 from halftone.constants import rootdir # pyright: ignore
 
 
-@Gtk.Template(resource_path=f"{rootdir}/ui/error_page.ui")
+@Gtk.Template.from_resource(f"{rootdir}/ui/error_page.ui")
 class HalftoneErrorPage(Adw.Bin):
     __gtype_name__ = "HalftoneErrorPage"
 

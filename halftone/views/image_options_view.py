@@ -10,7 +10,7 @@ from halftone.backend.model.image_options import ImageOptionsModel
 from halftone.backend.utils.filetypes import FileType, get_output_formats
 from halftone.constants import rootdir  # pyright: ignore
 
-@Gtk.Template(resource_path=f"{rootdir}/ui/image_options_view.ui")
+@Gtk.Template.from_resource(f"{rootdir}/ui/image_options_view.ui")
 class HalftoneImageOptionsView(Adw.Bin):
     __gtype_name__ = "HalftoneImageOptionsView"
 

@@ -16,7 +16,7 @@ from halftone.views.about_dialog import HalftoneAboutDialog
 logging = Logger()
 
 
-@Gtk.Template(resource_path=f"{rootdir}/ui/main_window.ui")
+@Gtk.Template.from_resource(f"{rootdir}/ui/main_window.ui")
 class HalftoneMainWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'HalftoneMainWindow'
 
