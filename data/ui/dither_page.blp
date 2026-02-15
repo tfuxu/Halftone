@@ -38,7 +38,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
             Gtk.MenuButton {
               tooltip-text: _("Main Menu");
               icon-name: "open-menu-symbolic";
-              menu-model: main_menu;
+              menu-model: primary_menu;
               primary: bind desktop_split_view.show-sidebar;
             }
           }
@@ -100,7 +100,7 @@ template $HalftoneDitherPage: Adw.BreakpointBin {
           Gtk.MenuButton {
             tooltip-text: _("Main Menu");
             icon-name: "open-menu-symbolic";
-            menu-model: main_menu;
+            menu-model: primary_menu;
             primary: true;
           }
         }
@@ -176,18 +176,8 @@ Gtk.FileFilter all_files_filter {
   mime-types ["application/octet-stream"]
 }
 
-menu main_menu {
-  section {
-
-    item {
-      label: _("Keyboard Shortcuts");
-      action: "app.shortcuts";
-    }
-
-    item {
-      label: _("About Halftone");
-      action: "win.about";
-    }
-  }
+menu primary_menu {
+  item (_("Keyboard Shortcuts"), "app.shortcuts")
+  item (_("About Halftone"), "win.about")
 }
 
