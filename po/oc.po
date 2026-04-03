@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-23 19:58+0100\n"
-"PO-Revision-Date: 2025-05-26 14:59+1000\n"
+"PO-Revision-Date: 2026-04-03 09:24+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:39
@@ -44,7 +44,7 @@ msgstr "imatge;compression;pixèlart;dither;tractament;"
 
 #: data/io.github.tfuxu.Halftone.desktop.in.in:19
 msgid "New Window"
-msgstr ""
+msgstr "Fenèstra novèla"
 
 #: data/ui/dither_page.blp:27 data/ui/dither_page.blp:87
 #: data/ui/error_page.blp:14
@@ -52,18 +52,16 @@ msgid "Open Image (Ctrl+O)"
 msgstr "Dobrir imatge (Ctrl+O)"
 
 #: data/ui/dither_page.blp:32
-#, fuzzy
 msgid "_Open"
-msgstr "_Dobrir un imatge"
+msgstr "_Dobrir"
 
 #: data/ui/dither_page.blp:39 data/ui/dither_page.blp:101
 msgid "Main Menu"
 msgstr "Menú principal"
 
 #: data/ui/dither_page.blp:94
-#, fuzzy
 msgid "Save Image (Ctrl+S)"
-msgstr "Dobrir imatge (Ctrl+O)"
+msgstr "Dobrir imatge (Ctrl+S)"
 
 #: data/ui/dither_page.blp:144
 msgid "_Save Image"
@@ -125,7 +123,7 @@ msgstr "Zoom avant"
 #: data/ui/shortcuts_dialog.blp:24
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Reïnicializar lo zoom"
 
 #: data/ui/shortcuts_dialog.blp:29
 msgctxt "shortcut window"
@@ -155,7 +153,7 @@ msgstr "Afichar los acorchis"
 #: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
 msgid "Close Window"
-msgstr ""
+msgstr "Tampar la fenèstra"
 
 #: data/ui/shortcuts_dialog.blp:63
 msgctxt "shortcut window"
@@ -216,6 +214,10 @@ msgid ""
 "to increase in size when saved in JPEG, rather than formats that use "
 "lossless or hybrid compression techniques."
 msgstr ""
+"Utile se l'imatge original foguèt enregistrat en JPEG, perque los imatges "
+"tramats an tendéncia a aumentar de talha quand son enregistrats en JPEG, "
+"puslèu que dins de formats qu'utilizan de tecnicas de compression sens pèrda "
+"o ibridas."
 
 #: data/ui/image_view.blp:32
 msgid "Dithering your image…"
@@ -231,7 +233,7 @@ msgstr "Zoom arrièr"
 
 #: data/ui/image_view.blp:94
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Reïnicializar lo zoom"
 
 #: data/ui/image_view.blp:104
 msgid "Zoom In"
@@ -304,7 +306,7 @@ msgstr ""
 
 #: halftone/main.py:63
 msgid "Open a new window"
-msgstr ""
+msgstr "Dobrir una fenèstra novèla"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Gestures"
