@@ -45,8 +45,8 @@ endif
 
 # Required dependencies
 dependency('glib-2.0')
-dependency('gtk4', version: '>= 4.12.0')
-dependency('libadwaita-1', version: '>= 1.5.0')
+dependency('gtk4', version: '>= 4.20.0')
+dependency('libadwaita-1', version: '>= 1.8.0')
 dependency('pygobject-3.0', version: '>= 3.48.0')
 
 # Python installation directory
