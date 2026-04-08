@@ -1,6 +1,12 @@
 :root {
   --osd-background-color: rgba(240, 240, 240, 0.75);
 }
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --osd-background-color: rgba(0, 0, 0, 0.65);
+  }
+}
 
 .dragndrop_overlay {
   background-color: alpha(var(--accent-bg-color), 0.5);
