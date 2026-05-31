@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-23 19:58+0100\n"
-"PO-Revision-Date: 2026-05-16 12:32+0100\n"
+"PO-Revision-Date: 2026-05-29 17:48+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -30,9 +30,9 @@ msgid ""
 "technique. Give your images a pixel art-like style and reduce the file size "
 "in the process with Halftone."
 msgstr ""
-"App Libadwaita sempel rag gwaskans skeusen kollek ow tevnydhya dyjynyans. Ri "
-"agas skeusennow gis avel art pyksel ha byghanhe an braster restren gans "
-"Halftone."
+"App Libadwaita sempel rag gwaskans skeusen kollek ow tevnydhya dyjynyans. "
+"Rewgh agas skeusennow gis avel art pyksel ha byghanhe an braster restren "
+"gans Halftone."
 
 #. Translators: Application name. Keep this string as "Halftone"
 #: data/io.github.tfuxu.Halftone.desktop.in.in:3
@@ -79,7 +79,7 @@ msgstr "Oll restrennow"
 
 #: data/ui/dither_page.blp:183
 msgid "Keyboard Shortcuts"
-msgstr "Kesunyansow Vysowek"
+msgstr "Kesunyansow Bysowek"
 
 #: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
@@ -88,15 +88,15 @@ msgstr "A-dro dhe Halftone"
 
 #: data/ui/error_page.blp:35
 msgid "Image Error Occurred"
-msgstr "Yth Esa Error Skeusen"
+msgstr "Yth Esa Kamm Skeusen"
 
 #: data/ui/error_page.blp:36
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
 msgstr ""
-"Yth esa error ow karga skeusen. Mar durya an error ma, kopiewgh kovadhow mar "
-"pleg ha derivewgh an kudyn dhe'n rol gudynnow."
+"Yth esa kamm hag ow karga skeusen. Mar turya an kamm ma, kopiewgh kovadhow "
+"mar pleg ha derivewgh an kudyn dhe'n rol gudynnow."
 
 #: data/ui/error_page.blp:44
 msgid "_Copy Logs"
@@ -150,7 +150,7 @@ msgstr "Diskwedhes Pennrol"
 #: data/ui/shortcuts_dialog.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Diskwedhes Kesunyansow Vysowek"
+msgstr "Diskwedhes Kesunyansow Bysowek"
 
 #: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
@@ -250,7 +250,7 @@ msgstr "Droppyewgh Omma rag Karga Skeusen"
 
 #: data/ui/main_window.blp:118
 msgid "Select an Image"
-msgstr "Dewis Skeusen"
+msgstr "Dewisewgh Skeusen"
 
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
 #: halftone/views/about_dialog.py:40
@@ -287,16 +287,16 @@ msgstr "Furvasow skeusen skoodhys"
 
 #: halftone/views/main_window.py:170
 msgid "Failed to open an image. Check logs for more information"
-msgstr "Ny yllir ygeri aven. Checkyewgh kovadhow rag moy kedhlow"
+msgstr "Ny yllir ygeri skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
 #: halftone/views/main_window.py:309
 msgid "Failed to load an image. Check logs for more information"
-msgstr "Ny yllir karga aven. Checkyewgh kovadhow rag moy kedhlow"
+msgstr "Ny yllir karga skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
 #: halftone/views/main_window.py:335
 msgid "Failed to open preview image. Check logs for more information"
 msgstr ""
-"Ny yllir ygeri an rogwolok skeusen. Checkyewgh kovadhow rag moy kedhlow"
+"Ny yllir ygeri an ragwolok skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
 #: halftone/main.py:63
 msgid "Open a new window"
