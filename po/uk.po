@@ -2,26 +2,28 @@
 # Copyright (C) 2023 THE halftone'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the halftone package.
 # volkov <volkovissocool@gmail.com>, 2023.
+# Dymko <Dymkovych@proton.me>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-23 19:58+0100\n"
-"PO-Revision-Date: 2023-12-30 18:58+0200\n"
-"Last-Translator: volkov <volkovissocool@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-07-16 19:38+0300\n"
+"Last-Translator: Dymko <Dymkovych@proton.me>\n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Gtranslator 50.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
 #: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:39
-#, fuzzy
 msgid "Dither your images"
-msgstr "Алгоритм розмивання"
+msgstr "Стилізуйте зображення"
 
 #: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:17
 msgid ""
@@ -29,9 +31,9 @@ msgid ""
 "technique. Give your images a pixel art-like style and reduce the file size "
 "in the process with Halftone."
 msgstr ""
-"Простий, побудований на Libadwaita, додаток для стискання зображень з "
-"втратами, завдяки технікам розмивання. Надайте вашим зображенням піксельної "
-"естетики і зменшіть розмір файлу у процесі завдяки Halftone."
+"Простий Libadwaita-застосунок для стискання зображень із втратами завдяки "
+"алгоритмам просторового розсіювання. Надайте зображенням піксельної естетики "
+"і заодно зменште розмір файлу із Halftone."
 
 #. Translators: Application name. Keep this string as "Halftone"
 #: data/io.github.tfuxu.Halftone.desktop.in.in:3
@@ -40,13 +42,12 @@ msgstr "Halftone"
 
 #. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
 #: data/io.github.tfuxu.Halftone.desktop.in.in:13
-#, fuzzy
 msgid "image;compression;pixelart;dither;processing;"
-msgstr "compression;pixelart;dither;edit;стискання;пікселі;арт;редагування;зображення;перфект;"
+msgstr "картинка;світлина;зображення;арт;стискання;піксель;арт;редагування;перфект;дитеринг;імітація;кольору;обробка;compression;pixelart;dither;edit;"
 
 #: data/io.github.tfuxu.Halftone.desktop.in.in:19
 msgid "New Window"
-msgstr ""
+msgstr "Нове вікно"
 
 #: data/ui/dither_page.blp:27 data/ui/dither_page.blp:87
 #: data/ui/error_page.blp:14
@@ -54,23 +55,20 @@ msgid "Open Image (Ctrl+O)"
 msgstr "Відкрити зображення (Ctrl+O)"
 
 #: data/ui/dither_page.blp:32
-#, fuzzy
 msgid "_Open"
-msgstr "Відкрити зображення"
+msgstr "_Відкрити"
 
 #: data/ui/dither_page.blp:39 data/ui/dither_page.blp:101
 msgid "Main Menu"
 msgstr "Головне меню"
 
 #: data/ui/dither_page.blp:94
-#, fuzzy
 msgid "Save Image (Ctrl+S)"
-msgstr "Відкрити зображення (Ctrl+O)"
+msgstr "Зберегти зображення (Ctrl+S)"
 
 #: data/ui/dither_page.blp:144
-#, fuzzy
 msgid "_Save Image"
-msgstr "Зберегти зображення"
+msgstr "_Зберегти зображення"
 
 #: data/ui/dither_page.blp:170
 msgid "Save an Image in…"
@@ -78,7 +76,7 @@ msgstr "Зберегти зображення в…"
 
 #: data/ui/dither_page.blp:175 data/ui/main_window.blp:123
 msgid "All files"
-msgstr "Всі файли"
+msgstr "Усі файли"
 
 #: data/ui/dither_page.blp:183
 msgid "Keyboard Shortcuts"
@@ -91,20 +89,19 @@ msgstr "Про Halftone"
 
 #: data/ui/error_page.blp:35
 msgid "Image Error Occurred"
-msgstr "Сталася помилка з зображенням"
+msgstr "Сталася помилка зображення"
 
 #: data/ui/error_page.blp:36
 msgid ""
 "An error occurred while loading an image. If this error persists, please "
 "copy logs and report issue to the bug tracker."
 msgstr ""
-"Сталася помилка при завантаженні зображення. Якщо ця помилка не зникне, будь-"
-"ласка, повідомте про ваду до трекеру вад."
+"Сталася помилка при завантаженні зображення. Якщо ця помилка не зникне, будь "
+"ласка, створіть звернення про ваду."
 
 #: data/ui/error_page.blp:44
-#, fuzzy
 msgid "_Copy Logs"
-msgstr "Скопіювати журнал"
+msgstr "_Скопіювати журнал"
 
 #: data/ui/shortcuts_dialog.blp:6
 msgctxt "shortcut window"
@@ -124,17 +121,17 @@ msgstr "Зберегти зображення"
 #: data/ui/shortcuts_dialog.blp:19
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr ""
+msgstr "Збільшити"
 
 #: data/ui/shortcuts_dialog.blp:24
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Початковий масштаб"
 
 #: data/ui/shortcuts_dialog.blp:29
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr ""
+msgstr "Зменшити"
 
 #: data/ui/shortcuts_dialog.blp:35
 msgctxt "shortcut window"
@@ -144,10 +141,9 @@ msgstr "Загальні"
 #: data/ui/shortcuts_dialog.blp:38
 msgctxt "shortcut window"
 msgid "Toggle Utility Pane"
-msgstr ""
+msgstr "Панель інструментів"
 
 #: data/ui/shortcuts_dialog.blp:43
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Show Main Menu"
 msgstr "Головне меню"
@@ -155,12 +151,12 @@ msgstr "Головне меню"
 #: data/ui/shortcuts_dialog.blp:48
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Показати клавіатурні скорочення"
+msgstr "Клавіатурні скорочення"
 
 #: data/ui/shortcuts_dialog.blp:58
 msgctxt "shortcut window"
 msgid "Close Window"
-msgstr ""
+msgstr "Закрити вікно"
 
 #: data/ui/shortcuts_dialog.blp:63
 msgctxt "shortcut window"
@@ -169,11 +165,11 @@ msgstr "Вийти"
 
 #: data/ui/image_options_view.blp:18
 msgid "Options"
-msgstr "Опції"
+msgstr "Параметри"
 
 #: data/ui/image_options_view.blp:21
 msgid "Dither Algorithm"
-msgstr "Алгоритм розмивання"
+msgstr "Алгоритм розсіювання"
 
 #: data/ui/image_options_view.blp:33
 msgid "Color Amount"
@@ -181,7 +177,7 @@ msgstr "Кількість кольорів"
 
 #: data/ui/image_options_view.blp:44
 msgid "Convert To"
-msgstr "Конвертувати у"
+msgstr "Конвертувати в"
 
 #: data/ui/image_options_view.blp:52
 msgid "Explanation"
@@ -189,7 +185,7 @@ msgstr "Пояснення"
 
 #: data/ui/image_options_view.blp:62
 msgid "Adjustments"
-msgstr ""
+msgstr "Коригування"
 
 #: data/ui/image_options_view.blp:65
 msgid "Brightness"
@@ -221,32 +217,33 @@ msgid ""
 "to increase in size when saved in JPEG, rather than formats that use "
 "lossless or hybrid compression techniques."
 msgstr ""
+"Корисно, якщо оригінальне зображення було збережено як JPEG, оскільки після "
+"розсіювання зображення у форматі JPEG зазвичай займають більше місця, ніж у "
+"форматах зі стисненням без втрат або гібридним стисненням."
 
 #: data/ui/image_view.blp:32
-#, fuzzy
 msgid "Dithering your image…"
-msgstr "Алгоритм розмивання"
+msgstr "Застосування розсіювання…"
 
 #: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
 msgid "Toggle Sidebar"
-msgstr "Показати / приховати бокову панель"
+msgstr "Бічна панель"
 
 #: data/ui/image_view.blp:84
 msgid "Zoom Out"
-msgstr ""
+msgstr "Зменшити"
 
 #: data/ui/image_view.blp:94
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Початковий масштаб"
 
 #: data/ui/image_view.blp:104
 msgid "Zoom In"
-msgstr ""
+msgstr "Збільшити"
 
 #: data/ui/main_window.blp:51
-#, fuzzy
 msgid "_Open Image"
-msgstr "Відкрити зображення"
+msgstr "_Відкрити зображення"
 
 #: data/ui/main_window.blp:106
 msgid "Drop Here to Load Image"
@@ -259,32 +256,37 @@ msgstr "Обрати зображення"
 #. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
 #: halftone/views/about_dialog.py:40
 msgid "translator-credits"
-msgstr "volkov <volkovissocool@gmail.com>"
+msgstr ""
+"volkov <volkovissocool@gmail.com>\n"
+"Dymko <Dymkovych@proton.me>"
 
 #: halftone/views/dither_page.py:129
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
+"Не вдалося зберегти зображення. Перевірте журнал для отримання додаткової "
+"інформації"
 
 #: halftone/views/dither_page.py:153
 msgid "Toggle Bottom Sheet"
-msgstr "Показати / приховати нижню панель"
+msgstr "Бічна панель"
 
 #: halftone/views/dither_page.py:266
 msgid "Image dithered successfully!"
-msgstr "Зображення було успішно розмите!"
+msgstr "Розсіювання успішно застосовано!"
 
 #: halftone/views/dither_page.py:267
 msgid "Open Image"
 msgstr "Відкрити зображення"
 
 #: halftone/views/dither_page.py:357
-#, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
-msgstr "Не вдалося завантажити зображення для попереднього перегляду"
+msgstr ""
+"Не вдалося завантажити попередній перегляд. Перевірте журнал для отримання "
+"додаткової інформації"
 
 #: halftone/views/error_page.py:45
 msgid "Copied logs to clipboard"
-msgstr "Журнал скопійовано до буферу обміну"
+msgstr "Журнал скопійовано до буфера обміну"
 
 #: halftone/views/main_window.py:132
 msgid "Supported image formats"
@@ -293,19 +295,24 @@ msgstr "Підтримувані формати зображень"
 #: halftone/views/main_window.py:170
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
+"Не вдалося відкрити зображення. Перевірте журнал для отримання додаткової "
+"інформації"
 
 #: halftone/views/main_window.py:309
 msgid "Failed to load an image. Check logs for more information"
 msgstr ""
+"Не вдалося завантажити зображення. Перевірте журнал для отримання додаткової "
+"інформації"
 
 #: halftone/views/main_window.py:335
-#, fuzzy
 msgid "Failed to open preview image. Check logs for more information"
-msgstr "Не вдалося завантажити зображення для попереднього перегляду"
+msgstr ""
+"Не вдалося відкрити попередній перегляд. Перевірте журнал для отримання "
+"додаткової інформації"
 
 #: halftone/main.py:63
 msgid "Open a new window"
-msgstr ""
+msgstr "Відкрити нове вікно"
 
 #~ msgid "Keep aspect ratio"
 #~ msgstr "Зберігати пропорції"
