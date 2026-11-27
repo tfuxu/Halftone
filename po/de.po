@@ -87,7 +87,6 @@ msgid "About Halftone"
 msgstr "Über Halftone"
 
 #: data/ui/error_page.blp:35
-#, fuzzy
 msgid "Could not Load Image"
 msgstr "Bild konnte nicht geladen werden"
 
@@ -280,7 +279,6 @@ msgid "Open Image"
 msgstr "Bild öffnen"
 
 #: halftone/views/dither_page.py:350
-#, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr ""
 "Vorschaubild konnte nicht geladen werden. Prüfen Sie die Protokolle für "
@@ -301,7 +299,6 @@ msgstr ""
 "Informationen"
 
 #: halftone/views/main_window.py:284
-#, fuzzy
 msgid ""
 "Failed to load image from the specified path. Check logs for more information"
 msgstr ""
@@ -309,7 +306,6 @@ msgstr ""
 "Protokolle für weitere Informationen"
 
 #: halftone/views/main_window.py:309
-#, fuzzy
 msgid ""
 "Failed to open the image in an external application. Check logs for more "
 "information"
