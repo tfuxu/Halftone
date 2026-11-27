@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"POT-Creation-Date: 2026-02-15 14:52+0100\n"
 "PO-Revision-Date: 2024-07-07 14:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -79,18 +79,19 @@ msgstr "Bild speichern in…"
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: data/ui/dither_page.blp:183
+#: data/ui/dither_page.blp:180
 msgid "Keyboard Shortcuts"
 msgstr "Tastenkombinationen"
 
-#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "Über Halftone"
 
 #: data/ui/error_page.blp:35
-msgid "Image Error Occurred"
-msgstr "Bildfehler aufgetreten"
+#, fuzzy
+msgid "Could not Load Image"
+msgstr "Hier ablegen, um Bild zu laden"
 
 #: data/ui/error_page.blp:36
 msgid ""
@@ -227,7 +228,7 @@ msgstr ""
 msgid "Dithering your image…"
 msgstr "Dithern Sie Ihre Bilder"
 
-#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
 msgid "Toggle Sidebar"
 msgstr "Seitenleiste umschalten"
 
@@ -261,51 +262,58 @@ msgstr "Wähle ein Bild aus"
 msgid "translator-credits"
 msgstr "Koray Er <mail@korayer.de>"
 
-#: halftone/views/dither_page.py:129
+#: halftone/views/dither_page.py:128
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:153
+#: halftone/views/dither_page.py:152
 msgid "Toggle Bottom Sheet"
 msgstr "Untere Leiste umschalten"
 
-#: halftone/views/dither_page.py:266
+#: halftone/views/dither_page.py:265
 msgid "Image dithered successfully!"
 msgstr "Bild erfolgreich gedithert!"
 
-#: halftone/views/dither_page.py:267
+#: halftone/views/dither_page.py:266
 msgid "Open Image"
 msgstr "Bild öffnen"
 
-#: halftone/views/dither_page.py:357
+#: halftone/views/dither_page.py:350
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Vorschaubild konnte nicht geladen werden"
 
-#: halftone/views/error_page.py:45
+#: halftone/views/error_page.py:50
 msgid "Copied logs to clipboard"
 msgstr "Protokolle in die Zwischenablage kopiert"
 
-#: halftone/views/main_window.py:132
+#: halftone/views/main_window.py:128
 msgid "Supported image formats"
 msgstr "Unterstützte Bildformate"
 
-#: halftone/views/main_window.py:170
+#: halftone/views/main_window.py:163
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/main_window.py:309
-msgid "Failed to load an image. Check logs for more information"
-msgstr ""
-
-#: halftone/views/main_window.py:335
+#: halftone/views/main_window.py:284
 #, fuzzy
-msgid "Failed to open preview image. Check logs for more information"
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
+msgstr "Vorschaubild konnte nicht geladen werden"
+
+#: halftone/views/main_window.py:309
+#, fuzzy
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
 msgstr "Vorschaubild konnte nicht geladen werden"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr ""
+
+#~ msgid "Image Error Occurred"
+#~ msgstr "Bildfehler aufgetreten"
 
 #~ msgid "Keep aspect ratio"
 #~ msgstr "Seitenverhältnis beibehalten"

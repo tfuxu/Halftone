@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"POT-Creation-Date: 2026-02-15 14:52+0100\n"
 "PO-Revision-Date: 2024-09-23 09:37+0200\n"
 "Last-Translator: Sunniva Løvstad <turtle@turtle.garden>\n"
 "Language-Team: \n"
@@ -79,18 +79,19 @@ msgstr "Lagre bilde i…"
 msgid "All files"
 msgstr "Alle filer"
 
-#: data/ui/dither_page.blp:183
+#: data/ui/dither_page.blp:180
 msgid "Keyboard Shortcuts"
 msgstr "Tastatursnarveier"
 
-#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "Om Halvtone"
 
 #: data/ui/error_page.blp:35
-msgid "Image Error Occurred"
-msgstr "En feil har oppstått med bildet"
+#, fuzzy
+msgid "Could not Load Image"
+msgstr "Slipp her for å laste inn bilde"
 
 #: data/ui/error_page.blp:36
 msgid ""
@@ -226,7 +227,7 @@ msgstr ""
 msgid "Dithering your image…"
 msgstr "Dither bildene dine"
 
-#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
 msgid "Toggle Sidebar"
 msgstr "Vis/skjul sidefelt"
 
@@ -260,51 +261,58 @@ msgstr "Velg et bilde"
 msgid "translator-credits"
 msgstr "Sunniva Løvstad <halvtone@turtle.garden>"
 
-#: halftone/views/dither_page.py:129
+#: halftone/views/dither_page.py:128
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:153
+#: halftone/views/dither_page.py:152
 msgid "Toggle Bottom Sheet"
 msgstr "Vis/skjul bunnområdet"
 
-#: halftone/views/dither_page.py:266
+#: halftone/views/dither_page.py:265
 msgid "Image dithered successfully!"
 msgstr "Bilde har blitt ditheret!"
 
-#: halftone/views/dither_page.py:267
+#: halftone/views/dither_page.py:266
 msgid "Open Image"
 msgstr "Åpne bilde"
 
-#: halftone/views/dither_page.py:357
+#: halftone/views/dither_page.py:350
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Kunne ikke laste inn bildeforhåndsvisning"
 
-#: halftone/views/error_page.py:45
+#: halftone/views/error_page.py:50
 msgid "Copied logs to clipboard"
 msgstr "Kopierte loggene til utklippstavlen"
 
-#: halftone/views/main_window.py:132
+#: halftone/views/main_window.py:128
 msgid "Supported image formats"
 msgstr "Støttede bildeformater"
 
-#: halftone/views/main_window.py:170
+#: halftone/views/main_window.py:163
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/main_window.py:309
-msgid "Failed to load an image. Check logs for more information"
-msgstr ""
-
-#: halftone/views/main_window.py:335
+#: halftone/views/main_window.py:284
 #, fuzzy
-msgid "Failed to open preview image. Check logs for more information"
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
+msgstr "Kunne ikke laste inn bildeforhåndsvisning"
+
+#: halftone/views/main_window.py:309
+#, fuzzy
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
 msgstr "Kunne ikke laste inn bildeforhåndsvisning"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr ""
+
+#~ msgid "Image Error Occurred"
+#~ msgstr "En feil har oppstått med bildet"
 
 #~ msgid "Keep aspect ratio"
 #~ msgstr "Behold sideforhold"
