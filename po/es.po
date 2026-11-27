@@ -1,0 +1,313 @@
+# Spanish translation for halftone.
+# Copyright (C) 2026 THE halftone'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the halftone package.
+# Pedro Flores, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: halftone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"PO-Revision-Date: 2026-11-19 10:00+0100\n"
+"Last-Translator: Pedro Flores\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:5
+#: data/io.github.tfuxu.Halftone.desktop.in.in:9 data/ui/main_window.blp:39
+msgid "Dither your images"
+msgstr "Aplica tramado a tus imágenes"
+
+#: data/io.github.tfuxu.Halftone.metainfo.xml.in.in:17
+msgid ""
+"A simple Libadwaita app for lossy image compression using dithering "
+"technique. Give your images a pixel art-like style and reduce the file size "
+"in the process with Halftone."
+msgstr ""
+"Una aplicación sencilla de Libadwaita para comprimir imágenes con pérdida "
+"mediante la técnica del tramado. Dale a tus imágenes un estilo de pixel art "
+"y, de paso, reduce el tamaño del archivo con Halftone."
+
+#. Translators: Application name. Keep this string as "Halftone"
+#: data/io.github.tfuxu.Halftone.desktop.in.in:3
+msgid "Halftone"
+msgstr "Halftone"
+
+#. Translators: These are search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+#: data/io.github.tfuxu.Halftone.desktop.in.in:13
+msgid "image;compression;pixelart;dither;processing;"
+msgstr "imagen;compresión;pixelart;píxel;tramado;dithering;procesamiento;"
+
+#: data/io.github.tfuxu.Halftone.desktop.in.in:19
+msgid "New Window"
+msgstr "Ventana nueva"
+
+#: data/ui/dither_page.blp:27 data/ui/dither_page.blp:87
+#: data/ui/error_page.blp:14
+msgid "Open Image (Ctrl+O)"
+msgstr "Abrir imagen (Ctrl+O)"
+
+#: data/ui/dither_page.blp:32
+msgid "_Open"
+msgstr "_Abrir"
+
+#: data/ui/dither_page.blp:39 data/ui/dither_page.blp:101
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: data/ui/dither_page.blp:94
+msgid "Save Image (Ctrl+S)"
+msgstr "Guardar imagen (Ctrl+S)"
+
+#: data/ui/dither_page.blp:144
+msgid "_Save Image"
+msgstr "_Guardar imagen"
+
+#: data/ui/dither_page.blp:170
+msgid "Save an Image in…"
+msgstr "Guardar la imagen en…"
+
+#: data/ui/dither_page.blp:175 data/ui/main_window.blp:123
+msgid "All files"
+msgstr "Todos los archivos"
+
+#: data/ui/dither_page.blp:180
+msgid "Keyboard Shortcuts"
+msgstr "Atajos de teclado"
+
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
+#: data/ui/main_window.blp:28 data/ui/main_window.blp:78
+msgid "About Halftone"
+msgstr "Acerca de Halftone"
+
+#: data/ui/error_page.blp:35
+msgid "Could not Load Image"
+msgstr "No se pudo cargar la imagen"
+
+#: data/ui/error_page.blp:36
+msgid ""
+"An error occurred while loading an image. If this error persists, please "
+"copy logs and report issue to the bug tracker."
+msgstr ""
+"Se ha producido un error al cargar la imagen. Si el error persiste, copia "
+"los registros e informa del problema en el sistema de seguimiento de errores."
+
+#: data/ui/error_page.blp:44
+msgid "_Copy Logs"
+msgstr "_Copiar registros"
+
+#: data/ui/shortcuts_dialog.blp:6
+msgctxt "shortcut window"
+msgid "Image"
+msgstr "Imagen"
+
+#: data/ui/shortcuts_dialog.blp:9
+msgctxt "shortcut window"
+msgid "Open Image"
+msgstr "Abrir imagen"
+
+#: data/ui/shortcuts_dialog.blp:14
+msgctxt "shortcut window"
+msgid "Save Image"
+msgstr "Guardar imagen"
+
+#: data/ui/shortcuts_dialog.blp:19
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Ampliar"
+
+#: data/ui/shortcuts_dialog.blp:24
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Restablecer ampliación"
+
+#: data/ui/shortcuts_dialog.blp:29
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Reducir"
+
+#: data/ui/shortcuts_dialog.blp:35
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: data/ui/shortcuts_dialog.blp:38
+msgctxt "shortcut window"
+msgid "Toggle Utility Pane"
+msgstr "Mostrar/ocultar el panel de utilidades"
+
+#: data/ui/shortcuts_dialog.blp:43
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "Mostrar el menú principal"
+
+#: data/ui/shortcuts_dialog.blp:48
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar los atajos"
+
+#: data/ui/shortcuts_dialog.blp:58
+msgctxt "shortcut window"
+msgid "Close Window"
+msgstr "Cerrar la ventana"
+
+#: data/ui/shortcuts_dialog.blp:63
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Salir"
+
+#: data/ui/image_options_view.blp:18
+msgid "Options"
+msgstr "Opciones"
+
+#: data/ui/image_options_view.blp:21
+msgid "Dither Algorithm"
+msgstr "Algoritmo de tramado"
+
+#: data/ui/image_options_view.blp:33
+msgid "Color Amount"
+msgstr "Número de colores"
+
+#: data/ui/image_options_view.blp:44
+msgid "Convert To"
+msgstr "Convertir a"
+
+#: data/ui/image_options_view.blp:52
+msgid "Explanation"
+msgstr "Explicación"
+
+#: data/ui/image_options_view.blp:62
+msgid "Adjustments"
+msgstr "Ajustes"
+
+#: data/ui/image_options_view.blp:65
+msgid "Brightness"
+msgstr "Brillo"
+
+#: data/ui/image_options_view.blp:66 data/ui/image_options_view.blp:78
+msgid "Range -100 to 100"
+msgstr "Rango de -100 a 100"
+
+#: data/ui/image_options_view.blp:77
+msgid "Contrast"
+msgstr "Contraste"
+
+#: data/ui/image_options_view.blp:90
+msgid "Image Size"
+msgstr "Tamaño de la imagen"
+
+#: data/ui/image_options_view.blp:93
+msgid "Width"
+msgstr "Anchura"
+
+#: data/ui/image_options_view.blp:94
+msgid "In pixels"
+msgstr "En píxeles"
+
+#: data/ui/image_options_view.blp:119
+msgid ""
+"Useful if the original image was saved as JPEG, because dithered images tend "
+"to increase in size when saved in JPEG, rather than formats that use "
+"lossless or hybrid compression techniques."
+msgstr ""
+"Útil si la imagen original se guardó como JPEG, ya que las imágenes tramadas "
+"suelen ocupar más al guardarse en JPEG que en formatos que usan técnicas de "
+"compresión sin pérdida o híbridas."
+
+#: data/ui/image_view.blp:32
+msgid "Dithering your image…"
+msgstr "Aplicando tramado a la imagen…"
+
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
+msgid "Toggle Sidebar"
+msgstr "Mostrar/ocultar la barra lateral"
+
+#: data/ui/image_view.blp:84
+msgid "Zoom Out"
+msgstr "Reducir"
+
+#: data/ui/image_view.blp:94
+msgid "Reset Zoom"
+msgstr "Restablecer ampliación"
+
+#: data/ui/image_view.blp:104
+msgid "Zoom In"
+msgstr "Ampliar"
+
+#: data/ui/main_window.blp:51
+msgid "_Open Image"
+msgstr "_Abrir imagen"
+
+#: data/ui/main_window.blp:106
+msgid "Drop Here to Load Image"
+msgstr "Suelta aquí para cargar la imagen"
+
+#: data/ui/main_window.blp:118
+msgid "Select an Image"
+msgstr "Seleccionar una imagen"
+
+#. TRANSLATORS: This is a place to put your credits (formats: "Name https://example.com" or "Name <email@example.com>", no quotes) and is not meant to be translated literally.
+#: halftone/views/about_dialog.py:40
+msgid "translator-credits"
+msgstr "Pedro Flores"
+
+#: halftone/views/dither_page.py:128
+msgid "Failed to save an image. Check logs for more information"
+msgstr ""
+"No se pudo guardar la imagen. Consulta los registros para obtener más "
+"información"
+
+#: halftone/views/dither_page.py:152
+msgid "Toggle Bottom Sheet"
+msgstr "Mostrar/ocultar el panel inferior"
+
+#: halftone/views/dither_page.py:265
+msgid "Image dithered successfully!"
+msgstr "¡Tramado aplicado correctamente!"
+
+#: halftone/views/dither_page.py:266
+msgid "Open Image"
+msgstr "Abrir imagen"
+
+#: halftone/views/dither_page.py:350
+msgid "Failed to load preview image. Check logs for more information"
+msgstr ""
+"No se pudo cargar la vista previa. Consulta los registros para obtener más "
+"información"
+
+#: halftone/views/error_page.py:50
+msgid "Copied logs to clipboard"
+msgstr "Registros copiados al portapapeles"
+
+#: halftone/views/main_window.py:128
+msgid "Supported image formats"
+msgstr "Formatos de imagen compatibles"
+
+#: halftone/views/main_window.py:163
+msgid "Failed to open an image. Check logs for more information"
+msgstr ""
+"No se pudo abrir la imagen. Consulta los registros para obtener más "
+"información"
+
+#: halftone/views/main_window.py:284
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
+msgstr ""
+"No se pudo cargar la imagen desde la ruta indicada. Consulta los registros "
+"para obtener más información"
+
+#: halftone/views/main_window.py:309
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
+msgstr ""
+"No se pudo abrir la imagen en una aplicación externa. Consulta los registros "
+"para obtener más información"
+
+#: halftone/main.py:63
+msgid "Open a new window"
+msgstr "Abrir una ventana nueva"
