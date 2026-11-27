@@ -324,9 +324,6 @@ msgstr "Ein neues Fenster öffnen"
 #~ msgid "Image Error Occurred"
 #~ msgstr "Bildfehler aufgetreten"
 
-#~ msgid "Image Error Occurred"
-#~ msgstr "Bildfehler aufgetreten"
-
 #~ msgid "Keep aspect ratio"
 #~ msgstr "Seitenverhältnis beibehalten"
 
