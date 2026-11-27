@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"POT-Creation-Date: 2026-02-15 14:52+0100\n"
 "PO-Revision-Date: 2024-07-30 17:13-0300\n"
 "Last-Translator: Fúlvio Leo <fulviokaldas@outlook.com>\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -80,18 +80,19 @@ msgstr "Salvar uma Imagem em…"
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: data/ui/dither_page.blp:183
+#: data/ui/dither_page.blp:180
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de Teclado"
 
-#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "Sobre o Halftone"
 
 #: data/ui/error_page.blp:35
-msgid "Image Error Occurred"
-msgstr "Ocorreu um erro de imagem"
+#, fuzzy
+msgid "Could not Load Image"
+msgstr "Solte aqui para carregar a imagem"
 
 #: data/ui/error_page.blp:36
 msgid ""
@@ -227,7 +228,7 @@ msgstr ""
 msgid "Dithering your image…"
 msgstr "Use o algoritmo Dither nas suas imagens"
 
-#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
 msgid "Toggle Sidebar"
 msgstr "Alternar Barra Lateral"
 
@@ -263,51 +264,58 @@ msgstr ""
 "Fúlvio Leo <fulviokaldas@outlook.com>\n"
 "Tiago Lucas Flach <tiagolucas9830@gmail.com>"
 
-#: halftone/views/dither_page.py:129
+#: halftone/views/dither_page.py:128
 msgid "Failed to save an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/dither_page.py:153
+#: halftone/views/dither_page.py:152
 msgid "Toggle Bottom Sheet"
 msgstr "Alternar Área Inferior"
 
-#: halftone/views/dither_page.py:266
+#: halftone/views/dither_page.py:265
 msgid "Image dithered successfully!"
 msgstr "Imagem pontilhada com sucesso!"
 
-#: halftone/views/dither_page.py:267
+#: halftone/views/dither_page.py:266
 msgid "Open Image"
 msgstr "Abrir Imagem"
 
-#: halftone/views/dither_page.py:357
+#: halftone/views/dither_page.py:350
 #, fuzzy
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Falha ao carregar a imagem de pré-visualização"
 
-#: halftone/views/error_page.py:45
+#: halftone/views/error_page.py:50
 msgid "Copied logs to clipboard"
 msgstr "Logs copiados para a área de transferência"
 
-#: halftone/views/main_window.py:132
+#: halftone/views/main_window.py:128
 msgid "Supported image formats"
 msgstr "Formatos de imagem suportados"
 
-#: halftone/views/main_window.py:170
+#: halftone/views/main_window.py:163
 msgid "Failed to open an image. Check logs for more information"
 msgstr ""
 
-#: halftone/views/main_window.py:309
-msgid "Failed to load an image. Check logs for more information"
-msgstr ""
-
-#: halftone/views/main_window.py:335
+#: halftone/views/main_window.py:284
 #, fuzzy
-msgid "Failed to open preview image. Check logs for more information"
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
+msgstr "Falha ao carregar a imagem de pré-visualização"
+
+#: halftone/views/main_window.py:309
+#, fuzzy
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
 msgstr "Falha ao carregar a imagem de pré-visualização"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr ""
+
+#~ msgid "Image Error Occurred"
+#~ msgstr "Ocorreu um erro de imagem"
 
 #~ msgid "Keep aspect ratio"
 #~ msgstr "Manter a proporção"

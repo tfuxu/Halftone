@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"POT-Creation-Date: 2026-02-15 14:52+0100\n"
 "PO-Revision-Date: 2026-05-29 17:48+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
@@ -77,18 +77,19 @@ msgstr "Sawya Skeusen yn…"
 msgid "All files"
 msgstr "Oll restrennow"
 
-#: data/ui/dither_page.blp:183
+#: data/ui/dither_page.blp:180
 msgid "Keyboard Shortcuts"
 msgstr "Kesunyansow Bysowek"
 
-#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "A-dro dhe Halftone"
 
 #: data/ui/error_page.blp:35
-msgid "Image Error Occurred"
-msgstr "Yth Esa Kamm Skeusen"
+#, fuzzy
+msgid "Could not Load Image"
+msgstr "Droppyewgh Omma rag Karga Skeusen"
 
 #: data/ui/error_page.blp:36
 msgid ""
@@ -224,7 +225,7 @@ msgstr ""
 msgid "Dithering your image…"
 msgstr "Ow Tyjynya agas skeusen…"
 
-#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
 msgid "Toggle Sidebar"
 msgstr "Dewis Bord Lestri"
 
@@ -257,50 +258,61 @@ msgstr "Dewisewgh Skeusen"
 msgid "translator-credits"
 msgstr "Flynn <cirilla@tuta.io>"
 
-#: halftone/views/dither_page.py:129
+#: halftone/views/dither_page.py:128
 msgid "Failed to save an image. Check logs for more information"
 msgstr "Ny yllir sawya aven. Checkyewgh kovadhow rag moy kedhlow"
 
-#: halftone/views/dither_page.py:153
+#: halftone/views/dither_page.py:152
 msgid "Toggle Bottom Sheet"
 msgstr "Dewis Folen A-woles"
 
-#: halftone/views/dither_page.py:266
+#: halftone/views/dither_page.py:265
 msgid "Image dithered successfully!"
 msgstr "Skeusen dyjynys yn sewen!"
 
-#: halftone/views/dither_page.py:267
+#: halftone/views/dither_page.py:266
 msgid "Open Image"
 msgstr "Ygeri Skeusen"
 
-#: halftone/views/dither_page.py:357
+#: halftone/views/dither_page.py:350
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Ny yllir karga skeusen ragwolok. Checkyewgh kovadhow rag moy kedhlow"
 
-#: halftone/views/error_page.py:45
+#: halftone/views/error_page.py:50
 msgid "Copied logs to clipboard"
 msgstr "Kopys kovadhow war astel glypp"
 
-#: halftone/views/main_window.py:132
+#: halftone/views/main_window.py:128
 msgid "Supported image formats"
 msgstr "Furvasow skeusen skoodhys"
 
-#: halftone/views/main_window.py:170
+#: halftone/views/main_window.py:163
 msgid "Failed to open an image. Check logs for more information"
 msgstr "Ny yllir ygeri skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
-#: halftone/views/main_window.py:309
-msgid "Failed to load an image. Check logs for more information"
+#: halftone/views/main_window.py:284
+#, fuzzy
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
 msgstr "Ny yllir karga skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
-#: halftone/views/main_window.py:335
-msgid "Failed to open preview image. Check logs for more information"
-msgstr ""
-"Ny yllir ygeri an ragwolok skeusen. Checkyewgh kovadhow rag moy kedhlow"
+#: halftone/views/main_window.py:309
+#, fuzzy
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
+msgstr "Ny yllir ygeri skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr "Ygeri fenester nowydh"
+
+#~ msgid "Image Error Occurred"
+#~ msgstr "Yth Esa Kamm Skeusen"
+
+#~ msgid "Failed to open preview image. Check logs for more information"
+#~ msgstr ""
+#~ "Ny yllir ygeri an ragwolok skeusen. Checkyewgh kovadhow rag moy kedhlow"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Gestures"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: halftone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-23 19:58+0100\n"
+"POT-Creation-Date: 2026-02-15 14:52+0100\n"
 "PO-Revision-Date: 2025-10-19 01:52+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -77,18 +77,19 @@ msgstr "Görüntüyü Farklı Kaydet…"
 msgid "All files"
 msgstr "Tüm dosyalar"
 
-#: data/ui/dither_page.blp:183
+#: data/ui/dither_page.blp:180
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/ui/dither_page.blp:188 data/ui/error_page.blp:22
+#: data/ui/dither_page.blp:181 data/ui/error_page.blp:22
 #: data/ui/main_window.blp:28 data/ui/main_window.blp:78
 msgid "About Halftone"
 msgstr "Halftone Hakkında"
 
 #: data/ui/error_page.blp:35
-msgid "Image Error Occurred"
-msgstr "Görüntü Hatası Oluştu"
+#, fuzzy
+msgid "Could not Load Image"
+msgstr "Görüntüyü Yüklemek İçin Buraya Bırakın"
 
 #: data/ui/error_page.blp:36
 msgid ""
@@ -221,7 +222,7 @@ msgstr ""
 msgid "Dithering your image…"
 msgstr "Görüntünüzü titretin…"
 
-#: data/ui/image_view.blp:57 halftone/views/dither_page.py:159
+#: data/ui/image_view.blp:57 halftone/views/dither_page.py:158
 msgid "Toggle Sidebar"
 msgstr "Kenar Çubuğunu Aç/Kapat"
 
@@ -254,49 +255,61 @@ msgstr "Görüntü Seç"
 msgid "translator-credits"
 msgstr "Sabri Ünal <yakushabb@gmail.com>"
 
-#: halftone/views/dither_page.py:129
+#: halftone/views/dither_page.py:128
 msgid "Failed to save an image. Check logs for more information"
 msgstr "Görüntü kaydedilemedi. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/dither_page.py:153
+#: halftone/views/dither_page.py:152
 msgid "Toggle Bottom Sheet"
 msgstr "Alt Sayfayı Aç/Kapat"
 
-#: halftone/views/dither_page.py:266
+#: halftone/views/dither_page.py:265
 msgid "Image dithered successfully!"
 msgstr "Görüntü başarıyla titretildi!"
 
-#: halftone/views/dither_page.py:267
+#: halftone/views/dither_page.py:266
 msgid "Open Image"
 msgstr "Görüntü Aç"
 
-#: halftone/views/dither_page.py:357
+#: halftone/views/dither_page.py:350
 msgid "Failed to load preview image. Check logs for more information"
 msgstr "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/error_page.py:45
+#: halftone/views/error_page.py:50
 msgid "Copied logs to clipboard"
 msgstr "Günlükler panoya kopyalandı"
 
-#: halftone/views/main_window.py:132
+#: halftone/views/main_window.py:128
 msgid "Supported image formats"
 msgstr "Desteklenen görüntü biçimleri"
 
-#: halftone/views/main_window.py:170
+#: halftone/views/main_window.py:163
 msgid "Failed to open an image. Check logs for more information"
 msgstr "Görüntü açılamadı. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/main_window.py:309
-msgid "Failed to load an image. Check logs for more information"
+#: halftone/views/main_window.py:284
+#, fuzzy
+msgid ""
+"Failed to load image from the specified path. Check logs for more information"
 msgstr "Görüntü yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
-#: halftone/views/main_window.py:335
-msgid "Failed to open preview image. Check logs for more information"
-msgstr "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
+#: halftone/views/main_window.py:309
+#, fuzzy
+msgid ""
+"Failed to open the image in an external application. Check logs for more "
+"information"
+msgstr "Görüntü açılamadı. Daha çok bilgi için günlüklere bakın"
 
 #: halftone/main.py:63
 msgid "Open a new window"
 msgstr "Yeni pencere aç"
+
+#~ msgid "Image Error Occurred"
+#~ msgstr "Görüntü Hatası Oluştu"
+
+#~ msgid "Failed to open preview image. Check logs for more information"
+#~ msgstr ""
+#~ "Görüntü ön izlemesi yüklenemedi. Daha çok bilgi için günlüklere bakın"
 
 #~ msgid "Keep aspect ratio"
 #~ msgstr "En-boy oranını koru"
